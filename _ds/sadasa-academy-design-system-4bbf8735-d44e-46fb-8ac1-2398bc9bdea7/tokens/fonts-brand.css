@@ -1,0 +1,29 @@
+/* Gotham Narrow — the identity typeface named in the SADASA Identity Guideline.
+   Licensed .otf files supplied by the brand owner; self-hosted. */
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:100;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Thin.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:200;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-XLight.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:300;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Light.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:italic;font-weight:300;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-LightItalic.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Book.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:italic;font-weight:400;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-BookItalic.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Medium.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:italic;font-weight:500;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-MediumItalic.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Bold.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:italic;font-weight:700;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-BoldItalic.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:800;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Black.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:italic;font-weight:800;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-BlackItalic.otf") format("opentype")}
+@font-face{font-family:'Gotham Narrow';font-style:normal;font-weight:900;font-display:swap;src:url("../assets/fonts/gotham/GothamNarrow-Ultra.otf") format("opentype")}
+/* Galano Grotesque — the stationery typeface named in the guideline. Licensed .otf files
+   supplied by the brand owner; self-hosted. */
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:100;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueThin.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:200;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueExtraLight.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:300;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueLight.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueRegular.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:italic;font-weight:400;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueItalic.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:500;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueMedium.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:italic;font-weight:500;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueMediumItalic.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueSemiBold.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueBold.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:italic;font-weight:700;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueBoldItalic.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:800;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueExtraBold.otf") format("opentype")}
+@font-face{font-family:'Galano Grotesque';font-style:normal;font-weight:900;font-display:swap;src:url("../assets/fonts/galano/GalanoGrotesqueBlack.otf") format("opentype")}

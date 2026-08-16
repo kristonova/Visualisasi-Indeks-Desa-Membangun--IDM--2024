@@ -1,0 +1,18 @@
+/* The identity is built from circles (the mark, the ¾ ring, the letterhead icon chips) set against
+   hard-edged rectangles (the address block, tables). Containers stay crisp; only pills and chips
+   go fully round. */
+:root{
+--radius-none:0; /* @kind radius */
+--radius-xs:2px;
+--radius-sm:4px;
+--radius-md:8px;
+--radius-lg:12px;
+--radius-xl:18px;
+--radius-pill:999px;
+--radius-circle:50%; /* @kind radius */
+
+--border-width:1px; /* @kind spacing */
+--border-width-strong:2px; /* @kind spacing */
+--rule-accent:3px; /* @kind spacing */ /* the short red rule that sits under eyebrows and headings */
+--rule-motif:16px; /* @kind spacing */ /* stroke width of the ¾-ring motif at display size */
+}

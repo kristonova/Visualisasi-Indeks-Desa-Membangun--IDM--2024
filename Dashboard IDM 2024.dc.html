@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/fonts-brand.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/colors.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/typography.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/shape.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/motion.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/tokens/base.css">
+<link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/styles.css">
+<script src="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+#root,#app,body>div{height:100%;overflow:hidden}
+a{color:var(--n-900);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--sadasa-red)}
+button{font-family:inherit}
+input,select{font-family:inherit}
+::selection{background:var(--gold-200)}
+#rail::-webkit-scrollbar,#tbody::-webkit-scrollbar{width:9px;height:9px}
+#rail::-webkit-scrollbar-thumb,#tbody::-webkit-scrollbar-thumb{background:var(--n-300);border-radius:9px}
+#rail::-webkit-scrollbar-track,#tbody::-webkit-scrollbar-track{background:transparent}
+/* #rail adalah kolom flex yang isinya lebih tinggi dari layar. Tanpa ini, anak
+   yang ber-overflow:hidden (mis. grid KPI, kartu detail) punya min-height 0 dan
+   digencet flex sampai nyaris nol di layar lebar - di >1180px grid KPI menyusut
+   jadi 2px sehingga keempat angkanya seolah hilang. Isi rail harus setinggi
+   kontennya; yang menggulung adalah rail-nya sendiri. */
+#rail>*{flex-shrink:0}
+@keyframes idmfade{from{opacity:0}to{opacity:1}}
+@keyframes idmpulse{0%,100%{opacity:.35}50%{opacity:.9}}
+@media (max-width:1180px){
+  #dash{grid-template-columns:1fr!important;overflow:auto!important}
+  #stage{height:58vh!important;min-height:340px}
+  #rail{width:auto!important;border-left:0!important;border-top:1px solid var(--border-hairline)!important;overflow:visible!important}
+  #drawer{display:none!important}
+  #hdr{flex-wrap:wrap;height:auto!important;padding:10px 16px!important}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+
+<div style="height:100vh;max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--surface-page)">
+
+  <header id="hdr" style="display:flex;align-items:center;gap:16px;padding:0 18px;height:58px;background:var(--surface-card);border-bottom:1px solid var(--border-hairline);flex-shrink:0;position:relative;z-index:40">
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <img src="assets/sadasa-mark-red.png" alt="Sadasa Academy" style="height:24px;width:auto;display:block">
+      <div style="display:flex;flex-direction:column;gap:3px;border-left:1px solid var(--border-hairline);padding-left:10px">
+        <span style="font:700 13px/1 var(--font-sans);letter-spacing:-0.012em;color:var(--text-strong)">Peta Desa Nusantara</span>
+        <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Indeks Desa Membangun 2024</span>
+      </div>
+    </div>
+
+    <nav aria-label="Lingkup aktif" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0;flex:1">
+      <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="1">
+        <button type="button" onClick="{{ c.go }}" title="{{ c.title }}" style="border:0;background:transparent;padding:4px 7px;border-radius:4px;font:600 12px/1.2 var(--font-sans);letter-spacing:-0.005em;color:var(--text-muted);cursor:pointer;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" style-hover="background:var(--n-100);color:var(--text-strong)">{{ c.t }}</button>
+        <sc-if value="{{ c.more }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color:var(--n-300);font:400 12px/1 var(--font-mono)">/</span></sc-if>
+      </sc-for>
+      <span style="font:600 12px/1.2 var(--font-sans);color:var(--text-strong);padding:4px 7px;border-bottom:2px solid var(--gold-500);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ crumbLast }}</span>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <div style="position:relative">
+        <input type="search" value="{{ q }}" onInput="{{ onQ }}" placeholder="Cari desa…" aria-label="Cari desa" style="width:180px;height:32px;padding:0 10px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-page);font:500 12px/1 var(--font-sans);color:var(--text-strong);outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:36px;right:0;width:330px;max-height:340px;overflow-y:auto;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;box-shadow:var(--shadow-3);padding:5px;z-index:60">
+            <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+              <button type="button" onClick="{{ r.go }}" style="display:flex;width:100%;align-items:center;gap:9px;border:0;background:transparent;padding:7px 8px;border-radius:5px;cursor:pointer;text-align:left" style-hover="background:var(--n-100)">
+                <span style="width:9px;height:9px;border-radius:2px;flex-shrink:0;background:{{ r.color }}"></span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                  <span style="font:600 12px/1.25 var(--font-sans);color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.nm }}</span>
+                  <span style="font:400 10px/1.25 var(--font-sans);color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.sub }}</span>
+                </span>
+                <span style="font:500 11px/1 var(--font-mono);color:var(--text-body);flex-shrink:0">{{ r.idm }}</span>
+              </button>
+            </sc-for>
+            <sc-if value="{{ resultsMore }}" hint-placeholder-val="{{ false }}"><p style="margin:4px 8px 6px;font:400 10px/1.3 var(--font-sans);color:var(--text-subtle)">{{ resultsMore }}</p></sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <select value="{{ provSel }}" onChange="{{ onProv }}" aria-label="Pilih provinsi" style="height:32px;max-width:230px;padding:0 8px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-strong);cursor:pointer;outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
+        <sc-for list="{{ provOpts }}" as="o" hint-placeholder-count="6">
+          <option value="{{ o.v }}">{{ o.t }}</option>
+        </sc-for>
+      </select>
+
+      <button type="button" onClick="{{ exportCsv }}" title="Unduh lingkup aktif sebagai CSV" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">CSV</button>
+      <button type="button" onClick="{{ exportPng }}" title="Unduh peta sebagai PNG" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">PNG</button>
+    </div>
+  </header>
+
+  <div id="dash" style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 392px;overflow:hidden">
+
+    <section id="stage" style="position:relative;min-width:0;background:#eef1ee;overflow:hidden">
+      <canvas ref="{{ mapRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onMouseDown="{{ onDown }}" onWheel="{{ onWheel }}" onClick="{{ onClick }}" onDoubleClick="{{ onDbl }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:none"></canvas>
+
+      <div style="position:absolute;top:0;left:0;right:0;height:150px;pointer-events:none;background:linear-gradient(180deg,rgba(246,247,245,.92) 0%,rgba(246,247,245,.66) 46%,rgba(246,247,245,0) 100%)"></div>
+
+      <div style="position:absolute;top:14px;left:16px;display:flex;flex-direction:column;gap:7px;pointer-events:none;max-width:52%">
+        <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.17em;text-transform:uppercase;color:var(--n-500)">{{ scopeKind }}</span>
+        <h1 style="margin:0;font:800 clamp(20px,2.3vw,31px)/1.02 var(--font-sans);letter-spacing:-0.03em;color:var(--n-900);text-wrap:balance">{{ scopeTitle }}</h1>
+        <p style="margin:0;font:500 12px/1.4 var(--font-sans);color:var(--n-600)">{{ scopeSub }}</p>
+      </div>
+
+      <div style="position:absolute;top:14px;right:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div style="display:flex;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
+          <button type="button" onClick="{{ setPeta }}" aria-pressed="{{ isPeta }}" style="border:0;padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petaBg }};color:{{ petaFg }}">Peta</button>
+          <button type="button" onClick="{{ setPetak }}" aria-pressed="{{ isPetak }}" style="border:0;border-left:1px solid var(--border-hairline);padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petakBg }};color:{{ petakFg }}">Petak</button>
+        </div>
+        <div style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
+          <button type="button" onClick="{{ zoomIn }}" aria-label="Perbesar" style="border:0;width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">+</button>
+          <button type="button" onClick="{{ zoomOut }}" aria-label="Perkecil" style="border:0;border-top:1px solid var(--border-hairline);width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">−</button>
+          <button type="button" onClick="{{ resetView }}" aria-label="Atur ulang tampilan" title="Atur ulang" style="border:0;border-top:1px solid var(--border-hairline);width:30px;height:30px;font:500 10px/1 var(--font-mono);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">⤾</button>
+        </div>
+        <sc-if value="{{ canUp }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ goUp }}" style="height:30px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:5px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;box-shadow:var(--shadow-1)" style-hover="background:var(--n-50);color:var(--text-strong)">↑ Naik level</button>
+        </sc-if>
+      </div>
+
+      <div style="position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:calc(100% - 32px);z-index:15">
+        <sc-if value="{{ notice }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;max-width:100%;display:flex;align-items:center;gap:14px;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;padding:11px 13px;box-shadow:var(--shadow-2);z-index:15">
+            <span style="width:3px;align-self:stretch;background:var(--gold-500);border-radius:2px;flex-shrink:0"></span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
+              <span style="font:700 11.5px/1.25 var(--font-sans);color:var(--text-strong)">{{ notice.t }}</span>
+              <span style="font:400 10.5px/1.45 var(--font-sans);color:var(--text-muted)">{{ notice.b }}</span>
+            </div>
+            <button type="button" onClick="{{ setPetak }}" style="flex-shrink:0;height:30px;padding:0 13px;border:0;border-radius:4px;background:var(--n-900);color:var(--n-0);font:600 11px/1 var(--font-sans);cursor:pointer;white-space:nowrap" style-hover="background:var(--n-800)">Lihat {{ notice.n }} desa</button>
+          </div>
+        </sc-if>
+        <div style="position:relative;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:11px 12px 10px;box-shadow:var(--shadow-1);min-width:236px;max-width:100%">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px">
+            <span style="font:700 9px/1 var(--font-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">Status IDM</span>
+            <span style="font:400 9px/1 var(--font-sans);color:var(--text-subtle)">klik untuk saring</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1px">
+            <sc-for list="{{ legend }}" as="l" hint-placeholder-count="5">
+              <button type="button" onClick="{{ l.go }}" style="display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:4px 5px;border-radius:4px;cursor:pointer;text-align:left;opacity:{{ l.op }}" style-hover="background:var(--n-100)">
+                <span style="width:13px;height:13px;border-radius:2px;flex-shrink:0;background:{{ l.color }};box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)"></span>
+                <span style="flex:1;font:600 11px/1.1 var(--font-sans);color:var(--text-strong);white-space:nowrap">{{ l.nm }}</span>
+                <span style="font:500 10px/1 var(--font-mono);color:var(--text-muted);font-variant-numeric:tabular-nums">{{ l.n }}</span>
+                <span style="width:38px;text-align:right;font:500 10px/1 var(--font-mono);color:var(--text-subtle);font-variant-numeric:tabular-nums">{{ l.pct }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <p style="margin:9px 0 0;padding-top:8px;border-top:1px solid var(--border-hairline);font:400 9px/1.45 var(--font-sans);color:var(--text-subtle)">{{ legendNote }}</p>
+        </div>
+      </div>
+
+      <sc-if value="{{ tip }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;pointer-events:none;z-index:20;left:{{ tip.x }};top:{{ tip.y }};background:var(--n-900);color:var(--n-0);border-radius:6px;padding:8px 10px;max-width:250px;box-shadow:0 6px 22px -8px rgba(40,20,14,.55)">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px">
+            <span style="width:9px;height:9px;border-radius:2px;flex-shrink:0;background:{{ tip.color }}"></span>
+            <span style="font:700 12px/1.2 var(--font-sans);letter-spacing:-0.008em">{{ tip.t }}</span>
+          </div>
+          <sc-for list="{{ tip.lines }}" as="ln" hint-placeholder-count="2">
+            <div style="font:400 10.5px/1.5 var(--font-sans);color:rgba(255,255,255,.72)">{{ ln }}</div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <p aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0">{{ live }}</p>
+    </section>
+
+    <aside id="rail" style="width:392px;min-width:0;background:var(--surface-page);border-left:1px solid var(--border-hairline);overflow-y:auto;padding:16px 16px 26px;display:flex;flex-direction:column;gap:13px">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-hairline);border:1px solid var(--border-hairline);border-radius:8px;overflow:hidden">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <div style="background:var(--surface-card);padding:11px 12px 12px;display:flex;flex-direction:column;gap:5px">
+            <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">{{ k.lab }}</span>
+            <span style="font:800 23px/1 var(--font-sans);letter-spacing:-0.035em;color:var(--text-strong);font-variant-numeric:tabular-nums">{{ k.val }}</span>
+            <span style="font:500 10px/1.3 var(--font-sans);color:{{ k.tone }}">{{ k.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:11px">
+          <h2 style="margin:0;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Sebaran status</h2>
+          <span style="font:500 9.5px/1 var(--font-mono);color:var(--text-subtle)">{{ distTotal }}</span>
+        </div>
+        <div style="display:flex;gap:2px;height:34px;margin-bottom:11px">
+          <sc-for list="{{ dist }}" as="d" hint-placeholder-count="5">
+            <div title="{{ d.title }}" style="width:{{ d.w }};background:{{ d.color }};border-radius:3px;display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:2px">
+              <span style="font:700 9.5px/1 var(--font-mono);color:{{ d.ink }};opacity:{{ d.labOp }};font-variant-numeric:tabular-nums">{{ d.pct }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ dist }}" as="d" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:9px;height:9px;border-radius:2px;flex-shrink:0;background:{{ d.color }}"></span>
+              <span style="flex:1;font:500 11px/1.2 var(--font-sans);color:var(--text-body)">{{ d.nm }}</span>
+              <span style="font:600 11px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ d.n }}</span>
+              <span style="width:44px;text-align:right;font:500 10px/1 var(--font-mono);color:var(--text-muted);font-variant-numeric:tabular-nums">{{ d.pct }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
+        <section style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-1);animation:idmfade .18s var(--ease-out) both">
+          <div style="padding:13px 14px 12px;border-bottom:1px solid var(--border-hairline);display:flex;flex-direction:column;gap:7px;background:var(--surface-sunken)">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+              <div style="min-width:0;display:flex;flex-direction:column;gap:4px">
+                <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Detail desa</span>
+                <h2 style="margin:0;font:800 17px/1.15 var(--font-sans);letter-spacing:-0.022em;color:var(--text-strong);text-wrap:balance">{{ detail.nm }}</h2>
+                <span style="font:400 11px/1.45 var(--font-sans);color:var(--text-body)">{{ detail.where }}</span>
+              </div>
+              <button type="button" onClick="{{ clearSel }}" aria-label="Tutup detail" style="border:0;background:transparent;color:var(--text-muted);font:400 15px/1 var(--font-sans);cursor:pointer;padding:2px 4px;flex-shrink:0" style-hover="color:var(--text-strong)">×</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="padding:4px 9px;border-radius:999px;background:{{ detail.color }};color:{{ detail.ink }};font:700 10px/1 var(--font-sans);letter-spacing:0.02em">{{ detail.st }}</span>
+              <span style="font:500 10px/1 var(--font-mono);color:var(--text-muted);letter-spacing:0.03em">{{ detail.kode }}</span>
+              <sc-if value="{{ detail.prov }}" hint-placeholder-val="{{ false }}">
+                <span style="padding:3px 7px;border-radius:3px;background:var(--gold-50);color:var(--gold-800);font:600 9px/1.2 var(--font-sans);border:1px solid var(--gold-200)">{{ detail.prov }}</span>
+              </sc-if>
+            </div>
+          </div>
+          <div style="padding:13px 14px 14px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Nilai IDM</span>
+                <span style="font:800 30px/1 var(--font-sans);letter-spacing:-0.04em;color:var(--text-strong);font-variant-numeric:tabular-nums">{{ detail.idm }}</span>
+              </div>
+              <span style="font:500 11px/1.4 var(--font-sans);color:{{ detail.dTone }};text-align:right">{{ detail.dNas }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ detail.sub }}" as="s" hint-placeholder-count="3">
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+                    <span style="font:600 10.5px/1.2 var(--font-sans);color:var(--text-body)">{{ s.lab }}</span>
+                    <span style="font:600 11px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ s.v }}</span>
+                  </div>
+                  <div style="position:relative;height:7px;background:var(--n-100);border-radius:4px;overflow:hidden">
+                    <div style="position:absolute;left:0;top:0;bottom:0;width:{{ s.w }};background:var(--n-800);border-radius:4px"></div>
+                    <div style="position:absolute;top:-2px;bottom:-2px;width:2px;left:{{ s.nasw }};background:var(--gold-600)"></div>
+                  </div>
+                  <span style="font:400 9.5px/1.2 var(--font-sans);color:var(--text-subtle)">{{ s.note }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
+          <h2 style="margin:0;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">{{ rankTitle }}</h2>
+          <button type="button" onClick="{{ toggleRankDir }}" style="border:0;background:transparent;font:500 9.5px/1 var(--font-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:2px 3px" style-hover="color:var(--text-strong)">{{ rankDirLab }}</button>
+        </div>
+        <p style="margin:0 0 11px;font:400 10px/1.4 var(--font-sans);color:var(--text-subtle)">{{ rankSub }}</p>
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <sc-for list="{{ rank }}" as="r" hint-placeholder-count="8">
+            <button type="button" onClick="{{ r.go }}" style="display:grid;grid-template-columns:16px minmax(0,1fr) 46px;align-items:center;gap:8px;border:0;background:{{ r.bg }};padding:5px 6px;border-radius:4px;cursor:pointer;text-align:left" style-hover="background:var(--n-100)">
+              <span style="font:500 9.5px/1 var(--font-mono);color:var(--text-subtle);font-variant-numeric:tabular-nums">{{ r.i }}</span>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:4px">
+                <span style="font:600 11px/1.2 var(--font-sans);color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.nm }}</span>
+                <span style="height:5px;background:var(--n-100);border-radius:3px;overflow:hidden;display:block">
+                  <span style="display:block;height:100%;width:{{ r.w }};background:{{ r.color }};border-radius:3px"></span>
+                </span>
+              </span>
+              <span style="text-align:right;display:flex;flex-direction:column;gap:2px">
+                <span style="font:600 11px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ r.mean }}</span>
+                <span style="font:400 8.5px/1 var(--font-mono);color:var(--text-subtle);font-variant-numeric:tabular-nums">{{ r.n }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+        <h2 style="margin:0 0 3px;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Sebaran nilai IDM</h2>
+        <p style="margin:0 0 12px;font:400 10px/1.4 var(--font-sans);color:var(--text-subtle)">{{ histSub }}</p>
+        <div style="display:flex;align-items:flex-end;gap:2px;height:84px">
+          <sc-for list="{{ hist }}" as="h" hint-placeholder-count="24">
+            <div title="{{ h.title }}" style="flex:1;min-width:0;height:{{ h.h }};background:{{ h.color }};border-radius:2px 2px 0 0;min-height:1px"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:7px;padding-top:7px;border-top:1px solid var(--border-hairline)">
+          <span style="font:500 9px/1 var(--font-mono);color:var(--text-subtle)">0,20</span>
+          <span style="font:500 9px/1 var(--font-mono);color:var(--text-muted)">{{ histMean }}</span>
+          <span style="font:500 9px/1 var(--font-mono);color:var(--text-subtle)">1,00</span>
+        </div>
+      </section>
+
+      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+        <h2 style="margin:0 0 12px;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Banding rerata nasional</h2>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ cmp }}" as="c" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+                <span style="font:600 10.5px/1.2 var(--font-sans);color:var(--text-body)">{{ c.lab }}</span>
+                <span style="display:flex;align-items:baseline;gap:7px">
+                  <span style="font:600 11px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ c.mine }}</span>
+                  <span style="font:500 10px/1 var(--font-mono);color:{{ c.tone }};font-variant-numeric:tabular-nums">{{ c.delta }}</span>
+                </span>
+              </div>
+              <div style="position:relative;height:7px;background:var(--n-100);border-radius:4px;overflow:hidden">
+                <div style="position:absolute;left:0;top:0;bottom:0;width:{{ c.w }};background:var(--n-800);border-radius:4px"></div>
+                <div style="position:absolute;top:-2px;bottom:-2px;width:2px;left:{{ c.nw }};background:var(--gold-600)"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin:11px 0 0;padding-top:9px;border-top:1px solid var(--border-hairline);font:400 9.5px/1.45 var(--font-sans);color:var(--text-subtle)">Garis emas menandai rerata nasional. Sumber: Kemendes PDTT, IDM 2024 hasil pemutakhiran — 75.265 desa.</p>
+      </section>
+    </aside>
+  </div>
+
+  <section id="drawer" style="flex-shrink:0;background:var(--surface-card);border-top:1px solid var(--border-hairline);display:flex;flex-direction:column;max-height:46vh">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 16px;height:42px;flex-shrink:0;border-bottom:{{ tableBorder }}">
+      <button type="button" onClick="{{ toggleTable }}" style="display:flex;align-items:center;gap:8px;border:0;background:transparent;cursor:pointer;padding:4px 0">
+        <span style="font:700 9px/1 var(--font-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">{{ tableCaret }}</span>
+        <span style="font:700 12px/1 var(--font-sans);color:var(--text-strong)">{{ tableTitle }}</span>
+      </button>
+      <span style="font:500 10px/1 var(--font-mono);color:var(--text-subtle);font-variant-numeric:tabular-nums">{{ tableCount }}</span>
+      <span style="flex:1"></span>
+      <sc-for list="{{ statusChips }}" as="s" hint-placeholder-count="5">
+        <button type="button" onClick="{{ s.go }}" title="{{ s.title }}" style="display:flex;align-items:center;gap:5px;border:1px solid var(--border-hairline);border-radius:999px;background:{{ s.bg }};padding:3px 9px 3px 6px;cursor:pointer" style-hover="border-color:var(--n-400)">
+          <span style="width:8px;height:8px;border-radius:2px;background:{{ s.color }}"></span>
+          <span style="font:600 10px/1.2 var(--font-sans);color:{{ s.fg }}">{{ s.nm }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ tableOpen }}" hint-placeholder-val="{{ true }}">
+      <div id="tbody" style="overflow:auto;min-height:0">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--font-sans)">
+          <thead>
+            <tr>
+              <sc-for list="{{ cols }}" as="c" hint-placeholder-count="8">
+                <th onClick="{{ c.go }}" title="Urutkan menurut {{ c.lab }}" style="position:sticky;top:0;z-index:2;text-align:{{ c.align }};padding:8px 12px;background:var(--surface-sunken);border-bottom:1px solid var(--border-hairline);font:700 8.5px/1.2 var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:{{ c.fg }};cursor:pointer;white-space:nowrap">{{ c.lab }}{{ c.arrow }}</th>
+              </sc-for>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+              <tr onClick="{{ r.go }}" onMouseEnter="{{ r.hi }}" style="cursor:pointer;background:{{ r.bg }}" style-hover="background:var(--n-50)">
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);font:600 12px/1.3 var(--font-sans);color:var(--text-strong);white-space:nowrap">{{ r.nm }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);font:400 11.5px/1.3 var(--font-sans);color:var(--text-body);white-space:nowrap">{{ r.c2 }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);font:400 11.5px/1.3 var(--font-sans);color:var(--text-body);white-space:nowrap">{{ r.c3 }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);text-align:right;font:600 11.5px/1.3 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ r.idm }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);text-align:right;font:400 11.5px/1.3 var(--font-mono);color:var(--text-muted);font-variant-numeric:tabular-nums">{{ r.iks }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);text-align:right;font:400 11.5px/1.3 var(--font-mono);color:var(--text-muted);font-variant-numeric:tabular-nums">{{ r.ike }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);text-align:right;font:400 11.5px/1.3 var(--font-mono);color:var(--text-muted);font-variant-numeric:tabular-nums">{{ r.ikl }}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid var(--border-hairline);white-space:nowrap">
+                  <span style="display:inline-flex;align-items:center;gap:6px">
+                    <span style="width:8px;height:8px;border-radius:2px;background:{{ r.color }}"></span>
+                    <span style="font:600 11px/1.2 var(--font-sans);color:var(--text-body)">{{ r.st }}</span>
+                  </span>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <sc-if value="{{ moreLabel }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:11px 12px 16px;display:flex;justify-content:center">
+            <button type="button" onClick="{{ showMore }}" style="height:32px;padding:0 16px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer" style-hover="background:var(--n-50);border-color:var(--n-400);color:var(--text-strong)">{{ moreLabel }}</button>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ramp&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Hijau–merah (resmi)&quot;,&quot;Aman buta warna&quot;],&quot;default&quot;:&quot;Hijau–merah (resmi)&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Warna data&quot;},&quot;startScope&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Nasional&quot;,&quot;Jawa Tengah&quot;,&quot;D.I. Yogyakarta&quot;],&quot;default&quot;:&quot;Nasional&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Perilaku&quot;},&quot;showLabels&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Peta&quot;}}">
+const RAMPS = {
+  'Hijau–merah (resmi)': ['#cfcbc2', '#137a52', '#62a84f', '#e0bd3d', '#d4602b', '#a51f2d'],
+  'Aman buta warna': ['#cfcbc2', '#17549b', '#6da7ec', '#c4c2ba', '#ec835a', '#b02a28']
+};
+const INKS = {
+  'Hijau–merah (resmi)': ['#4b4741', '#ffffff', '#0f2410', '#2b2308', '#ffffff', '#ffffff'],
+  'Aman buta warna': ['#4b4741', '#ffffff', '#0b1b2e', '#1a1a17', '#2b1004', '#ffffff']
+};
+const SNAME = ['Tanpa data', 'Mandiri', 'Maju', 'Berkembang', 'Tertinggal', 'Sangat Tertinggal'];
+const THR = [0.8155, 0.7073, 0.5990, 0.4908];
+
+const nf = new Intl.NumberFormat('id-ID');
+const d3 = (v) => v == null ? '—' : v.toFixed(3).replace('.', ',');
+const d4 = (v) => v == null ? '—' : v.toFixed(4).replace('.', ',');
+const pc = (v) => (v * 100).toFixed(1).replace('.', ',') + '%';
+const tc = (s) => (s || '').toLowerCase().replace(/(^|[\s'\-\/().])([a-z])/g, (m, a, b) => a + b.toUpperCase());
+const clsOf = (v) => v == null ? 0 : v > THR[0] ? 1 : v >= THR[1] ? 2 : v >= THR[2] ? 3 : v >= THR[3] ? 4 : 5;
+const mx = (lon) => lon;
+const my = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-85, Math.min(85, lat)) * Math.PI / 360)) * 57.29577951308232;
+
+class Component extends DCLogic {
+  state = {
+    ready: false, meta: null, manifest: null,
+    scope: { lvl: 'nas', p: null, kb: null, kc: null },
+    sel: null, view: 'peta', tip: null, live: '',
+    hidden: [], q: '', rows: 60, tableOpen: true,
+    sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0
+  };
+
+  geo = {}; prov = {}; U = []; layout = null;
+  vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
+  anim = null; raf = 0;
+
+  // ── lifecycle ───────────────────────────────────────────────────────────
+  componentDidMount() {
+    this.ro = new ResizeObserver(() => this.draw());
+    window.addEventListener('mousemove', this.onDragMove);
+    window.addEventListener('mouseup', this.onDragEnd);
+    this.boot();
+  }
+  componentWillUnmount() {
+    if (this.ro) this.ro.disconnect();
+    this.stopZoom();
+    window.removeEventListener('mousemove', this.onDragMove);
+    window.removeEventListener('mouseup', this.onDragEnd);
+  }
+  async boot() {
+    try {
+      const [meta, manifest, gprov] = await Promise.all([
+        fetch('data/idm/meta.json').then(r => r.json()),
+        fetch('data/geo/manifest.json').then(r => r.json()).catch(() => ({ prov: true, kab: [], kec: [], desa: [] })),
+        fetch('data/geo/prov.json').then(r => r.json())
+      ]);
+      this.geo.prov = this.decode(gprov);
+      const start = this.props.startScope || 'Nasional';
+      const sp = start === 'Jawa Tengah' ? '33' : start === 'D.I. Yogyakarta' ? '34' : null;
+      if (sp) await this.ensureProv(sp);
+      this.setState({ ready: true, meta, manifest, scope: { lvl: sp ? 'prov' : 'nas', p: sp, kb: null, kc: null } },
+        () => this.rebuild(true));
+    } catch (e) { this.setState({ live: 'Gagal memuat data: ' + e.message }); }
+  }
+
+  // ── data ────────────────────────────────────────────────────────────────
+  decode(g) {
+    const [minx, miny] = g.bbox, q = g.q;
+    return g.f.map(f => {
+      const rings = f.g.map(a => {
+        const n = a.length >> 1, out = new Float32Array(n * 2);
+        let px = 0, py = 0;
+        for (let i = 0; i < n; i++) {
+          px += a[i * 2]; py += a[i * 2 + 1];
+          out[i * 2] = mx(minx + px / q); out[i * 2 + 1] = my(miny + py / q);
+        }
+        return out;
+      }).filter(r => r.length >= 8);
+      return { k: String(f.k), nm: f.nm, rings };
+    });
+  }
+  async ensureProv(k) {
+    if (this.prov[k]) return this.prov[k];
+    const j = await fetch('data/idm/prov/' + k + '.json').then(r => r.json());
+    this.prov[k] = j; return j;
+  }
+  async ensureGeo(level, p) {
+    const key = level + ':' + p;
+    if (this.geo[key] !== undefined) return this.geo[key];
+    const m = this.state.manifest || {};
+    if (!(m[level] || []).includes(p)) { this.geo[key] = null; return null; }
+    try {
+      const j = await fetch('data/geo/' + level + '/' + p + '.json').then(r => r.json());
+      this.geo[key] = this.decode(j);
+    } catch (e) { this.geo[key] = null; }
+    return this.geo[key];
+  }
+
+  provFrame(p) {
+    return (this.geo.prov || []).find(x => x.k === p) || null;
+  }
+  scopeDesa() {
+    const { scope } = this.state;
+    if (scope.lvl === 'nas') return null;
+    const pf = this.prov[scope.p]; if (!pf) return [];
+    const out = [];
+    for (const C of pf.kec) {
+      if (scope.kb && C.kb !== scope.kb) continue;
+      if (scope.kc && C.k !== scope.kc) continue;
+      for (const d of C.ds) out.push({ k: C.k + d[0], nm: d[1] || '(tanpa nama)', kec: C.nm, kecK: C.k, kab: C.kb, idm: d[2], iks: d[3], ike: d[4], ikl: d[5], st: d[6], pv: d[7] });
+    }
+    return out;
+  }
+  scopeAgg() {
+    const { scope, meta } = this.state;
+    if (!meta) return null;
+    if (scope.lvl === 'nas') return meta.nas;
+    const P = meta.prov.find(p => p.k === scope.p); if (!P) return meta.nas;
+    if (scope.lvl === 'prov') return P;
+    if (scope.lvl === 'kab') return P.kab.find(k => k.k === scope.kb) || P;
+    const pf = this.prov[scope.p];
+    return (pf && pf.kec.find(c => c.k === scope.kc)) || P;
+  }
+
+  // ── map units ───────────────────────────────────────────────────────────
+  async rebuild(resetView) {
+    const { scope, meta } = this.state;
+    // transform sebelum unit diganti — titik awal animasi zoom
+    const fromTf = resetView ? this.tf : null;
+    let units = [], src = null, kind = 'prov';
+    if (scope.lvl === 'nas') {
+      const byK = {}; meta.prov.forEach(p => byK[p.k] = p);
+      units = this.geo.prov.map(f => {
+        const P = byK[f.k];
+        return P ? { ...f, nm: tc(P.nm), n: P.n, m: P.m, d: P.d, cls: clsOf(P.m), code: f.k }
+                 : { ...f, nm: tc(f.nm), n: 0, m: null, d: [0, 0, 0, 0, 0], cls: 0, code: f.k, nodata: true };
+      });
+      kind = 'prov';
+    } else {
+      const p = scope.p;
+      let g = await this.ensureGeo('desa', p); kind = 'desa';
+      if (!g) { g = await this.ensureGeo('kec', p); kind = 'kec'; }
+      if (!g) { g = await this.ensureGeo('kab', p); kind = 'kab'; }
+      if (!g) {
+        const fr = this.provFrame(p), P2 = meta.prov.find(x => x.k === p);
+        this.U = fr && P2 ? [{ k: p, nm: tc(P2.nm), rings: fr.rings, cls: clsOf(P2.m), m: P2.m, n: P2.n, d: P2.d, code: p, frameOnly: true }] : [];
+        this.unitKind = 'frame';
+        if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
+        this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
+        return;
+      }
+      {
+        src = g;
+        const pre = scope.kc ? scope.kc : scope.kb ? scope.kb : p;
+        const feats = src.filter(f => f.k.startsWith(pre));
+        if (kind === 'desa') {
+          const byK = {}; (this.scopeDesa() || []).forEach(d => byK[d.k] = d);
+          units = feats.map(f => { const d = byK[f.k]; return d ? { ...f, nm: d.nm, cls: d.st, m: d.idm, n: 1, desa: d, code: f.k } : { ...f, nm: tc(f.nm), cls: 0, m: null, n: 1, code: f.k, nodata: true }; });
+        } else {
+          const agg = {}; (this.scopeDesa() || []).forEach(d => {
+            const kk = kind === 'kec' ? d.kecK : d.kab;
+            const a = agg[kk] || (agg[kk] = { n: 0, s: 0, c: 0, d: [0, 0, 0, 0, 0], nm: kind === 'kec' ? d.kec : '' });
+            a.n++; a.d[d.st - 1] !== undefined && d.st > 0 && a.d[d.st - 1]++;
+            if (d.idm != null) { a.s += d.idm; a.c++; }
+          });
+          units = feats.map(f => { const a = agg[f.k]; const m = a && a.c ? a.s / a.c : null;
+            return { ...f, nm: a && a.nm ? tc(a.nm) : tc(f.nm), cls: clsOf(m), m, n: a ? a.n : 0, d: a ? a.d : [0, 0, 0, 0, 0], code: f.k, drill: kind }; });
+        }
+      }
+    }
+    this.U = units; this.unitKind = kind;
+    if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
+    this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
+  }
+
+  // ── canvas ──────────────────────────────────────────────────────────────
+  mapRef = (el) => {
+    if (el === this.canvas) return;
+    if (this.canvas && this.ro) this.ro.unobserve(this.canvas);
+    this.canvas = el;
+    if (el) { this.ro && this.ro.observe(el.parentElement || el); requestAnimationFrame(() => this.draw()); }
+  };
+
+  ramp() { return RAMPS[this.props.ramp] || RAMPS['Hijau–merah (resmi)']; }
+  inks() { return INKS[this.props.ramp] || INKS['Hijau–merah (resmi)']; }
+
+  petakCells(w, h, ins) {
+    const desa = this.scopeDesa() || [];
+    const hidden = new Set(this.state.hidden);
+    const list = desa.filter(d => !hidden.has(d.st));
+    const { scope } = this.state;
+    const groupBy = scope.lvl === 'nas' ? null : scope.kc ? null : scope.kb ? 'kecK' : 'kab';
+    const groups = [];
+    if (!groupBy) groups.push({ nm: '', items: list });
+    else {
+      const map = new Map();
+      for (const d of list) {
+        const key = d[groupBy];
+        if (!map.has(key)) map.set(key, { nm: groupBy === 'kecK' ? d.kec : this.kabName(d.kab), items: [] });
+        map.get(key).items.push(d);
+      }
+      for (const g of [...map.values()].sort((a, b) => a.nm.localeCompare(b.nm))) groups.push(g);
+    }
+    const PAD = 22, HDR = groupBy ? 19 : 0, GAP = groupBy ? 16 : 0;
+    const total = list.length || 1;
+    let cell = 15;
+    for (; cell >= 3; cell--) {
+      const cols = Math.max(1, Math.floor((w - PAD * 2 + 2) / (cell + 2)));
+      let y = PAD;
+      for (const g of groups) { y += HDR + Math.ceil(g.items.length / cols) * (cell + 2) + GAP; }
+      if (y <= h - PAD) break;
+    }
+    const cols = Math.max(1, Math.floor((w - PAD * 2 + 2) / (cell + 2)));
+    const cells = []; let y = PAD;
+    const heads = [];
+    for (const g of groups) {
+      if (HDR) { heads.push({ x: PAD, y: y + 11, t: tc(g.nm) + '  ' + g.items.length }); y += HDR; }
+      g.items.forEach((d, i) => {
+        cells.push({ x: PAD + (i % cols) * (cell + 2), y: y + Math.floor(i / cols) * (cell + 2), w: cell, h: cell, d });
+      });
+      y += Math.ceil(g.items.length / cols) * (cell + 2) + GAP;
+    }
+    return { cells, heads, cell, cols, total, height: y };
+  }
+  kabName(k) {
+    const P = this.state.meta && this.state.meta.prov.find(p => p.k === this.state.scope.p);
+    const K = P && P.kab.find(x => x.k === k);
+    return K ? K.nm : k;
+  }
+
+  computeFit(w, h) {
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    for (const u of this.U) for (const r of u.rings) for (let i = 0; i < r.length; i += 2) {
+      if (r[i] < x0) x0 = r[i]; if (r[i] > x1) x1 = r[i];
+      if (r[i + 1] < y0) y0 = r[i + 1]; if (r[i + 1] > y1) y1 = r[i + 1];
+    }
+    if (x0 > x1) return { s: 1, cx: 0, cy: 0 };
+    const pad = 0.92;
+    const s = Math.min(w / Math.max(1e-6, x1 - x0), h / Math.max(1e-6, y1 - y0)) * pad;
+    return { s, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
+  }
+
+  // ── animasi zoom antar level ────────────────────────────────────────────
+  // Semua level berbagi ruang koordinat dunia yang sama (mx/my dipakai di
+  // decode()), jadi transisi cukup menganimasikan transform layar: skala
+  // digeser geometris, titik dunia di tengah layar digeser linear. Efeknya
+  // unit baru tumbuh/menyusut dari posisi geografisnya yang sebenarnya,
+  // bukan sekadar cross-fade.
+  reduceMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  startZoom(from) {
+    this.stopZoom();
+    if (!from || !from.s || this.state.view !== 'peta' || this.reduceMotion()) { this.draw(); return; }
+    this.anim = { from, t0: performance.now(), dur: 520 };
+    this.tickZoom();
+  }
+  tickZoom = () => {
+    if (!this.anim) return;
+    this.draw();
+    if (!this.anim) return;
+    if (performance.now() - this.anim.t0 >= this.anim.dur) {
+      this.anim = null; this.raf = 0;
+      this.draw();                       // gambar ulang sekali dengan pick-canvas aktif
+    } else {
+      this.raf = requestAnimationFrame(this.tickZoom);
+    }
+  };
+  stopZoom() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.raf = 0; this.anim = null;
+  }
+
+  draw() {
+    const cv = this.canvas; if (!cv) return;
+    const box = cv.parentElement.getBoundingClientRect();
+    const w = Math.max(10, box.width), h = Math.max(10, box.height);
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    }
+    if (!this.pick) this.pick = document.createElement('canvas');
+    if (this.pick.width !== Math.round(w) || this.pick.height !== Math.round(h)) {
+      this.pick.width = Math.round(w); this.pick.height = Math.round(h);
+    }
+    const ctx = cv.getContext('2d');
+    const pctx = this.pick.getContext('2d', { willReadFrequently: true });
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    pctx.setTransform(1, 0, 0, 1, 0, 0); pctx.clearRect(0, 0, w, h);
+    const ramp = this.ramp(), hidden = new Set(this.state.hidden);
+    const petak = this.state.view === 'petak';
+
+    ctx.fillStyle = petak ? '#f6f7f5' : '#e9eeec';
+    ctx.fillRect(0, 0, w, h);
+    if (!petak) {
+      ctx.strokeStyle = 'rgba(49,49,50,.045)'; ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 44) { ctx.beginPath(); ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, h); ctx.stroke(); }
+      for (let y = 0; y < h; y += 44) { ctx.beginPath(); ctx.moveTo(0, y + .5); ctx.lineTo(w, y + .5); ctx.stroke(); }
+    }
+
+    if (petak) {
+      const L = this.petakCells(w, h); this.layout = L; this.hitMode = 'petak';
+      ctx.font = '700 9px ' + 'var(--font-mono), monospace';
+      ctx.font = '700 9.5px Montserrat, system-ui, sans-serif';
+      ctx.fillStyle = '#58595B'; ctx.textBaseline = 'alphabetic';
+      for (const hd of L.heads) ctx.fillText(hd.t.toUpperCase(), hd.x, hd.y);
+      for (const c of L.cells) {
+        ctx.fillStyle = ramp[c.d.st] || ramp[0];
+        ctx.fillRect(c.x, c.y, c.w, c.h);
+      }
+      const selK = this.state.sel;
+      if (selK) for (const c of L.cells) if (c.d.k === selK) {
+        ctx.strokeStyle = '#313132'; ctx.lineWidth = 2;
+        ctx.strokeRect(c.x - 1.5, c.y - 1.5, c.w + 3, c.h + 3);
+      }
+      if (this.hoverIdx >= 0 && L.cells[this.hoverIdx]) {
+        const c = L.cells[this.hoverIdx];
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(c.x - 1, c.y - 1, c.w + 2, c.h + 2);
+        ctx.strokeStyle = '#313132'; ctx.lineWidth = 1; ctx.strokeRect(c.x - 2.5, c.y - 2.5, c.w + 5, c.h + 5);
+      }
+      return;
+    }
+
+    this.hitMode = 'map';
+    if (!this.fit) this.fit = this.computeFit(w, h);
+    const f = this.fit, v = this.vt;
+    let s = f.s * v.k;
+    let tx = w / 2 + v.ox - f.cx * s, ty = h / 2 + v.oy + f.cy * s;
+    if (this.anim) {
+      const a = this.anim.from;
+      let u = (performance.now() - this.anim.t0) / this.anim.dur;
+      u = u < 0 ? 0 : u > 1 ? 1 : u;
+      const e = u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;   // easeInOutCubic
+      const ax = (w / 2 - a.tx) / a.s, ay = (a.ty - h / 2) / a.s;           // pusat layar, awal
+      const bx = (w / 2 - tx) / s,     by = (ty - h / 2) / s;               // pusat layar, akhir
+      s = a.s * Math.pow(s / a.s, e);
+      tx = w / 2 - (ax + (bx - ax) * e) * s;
+      ty = h / 2 + (ay + (by - ay) * e) * s;
+    }
+    this.tf = { s, tx, ty };
+    const path = (rings, c) => {
+      c.beginPath();
+      for (const r of rings) {
+        for (let i = 0; i < r.length; i += 2) {
+          const X = r[i] * s + tx, Y = -r[i + 1] * s + ty;
+          if (i === 0) c.moveTo(X, Y); else c.lineTo(X, Y);
+        }
+        c.closePath();
+      }
+    };
+    const many = this.U.length > 1400;
+    for (let i = 0; i < this.U.length; i++) {
+      const u = this.U[i];
+      const dim = u.cls > 0 && hidden.has(u.cls);
+      path(u.rings, ctx);
+      ctx.fillStyle = dim ? '#dedbd4' : (ramp[u.cls] || ramp[0]);
+      ctx.fill();
+      if (!many) { ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 0.7; ctx.stroke(); }
+      // pick-canvas hanya untuk hit-test; percuma digambar tiap frame animasi
+      // dan itu yang membuat transisi tersendat di provinsi ber-ribuan desa
+      if (!this.anim) {
+        path(u.rings, pctx);
+        pctx.fillStyle = 'rgb(' + ((i + 1) & 255) + ',' + (((i + 1) >> 8) & 255) + ',' + (((i + 1) >> 16) & 255) + ')';
+        pctx.fill();
+      }
+    }
+    if (many) {
+      ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.lineWidth = 0.5;
+      for (const u of this.U) { path(u.rings, ctx); ctx.stroke(); }
+    }
+    const selK = this.state.sel;
+    for (const u of this.U) if (u.code === selK || (this.hoverIdx >= 0 && this.U[this.hoverIdx] === u)) {
+      path(u.rings, ctx);
+      ctx.strokeStyle = u.code === selK ? '#313132' : '#ffffff';
+      ctx.lineWidth = u.code === selK ? 2.4 : 1.8; ctx.stroke();
+      if (u.code !== selK) { ctx.strokeStyle = 'rgba(49,49,50,.5)'; ctx.lineWidth = 0.7; ctx.stroke(); }
+    }
+    if (this.props.showLabels !== false && this.U.length <= 60) {
+      ctx.font = '700 10px Montserrat, system-ui, sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      for (const u of this.U) {
+        let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+        const r = u.rings[0];
+        for (let i = 0; i < r.length; i += 2) { if (r[i] < x0) x0 = r[i]; if (r[i] > x1) x1 = r[i]; if (r[i + 1] < y0) y0 = r[i + 1]; if (r[i + 1] > y1) y1 = r[i + 1]; }
+        const pw = (x1 - x0) * s;
+        if (pw < 54) continue;
+        const cx = (x0 + x1) / 2 * s + tx, cy = -(y0 + y1) / 2 * s + ty;
+        const label = u.nm.split(' (')[0];
+        ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,.85)';
+        ctx.strokeText(label, cx, cy); ctx.fillStyle = '#22201d'; ctx.fillText(label, cx, cy);
+      }
+      ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic';
+    }
+  }
+
+  // ── interaction ─────────────────────────────────────────────────────────
+  hitAt(px, py) {
+    if (this.hitMode === 'petak') {
+      const L = this.layout; if (!L) return -1;
+      for (let i = 0; i < L.cells.length; i++) { const c = L.cells[i];
+        if (px >= c.x - 1 && px <= c.x + c.w + 1 && py >= c.y - 1 && py <= c.y + c.h + 1) return i; }
+      return -1;
+    }
+    if (!this.pick) return -1;
+    const d = this.pick.getContext('2d', { willReadFrequently: true }).getImageData(Math.round(px), Math.round(py), 1, 1).data;
+    const id = d[0] | (d[1] << 8) | (d[2] << 16);
+    return id > 0 ? id - 1 : -1;
+  }
+  onMove = (e) => {
+    if (this.drag) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = e.clientX - r.left, py = e.clientY - r.top;
+    const idx = this.hitAt(px, py);
+    if (idx !== this.hoverIdx) { this.hoverIdx = idx; this.draw(); }
+    if (idx < 0) { if (this.state.tip) this.setState({ tip: null }); return; }
+    const ramp = this.ramp();
+    let t, lines, cls;
+    if (this.hitMode === 'petak') {
+      const d = this.layout.cells[idx].d;
+      t = d.nm; cls = d.st;
+      lines = ['Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)), SNAME[d.st] + ' · IDM ' + d4(d.idm),
+               'IKS ' + d3(d.iks) + '  IKE ' + d3(d.ike) + '  IKL ' + d3(d.ikl)];
+    } else {
+      const u = this.U[idx]; if (!u) return;
+      t = u.nm; cls = u.cls;
+      if (u.desa) lines = ['Kec. ' + tc(u.desa.kec) + ' · ' + tc(this.kabName(u.desa.kab)),
+                           SNAME[u.cls] + ' · IDM ' + d4(u.desa.idm),
+                           'IKS ' + d3(u.desa.iks) + '  IKE ' + d3(u.desa.ike) + '  IKL ' + d3(u.desa.ikl)];
+      else if (u.nodata) lines = ['Bukan cakupan IDM'];
+      else lines = [nf.format(u.n) + ' desa · rerata IDM ' + d4(u.m), 'Kelas rerata: ' + SNAME[u.cls],
+                    'Mandiri ' + nf.format(u.d[0]) + ' · Tertinggal+ ' + nf.format(u.d[3] + u.d[4])];
+      if (u.frameOnly) lines.push('Klik untuk melihat petak desa');
+    }
+    const flipX = px > r.width - 270, flipY = py > r.height - 130;
+    this.setState({ tip: { x: (flipX ? px - 260 : px + 16) + 'px', y: (flipY ? py - 108 : py + 16) + 'px', t, lines, color: ramp[cls] || ramp[0] } });
+  };
+  onLeave = () => { this.hoverIdx = -1; this.setState({ tip: null }); this.draw(); };
+  onDown = (e) => { this.stopZoom(); this.drag = { x: e.clientX, y: e.clientY, ox: this.vt.ox, oy: this.vt.oy, moved: 0 }; };
+  onDragMove = (e) => {
+    if (!this.drag || this.state.view === 'petak') return;
+    const dx = e.clientX - this.drag.x, dy = e.clientY - this.drag.y;
+    this.drag.moved = Math.abs(dx) + Math.abs(dy);
+    this.vt.ox = this.drag.ox + dx; this.vt.oy = this.drag.oy + dy;
+    this.draw();
+  };
+  onDragEnd = () => { if (this.drag) { this.dragMoved = this.drag.moved; this.drag = null; } };
+  onWheel = (e) => {
+    if (this.state.view === 'petak') return;
+    e.preventDefault();
+    this.stopZoom();
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = e.clientX - r.left - r.width / 2, py = e.clientY - r.top - r.height / 2;
+    const f = Math.exp(-e.deltaY * 0.0016), nk = Math.max(1, Math.min(60, this.vt.k * f));
+    const rk = nk / this.vt.k;
+    this.vt.ox = px - (px - this.vt.ox) * rk; this.vt.oy = py - (py - this.vt.oy) * rk;
+    this.vt.k = nk; this.draw();
+  };
+  zoomIn = () => { this.stopZoom(); this.vt.k = Math.min(60, this.vt.k * 1.5); this.draw(); };
+  zoomOut = () => { this.stopZoom(); this.vt.k = Math.max(1, this.vt.k / 1.5); this.draw(); };
+  resetView = () => { this.stopZoom(); this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; this.draw(); };
+
+  onClick = (e) => {
+    if (this.dragMoved > 4) { this.dragMoved = 0; return; }
+    const r = e.currentTarget.getBoundingClientRect();
+    const idx = this.hitAt(e.clientX - r.left, e.clientY - r.top);
+    if (idx < 0) return;
+    if (this.hitMode === 'petak') { this.selectDesa(this.layout.cells[idx].d.k); return; }
+    const u = this.U[idx]; if (!u) return;
+    if (u.desa) { this.selectDesa(u.code); return; }
+    if (u.frameOnly) { this.setPetak(); return; }
+    if (this.state.scope.lvl === 'nas') { if (!u.nodata) this.goProv(u.code); return; }
+    if (u.drill === 'kab') this.setScope({ lvl: 'kab', p: this.state.scope.p, kb: u.code, kc: null });
+    else if (u.drill === 'kec') this.setScope({ lvl: 'kec', p: this.state.scope.p, kb: u.code.slice(0, 4), kc: u.code });
+  };
+  onDbl = (e) => { e.preventDefault(); this.onClick(e); };
+
+  // ── navigation ──────────────────────────────────────────────────────────
+  setScope(scope, keepSel) {
+    this.memo = {};
+    this.setState({ scope, sel: keepSel ? this.state.sel : null, rows: 60, tip: null, live: 'Menampilkan ' + this.scopeName(scope) },
+      () => this.rebuild(true));
+  }
+  scopeName(s) {
+    const meta = this.state.meta; if (!meta) return '';
+    if (s.lvl === 'nas') return 'Indonesia';
+    const P = meta.prov.find(p => p.k === s.p); if (!P) return '';
+    if (s.lvl === 'prov') return tc(P.nm);
+    const K = P.kab.find(k => k.k === s.kb);
+    if (s.lvl === 'kab') return tc(K ? K.nm : '');
+    const pf = this.prov[s.p]; const C = pf && pf.kec.find(c => c.k === s.kc);
+    return 'Kec. ' + tc(C ? C.nm : '');
+  }
+  async goProv(k) { await this.ensureProv(k); this.setScope({ lvl: 'prov', p: k, kb: null, kc: null }); }
+  onProv = (e) => { const v = e.target.value; if (v === 'nas') this.setScope({ lvl: 'nas', p: null, kb: null, kc: null }); else this.goProv(v); };
+  goUp = () => {
+    const s = this.state.scope;
+    if (s.lvl === 'kec') this.setScope({ lvl: 'kab', p: s.p, kb: s.kb, kc: null });
+    else if (s.lvl === 'kab') this.setScope({ lvl: 'prov', p: s.p, kb: null, kc: null });
+    else this.setScope({ lvl: 'nas', p: null, kb: null, kc: null });
+  };
+  selectDesa(k) {
+    this.setState({ sel: this.state.sel === k ? null : k }, () => this.draw());
+  }
+  clearSel = () => this.setState({ sel: null }, () => this.draw());
+  setPeta = () => this.setState({ view: 'peta' }, () => { this.fit = null; this.draw(); });
+  setPetak = () => this.setState({ view: 'petak' }, () => this.draw());
+  toggleTable = () => this.setState({ tableOpen: !this.state.tableOpen });
+  toggleRankDir = () => this.setState({ rankDir: -this.state.rankDir });
+  showMore = () => this.setState({ rows: this.state.rows + 120 });
+  onQ = (e) => this.setState({ q: e.target.value });
+  toggleHide(c) {
+    const h = new Set(this.state.hidden);
+    h.has(c) ? h.delete(c) : h.add(c);
+    this.setState({ hidden: [...h] }, () => this.draw());
+  }
+  setSort(k) {
+    const s = this.state.sort;
+    this.setState({ sort: { k, d: s.k === k ? -s.d : (k === 'nm' || k === 'c2' || k === 'c3' ? 1 : -1) }, rows: 60 });
+  }
+
+  // ── export ──────────────────────────────────────────────────────────────
+  download(name, blob) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  exportCsv = () => {
+    const rows = this.tableData().all;
+    const head = this.state.scope.lvl === 'nas'
+      ? ['kode_prov', 'provinsi', 'jumlah_desa', 'rerata_idm', 'mandiri', 'maju', 'berkembang', 'tertinggal', 'sangat_tertinggal']
+      : ['kode_desa', 'nama_desa', 'kecamatan', 'kabupaten_kota', 'nilai_idm', 'iks', 'ike', 'ikl', 'status'];
+    const body = rows.map(r => r.csv.map(v => {
+      const s = v == null ? '' : String(v);
+      return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }).join(';'));
+    this.download('idm-2024-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.csv',
+      new Blob(['\ufeff' + head.join(';') + '\n' + body.join('\n')], { type: 'text/csv;charset=utf-8' }));
+  };
+  exportPng = () => {
+    if (!this.canvas) return;
+    this.canvas.toBlob(b => b && this.download('idm-2024-' + this.state.view + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.png', b), 'image/png');
+  };
+
+  // ── table + rank data ───────────────────────────────────────────────────
+  tableData() {
+    const { scope, sort, q, meta } = this.state;
+    const ramp = this.ramp();
+    if (scope.lvl === 'nas') {
+      let all = (meta ? meta.prov : []).map(p => ({
+        key: p.k, nm: tc(p.nm), c2: nf.format(p.kab.length) + ' kab/kota', c3: nf.format(p.n) + ' desa',
+        idm: p.m, iks: p.s, ike: p.e, ikl: p.l, st: clsOf(p.m), color: ramp[clsOf(p.m)],
+        go: () => this.goProv(p.k), hi: () => {},
+        csv: [p.k, p.nm, p.n, d4(p.m), p.d[0], p.d[1], p.d[2], p.d[3], p.d[4]]
+      }));
+      const needle = q.trim().toLowerCase();
+      if (needle) all = all.filter(r => r.nm.toLowerCase().includes(needle));
+      const dir = sort.d, key = sort.k;
+      all.sort((a, b) => { const A = a[key], B = b[key];
+        if (typeof A === 'string') return A.localeCompare(B) * dir;
+        return ((A == null ? -1 : A) - (B == null ? -1 : B)) * dir; });
+      return { all, kind: 'prov' };
+    }
+    const hidden = new Set(this.state.hidden);
+    let all = (this.scopeDesa() || []).filter(d => !hidden.has(d.st)).map(d => ({
+      key: d.k, nm: tc(d.nm), c2: tc(d.kec), c3: tc(this.kabName(d.kab)),
+      idm: d.idm, iks: d.iks, ike: d.ike, ikl: d.ikl, st: d.st, color: ramp[d.st],
+      go: () => this.selectDesa(d.k), hi: () => {},
+      csv: [d.k, d.nm, d.kec, this.kabName(d.kab), d4(d.idm), d3(d.iks), d3(d.ike), d3(d.ikl), SNAME[d.st]]
+    }));
+    const needle = q.trim().toLowerCase();
+    if (needle) all = all.filter(r => r.nm.toLowerCase().includes(needle) || r.c2.toLowerCase().includes(needle));
+    const dir = sort.d, key = sort.k;
+    all.sort((a, b) => { const A = a[key], B = b[key];
+      if (typeof A === 'string') return A.localeCompare(B) * dir;
+      return ((A == null ? -1 : A) - (B == null ? -1 : B)) * dir; });
+    return { all, kind: 'desa' };
+  }
+
+  // ── render values ───────────────────────────────────────────────────────
+  renderVals() {
+    const st = this.state, meta = st.meta, ramp = this.ramp(), inks = this.inks();
+    if (!st.ready || !meta) {
+      return {
+        crumbs: [], crumbLast: 'Memuat…', scopeKind: 'Memuat', scopeTitle: 'Memuat data IDM 2024…',
+        scopeSub: '75.265 desa · 37 provinsi', kpis: [], dist: [], legend: [], rank: [], hist: [], cmp: [],
+        cols: [], rows: [], statusChips: [], provOpts: [{ v: 'nas', t: 'Indonesia' }], provSel: 'nas',
+        q: '', tableOpen: false, tableTitle: 'Memuat', tableCount: '', tableCaret: '▸', tableBorder: '0',
+        mapRef: this.mapRef, live: 'Memuat data', isPeta: true, isPetak: false,
+        petaBg: 'var(--n-900)', petaFg: 'var(--n-0)', petakBg: 'transparent', petakFg: 'var(--text-body)',
+        legendNote: '', distTotal: '', rankTitle: '', rankSub: '', rankDirLab: '', histSub: '', histMean: '',
+        onMove: this.onMove, onLeave: this.onLeave, onDown: this.onDown, onWheel: this.onWheel,
+        onClick: this.onClick, onDbl: this.onDbl, zoomIn: this.zoomIn, zoomOut: this.zoomOut,
+        resetView: this.resetView, setPeta: this.setPeta, setPetak: this.setPetak, goUp: this.goUp,
+        toggleTable: this.toggleTable, toggleRankDir: this.toggleRankDir, showMore: this.showMore,
+        onQ: this.onQ, onProv: this.onProv, clearSel: this.clearSel, exportCsv: this.exportCsv, exportPng: this.exportPng
+      };
+    }
+    const scope = st.scope, A = this.scopeAgg(), nas = meta.nas;
+    const hidden = new Set(st.hidden);
+
+    // breadcrumbs
+    const crumbs = [];
+    const P = scope.p ? meta.prov.find(p => p.k === scope.p) : null;
+    const K = P && scope.kb ? P.kab.find(k => k.k === scope.kb) : null;
+    const pf = scope.p ? this.prov[scope.p] : null;
+    const C = pf && scope.kc ? pf.kec.find(c => c.k === scope.kc) : null;
+    const chain = [{ t: 'Indonesia', s: { lvl: 'nas', p: null, kb: null, kc: null } }];
+    if (P) chain.push({ t: tc(P.nm), s: { lvl: 'prov', p: P.k, kb: null, kc: null } });
+    if (K) chain.push({ t: tc(K.nm), s: { lvl: 'kab', p: P.k, kb: K.k, kc: null } });
+    if (C) chain.push({ t: 'Kec. ' + tc(C.nm), s: { lvl: 'kec', p: P.k, kb: K ? K.k : C.kb, kc: C.k } });
+    const last = chain.pop();
+    chain.forEach((c, i) => crumbs.push({ t: c.t, title: 'Kembali ke ' + c.t, more: true, go: () => this.setScope(c.s) }));
+
+    // KPI
+    const mandiri = A.d[0], tert = A.d[3] + A.d[4];
+    const dv = (A.m || 0) - nas.m;
+    const kpis = [
+      { lab: scope.lvl === 'nas' ? 'Desa ber-IDM' : 'Jumlah desa', val: nf.format(A.n), sub: scope.lvl === 'nas' ? '37 provinsi · 434 kab/kota' : pc(A.n / nas.n) + ' dari nasional', tone: 'var(--text-muted)' },
+      { lab: 'Rerata IDM', val: d4(A.m), sub: (dv >= 0 ? '+' : '−') + d4(Math.abs(dv)) + ' vs nasional', tone: dv >= 0 ? 'var(--status-success)' : 'var(--text-brand)' },
+      { lab: 'Mandiri', val: nf.format(mandiri), sub: pc(mandiri / (A.n || 1)) + ' · nasional ' + pc(nas.d[0] / nas.n), tone: 'var(--text-muted)' },
+      { lab: 'Tertinggal +', val: nf.format(tert), sub: pc(tert / (A.n || 1)) + ' · nasional ' + pc((nas.d[3] + nas.d[4]) / nas.n), tone: tert / (A.n || 1) > (nas.d[3] + nas.d[4]) / nas.n ? 'var(--text-brand)' : 'var(--text-muted)' }
+    ];
+
+    // distribution + legend
+    const dist = A.d.map((n, i) => {
+      const cls = i + 1, share = n / (A.n || 1);
+      return { cls, nm: SNAME[cls], n: nf.format(n), pct: pc(share), w: Math.max(0.6, share * 100) + '%',
+        color: ramp[cls], ink: inks[cls], labOp: share > 0.075 ? '1' : '0', title: SNAME[cls] + ': ' + nf.format(n) + ' desa (' + pc(share) + ')' };
+    });
+    const legend = A.d.map((n, i) => {
+      const cls = i + 1;
+      return { nm: SNAME[cls], n: nf.format(n), pct: pc(n / (A.n || 1)), color: ramp[cls],
+        op: hidden.has(cls) ? '0.34' : '1', go: () => this.toggleHide(cls) };
+    });
+    const statusChips = A.d.map((n, i) => {
+      const cls = i + 1, off = hidden.has(cls);
+      return { nm: SNAME[cls], color: off ? '#cfcbc2' : ramp[cls], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
+        fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[cls], go: () => this.toggleHide(cls) };
+    });
+
+    // rank
+    let rankItems = [], rankTitle = '', rankSub = '';
+    if (scope.lvl === 'nas') {
+      rankTitle = 'Peringkat provinsi'; rankSub = '37 provinsi menurut rerata IDM';
+      rankItems = meta.prov.map(p => ({ k: p.k, nm: tc(p.nm), n: p.n, m: p.m, go: () => this.goProv(p.k), active: false }));
+    } else if (scope.lvl === 'prov') {
+      rankTitle = 'Peringkat kabupaten/kota'; rankSub = tc(P.nm) + ' · ' + P.kab.length + ' kab/kota menurut rerata IDM';
+      rankItems = P.kab.map(k => ({ k: k.k, nm: tc(k.nm), n: k.n, m: k.m, active: false, go: () => this.setScope({ lvl: 'kab', p: P.k, kb: k.k, kc: null }) }));
+    } else {
+      const kecs = (pf ? pf.kec : []).filter(c => c.kb === scope.kb);
+      rankTitle = 'Peringkat kecamatan'; rankSub = tc(K ? K.nm : '') + ' · ' + kecs.length + ' kecamatan menurut rerata IDM';
+      rankItems = kecs.map(c => ({ k: c.k, nm: tc(c.nm), n: c.n, m: c.m, active: c.k === scope.kc, go: () => this.setScope({ lvl: 'kec', p: scope.p, kb: scope.kb, kc: c.k }) }));
+    }
+    rankItems.sort((a, b) => ((b.m || 0) - (a.m || 0)) * (st.rankDir > 0 ? -1 : 1));
+    const rank = rankItems.slice(0, 14).map((r, i) => ({
+      i: String(i + 1).padStart(2, '0'), nm: r.nm, mean: d3(r.m), n: nf.format(r.n),
+      w: Math.max(2, ((r.m || 0) - 0.3) / 0.7 * 100) + '%', color: ramp[clsOf(r.m)],
+      bg: r.active ? 'var(--n-100)' : 'transparent', go: r.go
+    }));
+
+    // histogram
+    const H = A.h || nas.h, hmax = Math.max(1, ...H);
+    const lo = meta.hist.lo, wBin = (meta.hist.hi - lo) / meta.hist.n;
+    const hist = H.map((n, i) => {
+      const mid = lo + wBin * (i + 0.5);
+      return { h: Math.max(1, n / hmax * 100) + '%', color: ramp[clsOf(mid)], n,
+        title: 'IDM ' + d3(lo + wBin * i) + '–' + d3(lo + wBin * (i + 1)) + ': ' + nf.format(n) + ' desa' };
+    });
+
+    // comparison
+    const cmpDefs = [['Nilai IDM', A.m, nas.m], ['IKS — sosial', A.s, nas.s], ['IKE — ekonomi', A.e, nas.e], ['IKL — lingkungan', A.l, nas.l]];
+    const cmp = cmpDefs.map(([lab, mine, n]) => {
+      const d = (mine || 0) - n;
+      return { lab, mine: d4(mine), delta: (d >= 0 ? '+' : '−') + d4(Math.abs(d)), tone: d >= 0 ? 'var(--status-success)' : 'var(--text-brand)',
+        w: Math.max(1, (mine || 0) * 100) + '%', nw: (n * 100) + '%' };
+    });
+
+    // detail
+    let detail = null;
+    if (st.sel) {
+      const d = (this.scopeDesa() || []).find(x => x.k === st.sel);
+      if (d) detail = {
+        nm: tc(d.nm), kode: d.k, where: 'Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)) + ' · ' + tc(P ? P.nm : ''),
+        st: SNAME[d.st], color: ramp[d.st], ink: inks[d.st], idm: d4(d.idm),
+        dNas: d.idm == null ? 'Nilai tidak tersedia' : ((d.idm - nas.m >= 0 ? '+' : '−') + d4(Math.abs(d.idm - nas.m)) + ' vs rerata nasional ' + d4(nas.m)),
+        dTone: (d.idm || 0) - nas.m >= 0 ? 'var(--status-success)' : 'var(--text-brand)',
+        prov: d.pv === 1 ? 'Update 2023' : d.pv === 2 ? 'Server PDN' : null,
+        sub: [['IKS — Ketahanan Sosial', d.iks, nas.s], ['IKE — Ketahanan Ekonomi', d.ike, nas.e], ['IKL — Ketahanan Lingkungan', d.ikl, nas.l]]
+          .map(([lab, v, n]) => ({ lab, v: d3(v), w: Math.max(1, (v || 0) * 100) + '%', nasw: (n * 100) + '%',
+            note: v == null ? 'tidak tersedia' : ((v - n >= 0 ? 'di atas' : 'di bawah') + ' rerata nasional ' + d3(n)) }))
+      };
+    }
+
+    // table
+    const T = this.tableData();
+    const shown = T.all.slice(0, st.rows);
+    const isProvTable = T.kind === 'prov';
+    const colDefs = isProvTable
+      ? [['nm', 'Provinsi', 'left'], ['c2', 'Kab/kota', 'left'], ['c3', 'Desa', 'left'], ['idm', 'Rerata IDM', 'right'], ['iks', 'IKS', 'right'], ['ike', 'IKE', 'right'], ['ikl', 'IKL', 'right'], ['st', 'Kelas rerata', 'left']]
+      : [['nm', 'Desa', 'left'], ['c2', 'Kecamatan', 'left'], ['c3', 'Kab/kota', 'left'], ['idm', 'IDM', 'right'], ['iks', 'IKS', 'right'], ['ike', 'IKE', 'right'], ['ikl', 'IKL', 'right'], ['st', 'Status', 'left']];
+    const cols = colDefs.map(([k, lab, align]) => ({
+      lab, align, fg: st.sort.k === k ? 'var(--text-strong)' : 'var(--text-muted)',
+      arrow: st.sort.k === k ? (st.sort.d > 0 ? ' ↑' : ' ↓') : '', go: () => this.setSort(k)
+    }));
+    const rows = shown.map(r => ({
+      nm: r.nm, c2: r.c2, c3: r.c3, idm: isProvTable ? d4(r.idm) : d4(r.idm),
+      iks: d3(r.iks), ike: d3(r.ike), ikl: d3(r.ikl), st: SNAME[r.st], color: r.color,
+      bg: r.key === st.sel ? 'var(--gold-50)' : 'transparent', go: r.go, hi: r.hi
+    }));
+
+    // search results
+    const needle = st.q.trim().toLowerCase();
+    let results = [], resultsMore = null;
+    if (needle.length >= 2) {
+      const pool = scope.lvl === 'nas' ? [] : (this.scopeDesa() || []);
+      const hits = pool.filter(d => (d.nm || '').toLowerCase().includes(needle));
+      results = hits.slice(0, 12).map(d => ({
+        nm: tc(d.nm), sub: 'Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)), idm: d4(d.idm),
+        color: ramp[d.st], go: () => this.setState({ q: '' }, () => this.selectDesa(d.k))
+      }));
+      if (scope.lvl === 'nas') resultsMore = 'Pilih provinsi dulu untuk mencari desa.';
+      else if (hits.length > 12) resultsMore = nf.format(hits.length - 12) + ' hasil lain — persempit kata kuncinya.';
+      else if (!hits.length) resultsMore = 'Tidak ada desa cocok di ' + this.scopeName(scope) + '.';
+    }
+
+    // map / notice
+    const notice = (st.view === 'peta' && this.unitKind === 'frame') ? {
+      t: 'Batas desa ' + this.scopeName(scope) + ' belum dibangun',
+      b: 'Sumbernya berkas SHP 1,08 GB di folder lokalmu — jalankan tools/build_geo.py sekali, lalu poligon desa tampil di sini.',
+      n: nf.format(A.n)
+    } : null;
+
+    const scopeKind = scope.lvl === 'nas' ? 'Nasional' : scope.lvl === 'prov' ? 'Provinsi' : scope.lvl === 'kab' ? 'Kabupaten / Kota' : 'Kecamatan';
+    const unitLabel = st.view === 'petak' ? 'satu kotak = satu desa'
+      : scope.lvl === 'nas' ? 'warna dari rerata IDM provinsi'
+      : this.unitKind === 'frame' ? 'warna dari rerata IDM provinsi · batas desa belum dibangun'
+      : this.unitKind === 'desa' ? 'warna dari status IDM desa' : 'warna dari rerata IDM ' + (this.unitKind === 'kec' ? 'kecamatan' : 'kabupaten');
+
+    return {
+      mapRef: this.mapRef,
+      crumbs, crumbLast: last ? last.t : 'Indonesia',
+      scopeKind, scopeTitle: this.scopeName(scope),
+      scopeSub: nf.format(A.n) + ' desa · rerata IDM ' + d4(A.m) + ' · ' + unitLabel,
+      live: st.live,
+      canUp: scope.lvl !== 'nas',
+      kpis, dist, legend, statusChips, rank, hist, cmp, detail, cols, rows,
+      distTotal: nf.format(A.n) + ' desa',
+      legendNote: scope.lvl === 'nas' && st.view === 'peta'
+        ? 'DKI Jakarta abu-abu — seluruh wilayahnya berstatus kelurahan, di luar cakupan IDM.'
+        : 'Status ditulis sebagai teks di setiap tooltip, tabel, dan legenda — warna bukan satu-satunya penanda.',
+      rankTitle, rankSub, rankDirLab: st.rankDir > 0 ? 'Terendah dulu' : 'Tertinggi dulu',
+      histSub: nf.format(A.n) + ' desa dalam 24 selang · rerata ' + d4(A.m),
+      histMean: 'rerata ' + d4(A.m),
+      tableOpen: st.tableOpen, tableCaret: st.tableOpen ? '▾' : '▸',
+      tableTitle: isProvTable ? 'Tabel provinsi' : 'Tabel desa',
+      tableCount: nf.format(T.all.length) + (isProvTable ? ' provinsi' : ' desa') + (T.all.length > st.rows ? ' · tampil ' + nf.format(shown.length) : ''),
+      tableBorder: st.tableOpen ? '1px solid var(--border-hairline)' : '0',
+      moreLabel: T.all.length > st.rows ? 'Tampilkan ' + nf.format(Math.min(120, T.all.length - st.rows)) + ' baris lagi' : null,
+      q: st.q, results, resultsMore, hasResults: results.length > 0 || !!resultsMore,
+      provOpts: [{ v: 'nas', t: 'Indonesia — 37 provinsi' }].concat(meta.prov.map(p => ({ v: p.k, t: tc(p.nm) + ' · ' + nf.format(p.n) }))),
+      provSel: scope.p || 'nas',
+      tip: st.tip, notice,
+      isPeta: st.view === 'peta', isPetak: st.view === 'petak',
+      petaBg: st.view === 'peta' ? 'var(--n-900)' : 'transparent',
+      petaFg: st.view === 'peta' ? 'var(--n-0)' : 'var(--text-body)',
+      petakBg: st.view === 'petak' ? 'var(--n-900)' : 'transparent',
+      petakFg: st.view === 'petak' ? 'var(--n-0)' : 'var(--text-body)',
+      onMove: this.onMove, onLeave: this.onLeave, onDown: this.onDown, onWheel: this.onWheel,
+      onClick: this.onClick, onDbl: this.onDbl, zoomIn: this.zoomIn, zoomOut: this.zoomOut,
+      resetView: this.resetView, setPeta: this.setPeta, setPetak: this.setPetak, goUp: this.goUp,
+      toggleTable: this.toggleTable, toggleRankDir: this.toggleRankDir, showMore: this.showMore,
+      onQ: this.onQ, onProv: this.onProv, clearSel: this.clearSel,
+      exportCsv: this.exportCsv, exportPng: this.exportPng
+    };
+  }
+}
+
+</script>
+</body>
+</html>

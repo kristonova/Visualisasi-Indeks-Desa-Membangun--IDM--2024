@@ -1,0 +1,28 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--lh-normal);font-weight:var(--fw-regular);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{margin:0;font-family:var(--font-display);color:var(--text-strong);line-height:var(--lh-heading);letter-spacing:var(--tracking-tight);font-weight:var(--fw-bold);text-wrap:balance}
+h1{font-size:var(--text-h1);letter-spacing:var(--tracking-display)}
+h2{font-size:var(--text-h2)}
+h3{font-size:var(--text-h3)}
+h4{font-size:var(--text-h4);font-weight:var(--fw-semibold)}
+p{margin:0 0 var(--space-4);text-wrap:pretty}
+p:last-child{margin-bottom:0}
+a{color:var(--text-link);text-decoration:none;border-bottom:1px solid oklch(0.445 0.185 29 / 0.28);transition:color var(--duration-fast) var(--ease-out),border-color var(--duration-fast) var(--ease-out)}
+a:hover{color:var(--text-link-hover);border-bottom-color:currentColor}
+a:focus-visible{outline:none;box-shadow:var(--shadow-focus);border-radius:var(--radius-xs)}
+small{font-size:var(--text-caption)}
+code,kbd,samp,pre{font-family:var(--font-mono);font-size:0.9em}
+hr{border:0;border-top:1px solid var(--border-hairline);margin:var(--space-8) 0}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--red-200);color:var(--red-950)}
+:focus-visible{outline:2px solid var(--red-500);outline-offset:2px}
+table{border-collapse:collapse;width:100%}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--n-300);border-radius:var(--radius-pill);border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:var(--n-400);background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+/* Utility: the eyebrow + rule pattern used across the deck and the UI kits. */
+.sds-eyebrow{font-size:var(--text-micro);font-weight:var(--fw-bold);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--text-brand)}
+.sds-mono-label{font-family:var(--font-mono);font-size:var(--text-micro);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-muted)}

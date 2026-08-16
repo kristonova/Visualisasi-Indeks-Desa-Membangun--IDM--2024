@@ -1,0 +1,790 @@
+<title>Peta Desa Nusantara</title>
+<style>
+/* ─────────── tokens: light is the base, dark redefines only values ─────────── */
+:root{
+  color-scheme: light;
+  --plane:#eef1ee;
+  --surface:#fbfcfb;
+  --surface-2:#f4f7f4;
+  --ink:#101718;
+  --ink-2:#4a5859;
+  --muted:#7d8d8c;
+  --rule:#d9e0dc;
+  --rule-strong:#bfcbc5;
+  --grat:rgba(16,23,24,.05);
+  --accent:#0e6d80;
+  --accent-ink:#0b5666;
+  --accent-soft:rgba(14,109,128,.09);
+  --shadow:0 1px 2px rgba(16,23,24,.05), 0 8px 24px -16px rgba(16,23,24,.25);
+  /* IDM ramp — validated on surface #fbfcfb */
+  --idm-1:#137a52; --idm-2:#62a84f; --idm-3:#e0bd3d; --idm-4:#d4602b; --idm-5:#a51f2d;
+  --on-idm-1:#ffffff; --on-idm-2:#0f2410; --on-idm-3:#2b2308; --on-idm-4:#ffffff; --on-idm-5:#ffffff;
+  --sans:"Segoe UI",-apple-system,BlinkMacSystemFont,system-ui,"Helvetica Neue",sans-serif;
+  --serif:Charter,"Bitstream Charter","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"Cascadia Mono","SF Mono",Menlo,Consolas,"Roboto Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --plane:#0b1012;
+    --surface:#151b1d;
+    --surface-2:#1b2325;
+    --ink:#eef3f2;
+    --ink-2:#a6b5b4;
+    --muted:#7d8f8e;
+    --rule:#26312f;
+    --rule-strong:#3a4745;
+    --grat:rgba(238,243,242,.04);
+    --accent:#45b3c6;
+    --accent-ink:#6ec9d9;
+    --accent-soft:rgba(69,179,198,.13);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    --idm-1:#1a9463; --idm-2:#7bc25e; --idm-3:#efd04d; --idm-4:#ed7a2f; --idm-5:#d43b56;
+    --on-idm-1:#04160d; --on-idm-2:#0a1a08; --on-idm-3:#241d05; --on-idm-4:#1d0d02; --on-idm-5:#ffffff;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0b1012;
+  --surface:#151b1d;
+  --surface-2:#1b2325;
+  --ink:#eef3f2;
+  --ink-2:#a6b5b4;
+  --muted:#7d8f8e;
+  --rule:#26312f;
+  --rule-strong:#3a4745;
+  --grat:rgba(238,243,242,.04);
+  --accent:#45b3c6;
+  --accent-ink:#6ec9d9;
+  --accent-soft:rgba(69,179,198,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  --idm-1:#1a9463; --idm-2:#7bc25e; --idm-3:#efd04d; --idm-4:#ed7a2f; --idm-5:#d43b56;
+  --on-idm-1:#04160d; --on-idm-2:#0a1a08; --on-idm-3:#241d05; --on-idm-4:#1d0d02; --on-idm-5:#ffffff;
+}
+
+/* ─────────── page plane: faint graticule, like map stock ─────────── */
+body{
+  background:
+    repeating-linear-gradient(to right, var(--grat) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(to bottom, var(--grat) 0 1px, transparent 1px 40px),
+    var(--plane);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+*{box-sizing:border-box}
+
+/* ─────────── masthead ─────────── */
+.mast{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.7rem clamp(1rem,4vw,2.5rem);
+  background:color-mix(in srgb, var(--plane) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted);
+}
+.mast b{color:var(--ink);font-weight:600}
+.mast .dot{display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--accent);margin-right:.5em;vertical-align:.05em}
+
+.doc{max-width:1140px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) 8rem}
+
+/* ─────────── title block ─────────── */
+.title{padding:clamp(3rem,8vw,6rem) 0 2.5rem;border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 1.4rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.eyebrow::after{content:"";flex:1;min-width:2rem;height:1px;background:var(--rule-strong)}
+h1{
+  font-family:var(--sans);font-weight:800;letter-spacing:-.03em;line-height:1.02;
+  font-size:clamp(2.4rem,6.5vw,4.2rem);margin:0 0 1.1rem;text-wrap:balance;max-width:16ch;
+}
+.lede{font-size:clamp(1.05rem,2vw,1.28rem);line-height:1.6;color:var(--ink-2);max-width:60ch;margin:0}
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.4rem 2rem;
+  margin-top:2.6rem;font-family:var(--mono);font-size:.78rem;line-height:1.5;
+}
+.meta dt{color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-size:.66rem;margin-bottom:.35rem}
+.meta dd{margin:0;color:var(--ink);font-weight:500}
+
+/* ─────────── section grid: mono number gutter + 68ch measure ─────────── */
+.sec{display:grid;grid-template-columns:5rem minmax(0,1fr);gap:0 2.2rem;padding:3.6rem 0 0;align-items:start}
+.sec>*{grid-column:2;max-width:68ch;min-width:0}
+.sec>.wide{max-width:none}
+.sec>.num{
+  grid-column:1;grid-row:span 40;position:sticky;top:4.2rem;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--accent);
+  padding-top:.55rem;border-top:2px solid var(--accent);max-width:none;
+}
+@media (max-width:820px){
+  .sec{grid-template-columns:1fr;gap:0}
+  .sec>*{grid-column:1}
+  .sec>.num{grid-row:auto;position:static;margin-bottom:1rem;width:3.5rem}
+}
+h2{
+  font-family:var(--sans);font-weight:800;letter-spacing:-.022em;line-height:1.12;
+  font-size:clamp(1.55rem,3.4vw,2.1rem);margin:0 0 1.1rem;text-wrap:balance;
+}
+h3{
+  font-family:var(--sans);font-weight:700;letter-spacing:-.012em;line-height:1.25;
+  font-size:1.12rem;margin:2.4rem 0 .7rem;text-wrap:balance;
+}
+h4{
+  font-family:var(--mono);font-weight:600;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin:2rem 0 .8rem;
+}
+p{margin:0 0 1.05rem}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin-bottom:.42rem}
+li::marker{color:var(--muted)}
+strong{font-weight:700;color:var(--ink)}
+a{color:var(--accent-ink);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code,.m{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);color:var(--accent-ink);padding:.1em .4em;border-radius:3px;word-break:break-word}
+.num-tab{font-variant-numeric:tabular-nums}
+
+/* ─────────── panels ─────────── */
+.panel{
+  background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+  padding:1.4rem 1.5rem;margin:1.6rem 0;box-shadow:var(--shadow);
+}
+.panel>:last-child{margin-bottom:0}
+.note{
+  border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;
+  padding:1rem 1.25rem;margin:1.6rem 0;font-size:.95rem;
+}
+.note>:last-child{margin-bottom:0}
+.note .tag{
+  display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent-ink);margin-bottom:.45rem;font-weight:600;
+}
+
+/* ─────────── tables ─────────── */
+.tw{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.855rem;line-height:1.45}
+th,td{text-align:left;padding:.62rem .95rem;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;background:var(--surface-2);white-space:nowrap;position:sticky;top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.id{font-family:var(--mono);font-size:.78rem;color:var(--accent-ink);white-space:nowrap;font-weight:500}
+td.k{font-family:var(--mono);font-size:.78rem;white-space:nowrap}
+
+/* ─────────── the IDM ramp strip ─────────── */
+.ramp{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin:1.6rem 0;border-radius:10px;overflow:hidden}
+@media (max-width:640px){.ramp{grid-template-columns:1fr}}
+.ramp div{padding:1rem .9rem 1.05rem;display:flex;flex-direction:column;gap:.3rem;min-height:118px}
+.ramp .lab{font-family:var(--sans);font-weight:700;font-size:.82rem;letter-spacing:-.01em;line-height:1.2}
+.ramp .hex{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;opacity:.9}
+.ramp .cnt{font-family:var(--mono);font-size:.68rem;margin-top:auto;opacity:.9;font-variant-numeric:tabular-nums}
+.s1{background:var(--idm-1);color:var(--on-idm-1)}
+.s2{background:var(--idm-2);color:var(--on-idm-2)}
+.s3{background:var(--idm-3);color:var(--on-idm-3)}
+.s4{background:var(--idm-4);color:var(--on-idm-4)}
+.s5{background:var(--idm-5);color:var(--on-idm-5)}
+.chip{display:inline-block;width:.75rem;height:.75rem;border-radius:2px;vertical-align:-.05em;margin-right:.45rem;box-shadow:0 0 0 1px rgba(128,128,128,.35) inset}
+
+/* ─────────── stat row ─────────── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:1.6rem 0}
+.stats div{background:var(--surface);padding:1.1rem 1.15rem}
+.stats .v{font-family:var(--sans);font-weight:800;font-size:1.72rem;letter-spacing:-.03em;line-height:1.1;display:block}
+.stats .l{font-family:var(--mono);font-size:.65rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);display:block;margin-top:.4rem}
+
+/* ─────────── pipeline / wireframe schematics ─────────── */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.55rem;margin:1.6rem 0}
+.flow .step{
+  flex:1 1 158px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:.85rem .95rem;
+  font-family:var(--sans);font-size:.8rem;line-height:1.4;position:relative;
+}
+.flow .step .t{font-family:var(--mono);font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-ink);display:block;margin-bottom:.4rem;font-weight:600}
+.flow .step b{display:block;font-weight:700;margin-bottom:.15rem}
+.flow .step span.d{color:var(--ink-2);display:block}
+.flow .arr{display:flex;align-items:center;color:var(--rule-strong);font-family:var(--mono);font-size:1rem;flex:0 0 auto}
+@media (max-width:700px){.flow .arr{display:none}}
+
+.wire{
+  display:grid;gap:.5rem;margin:1.6rem 0;background:var(--surface-2);border:1px solid var(--rule);
+  border-radius:10px;padding:.6rem;font-family:var(--mono);font-size:.68rem;line-height:1.35;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+}
+.wire .b{background:var(--surface);border:1px dashed var(--rule-strong);border-radius:6px;padding:.7rem .75rem;color:var(--ink-2)}
+.wire .b b{display:block;color:var(--ink);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem}
+.wire .full{grid-column:1/-1}
+.wire .map{grid-column:1/4;grid-row:span 3;min-height:190px;background:
+  repeating-linear-gradient(45deg, var(--accent-soft) 0 6px, transparent 6px 12px), var(--surface);
+  display:flex;align-items:center;justify-content:center;text-align:center}
+.wire .side{grid-column:4/5}
+@media (max-width:700px){
+  .wire{grid-template-columns:1fr}
+  .wire .map,.wire .side,.wire .full{grid-column:1/-1;grid-row:auto}
+}
+
+/* ─────────── misc ─────────── */
+details{border:1px solid var(--rule);border-radius:10px;background:var(--surface);padding:.2rem 1.1rem;margin:1.6rem 0}
+summary{cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent-ink);padding:.9rem 0;font-weight:600}
+details[open] summary{border-bottom:1px solid var(--rule);margin-bottom:1rem}
+hr{border:0;border-top:1px solid var(--rule);margin:3.5rem 0 0}
+.foot{margin-top:4rem;padding-top:1.6rem;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted);line-height:1.7}
+.pri{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;padding:.12rem .45rem;
+  border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+.p0{color:var(--idm-5)} .p1{color:var(--idm-4)} .p2{color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="mast">
+  <span><span class="dot"></span><b>PRD</b> &nbsp;Peta Desa Nusantara</span>
+  <span>v1.0 &nbsp;·&nbsp; Draf untuk Review</span>
+</header>
+
+<div class="doc">
+
+<div class="title">
+  <p class="eyebrow">Product Requirements Document</p>
+  <h1>Peta Desa Nusantara</h1>
+  <p class="lede">Dashboard GIS untuk membaca Indeks Desa Membangun 2024 — 75.265 desa, 37 provinsi, satu peta yang dimuat per provinsi supaya tetap ringan.</p>
+  <dl class="meta">
+    <div><dt>Versi</dt><dd>1.0 — Draf</dd></div>
+    <div><dt>Sumber Data</dt><dd>Kemendes PDTT (IDM 2024)<br>BIG (RBI ADMINISTRASI_AR_DESAKEL)</dd></div>
+    <div><dt>Cakupan</dt><dd>75.265 desa · 434 kab/kota<br>6.554 kecamatan · 37 provinsi</dd></div>
+    <div><dt>Arsitektur</dt><dd>Static site + vector tiles<br>Tanpa server, tanpa database</dd></div>
+  </dl>
+</div>
+
+<!-- ══════════════════ 1 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 01</div>
+  <h2>Ringkasan Eksekutif</h2>
+  <p>Data Indeks Desa Membangun (IDM) 2024 saat ini hanya tersedia sebagai dua berkas Excel dan satu geodatabase ArcGIS berukuran 339 MB. Untuk menjawab pertanyaan sesederhana <em>“desa mana saja yang masih Tertinggal di Kabupaten Sumba Barat Daya?”</em> seorang analis harus membuka ArcGIS, melakukan join manual, dan menyimbolkan peta sendiri. Praktis hanya bisa dilakukan oleh orang yang memang bekerja dengan GIS.</p>
+  <p>Dokumen ini menspesifikasikan <strong>Peta Desa Nusantara</strong>: sebuah dashboard berbasis web yang menampilkan poligon desa berwarna sesuai status IDM — dari <span class="m">MANDIRI</span> yang paling hijau sampai <span class="m">SANGAT TERTINGGAL</span> yang paling merah — dengan peta yang <strong>dimuat satu provinsi pada satu waktu</strong>, dipilih lewat dropdown.</p>
+  <p>Keputusan “per provinsi” bukan sekadar penyederhanaan tampilan; itu adalah keputusan performa. Merender 83.486 poligon desa seluruh Indonesia sekaligus akan menghasilkan payload ratusan megabita dan membekukan browser. Membaginya per provinsi menurunkan beban terberat — Jawa Tengah, 7.810 desa — menjadi satu berkas tile berukuran beberapa megabita yang dilayani langsung dari CDN.</p>
+
+  <div class="stats wide">
+    <div><span class="v num-tab">75.265</span><span class="l">Desa ber-IDM</span></div>
+    <div><span class="v num-tab">83.486</span><span class="l">Poligon di RBI</span></div>
+    <div><span class="v num-tab">37</span><span class="l">Provinsi</span></div>
+    <div><span class="v num-tab">0,7120</span><span class="l">Rerata IDM nasional</span></div>
+    <div><span class="v num-tab">339 MB</span><span class="l">Geodatabase sumber</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ 2 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 02</div>
+  <h2>Masalah &amp; Peluang</h2>
+  <h3>Masalah yang dihadapi hari ini</h3>
+  <ul>
+    <li><strong>Data spasial dan data statistik terpisah.</strong> Nilai IDM ada di Excel; batas desa ada di geodatabase. Keduanya baru berarti setelah di-join lewat kode desa 10 digit — sebuah langkah yang harus diulang setiap kali seseorang butuh peta.</li>
+    <li><strong>Format sumber menuntut perangkat lunak khusus.</strong> Esri File Geodatabase tidak bisa dibuka di browser, Excel, atau QGIS versi lama tanpa driver yang tepat.</li>
+    <li><strong>Tidak ada cara cepat membandingkan.</strong> Pertanyaan seperti “kecamatan mana di provinsi ini yang paling tertinggal” butuh pivot manual setiap kali.</li>
+    <li><strong>Rekap yang ada hanya sampai provinsi.</strong> Berkas <span class="m">rekap-indeks-desa-membangun-tahun-2024.xlsx</span> berhenti di agregat 37 provinsi. Semua detail di bawahnya tidak terlihat.</li>
+  </ul>
+  <h3>Peluangnya</h3>
+  <p>Karena data IDM 2024 bersifat statis — dirilis sekali untuk satu tahun anggaran — seluruh pekerjaan berat dapat dipindahkan ke <em>build time</em>. Join, generalisasi geometri, dan pembangunan tile dilakukan sekali di mesin pengembang; yang dikirim ke pengguna hanyalah berkas statis. Tidak ada server yang perlu dijaga, tidak ada basis data yang perlu dibayar, dan waktu muat ditentukan oleh CDN, bukan oleh query.</p>
+</section>
+
+<!-- ══════════════════ 3 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 03</div>
+  <h2>Tujuan &amp; Metrik Keberhasilan</h2>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Tujuan</th><th>Metrik</th><th class="n">Target</th></tr></thead>
+    <tbody>
+      <tr><td>Peta terasa instan</td><td>Waktu render peta provinsi setelah dropdown diubah (median, koneksi 4G)</td><td class="n">&lt; 1,5 dtk</td></tr>
+      <tr><td>Muat awal ringan</td><td><em>Largest Contentful Paint</em> pada kunjungan pertama</td><td class="n">&lt; 2,5 dtk</td></tr>
+      <tr><td>Interaksi mulus</td><td>Frame rate saat pan/zoom di provinsi terbesar (Jawa Tengah)</td><td class="n">≥ 45 fps</td></tr>
+      <tr><td>Payload terkendali</td><td>Ukuran tileset satu provinsi (terberat)</td><td class="n">≤ 8 MB</td></tr>
+      <tr><td>Data terbaca utuh</td><td>Desa IDM yang berhasil dijodohkan ke poligon</td><td class="n">≥ 98%</td></tr>
+      <tr><td>Bisa dipakai semua orang</td><td>Skor Lighthouse Accessibility</td><td class="n">≥ 95</td></tr>
+      <tr><td>Bisa dibagikan</td><td>State (provinsi, kabupaten, desa terpilih) tersimpan di URL</td><td class="n">100%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <span class="tag">Catatan target 98%</span>
+    <p>Selisih 83.486 poligon dan 75.265 baris IDM sebagian besar adalah <strong>kelurahan</strong>, yang secara definisi tidak masuk cakupan IDM. Karena itu target 98% dihitung dari arah sebaliknya: berapa persen <em>baris IDM</em> yang menemukan poligonnya, bukan sebaliknya. Poligon tanpa pasangan tetap dirender sebagai wilayah abu-abu netral berlabel “Bukan cakupan IDM”.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ 4 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 04</div>
+  <h2>Pengguna</h2>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Persona</th><th>Yang ingin dilakukan</th><th>Implikasi terhadap produk</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Perencana daerah</strong><br>Bappeda provinsi/kabupaten</td><td>Melihat sebaran desa tertinggal di wilayahnya untuk menyusun prioritas anggaran</td><td>Drill-down kabupaten wajib ada; tabel peringkat harus bisa diurutkan dan diekspor secara visual</td></tr>
+      <tr><td><strong>Analis kebijakan</strong><br>Kementerian, lembaga riset</td><td>Membandingkan capaian antarprovinsi dan menelusuri komponen IKS / IKE / IKL</td><td>Nilai ketiga subindeks harus tampil di popup, bukan hanya nilai IDM komposit</td></tr>
+      <tr><td><strong>Jurnalis &amp; publik</strong></td><td>Memeriksa status desanya sendiri, lalu membagikan tautannya</td><td>Pencarian desa berbasis nama; URL yang menyimpan state; tampilan mobile yang benar-benar terpakai</td></tr>
+      <tr><td><strong>Pendamping desa</strong></td><td>Melihat posisi desa dampingannya relatif terhadap tetangganya</td><td>Konteks kecamatan pada popup; performa di perangkat kelas menengah dan jaringan lambat</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════ 5 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 05</div>
+  <h2>Inventaris &amp; Profil Data</h2>
+  <p>Bagian ini adalah hasil pemeriksaan langsung terhadap berkas di folder <span class="m">data/</span> dan <span class="m">data_gis/</span>. Angka-angka di bawah bukan perkiraan.</p>
+
+  <h3>5.1 Data tabular — IDM 2024</h3>
+  <p>Berkas <span class="m">indeks-desa-membangun-tahun-2024-hasil-pemutakhiran.xlsx</span>, sheet <span class="m">IDM 2024</span>: <strong>75.265 baris</strong>, 14 kolom terpakai, satu baris per desa. Kolom <span class="m">KODE_DESA</span> konsisten 10 digit di seluruh baris dan <strong>tidak ada duplikat</strong> — layak dijadikan kunci utama.</p>
+
+  <div class="ramp wide">
+    <div class="s1"><span class="lab">MANDIRI</span><span class="hex">IDM &gt; 0,8155</span><span class="cnt">17.203 · 22,9%</span></div>
+    <div class="s2"><span class="lab">MAJU</span><span class="hex">0,7073 – 0,8154</span><span class="cnt">23.063 · 30,6%</span></div>
+    <div class="s3"><span class="lab">BERKEMBANG</span><span class="hex">0,5990 – 0,7072</span><span class="cnt">24.532 · 32,6%</span></div>
+    <div class="s4"><span class="lab">TERTINGGAL</span><span class="hex">0,4908 – 0,5989</span><span class="cnt">6.100 · 8,1%</span></div>
+    <div class="s5"><span class="lab">SANGAT TERTINGGAL</span><span class="hex">IDM ≤ 0,4907</span><span class="cnt">4.363 · 5,8%</span></div>
+  </div>
+  <p style="font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:-.6rem">Rerata nasional 0,7120 · rentang 0,2176 – 1,0000 · IKS 0,7662 · IKE 0,6198 · IKL 0,7502</p>
+
+  <h4>Temuan kualitas data</h4>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Temuan</th><th class="n">Jumlah</th><th>Penanganan</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m">STATUS_IDM_2024</span> kosong</td><td class="n">4</td><td>Dirender abu-abu, berlabel “Status tidak tersedia”; dikecualikan dari agregat</td></tr>
+      <tr><td><span class="m">NAMA_DESA</span> kosong (mis. <span class="m">1101012003</span>)</td><td class="n">1</td><td>Fallback ke <span class="m">WADMKD</span> dari data spasial</td></tr>
+      <tr><td>Status tidak konsisten dengan ambang: <span class="m">6213062003</span> KUPANG BERSIH, nilai 0,7410 berlabel <span class="m">BERKEMBANG</span> padahal ambang <span class="m">MAJU</span> adalah &gt; 0,7072</td><td class="n">1</td><td><strong>Pertahankan label sumber</strong>, tandai di popup. Pipeline menjalankan uji ini dan gagal jika jumlahnya bertambah</td></tr>
+      <tr><td>Kolom <span class="m">Keterangan</span> berisi <span class="m">Update 2023</span></td><td class="n">4.011</td><td>Ditampilkan sebagai badge provenans pada popup</td></tr>
+      <tr><td>Kolom <span class="m">Keterangan</span> berisi <span class="m">Server PDN</span></td><td class="n">1.107</td><td>Idem</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Sheet kedua (<span class="m">Sheet4</span>) berisi pivot rekap dan berkas <span class="m">rekap-…xlsx</span> berisi agregat 37 provinsi. Keduanya <strong>tidak dipakai sebagai sumber</strong> — semua agregat dihitung ulang dari baris desa, lalu dicocokkan dengan rekap sebagai uji regresi.</p>
+
+  <h3>5.2 Data spasial — batas desa</h3>
+  <p>Folder <span class="m">data_gis/</span> adalah Esri File Geodatabase (339 MB) berisi satu feature class:</p>
+  <div class="panel">
+    <p style="font-family:var(--mono);font-size:.82rem;margin:0;line-height:1.9">
+      <strong>ADMINISTRASI_AR_DESAKEL</strong><br>
+      Geometri &nbsp;· Polygon, Z + M aktif<br>
+      CRS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;· EPSG:4326 (WGS 84) + EGM2008 Geoid<br>
+      Fitur &nbsp;&nbsp;&nbsp;&nbsp;· 83.486<br>
+      Asal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;· RBI / Pemutakhiran Batas Wilayah 2023
+    </p>
+  </div>
+  <p>Field yang relevan: <span class="m">KDEBPS</span> (kode BPS desa/kelurahan — <strong>kunci join</strong>), <span class="m">KDPBPS</span>, <span class="m">KDBBPS</span>, <span class="m">KDCBPS</span> (provinsi / kabupaten / kecamatan), <span class="m">WADMPR</span>, <span class="m">WADMKK</span>, <span class="m">WADMKC</span>, <span class="m">WADMKD</span> (nama wilayah), <span class="m">TIPADM</span> (desa vs kelurahan), <span class="m">LUASWH</span> (luas menurut peraturan, hektare). Daftar lengkap ada di <a href="#lampiran">Lampiran A</a>.</p>
+
+  <h3>5.3 Kunci join</h3>
+  <p>Penjodohan dilakukan pada <span class="m">ADMINISTRASI_AR_DESAKEL.KDEBPS</span> ⟷ <span class="m">IDM_2024.KODE_DESA</span>, keduanya dinormalkan ke string 10 karakter dengan <em>zero-padding</em> di kiri. Kode desa BPS bersifat hierarkis, sehingga seluruh level administrasi dapat diturunkan dari satu kolom ini tanpa join tambahan:</p>
+  <div class="panel">
+    <p style="font-family:var(--mono);font-size:.78rem;margin:0;line-height:2">
+      <span style="color:var(--accent-ink);font-weight:600">1101</span><span style="opacity:.45">012001</span> &nbsp;→&nbsp; provinsi <b>11</b> · kabupaten <b>1101</b><br>
+      <span style="opacity:.45">1101</span><span style="color:var(--accent-ink);font-weight:600">01</span><span style="opacity:.45">2001</span> &nbsp;→&nbsp; kecamatan <b>110101</b><br>
+      <span style="opacity:.45">110101</span><span style="color:var(--accent-ink);font-weight:600">2001</span> &nbsp;→&nbsp; desa <b>1101012001</b> — KEUDE BAKONGAN
+    </p>
+  </div>
+  <div class="note">
+    <span class="tag">Risiko yang harus divalidasi lebih dulu</span>
+    <p>Data IDM berasal dari pemutakhiran 2024 sedangkan batas RBI dari pemutakhiran 2023. Pemekaran dan perubahan kode desa di antara kedua tahun itu akan memunculkan baris IDM tanpa poligon. <strong>Langkah pertama implementasi adalah mengukur angka ini</strong> (§7 langkah 3) — bukan mengasumsikannya kecil. Jika ketidakcocokan melampaui 2%, siapkan tabel pemetaan kode manual sebelum melanjutkan.</p>
+  </div>
+
+  <h3>5.4 Sebaran beban per provinsi</h3>
+  <p>Ukuran tileset ditentukan oleh jumlah desa dan kerumitan geometrinya. Lima provinsi terberat dan teringan:</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Terberat</th><th class="n">Desa</th><th>Teringan</th><th class="n">Desa</th></tr></thead>
+    <tbody>
+      <tr><td>Jawa Tengah</td><td class="n">7.810</td><td>Kepulauan Riau</td><td class="n">275</td></tr>
+      <tr><td>Jawa Timur</td><td class="n">7.721</td><td>Kep. Bangka Belitung</td><td class="n">309</td></tr>
+      <tr><td>Aceh</td><td class="n">6.500</td><td>D.I. Yogyakarta</td><td class="n">392</td></tr>
+      <tr><td>Sumatera Utara</td><td class="n">5.417</td><td>Kalimantan Utara</td><td class="n">447</td></tr>
+      <tr><td>Jawa Barat</td><td class="n">5.311</td><td>Sulawesi Barat</td><td class="n">575</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Jawa Tengah adalah provinsi acuan untuk semua uji performa.</strong> Jika ia lolos anggaran di §11, sisanya pasti lolos.</p>
+</section>
+
+<!-- ══════════════════ 6 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 06</div>
+  <h2>Arsitektur</h2>
+  <p>Prinsipnya satu kalimat: <strong>data IDM 2024 tidak berubah, jadi semua pekerjaan berat dilakukan sekali saat build.</strong> Runtime hanya mengambil berkas statis.</p>
+
+  <div class="flow wide">
+    <div class="step"><span class="t">Sumber</span><b>data_gis/</b><span class="d">FileGDB 339 MB · 83.486 poligon</span></div>
+    <div class="arr">→</div>
+    <div class="step"><span class="t">Build</span><b>ogr2ogr + Python</b><span class="d">Join, simplifikasi, pecah per provinsi</span></div>
+    <div class="arr">→</div>
+    <div class="step"><span class="t">Artefak</span><b>37 × .pmtiles</b><span class="d">+ 1 overview nasional + JSON agregat</span></div>
+    <div class="arr">→</div>
+    <div class="step"><span class="t">Runtime</span><b>MapLibre GL JS</b><span class="d">Fetch 1 tileset saat dropdown berubah</span></div>
+  </div>
+
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Lapisan</th><th>Pilihan</th><th>Alasan</th></tr></thead>
+    <tbody>
+      <tr><td>Framework</td><td>Next.js (static export) + TypeScript</td><td>Menghasilkan situs statis murni; routing dan code-splitting sudah tersedia</td></tr>
+      <tr><td>Mesin peta</td><td>MapLibre GL JS v4</td><td>Rendering vector tile lewat WebGL — satu-satunya cara merender ribuan poligon tanpa lag. Open source, tanpa kunci API</td></tr>
+      <tr><td>Format tile</td><td>PMTiles</td><td>Satu berkas per provinsi, dibaca lewat HTTP Range Request. Tidak butuh tile server</td></tr>
+      <tr><td>Pewarnaan</td><td>Ekspresi <span class="m">fill-color</span> di style MapLibre</td><td>Warna dihitung GPU dari atribut tile — ganti skema warna tanpa membangun ulang tile</td></tr>
+      <tr><td>Basemap</td><td>CARTO Positron / Dark Matter (raster)</td><td>Netral secara visual sehingga tidak melawan ramp IDM; tersedia varian gelap</td></tr>
+      <tr><td>Grafik</td><td>Komponen SVG sendiri</td><td>Kebutuhannya hanya bar distribusi dan histogram — pustaka chart penuh tidak sepadan dengan bundle-nya</td></tr>
+      <tr><td>Tabel</td><td>TanStack Table + virtualisasi</td><td>Tabel peringkat harus sanggup menampung 7.810 baris tanpa membebani DOM</td></tr>
+      <tr><td>State</td><td>URL <em>search params</em> sebagai sumber kebenaran</td><td>Membuat setiap tampilan otomatis bisa dibagikan; tidak butuh state manager</td></tr>
+      <tr><td>Hosting</td><td>Vercel / Netlify / Cloudflare Pages</td><td>Statis, gratis pada tier awal, CDN global</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <span class="tag">Prasyarat lingkungan — blocker</span>
+    <p>Mesin ini punya Python 3.14 dan Node 24, tetapi <strong>GDAL/OGR, geopandas, dan fiona belum terpasang</strong>. Tanpa driver OpenFileGDB, geodatabase tidak dapat dibaca sama sekali. Pemasangan GDAL (beserta <span class="m">ogr2ogr</span> dan <span class="m">tippecanoe</span> atau <span class="m">pmtiles</span> CLI) adalah pekerjaan pertama sebelum baris kode apa pun ditulis.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ 7 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 07</div>
+  <h2>Pipeline Data</h2>
+  <p>Dijalankan sekali, hasilnya di-commit atau disimpan sebagai artefak build. Seluruh langkah bersifat idempoten dan dapat diulang dari nol.</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th class="n">#</th><th>Langkah</th><th>Keluaran</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Pasang prasyarat: GDAL ≥ 3.8, <span class="m">tippecanoe</span>, <span class="m">pmtiles</span> CLI</td><td>Lingkungan siap</td></tr>
+      <tr><td class="n">2</td><td>Ekstrak tabular: baca sheet <span class="m">IDM 2024</span>, normalkan <span class="m">KODE_DESA</span> ke string 10 digit</td><td><span class="m">idm_2024.parquet</span></td></tr>
+      <tr><td class="n">3</td><td><strong>Audit join.</strong> Ekstrak <span class="m">KDEBPS</span> dari FileGDB, hitung irisannya dengan <span class="m">KODE_DESA</span>. Hentikan pipeline bila kecocokan &lt; 98%</td><td><span class="m">join_report.csv</span></td></tr>
+      <tr><td class="n">4</td><td>Konversi geometri: <span class="m">ogr2ogr</span> → GeoPackage, buang dimensi Z dan M, perbaiki geometri invalid</td><td><span class="m">desa.gpkg</span></td></tr>
+      <tr><td class="n">5</td><td>Join atribut IDM ke poligon; poligon tanpa pasangan diberi <span class="m">status = null</span></td><td><span class="m">desa_idm.gpkg</span></td></tr>
+      <tr><td class="n">6</td><td>Ramping<em>kan</em> atribut: sisakan hanya field yang dipakai UI (lihat §7.1). Ini pengurang ukuran tile terbesar</td><td>—</td></tr>
+      <tr><td class="n">7</td><td>Pecah per provinsi berdasarkan <span class="m">KDPBPS</span> → 37 berkas</td><td><span class="m">prov/{kode}.geojsonl</span></td></tr>
+      <tr><td class="n">8</td><td>Bangun tile per provinsi dengan <span class="m">tippecanoe</span> (zoom 6–13, simplifikasi Douglas–Peucker adaptif, <span class="m">--drop-densest-as-needed</span> nonaktif agar tak ada desa yang hilang)</td><td><span class="m">tiles/{kode}.pmtiles</span></td></tr>
+      <tr><td class="n">9</td><td>Bangun overview nasional pada zoom 3–6 dari geometri kabupaten yang di-dissolve, diwarnai status modus</td><td><span class="m">tiles/nasional.pmtiles</span></td></tr>
+      <tr><td class="n">10</td><td>Hitung agregat provinsi &amp; kabupaten; validasi silang terhadap <span class="m">rekap-…xlsx</span></td><td><span class="m">agg/{kode}.json</span></td></tr>
+      <tr><td class="n">11</td><td>Bangun indeks pencarian desa (nama + kode, terkompresi per provinsi)</td><td><span class="m">search/{kode}.json</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>7.1 Atribut yang disimpan di dalam tile</h3>
+  <p>Setiap kilobita atribut dikalikan puluhan ribu fitur. Hanya sembilan field yang ikut masuk tile; sisanya tinggal di JSON agregat.</p>
+  <div class="panel">
+    <p style="font-family:var(--mono);font-size:.78rem;margin:0;line-height:1.95">
+      <b>kd</b> kode desa 10 digit &nbsp;·&nbsp; <b>nm</b> nama desa &nbsp;·&nbsp; <b>kc</b> nama kecamatan<br>
+      <b>kb</b> nama kabupaten &nbsp;·&nbsp; <b>st</b> status IDM sebagai integer 1–5<br>
+      <b>v</b> nilai IDM &nbsp;·&nbsp; <b>s</b> IKS &nbsp;·&nbsp; <b>e</b> IKE &nbsp;·&nbsp; <b>l</b> IKL
+    </p>
+  </div>
+  <p><span class="m">st</span> disimpan sebagai integer, bukan string, agar ekspresi <span class="m">fill-color</span> berupa <span class="m">match</span> sederhana dan ukuran tile menyusut. Nama provinsi tidak diulang per fitur — ia sudah tersirat dari tileset yang sedang dimuat.</p>
+</section>
+
+<!-- ══════════════════ 8 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 08</div>
+  <h2>Ruang Lingkup Fungsional</h2>
+  <p>Prioritas: <span class="pri p0">P0</span> wajib rilis · <span class="pri p1">P1</span> sangat diinginkan · <span class="pri p2">P2</span> menyusul.</p>
+
+  <h3>8.1 Peta</h3>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th class="n">ID</th><th>Persyaratan</th><th class="n">Pri</th></tr></thead>
+    <tbody>
+      <tr><td class="id">F-01</td><td>Saat dimuat, dashboard menampilkan <strong>satu provinsi default</strong> (Jawa Tengah — provinsi terpadat, sekaligus bukti performa terberat), bukan seluruh Indonesia</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-02</td><td>Poligon desa diwarnai menurut <span class="m">STATUS_IDM_2024</span> dengan ramp §9.1, garis batas tipis 0,5 px berwarna sepadan dengan basemap</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-03</td><td>Mengubah provinsi memuat tileset yang bersangkutan lalu <em>fitBounds</em> ke batasnya, dengan animasi maksimum 600 ms</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-04</td><td>Hover menyorot desa (garis tepi menebal, tanpa perubahan isian) dan menampilkan tooltip ringkas: nama desa, kecamatan, status, nilai IDM</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-05</td><td>Klik membuka panel detail: nama, kode desa, kecamatan, kabupaten, status, nilai IDM, dan ketiga subindeks IKS / IKE / IKL sebagai bar mini beserta pembanding rerata nasional</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-06</td><td>Legenda selalu tampak, memuat kelima kelas, jumlah desa, dan persentase untuk provinsi yang sedang aktif</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-07</td><td>Mengeklik kelas pada legenda memfilter peta — kelas lain diredupkan menjadi abu-abu, bukan disembunyikan, agar konteks geografis tidak hilang</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-08</td><td>Poligon tanpa data IDM (kelurahan) dirender abu-abu netral dengan pola arsir halus dan label “Bukan cakupan IDM”</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-09</td><td>Kontrol peta: zoom, reset ke batas provinsi, ganti basemap terang/gelap, dan tombol layar penuh</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-10</td><td>Label nama desa muncul otomatis pada zoom ≥ 11, dengan penghindaran tabrakan bawaan MapLibre</td><td class="n"><span class="pri p1">P1</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>8.2 Navigasi &amp; filter</h3>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th class="n">ID</th><th>Persyaratan</th><th class="n">Pri</th></tr></thead>
+    <tbody>
+      <tr><td class="id">F-11</td><td>Dropdown provinsi berisi 37 entri, dapat diketik untuk mencari, menampilkan jumlah desa di samping tiap nama, dan sepenuhnya dapat dioperasikan lewat papan ketik</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-12</td><td>Dropdown kabupaten/kota, terisi menurut provinsi aktif. Memilih kabupaten akan mem-<em>fitBounds</em> dan menyaring seluruh panel statistik ke lingkup tersebut</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-13</td><td>Dropdown kecamatan, terisi menurut kabupaten aktif</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-14</td><td>Pencarian desa lintas provinsi aktif: mengetik nama menampilkan hasil berkelompok menurut kecamatan; memilih hasil akan <em>fly to</em> dan membuka panel detailnya</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-15</td><td>Seluruh state (provinsi, kabupaten, kecamatan, desa terpilih, filter status, tema) tercermin di URL dan pulih utuh saat dimuat ulang</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-16</td><td>Tombol “Atur ulang” mengembalikan tampilan ke seluruh provinsi tanpa filter apa pun</td><td class="n"><span class="pri p1">P1</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>8.3 Statistik &amp; peringkat</h3>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th class="n">ID</th><th>Persyaratan</th><th class="n">Pri</th></tr></thead>
+    <tbody>
+      <tr><td class="id">F-17</td><td>Baris KPI untuk lingkup aktif: total desa, rerata IDM, jumlah Mandiri, jumlah Tertinggal + Sangat Tertinggal — masing-masing disertai selisih terhadap rerata nasional</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-18</td><td>Bar distribusi status bertumpuk secara horizontal, proporsional, dengan sela 2 px antar-segmen dan label langsung pada segmen yang cukup lebar</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-19</td><td>Tabel peringkat desa: nama, kecamatan, kabupaten, IDM, status. Dapat diurutkan, tervirtualisasi, dan tersinkron dua arah dengan peta (klik baris menyorot poligon, dan sebaliknya)</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-20</td><td>Peringkat kabupaten dalam provinsi aktif berdasarkan rerata IDM, ditampilkan sebagai bar chart horizontal dengan label langsung</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-21</td><td>Bar mini IKS / IKE / IKL pada panel detail desa, memakai satu hue sekuensial — <strong>bukan</strong> ramp status — supaya subindeks tidak tertukar dengan kelas IDM</td><td class="n"><span class="pri p1">P1</span></td></tr>
+      <tr><td class="id">F-22</td><td>Tampilan tabel sebagai alternatif setara untuk peta, memenuhi kewajiban aksesibilitas §10</td><td class="n"><span class="pri p0">P0</span></td></tr>
+      <tr><td class="id">F-23</td><td>Ekspor lingkup aktif ke CSV</td><td class="n"><span class="pri p2">P2</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════ 9 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 09</div>
+  <h2>Sistem Visual</h2>
+
+  <h3>9.1 Ramp warna IDM</h3>
+  <p>Permintaannya jelas: paling hijau untuk Mandiri, paling merah untuk Tertinggal. Ramp ini mengikuti permintaan itu <em>dan</em> konvensi publikasi resmi Kemendes, lalu dituning terhadap pemeriksaan kuantitatif — bukan ditebak lewat mata. Nilai berikut adalah hasil validasi terhadap permukaan peta yang sebenarnya.</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Kelas</th><th class="n">Terang</th><th class="n">Gelap</th><th>Peran</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip" style="background:var(--idm-1)"></span>MANDIRI</td><td class="k n">#137a52</td><td class="k n">#1a9463</td><td>Kutub hijau — hijau terdalam pada ramp</td></tr>
+      <tr><td><span class="chip" style="background:var(--idm-2)"></span>MAJU</td><td class="k n">#62a84f</td><td class="k n">#7bc25e</td><td>Lengan hijau, lebih terang</td></tr>
+      <tr><td><span class="chip" style="background:var(--idm-3)"></span>BERKEMBANG</td><td class="k n">#e0bd3d</td><td class="k n">#efd04d</td><td>Titik tengah — kuning bertenaga, sengaja bukan abu-abu pucat</td></tr>
+      <tr><td><span class="chip" style="background:var(--idm-4)"></span>TERTINGGAL</td><td class="k n">#d4602b</td><td class="k n">#ed7a2f</td><td>Lengan merah, jingga</td></tr>
+      <tr><td><span class="chip" style="background:var(--idm-5)"></span>SANGAT TERTINGGAL</td><td class="k n">#a51f2d</td><td class="k n">#d43b56</td><td>Kutub merah — merah terdalam pada ramp</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Titik tengah sengaja <strong>tidak</strong> dibuat abu-abu nyaris putih seperti ramp diverging pada umumnya. <span class="m">BERKEMBANG</span> adalah kelas terbesar — 24.532 desa, 32,6% — dan sebuah midpoint pucat akan membuat sepertiga peta menghilang ke dalam basemap. Versi pucat sempat diuji dan gagal ambang kontras di 1,26 : 1; nilai yang dipakai sekarang lolos.</p>
+
+  <h4>Hasil validasi</h4>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Pemeriksaan</th><th>Terang</th><th>Gelap</th></tr></thead>
+    <tbody>
+      <tr><td>Lantai penglihatan normal (ΔE ≥ 15, seluruh pasangan)</td><td>16,1 &nbsp;lolos</td><td>15,5 &nbsp;lolos</td></tr>
+      <tr><td>Lantai kroma (≥ 0,1 — tak ada kelas yang terbaca abu-abu)</td><td>lolos</td><td>lolos</td></tr>
+      <tr><td>Kontras terhadap permukaan peta</td><td>≥ 2 : 1</td><td>≥ 3 : 1 &nbsp;lolos</td></tr>
+      <tr><td>Pemisahan buta warna (ΔE ≥ 8)</td><td><strong>4,4 &nbsp;gagal</strong></td><td><strong>3,2 &nbsp;gagal</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <span class="tag">Kegagalan yang disengaja dan ditebus</span>
+    <p>Pasangan hijau ↔ merah tidak akan pernah lolos ambang buta warna — itulah definisi deuteranopia dan protanopia. Tidak ada penyetelan hex yang bisa memperbaikinya sambil tetap hijau dan merah. Karena skema ini yang diminta <em>dan</em> yang dipakai publikasi resmi, ramp dipertahankan, tetapi <strong>§10 menjadikan mekanisme penebusnya sebagai persyaratan wajib, bukan pelengkap</strong>: warna tidak pernah menjadi satu-satunya pembawa makna.</p>
+  </div>
+  <h4>Ramp alternatif aman buta warna</h4>
+  <p>Tersedia sebagai saklar setingkat pertama pada panel pengaturan — biru ↔ merah, ΔE buta warna 12,5 (lolos), penglihatan normal 16,1 (lolos):</p>
+  <div class="ramp wide" style="grid-template-columns:repeat(5,1fr)">
+    <div style="background:#17549b;color:#fff"><span class="lab">MANDIRI</span><span class="hex">#17549b</span></div>
+    <div style="background:#6da7ec;color:#0b1b2e"><span class="lab">MAJU</span><span class="hex">#6da7ec</span></div>
+    <div style="background:#c4c2ba;color:#1a1a17"><span class="lab">BERKEMBANG</span><span class="hex">#c4c2ba</span></div>
+    <div style="background:#ec835a;color:#2b1004"><span class="lab">TERTINGGAL</span><span class="hex">#ec835a</span></div>
+    <div style="background:#b02a28;color:#fff"><span class="lab">SANGAT TERTINGGAL</span><span class="hex">#b02a28</span></div>
+  </div>
+
+  <h3>9.2 Chrome antarmuka</h3>
+  <p>Kelima warna IDM adalah satu-satunya warna yang membawa makna data. Agar tidak ada yang bersaing dengannya, seluruh antarmuka dibangun dari tinta, kertas, dan satu aksen sian kartografis — hue yang jelas berada di luar ramp, dipakai hanya untuk kontrol, tautan, dan cincin fokus. Netral dibuat condong sedikit ke hijau-dingin agar sepadan dengan basemap, bukan abu-abu murni.</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Peran</th><th class="n">Terang</th><th class="n">Gelap</th></tr></thead>
+    <tbody>
+      <tr><td>Bidang halaman</td><td class="k n">#eef1ee</td><td class="k n">#0b1012</td></tr>
+      <tr><td>Permukaan panel</td><td class="k n">#fbfcfb</td><td class="k n">#151b1d</td></tr>
+      <tr><td>Tinta utama</td><td class="k n">#101718</td><td class="k n">#eef3f2</td></tr>
+      <tr><td>Tinta sekunder</td><td class="k n">#4a5859</td><td class="k n">#a6b5b4</td></tr>
+      <tr><td>Label / sumbu</td><td class="k n">#7d8d8c</td><td class="k n">#7d8f8e</td></tr>
+      <tr><td>Garis rambut</td><td class="k n">#d9e0dc</td><td class="k n">#26312f</td></tr>
+      <tr><td>Aksen (kontrol, fokus)</td><td class="k n">#0e6d80</td><td class="k n">#45b3c6</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>9.3 Tipografi</h3>
+  <p>CSP artifact memblokir CDN font, jadi seluruh sistem dibangun dari <em>font stack</em> bawaan sistem — tanpa risiko fallback diam-diam. Tiga peran, tiga keluarga:</p>
+  <ul>
+    <li><strong>Judul</strong> — grotesque sistem, bobot 800, tracking −0,025em. Padat dan tegas.</li>
+    <li><strong>Isi</strong> — serif (Charter / Georgia), 17 px / 1,72. Panel penjelasan dan teks berjalan yang benar-benar dibaca.</li>
+    <li><strong>Data &amp; label</strong> — monospace, huruf besar dengan tracking +0,12em untuk eyebrow. Seluruh kode desa, koordinat, nilai numerik, dan tick sumbu memakai <span class="m">tabular-nums</span> agar digit sejajar.</li>
+  </ul>
+
+  <h3>9.4 Tata letak</h3>
+  <div class="wire wide">
+    <div class="b full"><b>Bar atas</b>Judul · dropdown Provinsi · Kabupaten · Kecamatan · pencarian desa · saklar tema</div>
+    <div class="b map">Peta MapLibre — poligon desa provinsi aktif<br><span style="opacity:.65">legenda mengambang kiri-bawah · kontrol zoom kanan-atas</span></div>
+    <div class="b side"><b>KPI</b>Total desa · rerata IDM · jumlah Mandiri · jumlah Tertinggal</div>
+    <div class="b side"><b>Distribusi</b>Bar status bertumpuk + hitungan per kelas</div>
+    <div class="b side"><b>Detail / Peringkat</b>Detail desa saat ada yang dipilih; selain itu peringkat kabupaten</div>
+    <div class="b full"><b>Tabel peringkat desa</b>Tervirtualisasi · dapat diurutkan · tersinkron dua arah dengan peta · dapat dilipat</div>
+  </div>
+  <p><strong>Desktop</strong> ≥ 1024 px: peta menempati tiga per empat lebar, panel di kanan, tabel dapat dilipat di bawah. <strong>Tablet</strong> 768–1023 px: panel turun ke bawah peta menjadi grid dua kolom. <strong>Mobile</strong> &lt; 768 px: peta setinggi 55vh di atas, panel menjadi <em>bottom sheet</em> yang dapat digeser; dropdown menjadi selebar layar dengan target sentuh minimum 44 px.</p>
+
+  <h3>9.5 Gerak</h3>
+  <p>Gerak dipakai hanya jika membawa informasi: transisi <em>fitBounds</em> saat provinsi berganti (600 ms, <em>ease-out</em>), <em>fade</em> poligon saat tileset baru selesai dimuat (200 ms), dan <em>skeleton shimmer</em> pada panel saat agregat sedang diambil. Tidak ada animasi dekoratif saat gulir. Seluruhnya patuh pada <span class="m">prefers-reduced-motion</span>.</p>
+</section>
+
+<!-- ══════════════════ 10 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 10</div>
+  <h2>Aksesibilitas</h2>
+  <p>Karena §9.1 menerima ramp yang gagal ambang buta warna, mekanisme penebus di bawah ini berstatus <span class="pri p0">P0</span> — bukan penyempurnaan yang bisa ditunda.</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th class="n">ID</th><th>Persyaratan</th></tr></thead>
+    <tbody>
+      <tr><td class="id">A-01</td><td><strong>Status selalu tertulis.</strong> Setiap tooltip, popup, baris tabel, dan entri legenda memuat nama status sebagai teks. Warna tidak pernah menjadi satu-satunya pembawa makna</td></tr>
+      <tr><td class="id">A-02</td><td><strong>Saklar ramp aman buta warna</strong> (§9.1) tersedia di pengaturan dan pilihannya bertahan di <span class="m">localStorage</span></td></tr>
+      <tr><td class="id">A-03</td><td><strong>Kanal tekstur.</strong> Saklar opsional memberi tiap kelas pola arsir searah pada sudut berbeda, aktif otomatis saat <span class="m">forced-colors</span> atau pencetakan</td></tr>
+      <tr><td class="id">A-04</td><td><strong>Tampilan tabel</strong> (F-22) menyajikan data yang sama persis tanpa perlu melihat peta — jalur setara bagi pengguna pembaca layar</td></tr>
+      <tr><td class="id">A-05</td><td>Seluruh kontrol dapat dijangkau papan ketik dengan urutan fokus yang logis dan cincin fokus 2 px yang tampak jelas. Peta menyediakan pintasan pan/zoom lewat papan ketik</td></tr>
+      <tr><td class="id">A-06</td><td>Teks memenuhi kontras WCAG AA (4,5 : 1 untuk teks isi) di kedua tema. Label pada isian berwarna memakai pasangan tinta yang telah diperiksa, bukan putih otomatis</td></tr>
+      <tr><td class="id">A-07</td><td>Wilayah <span class="m">aria-live</span> mengumumkan perubahan lingkup: “Menampilkan Jawa Tengah — 7.810 desa”</td></tr>
+      <tr><td class="id">A-08</td><td>Bahasa antarmuka Bahasa Indonesia; <span class="m">lang="id"</span>; angka memakai format Indonesia (koma desimal, titik ribuan)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════ 11 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 11</div>
+  <h2>Anggaran Non-Fungsional</h2>
+  <p>Diuji pada <strong>Jawa Tengah</strong> (7.810 desa) dengan <em>throttling</em> Fast 3G dan CPU 4× lebih lambat.</p>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Anggaran</th><th class="n">Batas</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr><td>Bundle JS awal (gzip)</td><td class="n">≤ 220 KB</td><td>MapLibre ≈ 200 KB gzip — impor dinamis, di luar bundle awal</td></tr>
+      <tr><td>Tileset per provinsi</td><td class="n">≤ 8 MB</td><td>Jika Jawa Tengah melampaui, naikkan simplifikasi pada zoom rendah</td></tr>
+      <tr><td>JSON agregat per provinsi</td><td class="n">≤ 120 KB</td><td>Sudah dipangkas ke field yang dipakai UI</td></tr>
+      <tr><td>Waktu ganti provinsi</td><td class="n">≤ 1,5 dtk</td><td>Tileset yang sudah dikunjungi masuk cache memori</td></tr>
+      <tr><td>Frame rate pan/zoom</td><td class="n">≥ 45 fps</td><td>Pewarnaan lewat ekspresi GPU, bukan pembangunan ulang layer</td></tr>
+      <tr><td>Puncak memori tab</td><td class="n">≤ 400 MB</td><td>Maksimal dua tileset ditahan; sisanya dilepas dengan strategi LRU</td></tr>
+      <tr><td>Dukungan peramban</td><td class="n">2 versi terakhir</td><td>Chrome, Edge, Firefox, Safari · iOS Safari 16+ · Chrome Android</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">
+    <span class="tag">Aturan performa yang mengikat</span>
+    <p>Aplikasi <strong>tidak pernah</strong> memuat lebih dari satu tileset provinsi ke dalam peta pada satu waktu, dan <strong>tidak pernah</strong> memuat geometri tingkat desa untuk seluruh Indonesia. Overview nasional (§7 langkah 9) memakai geometri kabupaten yang telah di-<em>dissolve</em>. Aturan ini adalah alasan keberadaan seluruh arsitektur di §6 — melanggarnya berarti membatalkan sasaran performa di §3.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ 12 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 12</div>
+  <h2>Rencana Rilis</h2>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Milestone</th><th>Isi</th><th>Kriteria selesai</th></tr></thead>
+    <tbody>
+      <tr><td><strong>M0</strong><br>Fondasi data</td><td>§7 langkah 1–5. Prasyarat GDAL, audit join, konversi geometri</td><td><span class="m">join_report.csv</span> menunjukkan kecocokan ≥ 98%; jika tidak, tabel pemetaan kode manual disiapkan lebih dulu</td></tr>
+      <tr><td><strong>M1</strong><br>Peta tegak</td><td>§7 langkah 6–8. F-01 sampai F-06, F-11</td><td>Jawa Tengah termuat dan ter-pan mulus di dalam anggaran §11</td></tr>
+      <tr><td><strong>M2</strong><br>Dashboard lengkap</td><td>F-07 sampai F-10, F-12, F-15 sampai F-18, F-22. Seluruh A-01 sampai A-08</td><td>Ke-37 provinsi lolos anggaran; skor aksesibilitas ≥ 95</td></tr>
+      <tr><td><strong>M3</strong><br>Kedalaman analitik</td><td>F-13, F-14, F-19, F-20, F-21</td><td>Tabel peringkat 7.810 baris tetap responsif; sinkronisasi dua arah dengan peta berjalan</td></tr>
+      <tr><td><strong>M4</strong><br>Penghalusan</td><td>F-23, ekspor PNG, penyetelan mobile, dokumentasi</td><td>Uji lapangan pada perangkat Android kelas menengah</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════ 13 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 13</div>
+  <h2>Risiko</h2>
+  <div class="tw wide">
+  <table>
+    <thead><tr><th>Risiko</th><th>Dampak</th><th>Mitigasi</th></tr></thead>
+    <tbody>
+      <tr><td>Kode desa IDM 2024 tidak cocok dengan batas RBI 2023 akibat pemekaran</td><td><strong>Tinggi</strong></td><td>Diukur lebih dulu di M0 sebagai gerbang, bukan diasumsikan. Siapkan tabel pemetaan manual bila &gt; 2%</td></tr>
+      <tr><td>GDAL tidak terpasang di lingkungan kerja</td><td><strong>Tinggi</strong></td><td>Blocker yang sudah teridentifikasi (§6). Sediakan langkah pemasangan berbasis conda dan Docker sebagai cadangan</td></tr>
+      <tr><td>Tileset Jawa Tengah melampaui anggaran 8 MB</td><td>Sedang</td><td>Naikkan simplifikasi pada zoom ≤ 9; pertimbangkan pemecahan per kabupaten khusus untuk provinsi terberat</td></tr>
+      <tr><td>Ramp hijau–merah menyulitkan pengguna buta warna</td><td>Sedang</td><td>Diterima secara sadar dan ditebus melalui A-01 sampai A-04 yang berstatus wajib</td></tr>
+      <tr><td>Geometri invalid pada FileGDB menggagalkan tippecanoe</td><td>Sedang</td><td>Perbaikan geometri di §7 langkah 4; catat dan laporkan fitur yang gagal alih-alih menggugurkannya diam-diam</td></tr>
+      <tr><td>Poligon RBI 2023 tidak dapat diredistribusikan bebas</td><td>Sedang</td><td>Konfirmasi lisensi BIG sebelum publikasi; cantumkan atribusi sumber di footer sejak M1</td></tr>
+      <tr><td>Perangkat kelas bawah tidak mendukung WebGL</td><td>Rendah</td><td>Deteksi kemampuan lalu alihkan ke tampilan tabel (F-22), yang memang sudah wajib ada</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════ 14 ══════════════════ -->
+<section class="sec">
+  <div class="num">§ 14</div>
+  <h2>Di Luar Lingkup</h2>
+  <p>Ditulis eksplisit supaya tidak merembes masuk diam-diam:</p>
+  <ul>
+    <li><strong>Perbandingan antartahun.</strong> Hanya data 2024 yang tersedia; tren memerlukan IDM tahun-tahun sebelumnya beserta rekonsiliasi kode desa antartahun.</li>
+    <li><strong>Tampilan seluruh Indonesia pada tingkat desa.</strong> Bertentangan langsung dengan §11 dan dengan alasan keberadaan produk ini.</li>
+    <li><strong>Penyuntingan atau unggah data.</strong> Produk ini hanya-baca. Data diperbarui melalui pipeline build.</li>
+    <li><strong>Autentikasi.</strong> Seluruh data bersifat publik.</li>
+    <li><strong>Perbandingan dua provinsi berdampingan.</strong> Dipertimbangkan untuk versi berikutnya; menggandakan beban peta dan memerlukan desain tersendiri.</li>
+    <li><strong>Ekspor PDF.</strong> Ekspor CSV (F-23) dan PNG mencukupi untuk rilis pertama.</li>
+  </ul>
+</section>
+
+<!-- ══════════════════ Lampiran ══════════════════ -->
+<section class="sec" id="lampiran">
+  <div class="num">Lamp.</div>
+  <h2>Lampiran A — Kamus Data</h2>
+
+  <details open>
+    <summary>Sumber tabular · sheet “IDM 2024”</summary>
+    <div class="tw">
+    <table>
+      <thead><tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td class="k">KODE_PROV</td><td>int</td><td>Kode BPS provinsi, 2 digit</td></tr>
+        <tr><td class="k">NAMA_PROVINSI</td><td>text</td><td>37 nilai unik</td></tr>
+        <tr><td class="k">KODE_KAB</td><td>int</td><td>4 digit · 434 nilai unik</td></tr>
+        <tr><td class="k">NAMA_KABUPATEN</td><td>text</td><td>—</td></tr>
+        <tr><td class="k">KODE_KEC</td><td>int</td><td>6 digit · 6.554 nilai unik</td></tr>
+        <tr><td class="k">NAMA_KECAMATAN</td><td>text</td><td>—</td></tr>
+        <tr><td class="k">KODE_DESA</td><td>int</td><td><strong>Kunci join.</strong> 10 digit, tanpa duplikat</td></tr>
+        <tr><td class="k">NAMA_DESA</td><td>text</td><td>1 nilai kosong</td></tr>
+        <tr><td class="k">IKS_2024</td><td>float</td><td>Indeks Ketahanan Sosial · rerata 0,7662</td></tr>
+        <tr><td class="k">IKE_2024</td><td>float</td><td>Indeks Ketahanan Ekonomi · rerata 0,6198</td></tr>
+        <tr><td class="k">IKL_2024</td><td>float</td><td>Indeks Ketahanan Lingkungan · rerata 0,7502</td></tr>
+        <tr><td class="k">NILAI_IDM_2024</td><td>float</td><td>Komposit · rerata 0,7120 · rentang 0,2176–1,0000</td></tr>
+        <tr><td class="k">STATUS_IDM_2024</td><td>text</td><td>5 kelas · 4 nilai kosong</td></tr>
+        <tr><td class="k">Keterangan</td><td>text</td><td>Provenans · 70.147 kosong</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </details>
+
+  <details>
+    <summary>Sumber spasial · ADMINISTRASI_AR_DESAKEL</summary>
+    <div class="tw">
+    <table>
+      <thead><tr><th>Field</th><th>Alias</th><th>Dipakai</th></tr></thead>
+      <tbody>
+        <tr><td class="k">KDEBPS</td><td>Kode BPS Kelurahan/Desa</td><td><strong>Ya — kunci join</strong></td></tr>
+        <tr><td class="k">KDPBPS</td><td>Kode BPS Provinsi</td><td>Ya — pemecahan tileset</td></tr>
+        <tr><td class="k">KDBBPS</td><td>Kode BPS Kabupaten/Kota</td><td>Ya — filter kabupaten</td></tr>
+        <tr><td class="k">KDCBPS</td><td>Kode BPS Kecamatan/Distrik</td><td>Ya — filter kecamatan</td></tr>
+        <tr><td class="k">WADMPR</td><td>Nama wilayah administrasi Provinsi</td><td>Ya</td></tr>
+        <tr><td class="k">WADMKK</td><td>Nama wilayah administrasi Kabupaten/Kota</td><td>Ya</td></tr>
+        <tr><td class="k">WADMKC</td><td>Nama wilayah administrasi Kecamatan/Distrik</td><td>Ya</td></tr>
+        <tr><td class="k">WADMKD</td><td>Nama wilayah administrasi Kelurahan/Desa</td><td>Ya — fallback nama desa</td></tr>
+        <tr><td class="k">TIPADM</td><td>Tipe Administrasi</td><td>Ya — memisahkan desa dari kelurahan</td></tr>
+        <tr><td class="k">LUASWH</td><td>Luas Wilayah Menurut Peraturan (HA)</td><td>Opsional — kepadatan</td></tr>
+        <tr><td class="k">KDEPUM · KDCPUM · KDPPUM · KDPKAB</td><td>Kode PUM (Kemendagri)</td><td>Cadangan bila join BPS gagal</td></tr>
+        <tr><td class="k">NAMOBJ · FCODE · REMARK · METADATA · SRS_ID · UUPP · WIADKC · WIADKK · WIADPR · WIADKD</td><td>Metadata &amp; wilayah induk</td><td>Tidak — dibuang di §7 langkah 6</td></tr>
+        <tr><td class="k">Shape_Length · Shape_Area</td><td>Geometri terhitung</td><td>Tidak — dihitung ulang bila perlu</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </details>
+
+  <p class="foot">Peta Desa Nusantara · PRD v1.0 · Draf untuk review<br>
+  Seluruh angka pada §5 dan §9 diperoleh dari pemeriksaan langsung terhadap berkas sumber di <span class="m">data/</span> dan <span class="m">data_gis/</span>.<br>
+  Sumber data: Kementerian Desa PDTT (IDM 2024) · Badan Informasi Geospasial (RBI, Pemutakhiran Batas Wilayah 2023).</p>
+</section>
+
+</div>

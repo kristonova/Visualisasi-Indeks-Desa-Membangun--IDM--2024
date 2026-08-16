@@ -1,0 +1,138 @@
+:root{
+/* ── Identity constants — never re-tune these. From SADASA Identity Guideline v2 + supplied artwork. */
+--sadasa-red:#C40000;              /* Pantone 485 C · logo, print, official identity red */
+--sadasa-white:#FFFFFF;            /* Pantone Trans White · the mandated negative colour */
+--sadasa-red-artwork:#DF2C27;      /* red as reproduced in the supplied logo PNGs */
+--sadasa-maroon:#8C1A10;           /* master deck palette: "Secondary" */
+--sadasa-gold:#F1B91A;             /* master deck palette: "Contrast" */
+--sadasa-charcoal:#313132;         /* master deck palette: "Neutral" */
+--sadasa-gray:#58595B;             /* letterhead body-copy grey */
+
+/* ── Red scale. Hue locked to the identity red; 600 IS #C40000. */
+--red-50:oklch(0.974 0.013 30);
+--red-100:oklch(0.944 0.030 30);
+--red-200:oklch(0.895 0.058 30);
+--red-300:oklch(0.815 0.106 30);
+--red-400:oklch(0.700 0.170 30);
+--red-500:#DF2C27;
+--red-600:#C40000;
+--red-700:oklch(0.445 0.185 29);
+--red-800:#8C1A10;
+--red-900:oklch(0.310 0.113 27);
+--red-950:oklch(0.222 0.070 26);   /* "red ink" — the dark surface of the system */
+
+/* ── Gold scale. The relief colour: already SADASA's chart + product-icon colour. */
+--gold-50:oklch(0.983 0.018 92);
+--gold-100:oklch(0.961 0.040 90);
+--gold-200:oklch(0.926 0.073 89);
+--gold-300:oklch(0.886 0.106 86);
+--gold-400:oklch(0.847 0.134 84);
+--gold-500:#F1B91A;
+--gold-600:oklch(0.735 0.148 77);
+--gold-700:oklch(0.630 0.130 71);
+--gold-800:oklch(0.505 0.104 68);
+
+/* ── Neutrals. Faintly warm so red never vibrates against them; 500 ≈ SADASA grey, 800 ≈ charcoal. */
+--n-0:#FFFFFF;
+--n-25:oklch(0.988 0.004 60);
+--n-50:oklch(0.973 0.005 55);
+--n-100:oklch(0.949 0.006 50);
+--n-200:oklch(0.906 0.007 46);
+--n-300:oklch(0.846 0.008 46);
+--n-400:oklch(0.702 0.008 46);
+--n-500:#58595B;
+--n-600:oklch(0.480 0.008 45);
+--n-700:oklch(0.396 0.008 42);
+--n-800:#313132;
+--n-900:oklch(0.235 0.010 32);
+--n-950:oklch(0.176 0.012 28);
+
+/* ── Surfaces. Paper, not glare: the page is never pure #FFF. */
+--surface-page:var(--n-25);
+--surface-card:var(--n-0);
+--surface-sunken:var(--n-50);
+--surface-raised:var(--n-0);
+--surface-inverse:var(--red-950);
+--surface-brand:var(--red-600);
+--surface-brand-deep:var(--red-800);
+--surface-accent-soft:var(--red-50);
+--surface-gold:var(--gold-500);
+--surface-gold-soft:var(--gold-50);
+--surface-overlay:oklch(0.176 0.012 28 / 0.55);
+
+/* ── Text */
+--text-strong:var(--n-900);
+--text-body:var(--n-700);
+--text-muted:var(--n-500);
+--text-subtle:var(--n-400);
+--text-brand:var(--red-700);
+--text-on-brand:var(--n-0);
+--text-on-gold:var(--red-950);
+--text-on-inverse:var(--n-50);
+--text-on-inverse-muted:oklch(0.973 0.005 55 / 0.66);
+--text-link:var(--red-700);
+--text-link-hover:var(--red-600);
+
+/* ── Lines */
+--border-hairline:var(--n-200);
+--border-strong:var(--n-300);
+--border-brand:var(--red-600);
+--border-inverse:oklch(0.973 0.005 55 / 0.18);
+--focus-ring:oklch(0.600 0.207 29.5 / 0.38);
+
+/* ── Interaction */
+--accent:var(--red-600);
+--accent-hover:var(--red-700);
+--accent-press:var(--red-800);
+--accent-soft:var(--red-50);
+--accent-soft-hover:var(--red-100);
+--accent-2:var(--gold-500);
+--accent-2-hover:var(--gold-600);
+--accent-2-press:var(--gold-700);
+
+/* ── Status. Not defined in the source materials — an intentional addition, see readme.md. */
+--status-success:oklch(0.545 0.125 152);
+--status-success-soft:oklch(0.955 0.030 152);
+--status-warning:var(--gold-600);
+--status-warning-soft:var(--gold-100);
+--status-danger:var(--red-600);
+--status-danger-soft:var(--red-50);
+--status-info:oklch(0.520 0.090 245);
+--status-info-soft:oklch(0.960 0.022 245);
+
+/* ── Data visualisation. Order taken from the master deck's charts: gold leads, red highlights. */
+--chart-1:var(--gold-500);
+--chart-2:var(--red-600);
+--chart-3:var(--red-800);
+--chart-4:var(--n-800);
+--chart-5:var(--gold-700);
+--chart-6:var(--n-400);
+--chart-grid:var(--n-200);
+
+/* ── The ¾-ring motif (classroom rows facing the mark) as flat tints */
+--motif-tint:oklch(0.895 0.058 30);
+--motif-tint-faint:oklch(0.958 0.022 30);
+}
+
+/* Inverse sections: covers, section breaks, dark UI. Red ink rather than black. */
+[data-theme="ink"]{
+--surface-page:var(--red-950);
+--surface-card:oklch(0.268 0.078 27);
+--surface-sunken:oklch(0.198 0.062 26);
+--surface-raised:oklch(0.290 0.082 27);
+--text-strong:var(--n-0);
+--text-body:oklch(0.930 0.008 60);
+--text-muted:oklch(0.780 0.012 50);
+--text-subtle:oklch(0.640 0.014 45);
+--text-brand:var(--gold-500);
+--text-link:var(--gold-400);
+--text-link-hover:var(--gold-300);
+--border-hairline:oklch(0.973 0.005 55 / 0.14);
+--border-strong:oklch(0.973 0.005 55 / 0.28);
+--accent:var(--red-500);
+--accent-hover:var(--red-400);
+--accent-press:var(--red-600);
+--accent-soft:oklch(0.973 0.005 55 / 0.08);
+--accent-soft-hover:oklch(0.973 0.005 55 / 0.14);
+--surface-accent-soft:oklch(0.973 0.005 55 / 0.08);
+}

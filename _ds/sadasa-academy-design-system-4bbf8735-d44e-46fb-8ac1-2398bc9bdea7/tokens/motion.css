@@ -1,0 +1,21 @@
+:root{
+--duration-instant:90ms; /* @kind other */
+--duration-fast:140ms; /* @kind other */
+--duration-base:200ms; /* @kind other */
+--duration-slow:320ms; /* @kind other */
+--duration-reveal:520ms; /* @kind other */
+/* Confident deceleration, no bounce anywhere in this brand. */
+--ease-out:cubic-bezier(0.22,0.84,0.24,1); /* @kind other */
+--ease-in-out:cubic-bezier(0.6,0.05,0.25,0.95); /* @kind other */
+--ease-linear:linear; /* @kind other */
+--transition-control:color var(--duration-fast) var(--ease-out),background-color var(--duration-fast) var(--ease-out),border-color var(--duration-fast) var(--ease-out),box-shadow var(--duration-fast) var(--ease-out),transform var(--duration-fast) var(--ease-out); /* @kind other */
+--lift-hover:translateY(-1px); /* @kind other */
+--press-scale:0.985; /* @kind other */
+}
+@media (prefers-reduced-motion:reduce){:root{--duration-instant:0ms; /* @kind other */
+--duration-fast:0ms; /* @kind other */
+--duration-base:0ms; /* @kind other */
+--duration-slow:0ms; /* @kind other */
+--duration-reveal:0ms; /* @kind other */
+--lift-hover:none; /* @kind other */
+--press-scale:1 /* @kind other */}}

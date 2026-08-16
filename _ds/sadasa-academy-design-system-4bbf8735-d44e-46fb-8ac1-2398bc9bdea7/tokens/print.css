@@ -1,0 +1,29 @@
+/* Stationery specs, verbatim from SADASA Identity Guideline v2 (pp. 07–11). */
+:root{
+--paper-a4-w:210mm; /* @kind spacing */
+--paper-a4-h:297mm; /* @kind spacing */
+--letterhead-margin-top:50mm; /* @kind spacing */      /* atas: 5 cm */
+--letterhead-margin-bottom:20mm; /* @kind spacing */   /* bawah: 2 cm */
+--letterhead-margin-left:20mm; /* @kind spacing */     /* kiri: 2 cm */
+--letterhead-margin-right:65mm; /* @kind spacing */    /* kanan: 6,5 cm */
+--letterhead-type-size:10pt; /* @kind font */ /* Gotham Narrow Book 10pt/12pt */
+--letterhead-line-height:12pt; /* @kind font */
+
+--envelope-w:230mm; /* @kind spacing */
+--envelope-h:110mm; /* @kind spacing */
+
+--idcard-w:54mm; /* @kind spacing */
+--idcard-h:86mm; /* @kind spacing */
+
+--businesscard-w:90mm; /* @kind spacing */
+--businesscard-h:55mm; /* @kind spacing */
+--businesscard-name-size:7.1pt; /* @kind font */ /* GalanoGrotesque-SemiBold */
+--businesscard-role-size:3.2pt; /* @kind font */ /* GalanoGrotesque-Light */
+--businesscard-detail-size:4pt; /* @kind font */ /* GalanoGrotesque-Light */
+
+--stamp-round-d:32mm; /* @kind spacing */               /* round stamp 32 × 60 mm bounding, logo height 20 mm */
+--stamp-round-logo-h:20mm; /* @kind spacing */
+--stamp-rect-w:35mm; /* @kind spacing */                /* rectangular stamp 35 × 35 mm, logo height 15 mm */
+--stamp-rect-h:35mm; /* @kind spacing */
+--stamp-rect-logo-h:15mm; /* @kind spacing */
+}

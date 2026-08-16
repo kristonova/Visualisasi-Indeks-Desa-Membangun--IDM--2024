@@ -1,0 +1,61 @@
+# ==========================================
+# Raw Master GIS & Large Datasets (>100MB)
+# (Excluded from git due to GitHub file size limits)
+# ==========================================
+SHP GIS/*.gdb/
+SHP GIS/batas-administrasi-indonesia/
+SHP GIS/BATAS WILAYAH KELURAHAN-DESA 10K from www.indonesia-geospasial.com/
+SHP GIS/Peta Batas Administrasi Provinsi dan Kabupaten Kota from Kemendagri/
+*.shp
+*.shx
+*.dbf
+*.cpg
+*.prj
+*.sbn
+*.sbx
+*.qix
+
+# Keep the GIS technical reference document
+!SHP GIS/REFERENSI-DATASET-GIS-BATAS-ADMINISTRASI.md
+
+# ==========================================
+# Build Outputs, Intermediate & Scratch Files
+# ==========================================
+geo-out/
+work/
+uploads/
+*.bak*
+data/geo/*.bak*
+.thumbnail/
+
+# ==========================================
+# Python Virtual Environments & Caches
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+.ipynb_checkpoints/
+
+# ==========================================
+# Operating System & Editor Artifacts
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
