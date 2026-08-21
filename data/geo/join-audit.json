@@ -1,0 +1,3982 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "excel": "data\\indeks-desa-membangun-tahun-2024-hasil-pemutakhiran.xlsx",
+    "idm_json": "data\\idm\\prov",
+    "geo_json": "data\\geo\\desa"
+  },
+  "summary": {
+    "excel_rows": 75265,
+    "idm_json_rows": 75265,
+    "geo_features": 83398,
+    "joined_idm_to_geometry": 74930,
+    "idm_without_geometry": 335,
+    "geo_kelurahan_outside_idm": 8468,
+    "unexpected_geo_village_without_idm": 0,
+    "idm_without_score": 4,
+    "joined_name_mismatches": 3,
+    "join_rate_percent": 99.5549
+  },
+  "integrity": {
+    "excel_duplicate_codes": [],
+    "idm_json_duplicate_codes": [],
+    "geo_duplicate_codes": [],
+    "excel_invalid_codes": [],
+    "idm_json_invalid_codes": [],
+    "geo_invalid_codes": [],
+    "excel_missing_from_idm_json": [],
+    "idm_json_missing_from_excel": [],
+    "excel_json_field_mismatches": []
+  },
+  "by_province": [
+    {
+      "province_code": "11",
+      "idm_rows": 6500,
+      "geo_features": 6495,
+      "joined": 6495,
+      "idm_without_geometry": 5,
+      "geo_kelurahan_outside_idm": 0,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 3
+    },
+    {
+      "province_code": "12",
+      "idm_rows": 5417,
+      "geo_features": 6110,
+      "joined": 5417,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 693,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "13",
+      "idm_rows": 1035,
+      "geo_features": 1159,
+      "joined": 929,
+      "idm_without_geometry": 106,
+      "geo_kelurahan_outside_idm": 230,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "14",
+      "idm_rows": 1591,
+      "geo_features": 1859,
+      "joined": 1591,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 268,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "15",
+      "idm_rows": 1414,
+      "geo_features": 1568,
+      "joined": 1399,
+      "idm_without_geometry": 15,
+      "geo_kelurahan_outside_idm": 169,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "16",
+      "idm_rows": 2855,
+      "geo_features": 3239,
+      "joined": 2852,
+      "idm_without_geometry": 3,
+      "geo_kelurahan_outside_idm": 387,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "17",
+      "idm_rows": 1341,
+      "geo_features": 1513,
+      "joined": 1341,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 172,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "18",
+      "idm_rows": 2446,
+      "geo_features": 2640,
+      "joined": 2435,
+      "idm_without_geometry": 11,
+      "geo_kelurahan_outside_idm": 205,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "19",
+      "idm_rows": 309,
+      "geo_features": 391,
+      "joined": 309,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 82,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "21",
+      "idm_rows": 275,
+      "geo_features": 417,
+      "joined": 275,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 142,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "31",
+      "idm_rows": 0,
+      "geo_features": 267,
+      "joined": 0,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 267,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "32",
+      "idm_rows": 5311,
+      "geo_features": 5957,
+      "joined": 5311,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 646,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "33",
+      "idm_rows": 7810,
+      "geo_features": 8561,
+      "joined": 7808,
+      "idm_without_geometry": 2,
+      "geo_kelurahan_outside_idm": 753,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "34",
+      "idm_rows": 392,
+      "geo_features": 438,
+      "joined": 392,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 46,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "35",
+      "idm_rows": 7721,
+      "geo_features": 8494,
+      "joined": 7720,
+      "idm_without_geometry": 1,
+      "geo_kelurahan_outside_idm": 774,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "36",
+      "idm_rows": 1238,
+      "geo_features": 1552,
+      "joined": 1238,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 314,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "51",
+      "idm_rows": 636,
+      "geo_features": 716,
+      "joined": 636,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 80,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "52",
+      "idm_rows": 1021,
+      "geo_features": 1150,
+      "joined": 1005,
+      "idm_without_geometry": 16,
+      "geo_kelurahan_outside_idm": 145,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "53",
+      "idm_rows": 3137,
+      "geo_features": 3352,
+      "joined": 3048,
+      "idm_without_geometry": 89,
+      "geo_kelurahan_outside_idm": 304,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "61",
+      "idm_rows": 2046,
+      "geo_features": 2130,
+      "joined": 2031,
+      "idm_without_geometry": 15,
+      "geo_kelurahan_outside_idm": 99,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "62",
+      "idm_rows": 1432,
+      "geo_features": 1571,
+      "joined": 1432,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 139,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "63",
+      "idm_rows": 1872,
+      "geo_features": 2008,
+      "joined": 1864,
+      "idm_without_geometry": 8,
+      "geo_kelurahan_outside_idm": 144,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 1
+    },
+    {
+      "province_code": "64",
+      "idm_rows": 841,
+      "geo_features": 1038,
+      "joined": 841,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 197,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "65",
+      "idm_rows": 447,
+      "geo_features": 482,
+      "joined": 447,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 35,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "71",
+      "idm_rows": 1507,
+      "geo_features": 1839,
+      "joined": 1507,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 332,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "72",
+      "idm_rows": 1842,
+      "geo_features": 2017,
+      "joined": 1842,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 175,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "73",
+      "idm_rows": 2266,
+      "geo_features": 3056,
+      "joined": 2264,
+      "idm_without_geometry": 2,
+      "geo_kelurahan_outside_idm": 792,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "74",
+      "idm_rows": 1908,
+      "geo_features": 2284,
+      "joined": 1908,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 376,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "75",
+      "idm_rows": 657,
+      "geo_features": 729,
+      "joined": 657,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 72,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "76",
+      "idm_rows": 575,
+      "geo_features": 648,
+      "joined": 575,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 73,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "81",
+      "idm_rows": 1200,
+      "geo_features": 1233,
+      "joined": 1198,
+      "idm_without_geometry": 2,
+      "geo_kelurahan_outside_idm": 35,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "82",
+      "idm_rows": 1067,
+      "geo_features": 1180,
+      "joined": 1063,
+      "idm_without_geometry": 4,
+      "geo_kelurahan_outside_idm": 117,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "91",
+      "idm_rows": 948,
+      "geo_features": 998,
+      "joined": 947,
+      "idm_without_geometry": 1,
+      "geo_kelurahan_outside_idm": 51,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "92",
+      "idm_rows": 803,
+      "geo_features": 865,
+      "joined": 803,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 62,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "93",
+      "idm_rows": 677,
+      "geo_features": 687,
+      "joined": 674,
+      "idm_without_geometry": 3,
+      "geo_kelurahan_outside_idm": 13,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "94",
+      "idm_rows": 1172,
+      "geo_features": 1190,
+      "joined": 1154,
+      "idm_without_geometry": 18,
+      "geo_kelurahan_outside_idm": 36,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "95",
+      "idm_rows": 2617,
+      "geo_features": 2593,
+      "joined": 2583,
+      "idm_without_geometry": 34,
+      "geo_kelurahan_outside_idm": 10,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "96",
+      "idm_rows": 939,
+      "geo_features": 972,
+      "joined": 939,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 33,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    }
+  ],
+  "idm_without_score": [
+    {
+      "code": "1105022062",
+      "name": "BATU JAYA",
+      "province_code": "11",
+      "regency_code": "1105",
+      "district_code": "110502",
+      "district": "KAWAY XVI",
+      "regency": "ACEH BARAT",
+      "province": "ACEH",
+      "reason": "Penduduk Tidak Ada / Eksodus akibat Konflik GAM",
+      "source": "Update 2023"
+    },
+    {
+      "code": "1106082013",
+      "name": "PULO BUNTA",
+      "province_code": "11",
+      "regency_code": "1106",
+      "district_code": "110608",
+      "district": "PEUKAN BADA",
+      "regency": "ACEH BESAR",
+      "province": "ACEH",
+      "reason": "Pulo Bunta, Aceh Besar (Semua warga dan pemerintahan desa tidak berdomisili di desanya)",
+      "source": "Update 2023"
+    },
+    {
+      "code": "1116102005",
+      "name": "PERKEBUNAN ALUR JAMBU",
+      "province_code": "11",
+      "regency_code": "1116",
+      "district_code": "111610",
+      "district": "BANDAR PUSAKA",
+      "regency": "ACEH TAMIANG",
+      "province": "ACEH",
+      "reason": "dana desa sejak tahun 2020 tidak lagi dicairkan (lokasi desanya di dalam HGU)",
+      "source": "Update 2023"
+    },
+    {
+      "code": "6311012020",
+      "name": "WONOREJO",
+      "province_code": "63",
+      "regency_code": "6311",
+      "district_code": "631101",
+      "district": "JUAI",
+      "regency": "BALANGAN",
+      "province": "KALIMANTAN SELATAN",
+      "reason": "Desa Tidak Memiliki Wilayah karena dibeli tambang, Pemerintahan Sudah tidak ada dan Masyarat tinggal kurang dari 20 KK",
+      "source": "Update 2023"
+    }
+  ],
+  "joined_name_mismatches": [
+    {
+      "code": "1101012003",
+      "idm_name": "(kosong)",
+      "geo_name": "Ujong Padang",
+      "kind": "missing_idm_name"
+    },
+    {
+      "code": "7402192020",
+      "idm_name": "WUKUSAO",
+      "geo_name": "Wakusao",
+      "kind": "name_difference"
+    },
+    {
+      "code": "9402212016",
+      "idm_name": "TENOMANGGEN",
+      "geo_name": "Tenombanak",
+      "kind": "name_difference"
+    }
+  ],
+  "idm_without_geometry": [
+    {
+      "code": "1110092009",
+      "name": "MUKTI LINCER",
+      "province_code": "11",
+      "regency_code": "1110",
+      "district_code": "111009",
+      "district": "KOTA BAHARU",
+      "regency": "ACEH SINGKIL",
+      "province": "ACEH"
+    },
+    {
+      "code": "1116062021",
+      "name": "ALUR MENTAWAK",
+      "province_code": "11",
+      "regency_code": "1116",
+      "district_code": "111606",
+      "district": "KEJURUAN MUDA",
+      "regency": "ACEH TAMIANG",
+      "province": "ACEH"
+    },
+    {
+      "code": "1116082017",
+      "name": "MEKAR JAYA",
+      "province_code": "11",
+      "regency_code": "1116",
+      "district_code": "111608",
+      "district": "RANTAU",
+      "regency": "ACEH TAMIANG",
+      "province": "ACEH"
+    },
+    {
+      "code": "1116112006",
+      "name": "SUMBER MAKMUR",
+      "province_code": "11",
+      "regency_code": "1116",
+      "district_code": "111611",
+      "district": "TENGGULUN",
+      "regency": "ACEH TAMIANG",
+      "province": "ACEH"
+    },
+    {
+      "code": "1173032022",
+      "name": "SEUNEUBOK",
+      "province_code": "11",
+      "regency_code": "1173",
+      "district_code": "117303",
+      "district": "BLANG MANGAT",
+      "regency": "KOTA LHOKSEUMAWE",
+      "province": "ACEH"
+    },
+    {
+      "code": "1306012004",
+      "name": "DURIAN KAPEH DARUSSALAM",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130601",
+      "district": "TANJUNG MUTIARA",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306032011",
+      "name": "DALKO",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130603",
+      "district": "TANJUNG RAYA",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306082008",
+      "name": "SUNGAI CUBADAK",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130608",
+      "district": "BASO",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306082009",
+      "name": "KOTO GADANG",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130608",
+      "district": "BASO",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306102005",
+      "name": "NAN LIMO",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130610",
+      "district": "PALUPUH",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306112007",
+      "name": "SALAREH AIA TIMUR",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130611",
+      "district": "PALEMBAYAN",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306112008",
+      "name": "SALAREH AIA UTARA",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130611",
+      "district": "PALEMBAYAN",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306112009",
+      "name": "SALAREH AIA BARAT",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130611",
+      "district": "PALEMBAYAN",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306152004",
+      "name": "KAMANG TANGAH ANAM SUKU",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130615",
+      "district": "KAMANG MAGEK",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1306152005",
+      "name": "PAUH KAMANG MUDIAK",
+      "province_code": "13",
+      "regency_code": "1306",
+      "district_code": "130615",
+      "district": "KAMANG MAGEK",
+      "regency": "AGAM",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308042007",
+      "name": "KOTO KACIAK BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130804",
+      "district": "BONJOL",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052007",
+      "name": "TANJUANG BARINGIN UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052008",
+      "name": "TANJUANG BARINGIN SELATAN",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052009",
+      "name": "AIA MANGGIH UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052010",
+      "name": "AIA MANGGIH SELATAN",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052011",
+      "name": "AIA MANGGIH BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052012",
+      "name": "SUNDATA UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308052013",
+      "name": "SUNDATA SELATAN",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130805",
+      "district": "LUBUK SIKAPING",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308072005",
+      "name": "PANTI UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130807",
+      "district": "PANTI",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308082006",
+      "name": "MUARO TAIS KOTO GADANG",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130808",
+      "district": "MAPAT TUNGGUL",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308122003",
+      "name": "SIMPANG TONANG SELATAN",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130812",
+      "district": "DUO KOTO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308122004",
+      "name": "SIMPANG TONANG UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130812",
+      "district": "DUO KOTO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308122005",
+      "name": "CUBADAK TIMUR",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130812",
+      "district": "DUO KOTO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308122006",
+      "name": "CUBADAK TENGAH",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130812",
+      "district": "DUO KOTO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308122007",
+      "name": "CUBADAK BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130812",
+      "district": "DUO KOTO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308132004",
+      "name": "MALAMPAH BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130813",
+      "district": "TIGO NAGARI",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308132005",
+      "name": "LADANG PANJANG BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130813",
+      "district": "TIGO NAGARI",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308142008",
+      "name": "TARUANG TARUANG SELATAN",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130814",
+      "district": "RAO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308142009",
+      "name": "TARUANG TARUANG UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130814",
+      "district": "RAO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308142010",
+      "name": "PADANG MANTINGGI UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130814",
+      "district": "RAO",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308162003",
+      "name": "ALAHAN MATI HILIA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130816",
+      "district": "SIMPANG ALAHAN MATI",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308162004",
+      "name": "SIMPANG UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130816",
+      "district": "SIMPANG ALAHAN MATI",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308192004",
+      "name": "LANSEK KADOK BARAT",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130819",
+      "district": "RAO SELATAN",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308192005",
+      "name": "TANJUNG BETUNG UTARA",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130819",
+      "district": "RAO SELATAN",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1308192006",
+      "name": "TANJUNG BETUNG TIMUR",
+      "province_code": "13",
+      "regency_code": "1308",
+      "district_code": "130819",
+      "district": "RAO SELATAN",
+      "regency": "PASAMAN",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022002",
+      "name": "BRASTAGI UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022003",
+      "name": "TAMPUS DAMAI UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022004",
+      "name": "TALUAK AMBUN UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022005",
+      "name": "KOTO GUNUNG UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022006",
+      "name": "KOTO SAWAH UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022007",
+      "name": "SALIDO SAROHA UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022008",
+      "name": "KUAMANG ALAI UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312022009",
+      "name": "SITUAK UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032007",
+      "name": "LINGKUANG AUA TIMUR",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032008",
+      "name": "LINGKUANG AUA BARU",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032009",
+      "name": "LINGKUANG AUA BANDARAJO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032010",
+      "name": "LINGKUANG AUA JAMBAK",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032011",
+      "name": "LINGKUANG AUA KOTO DALAM",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032012",
+      "name": "LINGKUANG AUA BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032013",
+      "name": "LINGKUANG AUA HILIA",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032014",
+      "name": "SUKOMANANTI AUA KUNIANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032015",
+      "name": "AIA GADANG TIMUR",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032016",
+      "name": "AIA GADANG BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032017",
+      "name": "PINAGA AUA KUNIANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032018",
+      "name": "LUBUAK LANDUA AUA KUNIANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312032019",
+      "name": "LEMBAH BINUANG AUA KUNIANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131203",
+      "district": "PASAMAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312042004",
+      "name": "SIMPANG TIMBO ABU KAJAI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131204",
+      "district": "TALAMAU",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312042005",
+      "name": "KAJAI SELATAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131204",
+      "district": "TALAMAU",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312042006",
+      "name": "SUNGAI JANIAH TALU",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131204",
+      "district": "TALAMAU",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312042007",
+      "name": "TABEK SIRAH TALU",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131204",
+      "district": "TALAMAU",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052003",
+      "name": "AMPEK KOTO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052004",
+      "name": "AMPEK KOTO BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052005",
+      "name": "BANCAH KARIANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052006",
+      "name": "MUDIAK LABUAH",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052007",
+      "name": "TANDIKEK",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052008",
+      "name": "LANGGAM SEPAKAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052009",
+      "name": "LANGGAM SAIYO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052010",
+      "name": "ANAM KOTO SELATAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052011",
+      "name": "SIGUNANTI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052012",
+      "name": "KOTO GADANG JAYA",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052013",
+      "name": "ANAM KOTO UTARA",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052014",
+      "name": "BANDUA BALAI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052015",
+      "name": "BUNUIK",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052016",
+      "name": "PADANG CANDUH",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312052017",
+      "name": "LIMAU PURUT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131205",
+      "district": "KINALI",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312062003",
+      "name": "SEBERANG KENAIKAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131206",
+      "district": "GUNUNG TULEH",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312062004",
+      "name": "BAHORAS",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131206",
+      "district": "GUNUNG TULEH",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312062005",
+      "name": "RANAH SUNGAI MAGELANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131206",
+      "district": "GUNUNG TULEH",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312062006",
+      "name": "MUARO KIAWAI BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131206",
+      "district": "GUNUNG TULEH",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312062007",
+      "name": "MUARO KIAWAI HILIR",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131206",
+      "district": "GUNUNG TULEH",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312072003",
+      "name": "BATAHAN UTARA",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131207",
+      "district": "RANAH BATAHAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312072004",
+      "name": "BATAHAN TENGAH",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131207",
+      "district": "RANAH BATAHAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312072005",
+      "name": "BATAHAN BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131207",
+      "district": "RANAH BATAHAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312072006",
+      "name": "BATAHAN SELATAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131207",
+      "district": "RANAH BATAHAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312072007",
+      "name": "DESA BARU BARAT",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131207",
+      "district": "RANAH BATAHAN",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312082002",
+      "name": "KOTO TANGAH",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131208",
+      "district": "KOTO BALINGKA",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312082003",
+      "name": "KOTO TUO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131208",
+      "district": "KOTO BALINGKA",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312082004",
+      "name": "KOTO NAN DUO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131208",
+      "district": "KOTO BALINGKA",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312082005",
+      "name": "PEMATANG PANJANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131208",
+      "district": "KOTO BALINGKA",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312082006",
+      "name": "RANAH KOTO TINGGI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131208",
+      "district": "KOTO BALINGKA",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092002",
+      "name": "SALINGKA MUARO",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092003",
+      "name": "RANAH MALINTANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092004",
+      "name": "RANAH AIR HAJI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092005",
+      "name": "KASIKPUTIH SUNGAITANANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092006",
+      "name": "AUA SERUMPUN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312092007",
+      "name": "SIKILANG SUNGAI AUR SELATAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131209",
+      "district": "SUNGAI AUR",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102003",
+      "name": "GIRI MAJU",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102004",
+      "name": "OPHIR",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102005",
+      "name": "MAHAKARYA",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102006",
+      "name": "SARIAK",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102007",
+      "name": "SUNGAI TALANG",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102008",
+      "name": "JAMBAK SELATAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312102009",
+      "name": "PUJORAHAYU",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131210",
+      "district": "LUHAK NAN DUO",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312112002",
+      "name": "PADANG HARAPAN",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131211",
+      "district": "SASAK RANAH PASISIE",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312112003",
+      "name": "RANAH PASISIE",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131211",
+      "district": "SASAK RANAH PASISIE",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1312112004",
+      "name": "MALIGI",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131211",
+      "district": "SASAK RANAH PASISIE",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1509022018",
+      "name": "KEMANTAN",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150902",
+      "district": "TEBO ILIR",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042011",
+      "name": "MEKAR KENCANA",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042012",
+      "name": "PURWO DADI",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042013",
+      "name": "TEGAL ASRI",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042014",
+      "name": "PERINTIS JAYA",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042015",
+      "name": "PERINTIS MAKMUR",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509042016",
+      "name": "JAYA MULYA",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150904",
+      "district": "RIMBO BUJANG",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072007",
+      "name": "MEKAR SARI",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072008",
+      "name": "WANA ARUM",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072009",
+      "name": "WANA MULYA",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072010",
+      "name": "DAMAI MAKMUR",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072011",
+      "name": "SUKA JAYA",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509072012",
+      "name": "SIDO MULYO",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150907",
+      "district": "RIMBO ULU",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509082010",
+      "name": "GIRI MULYO",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150908",
+      "district": "RIMBO ILIR",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1509092006",
+      "name": "LUBUK MANDRASAH ULU",
+      "province_code": "15",
+      "regency_code": "1509",
+      "district_code": "150909",
+      "district": "TENGAH ILIR",
+      "regency": "TEBO",
+      "province": "JAMBI"
+    },
+    {
+      "code": "1603222002",
+      "name": "ARISAN MUSI",
+      "province_code": "16",
+      "regency_code": "1603",
+      "district_code": "160322",
+      "district": "MUARA BELIDA",
+      "regency": "MUARA ENIM",
+      "province": "SUMATERA SELATAN"
+    },
+    {
+      "code": "1606022016",
+      "name": "EPIL BARAT",
+      "province_code": "16",
+      "regency_code": "1606",
+      "district_code": "160602",
+      "district": "LAIS",
+      "regency": "MUSI BANYUASIN",
+      "province": "SUMATERA SELATAN"
+    },
+    {
+      "code": "1606062043",
+      "name": "TOMAN BARU",
+      "province_code": "16",
+      "regency_code": "1606",
+      "district_code": "160606",
+      "district": "BABAT TOMAN",
+      "regency": "MUSI BANYUASIN",
+      "province": "SUMATERA SELATAN"
+    },
+    {
+      "code": "1809022020",
+      "name": "PUJODADI",
+      "province_code": "18",
+      "regency_code": "1809",
+      "district_code": "180902",
+      "district": "NEGERI KATON",
+      "regency": "PESAWARAN",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1809022021",
+      "name": "GRUJUGAN BARU",
+      "province_code": "18",
+      "regency_code": "1809",
+      "district_code": "180902",
+      "district": "NEGERI KATON",
+      "regency": "PESAWARAN",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1809052032",
+      "name": "DANTAR",
+      "province_code": "18",
+      "regency_code": "1809",
+      "district_code": "180905",
+      "district": "PADANG CERMIN",
+      "regency": "PESAWARAN",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1809112011",
+      "name": "KALIREJO",
+      "province_code": "18",
+      "regency_code": "1809",
+      "district_code": "180911",
+      "district": "WAY RATAI",
+      "regency": "PESAWARAN",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812012020",
+      "name": "MARGA ASRI",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181201",
+      "district": "TULANG BAWANG TENGAH",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812012021",
+      "name": "MEKAR ASRI",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181201",
+      "district": "TULANG BAWANG TENGAH",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812032010",
+      "name": "KAGUNGAN RATU AGUNG",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181203",
+      "district": "TULANG BAWANG UDIK",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812032011",
+      "name": "GADING KENCANA",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181203",
+      "district": "TULANG BAWANG UDIK",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812032012",
+      "name": "KARTA RAYA",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181203",
+      "district": "TULANG BAWANG UDIK",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812032013",
+      "name": "KARTA TANJUNG SELAMAT",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181203",
+      "district": "TULANG BAWANG UDIK",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "1812062010",
+      "name": "SIDO AGUNG",
+      "province_code": "18",
+      "regency_code": "1812",
+      "district_code": "181206",
+      "district": "WAY KENANGA",
+      "regency": "TULANG BAWANG BARAT",
+      "province": "LAMPUNG"
+    },
+    {
+      "code": "3305112001",
+      "name": "BOJONGSARI",
+      "province_code": "33",
+      "regency_code": "3305",
+      "district_code": "330511",
+      "district": "ALIAN",
+      "regency": "KEBUMEN",
+      "province": "JAWA TENGAH"
+    },
+    {
+      "code": "3327032013",
+      "name": "SODONG BASARI",
+      "province_code": "33",
+      "regency_code": "3327",
+      "district_code": "332703",
+      "district": "BELIK",
+      "regency": "PEMALANG",
+      "province": "JAWA TENGAH"
+    },
+    {
+      "code": "3501102017",
+      "name": "KETRO HARJO",
+      "province_code": "35",
+      "regency_code": "3501",
+      "district_code": "350110",
+      "district": "TULAKAN",
+      "regency": "PACITAN",
+      "province": "JAWA TIMUR"
+    },
+    {
+      "code": "5202032011",
+      "name": "LENDANG TAMPEL",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520203",
+      "district": "BATUKLIANG",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202042017",
+      "name": "DADAP",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520204",
+      "district": "PUJUT",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202042018",
+      "name": "KERAME JATI",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520204",
+      "district": "PUJUT",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202062011",
+      "name": "BELEKE DAYE",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520206",
+      "district": "PRAYA TIMUR",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202062012",
+      "name": "BELEKE LEBE SANE",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520206",
+      "district": "PRAYA TIMUR",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202062013",
+      "name": "PEGONAK",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520206",
+      "district": "PRAYA TIMUR",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202062014",
+      "name": "JERO PURI",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520206",
+      "district": "PRAYA TIMUR",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202072013",
+      "name": "PRAKO",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520207",
+      "district": "JANAPRIA",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202072014",
+      "name": "TIBU SISOK",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520207",
+      "district": "JANAPRIA",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202072015",
+      "name": "JANGGAWANA",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520207",
+      "district": "JANAPRIA",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202072016",
+      "name": "LINGKOK BERENGE",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520207",
+      "district": "JANAPRIA",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202092012",
+      "name": "BERINDING",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520209",
+      "district": "KOPANG",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202092013",
+      "name": "PAJANGAN",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520209",
+      "district": "KOPANG",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202102013",
+      "name": "LELONG",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520210",
+      "district": "PRAYA TENGAH",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5202112012",
+      "name": "PANDAN TINGGANG",
+      "province_code": "52",
+      "regency_code": "5202",
+      "district_code": "520211",
+      "district": "PRAYA BARAT DAYA",
+      "regency": "LOMBOK TENGAH",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5207022021",
+      "name": "LAMUNGA",
+      "province_code": "52",
+      "regency_code": "5207",
+      "district_code": "520702",
+      "district": "TALIWANG",
+      "regency": "SUMBAWA BARAT",
+      "province": "NUSA TENGGARA BARAT"
+    },
+    {
+      "code": "5307012017",
+      "name": "BEGU",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307012018",
+      "name": "KOTANDELU",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307012019",
+      "name": "LOWOLABO",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307012020",
+      "name": "AEBUBU",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307012021",
+      "name": "REGAPU?U",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307012022",
+      "name": "REJO",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530701",
+      "district": "PAGA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307022011",
+      "name": "RATEKALO",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530702",
+      "district": "MEGO",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307022012",
+      "name": "NDAIMBERE",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530702",
+      "district": "MEGO",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307042018",
+      "name": "NANGABLO",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530704",
+      "district": "NITA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307042019",
+      "name": "KARA KABU",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530704",
+      "district": "NITA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307042020",
+      "name": "TADA LADO",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530704",
+      "district": "NITA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082019",
+      "name": "UDEK DU?EN",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082020",
+      "name": "WATU OMOK",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082021",
+      "name": "WAIPAAR",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082022",
+      "name": "BAOKREMOT",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082023",
+      "name": "HENGA",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082024",
+      "name": "LIKONGGETE",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082025",
+      "name": "WATUBAING",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307082026",
+      "name": "MAMAI",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530708",
+      "district": "TALIBURA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307092010",
+      "name": "MAHE KELAN",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530709",
+      "district": "WAIGETE",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307092011",
+      "name": "EGON BULUK",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530709",
+      "district": "WAIGETE",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307102026",
+      "name": "WATUKOBU",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530710",
+      "district": "KEWAPANTE",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307112018",
+      "name": "BURA BEKOR",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530711",
+      "district": "BOLA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307112019",
+      "name": "WATUKRUS",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530711",
+      "district": "BOLA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307122006",
+      "name": "WODA MUDE",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530712",
+      "district": "MAGEPANDA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307122007",
+      "name": "LEGU WODA",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530712",
+      "district": "MAGEPANDA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307122008",
+      "name": "WATURIA",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530712",
+      "district": "MAGEPANDA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307132007",
+      "name": "WATU MONING",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530713",
+      "district": "WAIBLAMA",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307152011",
+      "name": "GONG BEKOR",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530715",
+      "district": "ALOK TIMUR",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307162007",
+      "name": "WATU REPA",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530716",
+      "district": "KOTING",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307172009",
+      "name": "BU BARAT",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530717",
+      "district": "TANA WAWO",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307172010",
+      "name": "BU NUAPU?U",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530717",
+      "district": "TANA WAWO",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307202008",
+      "name": "MAHE TANAH",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530720",
+      "district": "DORENG",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5307202009",
+      "name": "PELIBALER",
+      "province_code": "53",
+      "regency_code": "5307",
+      "district_code": "530720",
+      "district": "DORENG",
+      "regency": "SIKKA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309012024",
+      "name": "MAWWO KISA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530901",
+      "district": "AIMERE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022039",
+      "name": "DOLUPORE",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022040",
+      "name": "TIWO TODA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022041",
+      "name": "KELIMOLO",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022042",
+      "name": "WOGO",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022043",
+      "name": "RADABATA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309022044",
+      "name": "BODOSARE",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530902",
+      "district": "GOLEWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062029",
+      "name": "NGADHAMANA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062030",
+      "name": "BOLONGA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062031",
+      "name": "BORADHO",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062032",
+      "name": "MUKUVOKA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062033",
+      "name": "UBEDOLUMOLO II",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309062034",
+      "name": "LANGAGEDHA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530906",
+      "district": "BAJAWA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309072019",
+      "name": "WAEPANA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530907",
+      "district": "SOA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309072020",
+      "name": "LOKAWEKA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530907",
+      "district": "SOA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092023",
+      "name": "KOTA RAJA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092024",
+      "name": "ITE JAYA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092025",
+      "name": "WANGKA BARAT",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092026",
+      "name": "LENGKOSAMBI TENGAH",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092027",
+      "name": "TADHO TIMUR",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092028",
+      "name": "TADHO BARAT",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092029",
+      "name": "TADHO TENGAH",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092030",
+      "name": "SAMBINASI TENGAH",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092031",
+      "name": "LATUNG BARAT",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092032",
+      "name": "RAWANGKALO I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092033",
+      "name": "RAWANGKALO II",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092034",
+      "name": "WAKAMANGA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309092035",
+      "name": "LENGKOSAMBI BARAT DAYA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530909",
+      "district": "RIUNG",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309122016",
+      "name": "WONGAWEA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530912",
+      "district": "JEREBUU",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309122017",
+      "name": "BOWARU",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530912",
+      "district": "JEREBUU",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142011",
+      "name": "BENTENG TAWA II",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142012",
+      "name": "BENTENG TAWA III",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142013",
+      "name": "LANAMAI II",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142014",
+      "name": "KEMBANG",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142015",
+      "name": "WATE",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142016",
+      "name": "NGARA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142017",
+      "name": "BENTENG TAWA IV",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142018",
+      "name": "BENTENG TAWA V",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309142019",
+      "name": "NILI WARU SAE",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530914",
+      "district": "RIUNG BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309152012",
+      "name": "BOWADO",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530915",
+      "district": "BAJAWA UTARA",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309162009",
+      "name": "LARILAKI",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530916",
+      "district": "WOLOMEZE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309162010",
+      "name": "MULUMESE",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530916",
+      "district": "WOLOMEZE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309162011",
+      "name": "TURALOA TIMUR",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530916",
+      "district": "WOLOMEZE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182013",
+      "name": "BOBAWA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182014",
+      "name": "WERE V",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182015",
+      "name": "WERE VI",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182016",
+      "name": "KEZEWEA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182017",
+      "name": "SADHA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309182018",
+      "name": "TAKATUNGA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530918",
+      "district": "GOLEWA SELATAN",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309192011",
+      "name": "BOPOMA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530919",
+      "district": "GOLEWA BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309192012",
+      "name": "RAKALABA I",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530919",
+      "district": "GOLEWA BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309192013",
+      "name": "SOBO II",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530919",
+      "district": "GOLEWA BARAT",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309202011",
+      "name": "RUTO",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530920",
+      "district": "INERIE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309202012",
+      "name": "ENABHARA",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530920",
+      "district": "INERIE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "5309202013",
+      "name": "NAGEBARU",
+      "province_code": "53",
+      "regency_code": "5309",
+      "district_code": "530920",
+      "district": "INERIE",
+      "regency": "NGADA",
+      "province": "NUSA TENGGARA TIMUR"
+    },
+    {
+      "code": "6101102012",
+      "name": "ARGA PURA",
+      "province_code": "61",
+      "regency_code": "6101",
+      "district_code": "610110",
+      "district": "SUBAH",
+      "regency": "SAMBAS",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6101102013",
+      "name": "SAPAK HULU TRANS",
+      "province_code": "61",
+      "regency_code": "6101",
+      "district_code": "610110",
+      "district": "SUBAH",
+      "regency": "SAMBAS",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109012018",
+      "name": "SEMPULAU INDAH",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610901",
+      "district": "SEKADAU HILIR",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109012019",
+      "name": "TIGUR JAYA",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610901",
+      "district": "SEKADAU HILIR",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109012020",
+      "name": "BERINGKAI RAYA",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610901",
+      "district": "SEKADAU HILIR",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109032014",
+      "name": "SEMERAWAI",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610903",
+      "district": "NANGA TAMAN",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109032015",
+      "name": "ENGKULUN HULU",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610903",
+      "district": "NANGA TAMAN",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109052010",
+      "name": "SEPANTAK",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610905",
+      "district": "BELITANG HILIR",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6109052011",
+      "name": "MELANJAN RAYA",
+      "province_code": "61",
+      "regency_code": "6109",
+      "district_code": "610905",
+      "district": "BELITANG HILIR",
+      "regency": "SEKADAU",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112012021",
+      "name": "SUKULANTING",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611201",
+      "district": "SUNGAI RAYA",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112012022",
+      "name": "PERMATA JAYA",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611201",
+      "district": "SUNGAI RAYA",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112022006",
+      "name": "PADI JAYA",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611202",
+      "district": "KUALA MANDOR B",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112032014",
+      "name": "AMPERA RAYA",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611203",
+      "district": "SUNGAI AMBAWANG",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112092014",
+      "name": "RENGAS KAPUAS",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611209",
+      "district": "SUNGAI KAKAP",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6112092015",
+      "name": "PARIT KELADI",
+      "province_code": "61",
+      "regency_code": "6112",
+      "district_code": "611209",
+      "district": "SUNGAI KAKAP",
+      "regency": "KUBU RAYA",
+      "province": "KALIMANTAN BARAT"
+    },
+    {
+      "code": "6310042027",
+      "name": "SIDO REJO",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631004",
+      "district": "SATUI",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310042028",
+      "name": "BERUNTUNG RAYA",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631004",
+      "district": "SATUI",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310042029",
+      "name": "BARAKAT MUFAKAT",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631004",
+      "district": "SATUI",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310042030",
+      "name": "MAKMUR JAYA",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631004",
+      "district": "SATUI",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310062013",
+      "name": "HIDAYAH MAKMUR",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631006",
+      "district": "SIMPANG EMPAT",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310062014",
+      "name": "PLAJAU MULIA",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631006",
+      "district": "SIMPANG EMPAT",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310062015",
+      "name": "KUPANG BERKAH JAYA",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631006",
+      "district": "SIMPANG EMPAT",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "6310072013",
+      "name": "KARANG NUNGGAL",
+      "province_code": "63",
+      "regency_code": "6310",
+      "district_code": "631007",
+      "district": "KARANG BINTANG",
+      "regency": "TANAH BUMBU",
+      "province": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "7322112002",
+      "name": "SALULEMO",
+      "province_code": "73",
+      "regency_code": "7322",
+      "district_code": "732211",
+      "district": "BAEBUNTA",
+      "regency": "LUWU UTARA",
+      "province": "SULAWESI SELATAN"
+    },
+    {
+      "code": "7324062017",
+      "name": "AROLIPU",
+      "province_code": "73",
+      "regency_code": "7324",
+      "district_code": "732406",
+      "district": "WOTU",
+      "regency": "LUWU TIMUR",
+      "province": "SULAWESI SELATAN"
+    },
+    {
+      "code": "8109042016",
+      "name": "WAEHOTONG",
+      "province_code": "81",
+      "regency_code": "8109",
+      "district_code": "810904",
+      "district": "KEPALA MADAN",
+      "regency": "BURU SELATAN",
+      "province": "MALUKU"
+    },
+    {
+      "code": "8109062011",
+      "name": "BATU KARANG",
+      "province_code": "81",
+      "regency_code": "8109",
+      "district_code": "810906",
+      "district": "FENA FAFAN",
+      "regency": "BURU SELATAN",
+      "province": "MALUKU"
+    },
+    {
+      "code": "8201052029",
+      "name": "BOBANEIGO MADIHUTU",
+      "province_code": "82",
+      "regency_code": "8201",
+      "district_code": "820105",
+      "district": "JAILOLO SELATAN",
+      "regency": "HALMAHERA BARAT",
+      "province": "MALUKU UTARA"
+    },
+    {
+      "code": "8201052030",
+      "name": "TETEWANG JORONGA",
+      "province_code": "82",
+      "regency_code": "8201",
+      "district_code": "820105",
+      "district": "JAILOLO SELATAN",
+      "regency": "HALMAHERA BARAT",
+      "province": "MALUKU UTARA"
+    },
+    {
+      "code": "8201052031",
+      "name": "AKELAMO CINGA-CINGA",
+      "province_code": "82",
+      "regency_code": "8201",
+      "district_code": "820105",
+      "district": "JAILOLO SELATAN",
+      "regency": "HALMAHERA BARAT",
+      "province": "MALUKU UTARA"
+    },
+    {
+      "code": "8201052032",
+      "name": "AKESAHU MADUTU",
+      "province_code": "82",
+      "regency_code": "8201",
+      "district_code": "820105",
+      "district": "JAILOLO SELATAN",
+      "regency": "HALMAHERA BARAT",
+      "province": "MALUKU UTARA"
+    },
+    {
+      "code": "9110132003",
+      "name": "WASKEY/ TANJUNG BATU",
+      "province_code": "91",
+      "regency_code": "9110",
+      "district_code": "911013",
+      "district": "SARMI TIMUR",
+      "regency": "SARMI",
+      "province": "PAPUA"
+    },
+    {
+      "code": "9304182004",
+      "name": "SATO YOD",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9304182005",
+      "name": "TAMOR",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9304182006",
+      "name": "ERO AIRO",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9402142005",
+      "name": "GINIGOM",
+      "province_code": "94",
+      "regency_code": "9402",
+      "district_code": "940214",
+      "district": "YAMBI",
+      "regency": "PUNCAK JAYA",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9402192013",
+      "name": "ANGGALO",
+      "province_code": "94",
+      "regency_code": "9402",
+      "district_code": "940219",
+      "district": "WANWI",
+      "regency": "PUNCAK JAYA",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012010",
+      "name": "OYAIGO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012013",
+      "name": "GEKO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012014",
+      "name": "MUGIMEKETAGO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012015",
+      "name": "TUAMAKIDA",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012016",
+      "name": "GEIBU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012018",
+      "name": "KOGEKOTU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012026",
+      "name": "YAGIYO BUTU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403032002",
+      "name": "AGAPO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940303",
+      "district": "ARADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403032006",
+      "name": "MAKIDINI",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940303",
+      "district": "ARADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403042005",
+      "name": "YUMAUWO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940304",
+      "district": "BOGABAIDA",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403102008",
+      "name": "DABAMOMAIDA",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940310",
+      "district": "EKADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132001",
+      "name": "AGUIT",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132003",
+      "name": "MOLU",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132004",
+      "name": "BELABA",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405142002",
+      "name": "BINA",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940514",
+      "district": "BINA",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405162003",
+      "name": "AMULEME",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940516",
+      "district": "MAGE'ABUME",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9504072003",
+      "name": "BIMBOGUL",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072004",
+      "name": "YUGUMENGGA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072005",
+      "name": "WARIRU",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072006",
+      "name": "YUGUBUK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072007",
+      "name": "AKIMA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072008",
+      "name": "MALELA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072009",
+      "name": "NAKWIL",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072011",
+      "name": "HOLANDIA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072012",
+      "name": "TAWI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192002",
+      "name": "KOKONDAO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192010",
+      "name": "GILO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192014",
+      "name": "KANGGINERI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192015",
+      "name": "WONOLUK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192020",
+      "name": "TINOWENO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192021",
+      "name": "MOLOLOWA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192022",
+      "name": "KUNIPAGA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192023",
+      "name": "KABUMANGGEN",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192026",
+      "name": "TOMOBUR",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504292002",
+      "name": "WARI/TAIYEVE",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950429",
+      "district": "WARI/TAIYEVE II",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504292004",
+      "name": "DOTORI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950429",
+      "district": "WARI/TAIYEVE II",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504292006",
+      "name": "KOWARI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950429",
+      "district": "WARI/TAIYEVE II",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302003",
+      "name": "PRAWA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302004",
+      "name": "SIGOU",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302006",
+      "name": "WARKA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302007",
+      "name": "PAKARE",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302008",
+      "name": "TIGU",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302009",
+      "name": "BIRE",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504302011",
+      "name": "VOKUYO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950430",
+      "district": "DOW",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504352005",
+      "name": "KIMUGU",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950435",
+      "district": "TELENGGEME",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504352006",
+      "name": "YAGAGOBAK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950435",
+      "district": "TELENGGEME",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432003",
+      "name": "PABA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432004",
+      "name": "EWAN",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432006",
+      "name": "WALELO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432009",
+      "name": "ALIDUDA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    }
+  ],
+  "unexpected_geo_village_without_idm": [],
+  "geo_kelurahan_outside_idm": {
+    "count": 8468,
+    "explanation": "Kode unit 1xxx adalah kelurahan dan berada di luar cakupan IDM desa.",
+    "sample": [
+      {
+        "code": "1201011001",
+        "name": "Pasar Batu Gerigis",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120101"
+      },
+      {
+        "code": "1201011002",
+        "name": "Padang Masiang",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120101"
+      },
+      {
+        "code": "1201021001",
+        "name": "Sorkam",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021002",
+        "name": "Pargarutan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021004",
+        "name": "Tarutung Bolak",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021009",
+        "name": "Naipospos Barat",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201031001",
+        "name": "Pandan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031002",
+        "name": "Hajoran",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031003",
+        "name": "Aek Tolang",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031004",
+        "name": "Lubuk Tukko",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031005",
+        "name": "Sibuluan Indah",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031006",
+        "name": "Sibuluan Nauli",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031011",
+        "name": "Aek Sitio-tio",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031012",
+        "name": "Sibuluan Raya",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031013",
+        "name": "Kalangan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031016",
+        "name": "Pandan Wangi",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031017",
+        "name": "Lubuk Tukko Baru",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031018",
+        "name": "Sibuluan Baru",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031019",
+        "name": "Sibuluan Terpadu",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031020",
+        "name": "Sihaporas Nauli",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      }
+    ]
+  }
+}

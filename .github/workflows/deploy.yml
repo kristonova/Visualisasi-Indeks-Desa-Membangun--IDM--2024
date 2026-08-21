@@ -24,10 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # Buat/aktifkan Pages site otomatis kalau belum pernah di-enable
+          # (mencegah error "Get Pages site failed ... Not Found")
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

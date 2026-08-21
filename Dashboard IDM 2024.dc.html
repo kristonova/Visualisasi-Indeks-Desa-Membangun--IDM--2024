@@ -386,6 +386,9 @@ const INKS = {
   'Aman buta warna': ['#4b4741', '#ffffff', '#0b1b2e', '#1a1a17', '#2b1004', '#ffffff']
 };
 const SNAME = ['Tanpa data', 'Mandiri', 'Maju', 'Berkembang', 'Tertinggal', 'Sangat Tertinggal'];
+const SOURCE_NAME = ['Reguler', 'Update 2023', 'Server PDN'];
+const OUTSIDE_IDM_COLOR = '#e7e4de';
+const JOIN_MISSING_COLOR = '#765b8f';
 const THR = [0.8155, 0.7073, 0.5990, 0.4908];
 
 const nf = new Intl.NumberFormat('id-ID');
@@ -393,6 +396,15 @@ const d3 = (v) => v == null ? '—' : v.toFixed(3).replace('.', ',');
 const d4 = (v) => v == null ? '—' : v.toFixed(4).replace('.', ',');
 const pc = (v) => (v * 100).toFixed(1).replace('.', ',') + '%';
 const tc = (s) => (s || '').toLowerCase().replace(/(^|[\s'\-\/().])([a-z])/g, (m, a, b) => a + b.toUpperCase());
+// Nama kab/kota di data tidak membawa jenis wilayahnya ("Bantul", bukan
+// "Kabupaten Bantul"), jadi di tooltip & panel detail perlu diberi label.
+// Nama yang sudah berawalan Kota/Kab dibiarkan supaya tidak dobel.
+const kabLab = (nm) => /^(kab|kota)\b/i.test(nm) ? nm : 'Kab/Kota ' + nm;
+// Sesuai struktur kode Kemendagri: digit pertama pada empat digit terakhir
+// membedakan kelurahan (1), desa (2), dan desa adat (3).
+const adminKindOf = (k) => String(k || '')[6] === '1' ? 'kelurahan'
+  : String(k || '')[6] === '2' ? 'desa'
+  : String(k || '')[6] === '3' ? 'desa-adat' : 'lainnya';
 const clsOf = (v) => v == null ? 0 : v > THR[0] ? 1 : v >= THR[1] ? 2 : v >= THR[2] ? 3 : v >= THR[3] ? 4 : 5;
 const mx = (lon) => lon;
 const my = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-85, Math.min(85, lat)) * Math.PI / 360)) * 57.29577951308232;
@@ -406,7 +418,8 @@ class Component extends DCLogic {
     sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0
   };
 
-  geo = {}; prov = {}; U = []; layout = null;
+  geo = {}; prov = {}; U = []; layout = null; ovl = null;
+  audit = null; noScoreNotes = {}; geoNameWarnings = {}; geoNames = {}; coverage = null;
   vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
   anim = null; raf = 0;
 
@@ -425,12 +438,16 @@ class Component extends DCLogic {
   }
   async boot() {
     try {
-      const [meta, manifest, gprov] = await Promise.all([
+      const [meta, manifest, gprov, audit] = await Promise.all([
         fetch('data/idm/meta.json').then(r => r.json()),
         fetch('data/geo/manifest.json').then(r => r.json()).catch(() => ({ prov: true, kab: [], kec: [], desa: [] })),
-        fetch('data/geo/prov.json').then(r => r.json())
+        fetch('data/geo/prov.json').then(r => r.json()),
+        fetch('data/geo/join-audit.json').then(r => r.json()).catch(() => null)
       ]);
       this.geo.prov = this.decode(gprov);
+      this.audit = audit;
+      for (const d of (audit && audit.idm_without_score) || []) this.noScoreNotes[d.code] = d;
+      for (const d of (audit && audit.joined_name_mismatches) || []) this.geoNameWarnings[d.code] = d;
       const start = this.props.startScope || 'Nasional';
       const sp = start === 'Jawa Tengah' ? '33' : start === 'D.I. Yogyakarta' ? '34' : null;
       if (sp) await this.ensureProv(sp);
@@ -468,6 +485,7 @@ class Component extends DCLogic {
     try {
       const j = await fetch('data/geo/' + level + '/' + p + '.json').then(r => r.json());
       this.geo[key] = this.decode(j);
+      if (level === 'desa') for (const f of this.geo[key]) if (f.nm) this.geoNames[f.k] = tc(f.nm);
     } catch (e) { this.geo[key] = null; }
     return this.geo[key];
   }
@@ -483,7 +501,12 @@ class Component extends DCLogic {
     for (const C of pf.kec) {
       if (scope.kb && C.kb !== scope.kb) continue;
       if (scope.kc && C.k !== scope.kc) continue;
-      for (const d of C.ds) out.push({ k: C.k + d[0], nm: d[1] || '(tanpa nama)', kec: C.nm, kecK: C.k, kab: C.kb, idm: d[2], iks: d[3], ike: d[4], ikl: d[5], st: d[6], pv: d[7] });
+      for (const d of C.ds) {
+        const k = C.k + d[0];
+        out.push({ k, nm: d[1] || this.geoNames[k] || '(tanpa nama)', kec: C.nm, kecK: C.k, kab: C.kb,
+          idm: d[2], iks: d[3], ike: d[4], ikl: d[5], st: d[6], pv: d[7], note: this.noScoreNotes[k] || null,
+          nameWarning: this.geoNameWarnings[k] || null });
+      }
     }
     return out;
   }
@@ -501,6 +524,7 @@ class Component extends DCLogic {
   // ── map units ───────────────────────────────────────────────────────────
   async rebuild(resetView) {
     const { scope, meta } = this.state;
+    this.coverage = null;
     // transform sebelum unit diganti — titik awal animasi zoom
     const fromTf = resetView ? this.tf : null;
     let units = [], src = null, kind = 'prov';
@@ -509,7 +533,8 @@ class Component extends DCLogic {
       units = this.geo.prov.map(f => {
         const P = byK[f.k];
         return P ? { ...f, nm: tc(P.nm), n: P.n, m: P.m, d: P.d, cls: clsOf(P.m), code: f.k }
-                 : { ...f, nm: tc(f.nm), n: 0, m: null, d: [0, 0, 0, 0, 0], cls: 0, code: f.k, nodata: true };
+                 : { ...f, nm: tc(f.nm), n: 0, m: null, d: [0, 0, 0, 0, 0], cls: 0, code: f.k,
+                     nodata: true, nodataKind: 'province-outside', fill: OUTSIDE_IDM_COLOR };
       });
       kind = 'prov';
     } else {
@@ -520,7 +545,7 @@ class Component extends DCLogic {
       if (!g) {
         const fr = this.provFrame(p), P2 = meta.prov.find(x => x.k === p);
         this.U = fr && P2 ? [{ k: p, nm: tc(P2.nm), rings: fr.rings, cls: clsOf(P2.m), m: P2.m, n: P2.n, d: P2.d, code: p, frameOnly: true }] : [];
-        this.unitKind = 'frame';
+        this.unitKind = 'frame'; this.ovl = null;
         if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
         this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
         return;
@@ -530,8 +555,23 @@ class Component extends DCLogic {
         const pre = scope.kc ? scope.kc : scope.kb ? scope.kb : p;
         const feats = src.filter(f => f.k.startsWith(pre));
         if (kind === 'desa') {
-          const byK = {}; (this.scopeDesa() || []).forEach(d => byK[d.k] = d);
-          units = feats.map(f => { const d = byK[f.k]; return d ? { ...f, nm: d.nm, cls: d.st, m: d.idm, n: 1, desa: d, code: f.k } : { ...f, nm: tc(f.nm), cls: 0, m: null, n: 1, code: f.k, nodata: true }; });
+          const desaData = this.scopeDesa() || [], byK = {};
+          desaData.forEach(d => byK[d.k] = d);
+          units = feats.map(f => {
+            const d = byK[f.k];
+            if (d) return { ...f, nm: d.nm, cls: d.st, m: d.idm, n: 1, desa: d, code: f.k };
+            const adminKind = adminKindOf(f.k), kelurahan = adminKind === 'kelurahan';
+            return { ...f, nm: (kelurahan ? 'Kel. ' : '') + tc(f.nm), cls: 0, m: null, n: 0,
+              code: f.k, nodata: true, nodataKind: kelurahan ? 'kelurahan' : 'join-missing', adminKind,
+              fill: kelurahan ? OUTSIDE_IDM_COLOR : JOIN_MISSING_COLOR };
+          });
+          const mapped = units.reduce((n, u) => n + (u.desa ? 1 : 0), 0);
+          this.coverage = {
+            mapped,
+            missing: Math.max(0, desaData.length - mapped),
+            kelurahan: units.reduce((n, u) => n + (u.nodataKind === 'kelurahan' ? 1 : 0), 0),
+            joinMissing: units.reduce((n, u) => n + (u.nodataKind === 'join-missing' ? 1 : 0), 0)
+          };
         } else {
           const agg = {}; (this.scopeDesa() || []).forEach(d => {
             const kk = kind === 'kec' ? d.kecK : d.kab;
@@ -545,8 +585,22 @@ class Component extends DCLogic {
       }
     }
     this.U = units; this.unitKind = kind;
+    this.ovl = await this.kabOutline(kind);
     if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
     this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
+  }
+
+  // Batas kab/kota sebagai lapisan garis di atas poligon desa (atau kecamatan):
+  // unit yang digambar tetap desa, garis ini cuma penanda pembagian wilayah dan
+  // tidak ikut ke pick-canvas, jadi klik/hover tetap mengenai desanya.
+  async kabOutline(kind) {
+    const scope = this.state.scope;
+    if (scope.lvl === 'nas' || (kind !== 'desa' && kind !== 'kec')) return null;
+    const g = await this.ensureGeo('kab', scope.p);
+    if (!g) return null;
+    const pre = scope.kb || scope.p;
+    const out = g.filter(f => f.k.startsWith(pre));
+    return out.length ? out : null;
   }
 
   // ── canvas ──────────────────────────────────────────────────────────────
@@ -681,7 +735,7 @@ class Component extends DCLogic {
       ctx.fillStyle = '#58595B'; ctx.textBaseline = 'alphabetic';
       for (const hd of L.heads) ctx.fillText(hd.t.toUpperCase(), hd.x, hd.y);
       for (const c of L.cells) {
-        ctx.fillStyle = ramp[c.d.st] || ramp[0];
+        ctx.fillStyle = hidden.has(c.d.st) ? '#dedbd4' : (ramp[c.d.st] || ramp[0]);
         ctx.fillRect(c.x, c.y, c.w, c.h);
       }
       const selK = this.state.sel;
@@ -727,9 +781,9 @@ class Component extends DCLogic {
     const many = this.U.length > 1400;
     for (let i = 0; i < this.U.length; i++) {
       const u = this.U[i];
-      const dim = u.cls > 0 && hidden.has(u.cls);
+      const dim = hidden.has(u.nodataKind || u.cls);
       path(u.rings, ctx);
-      ctx.fillStyle = dim ? '#dedbd4' : (ramp[u.cls] || ramp[0]);
+      ctx.fillStyle = dim ? '#dedbd4' : (u.fill || ramp[u.cls] || ramp[0]);
       ctx.fill();
       if (!many) { ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 0.7; ctx.stroke(); }
       // pick-canvas hanya untuk hit-test; percuma digambar tiap frame animasi
@@ -743,6 +797,17 @@ class Component extends DCLogic {
     if (many) {
       ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.lineWidth = 0.5;
       for (const u of this.U) { path(u.rings, ctx); ctx.stroke(); }
+    }
+    // batas kab/kota: dua lintasan supaya semua casing putih berada di bawah
+    // semua garis gelapnya, bukan saling menimpa per poligon
+    if (this.ovl && this.ovl.length) {
+      const lj = ctx.lineJoin, lc = ctx.lineCap;
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 3;
+      for (const o of this.ovl) { path(o.rings, ctx); ctx.stroke(); }
+      ctx.strokeStyle = 'rgba(49,49,50,.7)'; ctx.lineWidth = 1.2;
+      for (const o of this.ovl) { path(o.rings, ctx); ctx.stroke(); }
+      ctx.lineJoin = lj; ctx.lineCap = lc;
     }
     const selK = this.state.sel;
     for (const u of this.U) if (u.code === selK || (this.hoverIdx >= 0 && this.U[this.hoverIdx] === u)) {
@@ -794,21 +859,32 @@ class Component extends DCLogic {
     if (this.hitMode === 'petak') {
       const d = this.layout.cells[idx].d;
       t = d.nm; cls = d.st;
-      lines = ['Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)), SNAME[d.st] + ' · IDM ' + d4(d.idm),
+      lines = ['Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))), SNAME[d.st] + ' · IDM ' + d4(d.idm),
                'IKS ' + d3(d.iks) + '  IKE ' + d3(d.ike) + '  IKL ' + d3(d.ikl)];
     } else {
       const u = this.U[idx]; if (!u) return;
       t = u.nm; cls = u.cls;
-      if (u.desa) lines = ['Kec. ' + tc(u.desa.kec) + ' · ' + tc(this.kabName(u.desa.kab)),
-                           SNAME[u.cls] + ' · IDM ' + d4(u.desa.idm),
-                           'IKS ' + d3(u.desa.iks) + '  IKE ' + d3(u.desa.ike) + '  IKL ' + d3(u.desa.ikl)];
-      else if (u.nodata) lines = ['Bukan cakupan IDM'];
+      if (u.desa && u.desa.idm == null) {
+        lines = ['Desa · nilai IDM 2024 tidak tersedia',
+                 (u.desa.note && u.desa.note.reason) || 'Sumber resmi tidak memuat skor untuk desa ini.',
+                 'Kode ' + u.code + ' · ' + (SOURCE_NAME[u.desa.pv] || 'Sumber IDM')];
+      } else if (u.desa) lines = ['Kec. ' + tc(u.desa.kec) + ' · ' + kabLab(tc(this.kabName(u.desa.kab))),
+                                  SNAME[u.cls] + ' · IDM ' + d4(u.desa.idm),
+                                  'IKS ' + d3(u.desa.iks) + '  IKE ' + d3(u.desa.ike) + '  IKL ' + d3(u.desa.ikl)];
+      else if (u.nodataKind === 'kelurahan') lines = ['Kelurahan · di luar cakupan IDM 2024', 'Kode wilayah ' + u.code];
+      else if (u.nodataKind === 'province-outside') lines = ['Provinsi di luar cakupan IDM desa', 'DKI Jakarta seluruhnya berstatus kelurahan.'];
+      else if (u.nodata) lines = ['Desa · data IDM tidak terhubung', 'Kode wilayah ' + u.code, 'Jalankan tools/audit_join.py untuk memeriksa join.'];
       else lines = [nf.format(u.n) + ' desa · rerata IDM ' + d4(u.m), 'Kelas rerata: ' + SNAME[u.cls],
                     'Mandiri ' + nf.format(u.d[0]) + ' · Tertinggal+ ' + nf.format(u.d[3] + u.d[4])];
+      if (u.desa && u.desa.nameWarning) lines.push(u.desa.nameWarning.kind === 'missing_idm_name'
+        ? 'Nama Excel kosong · memakai nama RBI ' + tc(u.desa.nameWarning.geo_name)
+        : 'Nama pada batas RBI: ' + tc(u.desa.nameWarning.geo_name));
       if (u.frameOnly) lines.push('Klik untuk melihat petak desa');
     }
     const flipX = px > r.width - 270, flipY = py > r.height - 130;
-    this.setState({ tip: { x: (flipX ? px - 260 : px + 16) + 'px', y: (flipY ? py - 108 : py + 16) + 'px', t, lines, color: ramp[cls] || ramp[0] } });
+    const tipUnit = this.hitMode === 'map' ? this.U[idx] : null;
+    this.setState({ tip: { x: (flipX ? px - 260 : px + 16) + 'px', y: (flipY ? py - 108 : py + 16) + 'px', t, lines,
+      color: (tipUnit && tipUnit.fill) || ramp[cls] || ramp[0] } });
   };
   onLeave = () => { this.hoverIdx = -1; this.setState({ tip: null }); this.draw(); };
   onDown = (e) => { this.stopZoom(); this.drag = { x: e.clientX, y: e.clientY, ox: this.vt.ox, oy: this.vt.oy, moved: 0 }; };
@@ -875,7 +951,12 @@ class Component extends DCLogic {
     else this.setScope({ lvl: 'nas', p: null, kb: null, kc: null });
   };
   selectDesa(k) {
-    this.setState({ sel: this.state.sel === k ? null : k }, () => this.draw());
+    const sel = this.state.sel === k ? null : k;
+    // Desa yang belum punya poligon tetap dapat ditemukan di tabel/pencarian.
+    // Arahkan ke Petak agar pemilihan tidak tampak gagal di peta geografis.
+    const mapped = !sel || this.U.some(u => u.code === sel && u.desa);
+    const view = sel && this.state.view === 'peta' && !mapped ? 'petak' : this.state.view;
+    this.setState({ sel, view }, () => this.draw());
   }
   clearSel = () => this.setState({ sel: null }, () => this.draw());
   setPeta = () => this.setState({ view: 'peta' }, () => { this.fit = null; this.draw(); });
@@ -989,10 +1070,14 @@ class Component extends DCLogic {
     chain.forEach((c, i) => crumbs.push({ t: c.t, title: 'Kembali ke ' + c.t, more: true, go: () => this.setScope(c.s) }));
 
     // KPI
+    const scored = A.d.reduce((sum, n) => sum + n, 0);
+    const withoutScore = Math.max(0, A.n - scored);
     const mandiri = A.d[0], tert = A.d[3] + A.d[4];
     const dv = (A.m || 0) - nas.m;
+    const countSub = (scope.lvl === 'nas' ? nf.format(scored) + ' memiliki skor'
+      : pc(A.n / nas.n) + ' dari nasional') + (withoutScore ? ' · ' + nf.format(withoutScore) + ' tanpa nilai' : '');
     const kpis = [
-      { lab: scope.lvl === 'nas' ? 'Desa ber-IDM' : 'Jumlah desa', val: nf.format(A.n), sub: scope.lvl === 'nas' ? '37 provinsi · 434 kab/kota' : pc(A.n / nas.n) + ' dari nasional', tone: 'var(--text-muted)' },
+      { lab: 'Jumlah desa', val: nf.format(A.n), sub: countSub, tone: 'var(--text-muted)' },
       { lab: 'Rerata IDM', val: d4(A.m), sub: (dv >= 0 ? '+' : '−') + d4(Math.abs(dv)) + ' vs nasional', tone: dv >= 0 ? 'var(--status-success)' : 'var(--text-brand)' },
       { lab: 'Mandiri', val: nf.format(mandiri), sub: pc(mandiri / (A.n || 1)) + ' · nasional ' + pc(nas.d[0] / nas.n), tone: 'var(--text-muted)' },
       { lab: 'Tertinggal +', val: nf.format(tert), sub: pc(tert / (A.n || 1)) + ' · nasional ' + pc((nas.d[3] + nas.d[4]) / nas.n), tone: tert / (A.n || 1) > (nas.d[3] + nas.d[4]) / nas.n ? 'var(--text-brand)' : 'var(--text-muted)' }
@@ -1004,16 +1089,32 @@ class Component extends DCLogic {
       return { cls, nm: SNAME[cls], n: nf.format(n), pct: pc(share), w: Math.max(0.6, share * 100) + '%',
         color: ramp[cls], ink: inks[cls], labOp: share > 0.075 ? '1' : '0', title: SNAME[cls] + ': ' + nf.format(n) + ' desa (' + pc(share) + ')' };
     });
+    if (withoutScore) dist.push({ cls: 0, nm: SNAME[0], n: nf.format(withoutScore), pct: pc(withoutScore / (A.n || 1)),
+      w: Math.max(0.6, withoutScore / (A.n || 1) * 100) + '%', color: ramp[0], ink: inks[0], labOp: '0',
+      title: SNAME[0] + ': ' + nf.format(withoutScore) + ' desa (sumber resmi tidak memuat skor)' });
     const legend = A.d.map((n, i) => {
       const cls = i + 1;
       return { nm: SNAME[cls], n: nf.format(n), pct: pc(n / (A.n || 1)), color: ramp[cls],
         op: hidden.has(cls) ? '0.34' : '1', go: () => this.toggleHide(cls) };
     });
+    if (withoutScore) legend.push({ nm: 'Desa tanpa skor', n: nf.format(withoutScore), pct: pc(withoutScore / (A.n || 1)), color: ramp[0],
+      op: hidden.has(0) ? '0.34' : '1', go: () => this.toggleHide(0) });
+    if (st.view === 'peta' && this.coverage && this.coverage.kelurahan) legend.push({ nm: 'Kelurahan (di luar IDM)',
+      n: nf.format(this.coverage.kelurahan), pct: '—', color: OUTSIDE_IDM_COLOR,
+      op: hidden.has('kelurahan') ? '0.34' : '1', go: () => this.toggleHide('kelurahan') });
+    if (st.view === 'peta' && this.coverage && this.coverage.joinMissing) legend.push({ nm: 'Desa gagal join',
+      n: nf.format(this.coverage.joinMissing), pct: '!', color: JOIN_MISSING_COLOR,
+      op: hidden.has('join-missing') ? '0.34' : '1', go: () => this.toggleHide('join-missing') });
     const statusChips = A.d.map((n, i) => {
       const cls = i + 1, off = hidden.has(cls);
       return { nm: SNAME[cls], color: off ? '#cfcbc2' : ramp[cls], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
         fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[cls], go: () => this.toggleHide(cls) };
     });
+    if (withoutScore) {
+      const off = hidden.has(0);
+      statusChips.push({ nm: SNAME[0], color: off ? '#cfcbc2' : ramp[0], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
+        fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[0], go: () => this.toggleHide(0) });
+    }
 
     // rank
     let rankItems = [], rankTitle = '', rankSub = '';
@@ -1057,9 +1158,9 @@ class Component extends DCLogic {
     if (st.sel) {
       const d = (this.scopeDesa() || []).find(x => x.k === st.sel);
       if (d) detail = {
-        nm: tc(d.nm), kode: d.k, where: 'Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)) + ' · ' + tc(P ? P.nm : ''),
+        nm: tc(d.nm), kode: d.k, where: 'Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))) + ' · Prov. ' + tc(P ? P.nm : ''),
         st: SNAME[d.st], color: ramp[d.st], ink: inks[d.st], idm: d4(d.idm),
-        dNas: d.idm == null ? 'Nilai tidak tersedia' : ((d.idm - nas.m >= 0 ? '+' : '−') + d4(Math.abs(d.idm - nas.m)) + ' vs rerata nasional ' + d4(nas.m)),
+        dNas: d.idm == null ? ((d.note && d.note.reason) || 'Nilai IDM 2024 tidak tersedia') : ((d.idm - nas.m >= 0 ? '+' : '−') + d4(Math.abs(d.idm - nas.m)) + ' vs rerata nasional ' + d4(nas.m)),
         dTone: (d.idm || 0) - nas.m >= 0 ? 'var(--status-success)' : 'var(--text-brand)',
         prov: d.pv === 1 ? 'Update 2023' : d.pv === 2 ? 'Server PDN' : null,
         sub: [['IKS — Ketahanan Sosial', d.iks, nas.s], ['IKE — Ketahanan Ekonomi', d.ike, nas.e], ['IKL — Ketahanan Lingkungan', d.ikl, nas.l]]
@@ -1092,7 +1193,7 @@ class Component extends DCLogic {
       const pool = scope.lvl === 'nas' ? [] : (this.scopeDesa() || []);
       const hits = pool.filter(d => (d.nm || '').toLowerCase().includes(needle));
       results = hits.slice(0, 12).map(d => ({
-        nm: tc(d.nm), sub: 'Kec. ' + tc(d.kec) + ' · ' + tc(this.kabName(d.kab)), idm: d4(d.idm),
+        nm: tc(d.nm), sub: 'Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))), idm: d4(d.idm),
         color: ramp[d.st], go: () => this.setState({ q: '' }, () => this.selectDesa(d.k))
       }));
       if (scope.lvl === 'nas') resultsMore = 'Pilih provinsi dulu untuk mencari desa.';
@@ -1101,32 +1202,45 @@ class Component extends DCLogic {
     }
 
     // map / notice
-    const notice = (st.view === 'peta' && this.unitKind === 'frame') ? {
+    let notice = (st.view === 'peta' && this.unitKind === 'frame') ? {
       t: 'Batas desa ' + this.scopeName(scope) + ' belum dibangun',
       b: 'Sumbernya berkas SHP 1,08 GB di folder lokalmu — jalankan tools/build_geo.py sekali, lalu poligon desa tampil di sini.',
       n: nf.format(A.n)
     } : null;
+    if (!notice && st.view === 'peta' && this.coverage && this.coverage.missing) notice = {
+      t: nf.format(this.coverage.missing) + ' desa IDM belum memiliki poligon RBI 2023',
+      b: 'Nilai desanya tetap tersedia. Gunakan mode Petak atau tabel; batas geografisnya memerlukan sumber resmi yang lebih mutakhir.',
+      n: nf.format(A.n)
+    };
 
     const scopeKind = scope.lvl === 'nas' ? 'Nasional' : scope.lvl === 'prov' ? 'Provinsi' : scope.lvl === 'kab' ? 'Kabupaten / Kota' : 'Kecamatan';
     const unitLabel = st.view === 'petak' ? 'satu kotak = satu desa'
       : scope.lvl === 'nas' ? 'warna dari rerata IDM provinsi'
       : this.unitKind === 'frame' ? 'warna dari rerata IDM provinsi · batas desa belum dibangun'
       : this.unitKind === 'desa' ? 'warna dari status IDM desa' : 'warna dari rerata IDM ' + (this.unitKind === 'kec' ? 'kecamatan' : 'kabupaten');
+    const ovlLabel = (st.view === 'peta' && this.ovl) ? ' · garis tegas = batas kab/kota' : '';
+    const coverageNotes = [];
+    if (scope.lvl === 'nas' && st.view === 'peta') coverageNotes.push('DKI Jakarta abu-abu karena seluruh wilayahnya berstatus kelurahan, di luar cakupan IDM');
+    if (st.view === 'peta' && this.coverage) {
+      if (this.coverage.kelurahan) coverageNotes.push(nf.format(this.coverage.kelurahan) + ' poligon abu-abu adalah kelurahan di luar cakupan IDM');
+      if (this.coverage.missing) coverageNotes.push(nf.format(this.coverage.missing) + ' desa IDM belum punya poligon RBI 2023 dan tetap ada di Petak/tabel');
+      if (this.coverage.joinMissing) coverageNotes.push('PERINGATAN: ' + nf.format(this.coverage.joinMissing) + ' poligon desa gagal join');
+    }
+    if (withoutScore) coverageNotes.push(nf.format(withoutScore) + ' desa memang tidak memiliki skor pada sumber IDM');
 
     return {
       mapRef: this.mapRef,
       crumbs, crumbLast: last ? last.t : 'Indonesia',
       scopeKind, scopeTitle: this.scopeName(scope),
-      scopeSub: nf.format(A.n) + ' desa · rerata IDM ' + d4(A.m) + ' · ' + unitLabel,
+      scopeSub: nf.format(A.n) + ' desa · rerata IDM ' + d4(A.m) + ' · ' + unitLabel + ovlLabel,
       live: st.live,
       canUp: scope.lvl !== 'nas',
       kpis, dist, legend, statusChips, rank, hist, cmp, detail, cols, rows,
-      distTotal: nf.format(A.n) + ' desa',
-      legendNote: scope.lvl === 'nas' && st.view === 'peta'
-        ? 'DKI Jakarta abu-abu — seluruh wilayahnya berstatus kelurahan, di luar cakupan IDM.'
+      distTotal: nf.format(A.n) + ' desa' + (withoutScore ? ' · ' + nf.format(withoutScore) + ' tanpa nilai' : ''),
+      legendNote: coverageNotes.length ? coverageNotes.join('. ') + '.'
         : 'Status ditulis sebagai teks di setiap tooltip, tabel, dan legenda — warna bukan satu-satunya penanda.',
       rankTitle, rankSub, rankDirLab: st.rankDir > 0 ? 'Terendah dulu' : 'Tertinggi dulu',
-      histSub: nf.format(A.n) + ' desa dalam 24 selang · rerata ' + d4(A.m),
+      histSub: nf.format(scored) + ' desa bernilai dalam 24 selang · rerata ' + d4(A.m),
       histMean: 'rerata ' + d4(A.m),
       tableOpen: st.tableOpen, tableCaret: st.tableOpen ? '▾' : '▸',
       tableTitle: isProvTable ? 'Tabel provinsi' : 'Tabel desa',

@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Peta Desa Nusantara Header](assets/sadasa-mark-red.png)
-
 **Platform Analisis dan Visualisasi Spasial-Statistik Indeks Desa Membangun (IDM) 2024 Seluruh Indonesia**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -274,6 +272,20 @@ Jika Anda ingin memproses ulang layer Shapefile baru atau menyesuaikan tingkat s
    # Menyesuaikan toleransi simplifikasi (default: 0.00035)
    python tools/build_geo.py --tol 0.0005 --target-kb 1500
    ```
+
+---
+
+### Opsi C: Mengaudit Join Excel–GeoJSON
+
+Jalankan audit setelah mengganti Excel IDM atau membangun ulang geometri:
+
+```bash
+.venv\Scripts\python tools\audit_join.py --strict
+```
+
+Audit mereproduksi join kode wilayah 10 digit yang dipakai dashboard, memeriksa duplikat dan konsistensi Excel–JSON, lalu menulis rincian per provinsi serta daftar desa tanpa poligon ke `data/geo/join-audit.json`. Kode `1xxx` diklasifikasikan sebagai kelurahan di luar cakupan IDM; geometri berkode desa/desa adat yang gagal join diperlakukan sebagai kesalahan integritas.
+
+Baseline data saat ini: 75.265 baris IDM, 83.398 fitur geometri, 74.930 join tepat, 335 desa tanpa poligon RBI September 2023, 8.468 kelurahan di luar IDM, empat desa tanpa skor, tiga perbedaan nama pada kode yang sama, dan nol poligon desa valid yang gagal join.
 
 ---
 
