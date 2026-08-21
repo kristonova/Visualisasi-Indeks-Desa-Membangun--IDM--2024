@@ -414,24 +414,25 @@ class Component extends DCLogic {
     ready: false, meta: null, manifest: null,
     scope: { lvl: 'nas', p: null, kb: null, kc: null },
     sel: null, view: 'peta', tip: null, live: '',
-    hidden: [], q: '', rows: 60, tableOpen: true,
+    hidden: [], q: '', rows: 60, tableOpen: false,
     sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0
   };
 
   geo = {}; prov = {}; U = []; layout = null; ovl = null;
   audit = null; noScoreNotes = {}; geoNameWarnings = {}; geoNames = {}; coverage = null;
   vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
-  anim = null; raf = 0;
+  anim = null; raf = 0; drawRaf = 0; box = null;
 
   // ── lifecycle ───────────────────────────────────────────────────────────
   componentDidMount() {
-    this.ro = new ResizeObserver(() => this.draw());
+    this.ro = new ResizeObserver(() => this.scheduleDraw());
     window.addEventListener('mousemove', this.onDragMove);
     window.addEventListener('mouseup', this.onDragEnd);
     this.boot();
   }
   componentWillUnmount() {
     if (this.ro) this.ro.disconnect();
+    if (this.drawRaf) { cancelAnimationFrame(this.drawRaf); this.drawRaf = 0; }
     this.stopZoom();
     window.removeEventListener('mousemove', this.onDragMove);
     window.removeEventListener('mouseup', this.onDragEnd);
@@ -701,6 +702,14 @@ class Component extends DCLogic {
     this.raf = 0; this.anim = null;
   }
 
+  // ResizeObserver bisa memuntahkan banyak notifikasi beruntun (drawer
+  // dibuka/ditutup, window di-resize). draw() itu mahal, jadi rentetan itu
+  // dikoalesir jadi satu redraw per frame.
+  scheduleDraw = () => {
+    if (this.drawRaf) return;
+    this.drawRaf = requestAnimationFrame(() => { this.drawRaf = 0; this.draw(); });
+  };
+
   draw() {
     const cv = this.canvas; if (!cv) return;
     const box = cv.parentElement.getBoundingClientRect();
@@ -708,6 +717,25 @@ class Component extends DCLogic {
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    }
+    // Kotak kanvas berubah (drawer dibuka/ditutup, window di-resize). this.fit
+    // dihitung dari w/h, jadi fit lama sudah basi -> peta tampil melar / tidak
+    // proporsional sampai ada aksi lain yang kebetulan me-reset fit. Hitung
+    // ulang di sini, lalu skalakan offset pan seiring perubahan f.s supaya
+    // titik yang sedang di tengah layar tetap di tengah dan zoom relatif
+    // pengguna tidak melompat.
+    if (!this.box || this.box.w !== w || this.box.h !== h) {
+      const prev = this.fit;
+      this.box = { w, h };
+      if (this.anim) this.stopZoom();   // anim menyimpan transform kotak lama
+      if (prev) {
+        const next = this.computeFit(w, h);
+        if (prev.s > 0 && next.s > 0) {
+          const r = next.s / prev.s;
+          this.vt.ox *= r; this.vt.oy *= r;
+        }
+        this.fit = next;
+      }
     }
     if (!this.pick) this.pick = document.createElement('canvas');
     if (this.pick.width !== Math.round(w) || this.pick.height !== Math.round(h)) {
