@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -20,7 +20,12 @@
 <link rel="stylesheet" href="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/styles.css">
 <script src="_ds/sadasa-academy-design-system-4bbf8735-d44e-46fb-8ac1-2398bc9bdea7/_ds_bundle.js"></script>
 <style>
-html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;overscroll-behavior:none;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+/* 100vh di iOS/Android diukur terhadap viewport BESAR (URL bar tersembunyi), jadi
+   layar ikut kepotong setinggi URL bar. Halaman ini tidak pernah menggulung
+   (overflow:hidden), jadi dvh di sini berperilaku seperti svh: pas dengan yang
+   benar-benar terlihat. height:100% tetap jadi fallback untuk browser lama. */
+@supports (height:100dvh){html,body{height:100dvh}}
 *{box-sizing:border-box}
 #root,#app,body>div{height:100%;overflow:hidden}
 a{color:var(--n-900);text-decoration-thickness:1px;text-underline-offset:2px}
@@ -37,8 +42,10 @@ input,select{font-family:inherit}
    jadi 2px sehingga keempat angkanya seolah hilang. Isi rail harus setinggi
    kontennya; yang menggulung adalah rail-nya sendiri. */
 #rail>*{flex-shrink:0}
+/* Cegah scroll di dalam panel merembet ke dokumen (rubber-band iOS,
+   pull-to-refresh Android) - wajib begitu #rail jadi bottom sheet di HP. */
+#rail,#tbody{overscroll-behavior:contain}
 @keyframes idmfade{from{opacity:0}to{opacity:1}}
-@keyframes idmpulse{0%,100%{opacity:.35}50%{opacity:.9}}
 @media (max-width:1180px){
   #dash{grid-template-columns:1fr!important;overflow:auto!important}
   #stage{height:58vh!important;min-height:340px}
@@ -46,22 +53,131 @@ input,select{font-family:inherit}
   #drawer{display:none!important}
   #hdr{flex-wrap:wrap;height:auto!important;padding:10px 16px!important}
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   HP (<=640px). Peta jadi full-bleed, seluruh panel analitik pindah ke satu
+   bottom sheet yang bisa ditarik.
+
+   Blok ini WAJIB berada SETELAH blok @media (max-width:1180px) di atas:
+   spesifisitasnya sama dan sama-sama !important, jadi yang menang adalah yang
+   belakangan. Kalau suatu saat diurutkan ulang, layout HP diam-diam balik ke
+   layout tablet.
+
+   !important ada di mana-mana karena berkas ini tidak punya satu pun class dan
+   setiap elemen memakai inline style - inline selalu mengalahkan stylesheet.
+
+   PERINGATAN: jangan pernah memasang transform / filter / perspective /
+   will-change:transform / contain:paint pada #dash atau #stage. Salah satunya
+   akan menjadikan mereka containing block bagi #rail yang position:fixed, dan
+   sheet-nya akan rusak tanpa gejala yang jelas.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width:640px),
+       (max-width:1180px) and (max-height:500px) and (orientation:landscape){
+  /* ── shell ─────────────────────────────────────────────────────────── */
+  #dash{grid-template-columns:1fr!important;overflow:hidden!important}
+  #stage{height:100%!important;min-height:0!important}
+  #drawer{display:none!important}
+
+  /* ── header: satu baris 52px ────────────────────────────────────────── */
+  #hdr{flex-wrap:nowrap!important;gap:6px!important;
+       height:calc(52px + env(safe-area-inset-top))!important;
+       padding:env(safe-area-inset-top) calc(8px + env(safe-area-inset-right)) 0 calc(10px + env(safe-area-inset-left))!important}
+  #brandText{display:none!important}
+  #crumbs{display:none!important}
+  #btnCsv,#btnPng{display:none!important}
+  #searchBtn{display:flex!important}
+  #hdrTools{flex:1!important;min-width:0!important;justify-content:flex-end!important;gap:2px!important}
+  /* <select> menggantikan breadcrumb sekaligus pemilih provinsi. Di iOS ia
+     tampil sebagai picker wheel native - kontrol terbaik yang tersedia di HP. */
+  #provPick{flex:1!important;min-width:0!important;max-width:none!important;
+            height:44px!important;padding:0 4px!important;border:0!important;
+            background:transparent!important;font-weight:700!important;
+            font-size:16px!important;   /* <16px bikin Safari zoom saat fokus dan tak pernah balik */
+            -webkit-appearance:none;appearance:none;text-overflow:ellipsis}
+
+  /* search: ikon yang membentang jadi bar 44px di bawah header */
+  #searchWrap{display:none!important}
+  #hdr[data-search="1"] #searchWrap{display:block!important;position:absolute!important;
+    left:calc(8px + env(safe-area-inset-left));right:calc(8px + env(safe-area-inset-right));
+    top:calc(100% + 6px);z-index:60}
+  #hdr[data-search="1"] #searchWrap input{width:100%!important;height:44px!important;
+    font-size:16px!important;border-radius:var(--radius-pill)!important;padding:0 16px!important;
+    box-shadow:var(--shadow-2)}
+  #searchPop{top:50px!important;left:0!important;right:0!important;width:auto!important;
+             max-height:52dvh!important;overscroll-behavior:contain}
+
+  /* ── chrome peta ────────────────────────────────────────────────────── */
+  #scrim{height:74px!important}
+  #scopeHead{display:none!important}   /* judul lingkup pindah ke kepala sheet */
+  #mapCtl{top:10px!important;right:calc(10px + env(safe-area-inset-right))!important;gap:8px!important}
+  #viewToggle button{height:44px!important;min-width:64px!important;font-size:12px!important}
+  #zoomStack button{width:44px!important;height:44px!important;font-size:18px!important}
+  #btnUp{width:44px!important;height:44px!important;padding:0!important;font-size:17px!important}
+  #noticeCard{display:none!important}
+  #noticePill{display:flex!important}
+  #legendCard{display:none!important}  /* legenda pindah jadi chip di kepala sheet */
+  /* duduk tepat di atas sheet pada posisi peek */
+  #mapBl{left:calc(10px + env(safe-area-inset-left))!important;
+         right:calc(10px + env(safe-area-inset-right))!important;
+         bottom:calc(var(--sheet-peek,120px) + 10px)!important;
+         max-width:none!important;z-index:15}
+
+  /* ── bottom sheet ───────────────────────────────────────────────────── */
+  #rail{position:fixed!important;left:0!important;right:0!important;
+        top:calc(52px + env(safe-area-inset-top) + 6px)!important;
+        height:calc(100dvh - 52px - env(safe-area-inset-top) - 6px)!important;
+        width:auto!important;min-width:0!important;
+        border:0!important;border-radius:18px 18px 0 0!important;
+        background:var(--surface-page)!important;
+        box-shadow:0 -12px 36px -20px rgba(40,20,14,.42),0 -1px 0 0 var(--border-hairline)!important;
+        overflow-y:auto!important;overscroll-behavior:contain!important;
+        padding:0 12px calc(22px + env(safe-area-inset-bottom))!important;
+        gap:10px!important;z-index:30;
+        transform:translate3d(0,var(--sheet-y,100%),0);
+        transition:transform var(--duration-slow) var(--ease-out);
+        will-change:transform}
+  /* Di peek tidak ada scroll yang bersaing, jadi menarik di mana pun
+     menggerakkan sheet. touch-action:none menjamin handle selalu bisa ditarik. */
+  #rail[data-sheet="peek"]{overflow-y:hidden!important;touch-action:pan-x}
+  #sheetGrab{display:flex!important;position:sticky;top:0;z-index:2;touch-action:pan-x;
+             margin:0 -12px!important;padding:10px 12px 10px!important;
+             background:var(--surface-page)}
+  #sheetChips::-webkit-scrollbar,#mSorts::-webkit-scrollbar{display:none}
+  #sheetTabs{display:flex!important}
+  #mlist{display:flex!important}
+  #mExports{display:flex!important}
+  #legendNote{display:block!important}
+
+  /* Urutan tetap: kepala, kartu detail, lalu tab. Kartu detail sengaja tidak
+     punya data-tabgroup supaya terlihat di semua tab. */
+  #sheetGrab{order:-3}
+  #sheetTabs{order:-2}
+  #detailCard{order:-1}
+  /* :not() dipakai supaya tiap kartu mempertahankan display inline-nya sendiri
+     (grid untuk #kpiCard, flex untuk sisanya) saat terlihat. */
+  #rail[data-tab="ringkas"]  > [data-tabgroup]:not([data-tabgroup~="ringkas"]),
+  #rail[data-tab="desa"]     > [data-tabgroup]:not([data-tabgroup~="desa"]),
+  #rail[data-tab="analisis"] > [data-tabgroup]:not([data-tabgroup~="analisis"]){display:none!important}
+}
+
+/* Elemen khusus HP sudah display:none lewat inline style, jadi tidak perlu
+   aturan penyembunyi terpisah untuk >=641px. */
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </helmet>
 
-<div style="height:100vh;max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--surface-page)">
+<div style="height:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--surface-page)">
 
-  <header id="hdr" style="display:flex;align-items:center;gap:16px;padding:0 18px;height:58px;background:var(--surface-card);border-bottom:1px solid var(--border-hairline);flex-shrink:0;position:relative;z-index:40">
+  <header id="hdr" data-search="{{ searchFlag }}" style="display:flex;align-items:center;gap:16px;padding:0 18px;height:58px;background:var(--surface-card);border-bottom:1px solid var(--border-hairline);flex-shrink:0;position:relative;z-index:40">
     <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
       <img src="assets/sadasa-mark-red.png" alt="Sadasa Academy" style="height:24px;width:auto;display:block">
-      <div style="display:flex;flex-direction:column;gap:3px;border-left:1px solid var(--border-hairline);padding-left:10px">
+      <div id="brandText" style="display:flex;flex-direction:column;gap:3px;border-left:1px solid var(--border-hairline);padding-left:10px">
         <span style="font:700 13px/1 var(--font-sans);letter-spacing:-0.012em;color:var(--text-strong)">Peta Desa Nusantara</span>
         <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Indeks Desa Membangun 2024</span>
       </div>
     </div>
 
-    <nav aria-label="Lingkup aktif" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0;flex:1">
+    <nav id="crumbs" aria-label="Lingkup aktif" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0;flex:1">
       <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="1">
         <button type="button" onClick="{{ c.go }}" title="{{ c.title }}" style="border:0;background:transparent;padding:4px 7px;border-radius:4px;font:600 12px/1.2 var(--font-sans);letter-spacing:-0.005em;color:var(--text-muted);cursor:pointer;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" style-hover="background:var(--n-100);color:var(--text-strong)">{{ c.t }}</button>
         <sc-if value="{{ c.more }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color:var(--n-300);font:400 12px/1 var(--font-mono)">/</span></sc-if>
@@ -69,11 +185,14 @@ input,select{font-family:inherit}
       <span style="font:600 12px/1.2 var(--font-sans);color:var(--text-strong);padding:4px 7px;border-bottom:2px solid var(--gold-500);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ crumbLast }}</span>
     </nav>
 
-    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-      <div style="position:relative">
-        <input type="search" value="{{ q }}" onInput="{{ onQ }}" placeholder="Cari desa…" aria-label="Cari desa" style="width:180px;height:32px;padding:0 10px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-page);font:500 12px/1 var(--font-sans);color:var(--text-strong);outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
+    <div id="hdrTools" style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <button type="button" id="searchBtn" onClick="{{ toggleSearch }}" aria-label="Cari desa" aria-expanded="{{ searchExpanded }}" style="display:none;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--text-body);cursor:pointer" style-hover="background:var(--n-100)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      </button>
+      <div id="searchWrap" style="position:relative">
+        <input type="search" ref="{{ searchRef }}" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false" value="{{ q }}" onInput="{{ onQ }}" placeholder="Cari desa…" aria-label="Cari desa" style="width:180px;height:32px;padding:0 10px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-page);font:500 12px/1 var(--font-sans);color:var(--text-strong);outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
         <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
-          <div style="position:absolute;top:36px;right:0;width:330px;max-height:340px;overflow-y:auto;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;box-shadow:var(--shadow-3);padding:5px;z-index:60">
+          <div id="searchPop" style="position:absolute;top:36px;right:0;width:330px;max-height:340px;overflow-y:auto;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;box-shadow:var(--shadow-3);padding:5px;z-index:60">
             <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
               <button type="button" onClick="{{ r.go }}" style="display:flex;width:100%;align-items:center;gap:9px;border:0;background:transparent;padding:7px 8px;border-radius:5px;cursor:pointer;text-align:left" style-hover="background:var(--n-100)">
                 <span style="width:9px;height:9px;border-radius:2px;flex-shrink:0;background:{{ r.color }}"></span>
@@ -89,48 +208,48 @@ input,select{font-family:inherit}
         </sc-if>
       </div>
 
-      <select value="{{ provSel }}" onChange="{{ onProv }}" aria-label="Pilih provinsi" style="height:32px;max-width:230px;padding:0 8px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-strong);cursor:pointer;outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
+      <select id="provPick" value="{{ provSel }}" onChange="{{ onProv }}" aria-label="Pilih provinsi" style="height:32px;max-width:230px;padding:0 8px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-strong);cursor:pointer;outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
         <sc-for list="{{ provOpts }}" as="o" hint-placeholder-count="6">
           <option value="{{ o.v }}">{{ o.t }}</option>
         </sc-for>
       </select>
 
-      <button type="button" onClick="{{ exportCsv }}" title="Unduh lingkup aktif sebagai CSV" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">CSV</button>
-      <button type="button" onClick="{{ exportPng }}" title="Unduh peta sebagai PNG" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">PNG</button>
+      <button type="button" id="btnCsv" onClick="{{ exportCsv }}" title="Unduh lingkup aktif sebagai CSV" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">CSV</button>
+      <button type="button" id="btnPng" onClick="{{ exportPng }}" title="Unduh peta sebagai PNG" style="height:32px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;letter-spacing:0.01em" style-hover="border-color:var(--n-400);color:var(--text-strong);background:var(--n-50)">PNG</button>
     </div>
   </header>
 
   <div id="dash" style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 392px;overflow:hidden">
 
     <section id="stage" style="position:relative;min-width:0;background:#eef1ee;overflow:hidden">
-      <canvas ref="{{ mapRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onMouseDown="{{ onDown }}" onWheel="{{ onWheel }}" onClick="{{ onClick }}" onDoubleClick="{{ onDbl }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:none"></canvas>
+      <canvas ref="{{ mapRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onMouseDown="{{ onDown }}" onWheel="{{ onWheel }}" onClick="{{ onClick }}" onDoubleClick="{{ onDbl }}" onTouchStart="{{ onTouchStart }}" onTouchMove="{{ onTouchMove }}" onTouchEnd="{{ onTouchEnd }}" onTouchCancel="{{ onTouchCancel }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none"></canvas>
 
-      <div style="position:absolute;top:0;left:0;right:0;height:150px;pointer-events:none;background:linear-gradient(180deg,rgba(246,247,245,.92) 0%,rgba(246,247,245,.66) 46%,rgba(246,247,245,0) 100%)"></div>
+      <div id="scrim" style="position:absolute;top:0;left:0;right:0;height:150px;pointer-events:none;background:linear-gradient(180deg,rgba(246,247,245,.92) 0%,rgba(246,247,245,.66) 46%,rgba(246,247,245,0) 100%)"></div>
 
-      <div style="position:absolute;top:14px;left:16px;display:flex;flex-direction:column;gap:7px;pointer-events:none;max-width:52%">
+      <div id="scopeHead" style="position:absolute;top:14px;left:16px;display:flex;flex-direction:column;gap:7px;pointer-events:none;max-width:52%">
         <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.17em;text-transform:uppercase;color:var(--n-500)">{{ scopeKind }}</span>
         <h1 style="margin:0;font:800 clamp(20px,2.3vw,31px)/1.02 var(--font-sans);letter-spacing:-0.03em;color:var(--n-900);text-wrap:balance">{{ scopeTitle }}</h1>
         <p style="margin:0;font:500 12px/1.4 var(--font-sans);color:var(--n-600)">{{ scopeSub }}</p>
       </div>
 
-      <div style="position:absolute;top:14px;right:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-        <div style="display:flex;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
+      <div id="mapCtl" style="position:absolute;top:14px;right:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div id="viewToggle" style="display:flex;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
           <button type="button" onClick="{{ setPeta }}" aria-pressed="{{ isPeta }}" style="border:0;padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petaBg }};color:{{ petaFg }}">Peta</button>
           <button type="button" onClick="{{ setPetak }}" aria-pressed="{{ isPetak }}" style="border:0;border-left:1px solid var(--border-hairline);padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petakBg }};color:{{ petakFg }}">Petak</button>
         </div>
-        <div style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
+        <div id="zoomStack" style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
           <button type="button" onClick="{{ zoomIn }}" aria-label="Perbesar" style="border:0;width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">+</button>
           <button type="button" onClick="{{ zoomOut }}" aria-label="Perkecil" style="border:0;border-top:1px solid var(--border-hairline);width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">−</button>
           <button type="button" onClick="{{ resetView }}" aria-label="Atur ulang tampilan" title="Atur ulang" style="border:0;border-top:1px solid var(--border-hairline);width:30px;height:30px;font:500 10px/1 var(--font-mono);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">⤾</button>
         </div>
         <sc-if value="{{ canUp }}" hint-placeholder-val="{{ false }}">
-          <button type="button" onClick="{{ goUp }}" style="height:30px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:5px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;box-shadow:var(--shadow-1)" style-hover="background:var(--n-50);color:var(--text-strong)">↑ Naik level</button>
+          <button type="button" id="btnUp" onClick="{{ goUp }}" style="height:30px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:5px;background:var(--surface-card);font:600 11px/1 var(--font-sans);color:var(--text-body);cursor:pointer;box-shadow:var(--shadow-1)" style-hover="background:var(--n-50);color:var(--text-strong)">{{ upLabel }}</button>
         </sc-if>
       </div>
 
-      <div style="position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:calc(100% - 32px);z-index:15">
+      <div id="mapBl" style="position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:calc(100% - 32px);z-index:15">
         <sc-if value="{{ notice }}" hint-placeholder-val="{{ false }}">
-          <div style="position:relative;max-width:100%;display:flex;align-items:center;gap:14px;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;padding:11px 13px;box-shadow:var(--shadow-2);z-index:15">
+          <div id="noticeCard" style="position:relative;max-width:100%;display:flex;align-items:center;gap:14px;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;padding:11px 13px;box-shadow:var(--shadow-2);z-index:15">
             <span style="width:3px;align-self:stretch;background:var(--gold-500);border-radius:2px;flex-shrink:0"></span>
             <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
               <span style="font:700 11.5px/1.25 var(--font-sans);color:var(--text-strong)">{{ notice.t }}</span>
@@ -139,7 +258,14 @@ input,select{font-family:inherit}
             <button type="button" onClick="{{ setPetak }}" style="flex-shrink:0;height:30px;padding:0 13px;border:0;border-radius:4px;background:var(--n-900);color:var(--n-0);font:600 11px/1 var(--font-sans);cursor:pointer;white-space:nowrap" style-hover="background:var(--n-800)">Lihat {{ notice.n }} desa</button>
           </div>
         </sc-if>
-        <div style="position:relative;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:11px 12px 10px;box-shadow:var(--shadow-1);min-width:236px;max-width:100%">
+        <sc-if value="{{ notice }}" hint-placeholder-val="{{ false }}">
+          <button type="button" id="noticePill" onClick="{{ setPetak }}" style="display:none;align-items:center;gap:9px;width:100%;max-width:100%;min-height:44px;padding:0 13px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);box-shadow:var(--shadow-2);cursor:pointer">
+            <span style="width:3px;height:16px;border-radius:2px;background:var(--gold-500);flex-shrink:0"></span>
+            <span style="flex:1;min-width:0;text-align:left;font:600 11.5px/1.3 var(--font-sans);color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ notice.t }}</span>
+            <span style="flex-shrink:0;font:700 11px/1 var(--font-sans);color:var(--text-brand)">Petak &rsaquo;</span>
+          </button>
+        </sc-if>
+        <div id="legendCard" style="position:relative;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:11px 12px 10px;box-shadow:var(--shadow-1);min-width:236px;max-width:100%">
           <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px">
             <span style="font:700 9px/1 var(--font-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">Status IDM</span>
             <span style="font:400 9px/1 var(--font-sans);color:var(--text-subtle)">klik untuk saring</span>
@@ -173,9 +299,35 @@ input,select{font-family:inherit}
       <p aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0">{{ live }}</p>
     </section>
 
-    <aside id="rail" style="width:392px;min-width:0;background:var(--surface-page);border-left:1px solid var(--border-hairline);overflow-y:auto;padding:16px 16px 26px;display:flex;flex-direction:column;gap:13px">
+    <aside id="rail" data-sheet="{{ sheetState }}" data-tab="{{ sheetTab }}" ref="{{ sheetRef }}" onTouchStart="{{ onSheetBodyDown }}" onTouchMove="{{ onSheetMove }}" onTouchEnd="{{ onSheetEnd }}" onTouchCancel="{{ onSheetEnd }}" style="width:392px;min-width:0;background:var(--surface-page);border-left:1px solid var(--border-hairline);overflow-y:auto;padding:16px 16px 26px;display:flex;flex-direction:column;gap:13px">
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-hairline);border:1px solid var(--border-hairline);border-radius:8px;overflow:hidden">
+      <!-- Mobile-only. display:none di sini, dinyalakan oleh blok @media (max-width:640px).
+           Pola ini dipakai semua elemen khusus HP: tidak ada churn DOM sc-if dan
+           tidak menambah biaya render di desktop. -->
+      <div id="sheetGrab" ref="{{ grabRef }}" onTouchStart="{{ onSheetGrabDown }}" style="display:none;flex-direction:column;gap:8px">
+        <span aria-hidden="true" style="width:38px;height:4px;border-radius:var(--radius-pill);background:var(--n-300);margin:0 auto"></span>
+        <button type="button" onClick="{{ cycleSheet }}" aria-expanded="{{ sheetExpanded }}" style="display:flex;align-items:baseline;gap:8px;width:100%;min-width:0;border:0;background:transparent;padding:0;cursor:pointer;text-align:left">
+          <span style="flex:1;min-width:0;font:800 15px/1.2 var(--font-sans);letter-spacing:-0.02em;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ scopeTitle }}</span>
+          <span style="flex-shrink:0;font:500 10px/1 var(--font-mono);color:var(--text-muted)">{{ sheetCount }}</span>
+        </button>
+        <div id="sheetChips" style="display:flex;gap:6px;overflow-x:auto;touch-action:pan-x;scrollbar-width:none;margin:0 -12px;padding:0 12px 2px">
+          <sc-for list="{{ statusChips }}" as="s" hint-placeholder-count="5">
+            <button type="button" onClick="{{ s.go }}" title="{{ s.title }}" style="display:flex;align-items:center;gap:6px;flex-shrink:0;min-height:34px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);background:{{ s.bg }};cursor:pointer">
+              <span style="width:8px;height:8px;border-radius:2px;flex-shrink:0;background:{{ s.color }}"></span>
+              <span style="font:600 11px/1 var(--font-sans);color:{{ s.fg }};white-space:nowrap">{{ s.nm }}</span>
+              <span style="font:500 10px/1 var(--font-mono);color:var(--text-subtle);font-variant-numeric:tabular-nums">{{ s.n }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="sheetTabs" role="tablist" style="display:none;gap:2px;padding:3px;background:var(--surface-sunken);border:1px solid var(--border-hairline);border-radius:10px">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+          <button type="button" role="tab" aria-selected="{{ t.on }}" onClick="{{ t.go }}" style="flex:1;min-height:38px;border:0;border-radius:8px;background:{{ t.bg }};box-shadow:{{ t.sh }};font:700 12px/1 var(--font-sans);color:{{ t.fg }};cursor:pointer">{{ t.lab }}</button>
+        </sc-for>
+      </div>
+
+      <div id="kpiCard" data-tabgroup="ringkas" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-hairline);border:1px solid var(--border-hairline);border-radius:8px;overflow:hidden">
         <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
           <div style="background:var(--surface-card);padding:11px 12px 12px;display:flex;flex-direction:column;gap:5px">
             <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">{{ k.lab }}</span>
@@ -185,7 +337,7 @@ input,select{font-family:inherit}
         </sc-for>
       </div>
 
-      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+      <section id="distCard" data-tabgroup="ringkas" style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:11px">
           <h2 style="margin:0;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Sebaran status</h2>
           <span style="font:500 9.5px/1 var(--font-mono);color:var(--text-subtle)">{{ distTotal }}</span>
@@ -210,7 +362,7 @@ input,select{font-family:inherit}
       </section>
 
       <sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
-        <section style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-1);animation:idmfade .18s var(--ease-out) both">
+        <section id="detailCard" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-1);animation:idmfade .18s var(--ease-out) both">
           <div style="padding:13px 14px 12px;border-bottom:1px solid var(--border-hairline);display:flex;flex-direction:column;gap:7px;background:var(--surface-sunken)">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
               <div style="min-width:0;display:flex;flex-direction:column;gap:4px">
@@ -255,7 +407,7 @@ input,select{font-family:inherit}
         </section>
       </sc-if>
 
-      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+      <section id="rankCard" data-tabgroup="analisis" style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px">
           <h2 style="margin:0;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">{{ rankTitle }}</h2>
           <button type="button" onClick="{{ toggleRankDir }}" style="border:0;background:transparent;font:500 9.5px/1 var(--font-mono);letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:2px 3px" style-hover="color:var(--text-strong)">{{ rankDirLab }}</button>
@@ -280,7 +432,7 @@ input,select{font-family:inherit}
         </div>
       </section>
 
-      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+      <section id="histCard" data-tabgroup="analisis" style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
         <h2 style="margin:0 0 3px;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Sebaran nilai IDM</h2>
         <p style="margin:0 0 12px;font:400 10px/1.4 var(--font-sans);color:var(--text-subtle)">{{ histSub }}</p>
         <div style="display:flex;align-items:flex-end;gap:2px;height:84px">
@@ -295,7 +447,7 @@ input,select{font-family:inherit}
         </div>
       </section>
 
-      <section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
+      <section id="cmpCard" data-tabgroup="analisis" style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:13px 14px 14px">
         <h2 style="margin:0 0 12px;font:700 12px/1 var(--font-sans);letter-spacing:-0.005em;color:var(--text-strong)">Banding rerata nasional</h2>
         <div style="display:flex;flex-direction:column;gap:11px">
           <sc-for list="{{ cmp }}" as="c" hint-placeholder-count="4">
@@ -316,6 +468,39 @@ input,select{font-family:inherit}
         </div>
         <p style="margin:11px 0 0;padding-top:9px;border-top:1px solid var(--border-hairline);font:400 9.5px/1.45 var(--font-sans);color:var(--text-subtle)">Garis emas menandai rerata nasional. Sumber: Kemendes PDTT, IDM 2024 hasil pemutakhiran — 75.265 desa.</p>
       </section>
+
+      <p id="legendNote" data-tabgroup="ringkas" style="display:none;margin:0;padding:11px 13px;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;font:400 10px/1.5 var(--font-sans);color:var(--text-subtle)">{{ legendNote }}</p>
+
+      <div id="mlist" data-tabgroup="desa" style="display:none;flex-direction:column;gap:8px">
+        <div id="mSorts" style="display:flex;gap:6px;overflow-x:auto;touch-action:pan-x;scrollbar-width:none">
+          <sc-for list="{{ msorts }}" as="m" hint-placeholder-count="3">
+            <button type="button" onClick="{{ m.go }}" aria-pressed="{{ m.on }}" style="flex-shrink:0;min-height:36px;padding:0 13px;border:1px solid {{ m.bd }};border-radius:var(--radius-pill);background:{{ m.bg }};font:600 11.5px/1 var(--font-sans);color:{{ m.fg }};cursor:pointer;white-space:nowrap">{{ m.lab }}</button>
+          </sc-for>
+        </div>
+        <div id="mrowsBox" style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;overflow:hidden">
+          <sc-for list="{{ mrows }}" as="r" hint-placeholder-count="6">
+            <button type="button" onClick="{{ r.go }}" style="display:flex;align-items:center;gap:10px;width:100%;min-height:56px;padding:9px 12px;border:0;border-top:1px solid {{ r.sep }};background:{{ r.bg }};cursor:pointer;text-align:left">
+              <span style="width:3px;align-self:stretch;border-radius:2px;flex-shrink:0;background:{{ r.color }}"></span>
+              <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                <span style="font:600 13px/1.25 var(--font-sans);color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.nm }}</span>
+                <span style="font:400 10.5px/1.25 var(--font-sans);color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.sub }}</span>
+              </span>
+              <span style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                <span style="font:700 13px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ r.idm }}</span>
+                <span style="font:500 9.5px/1 var(--font-sans);color:var(--text-muted);white-space:nowrap">{{ r.st }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ moreLabel }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ showMore }}" style="min-height:44px;padding:0 16px;border:1px solid var(--border-hairline);border-radius:8px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-body);cursor:pointer">{{ moreLabel }}</button>
+        </sc-if>
+      </div>
+
+      <div id="mExports" data-tabgroup="ringkas desa" style="display:none;gap:8px">
+        <button type="button" onClick="{{ exportCsv }}" style="flex:1;min-height:44px;border:1px solid var(--border-hairline);border-radius:8px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-body);cursor:pointer">Unduh CSV</button>
+        <button type="button" onClick="{{ exportPng }}" style="flex:1;min-height:44px;border:1px solid var(--border-hairline);border-radius:8px;background:var(--surface-card);font:600 12px/1 var(--font-sans);color:var(--text-body);cursor:pointer">Simpan PNG</button>
+      </div>
     </aside>
   </div>
 
@@ -391,6 +576,15 @@ const OUTSIDE_IDM_COLOR = '#e7e4de';
 const JOIN_MISSING_COLOR = '#765b8f';
 const THR = [0.8155, 0.7073, 0.5990, 0.4908];
 
+// Ambang gestur sentuh. TAP_SLOP adalah jumlah Manhattan (|dx|+|dy|), mengikuti
+// konvensi yang sudah dipakai jalur mouse; 14 kira-kira 10px diagonal, sepadan
+// dengan slop 8dp Android / 10pt iOS. Jalur mouse tetap memakai 4px.
+const TAP_SLOP = 14, TAP_MS = 500, DBL_MS = 300, DBL_SLOP = 30;
+// Compatibility mouse event (mousedown/click bayangan) menyusul ~300ms setelah
+// tap. Handler sentuh lewat React bersifat passive sehingga tidak bisa
+// preventDefault, jadi ghost itu dibendung dengan stempel waktu.
+const GHOST_MS = 900;
+
 const nf = new Intl.NumberFormat('id-ID');
 const d3 = (v) => v == null ? '—' : v.toFixed(3).replace('.', ',');
 const d4 = (v) => v == null ? '—' : v.toFixed(4).replace('.', ',');
@@ -415,6 +609,7 @@ class Component extends DCLogic {
     scope: { lvl: 'nas', p: null, kb: null, kc: null },
     sel: null, view: 'peta', tip: null, live: '',
     hidden: [], q: '', rows: 60, tableOpen: false,
+    sheet: 'peek', sheetTab: 'ringkas', searchOpen: false,
     sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0
   };
 
@@ -422,15 +617,35 @@ class Component extends DCLogic {
   audit = null; noScoreNotes = {}; geoNameWarnings = {}; geoNames = {}; coverage = null;
   vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
   anim = null; raf = 0; drawRaf = 0; box = null;
+  gesture = null; lastTap = null; touchAt = 0;
+  isMobile = false; noHover = false;
 
   // ── lifecycle ───────────────────────────────────────────────────────────
   componentDidMount() {
-    this.ro = new ResizeObserver(() => this.scheduleDraw());
+    // Harus identik dengan daftar media blok CSS di atas.
+    this.mqM = window.matchMedia('(max-width:640px), (max-width:1180px) and (max-height:500px) and (orientation:landscape)');
+    this.mqH = window.matchMedia('(hover: none)');
+    this.isMobile = this.mqM.matches; this.noHover = this.mqH.matches;
+    if (this.mqM.addEventListener) { this.mqM.addEventListener('change', this.onMQ); this.mqH.addEventListener('change', this.onMQ); }
+    else { this.mqM.addListener(this.onMQ); this.mqH.addListener(this.onMQ); }
+    // Dua pembacaan offsetHeight: cukup murah, dan menangani rotasi layar
+    // gratis tanpa listener orientationchange terpisah.
+    this.ro = new ResizeObserver(() => { if (this.isMobile) this.syncSheet(); this.scheduleDraw(); });
     window.addEventListener('mousemove', this.onDragMove);
     window.addEventListener('mouseup', this.onDragEnd);
     this.boot();
+    this.syncSheet();
   }
+  // ref React dipanggil sebelum componentDidMount, jadi syncSheet yang pertama
+  // berjalan saat isMobile masih false. Menyegarkan tiap update juga membuat
+  // sheet ikut menyesuaikan saat tinggi kepala berubah (judul lingkup panjang,
+  // jumlah chip status berbeda, penskalaan font pengguna).
+  componentDidUpdate() { this.syncSheet(); }
   componentWillUnmount() {
+    if (this.mqM) {
+      if (this.mqM.removeEventListener) { this.mqM.removeEventListener('change', this.onMQ); this.mqH.removeEventListener('change', this.onMQ); }
+      else { this.mqM.removeListener(this.onMQ); this.mqH.removeListener(this.onMQ); }
+    }
     if (this.ro) this.ro.disconnect();
     if (this.drawRaf) { cancelAnimationFrame(this.drawRaf); this.drawRaf = 0; }
     this.stopZoom();
@@ -476,7 +691,8 @@ class Component extends DCLogic {
   async ensureProv(k) {
     if (this.prov[k]) return this.prov[k];
     const j = await fetch('data/idm/prov/' + k + '.json').then(r => r.json());
-    this.prov[k] = j; return j;
+    this.prov[k] = j; this.memo = {};   // scopeDesa membaca this.prov
+    return j;
   }
   async ensureGeo(level, p) {
     const key = level + ':' + p;
@@ -486,7 +702,9 @@ class Component extends DCLogic {
     try {
       const j = await fetch('data/geo/' + level + '/' + p + '.json').then(r => r.json());
       this.geo[key] = this.decode(j);
-      if (level === 'desa') for (const f of this.geo[key]) if (f.nm) this.geoNames[f.k] = tc(f.nm);
+      // scopeDesa memakai this.geoNames sebagai cadangan nama desa. Tanpa
+      // invalidasi di sini, nama dari RBI akan ter-cache '(tanpa nama)'.
+      if (level === 'desa') { for (const f of this.geo[key]) if (f.nm) this.geoNames[f.k] = tc(f.nm); this.memo = {}; }
     } catch (e) { this.geo[key] = null; }
     return this.geo[key];
   }
@@ -494,10 +712,17 @@ class Component extends DCLogic {
   provFrame(p) {
     return (this.geo.prov || []).find(x => x.k === p) || null;
   }
+  // Dipanggil enam kali per render (agregat, petak, tabel, kartu detail,
+   // pencarian) dan membangun ulang sampai ~9.000 objek tiap kali. Di HP itu
+   // 20-40ms yang terpicu setiap snap sheet, ganti tab, dan toggle chip.
+   // Kunci cache hanya lingkup; invalidasi terjadi di setScope, ensureProv,
+   // dan ensureGeo - tiga sumber yang mengubah hasilnya.
   scopeDesa() {
     const { scope } = this.state;
     if (scope.lvl === 'nas') return null;
     const pf = this.prov[scope.p]; if (!pf) return [];
+    const memoKey = scope.lvl + '|' + scope.p + '|' + scope.kb + '|' + scope.kc;
+    if (this.memo.sk === memoKey) return this.memo.sv;
     const out = [];
     for (const C of pf.kec) {
       if (scope.kb && C.kb !== scope.kb) continue;
@@ -509,6 +734,7 @@ class Component extends DCLogic {
           nameWarning: this.geoNameWarnings[k] || null });
       }
     }
+    this.memo.sk = memoKey; this.memo.sv = out;
     return out;
   }
   scopeAgg() {
@@ -659,16 +885,28 @@ class Component extends DCLogic {
     return K ? K.nm : k;
   }
 
+  // Di HP peta menjadi full-bleed: bagian atas tertutup chrome melayang dan
+  // bagian bawah tertutup sheet pada posisi peek. Inset membuat geometri jatuh
+  // di area yang benar-benar terlihat. Sengaja memakai tinggi PEEK, bukan posisi
+  // sheet yang hidup, supaya menggeser sheet tidak pernah memicu refit.
+  fitInset(w, h) {
+    if (!this.isMobile) return { t: 0, r: 0, b: 0, l: 0 };
+    return { t: 78, r: 10, b: Math.round(h * 0.20) + 10, l: 10 };
+  }
   computeFit(w, h) {
     let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
     for (const u of this.U) for (const r of u.rings) for (let i = 0; i < r.length; i += 2) {
       if (r[i] < x0) x0 = r[i]; if (r[i] > x1) x1 = r[i];
       if (r[i + 1] < y0) y0 = r[i + 1]; if (r[i + 1] > y1) y1 = r[i + 1];
     }
-    if (x0 > x1) return { s: 1, cx: 0, cy: 0 };
-    const pad = 0.92;
-    const s = Math.min(w / Math.max(1e-6, x1 - x0), h / Math.max(1e-6, y1 - y0)) * pad;
-    return { s, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
+    this.fitMobile = this.isMobile;
+    if (x0 > x1) return { s: 1, cx: 0, cy: 0, dx: 0, dy: 0 };
+    const i = this.fitInset(w, h);
+    const vw = Math.max(40, w - i.l - i.r), vh = Math.max(40, h - i.t - i.b);
+    // Di desktop inset nol dan pad tetap 0.92 -> geometri identik dengan sebelumnya.
+    const pad = this.isMobile ? 0.96 : 0.92;
+    const s = Math.min(vw / Math.max(1e-6, x1 - x0), vh / Math.max(1e-6, y1 - y0)) * pad;
+    return { s, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, dx: (i.l - i.r) / 2, dy: (i.t - i.b) / 2 };
   }
 
   // ── animasi zoom antar level ────────────────────────────────────────────
@@ -780,10 +1018,14 @@ class Component extends DCLogic {
     }
 
     this.hitMode = 'map';
+    // Draw pertama bisa terjadi sebelum componentDidMount menetapkan isMobile,
+    // jadi fit-nya dihitung dengan inset yang salah dan tidak pernah dihitung
+    // ulang selama ukuran kotak tidak berubah. Tandai basi kalau mode berubah.
+    if (this.fit && this.fitMobile !== this.isMobile) this.fit = null;
     if (!this.fit) this.fit = this.computeFit(w, h);
     const f = this.fit, v = this.vt;
     let s = f.s * v.k;
-    let tx = w / 2 + v.ox - f.cx * s, ty = h / 2 + v.oy + f.cy * s;
+    let tx = w / 2 + (f.dx || 0) + v.ox - f.cx * s, ty = h / 2 + (f.dy || 0) + v.oy + f.cy * s;
     if (this.anim) {
       const a = this.anim.from;
       let u = (performance.now() - this.anim.t0) / this.anim.dur;
@@ -816,13 +1058,15 @@ class Component extends DCLogic {
       if (!many) { ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 0.7; ctx.stroke(); }
       // pick-canvas hanya untuk hit-test; percuma digambar tiap frame animasi
       // dan itu yang membuat transisi tersendat di provinsi ber-ribuan desa
-      if (!this.anim) {
+      if (!this.anim && !this.gesture) {
         path(u.rings, pctx);
         pctx.fillStyle = 'rgb(' + ((i + 1) & 255) + ',' + (((i + 1) >> 8) & 255) + ',' + (((i + 1) >> 16) & 255) + ')';
         pctx.fill();
       }
     }
-    if (many) {
+    // Pass stroke kedua mengulang path SELURUH poligon; dilewati selama gestur
+    // supaya pinch/pan tetap 60fps. Hairline kembali begitu jari diangkat.
+    if (many && !this.gesture) {
       ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.lineWidth = 0.5;
       for (const u of this.U) { path(u.rings, ctx); ctx.stroke(); }
     }
@@ -876,6 +1120,9 @@ class Component extends DCLogic {
     return id > 0 ? id - 1 : -1;
   }
   onMove = (e) => {
+    // Di perangkat sentuh tidak ada hover: mouseleave tak pernah datang, jadi
+    // tooltip akan nyangkut selamanya. touchAt membendung mouse bayangan.
+    if (this.noHover || performance.now() - this.touchAt < GHOST_MS) return;
     if (this.drag) return;
     const r = e.currentTarget.getBoundingClientRect();
     const px = e.clientX - r.left, py = e.clientY - r.top;
@@ -914,8 +1161,11 @@ class Component extends DCLogic {
     this.setState({ tip: { x: (flipX ? px - 260 : px + 16) + 'px', y: (flipY ? py - 108 : py + 16) + 'px', t, lines,
       color: (tipUnit && tipUnit.fill) || ramp[cls] || ramp[0] } });
   };
-  onLeave = () => { this.hoverIdx = -1; this.setState({ tip: null }); this.draw(); };
-  onDown = (e) => { this.stopZoom(); this.drag = { x: e.clientX, y: e.clientY, ox: this.vt.ox, oy: this.vt.oy, moved: 0 }; };
+  onLeave = () => { if (this.noHover) return; this.hoverIdx = -1; this.setState({ tip: null }); this.draw(); };
+  onDown = (e) => {
+    if (performance.now() - this.touchAt < GHOST_MS) return;
+    this.stopZoom(); this.drag = { x: e.clientX, y: e.clientY, ox: this.vt.ox, oy: this.vt.oy, moved: 0 };
+  };
   onDragMove = (e) => {
     if (!this.drag || this.state.view === 'petak') return;
     const dx = e.clientX - this.drag.x, dy = e.clientY - this.drag.y;
@@ -924,41 +1174,235 @@ class Component extends DCLogic {
     this.draw();
   };
   onDragEnd = () => { if (this.drag) { this.dragMoved = this.drag.moved; this.drag = null; } };
+  // Zoom berjangkar: titik (px,py) - relatif PUSAT kanvas - tetap diam saat skala
+  // berubah. Dipakai bersama oleh roda mouse, pinch dua jari, double-tap, dan
+  // tombol +/- (yang memakai 0,0 alias pusat kanvas).
+  zoomAt(px, py, f) {
+    this.stopZoom();
+    const nk = Math.max(1, Math.min(60, this.vt.k * f));
+    const rk = nk / this.vt.k;
+    this.vt.ox = px - (px - this.vt.ox) * rk;
+    this.vt.oy = py - (py - this.vt.oy) * rk;
+    this.vt.k = nk; this.draw();
+  }
   onWheel = (e) => {
     if (this.state.view === 'petak') return;
-    e.preventDefault();
-    this.stopZoom();
+    if (performance.now() - this.touchAt < GHOST_MS) return;
+    // Tanpa preventDefault: React memasang listener 'wheel' sebagai passive,
+    // jadi panggilan itu memang tidak pernah berpengaruh (halaman sendiri tidak
+    // pernah menggulung karena html,body{overflow:hidden}).
     const r = e.currentTarget.getBoundingClientRect();
-    const px = e.clientX - r.left - r.width / 2, py = e.clientY - r.top - r.height / 2;
-    const f = Math.exp(-e.deltaY * 0.0016), nk = Math.max(1, Math.min(60, this.vt.k * f));
-    const rk = nk / this.vt.k;
-    this.vt.ox = px - (px - this.vt.ox) * rk; this.vt.oy = py - (py - this.vt.oy) * rk;
-    this.vt.k = nk; this.draw();
+    this.zoomAt(e.clientX - r.left - r.width / 2,
+                e.clientY - r.top - r.height / 2,
+                Math.exp(-e.deltaY * 0.0016));
   };
-  zoomIn = () => { this.stopZoom(); this.vt.k = Math.min(60, this.vt.k * 1.5); this.draw(); };
-  zoomOut = () => { this.stopZoom(); this.vt.k = Math.max(1, this.vt.k / 1.5); this.draw(); };
+  // Dulu keduanya hanya mengubah k tanpa menskalakan ox/oy, sehingga peta merayap
+  // keluar layar setelah beberapa kali tekan. zoomAt(0,0,..) menjangkarkannya di
+  // pusat: rumusnya mengerucut jadi ox *= rk; oy *= rk.
+  zoomIn = () => this.zoomAt(0, 0, 1.5);
+  zoomOut = () => this.zoomAt(0, 0, 1 / 1.5);
   resetView = () => { this.stopZoom(); this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; this.draw(); };
 
-  onClick = (e) => {
-    if (this.dragMoved > 4) { this.dragMoved = 0; return; }
-    const r = e.currentTarget.getBoundingClientRect();
-    const idx = this.hitAt(e.clientX - r.left, e.clientY - r.top);
+  // Dipakai bersama jalur klik mouse dan jalur tap sentuh.
+  // toggle=false (di HP) supaya tap kedua pada desa yang sama tidak diam-diam
+  // membatalkan pilihan; pembatalan hanya lewat tombol x di kartu detail.
+  pickAt(idx) {
     if (idx < 0) return;
-    if (this.hitMode === 'petak') { this.selectDesa(this.layout.cells[idx].d.k); return; }
+    const toggle = !this.isMobile;
+    if (this.hitMode === 'petak') { this.selectDesa(this.layout.cells[idx].d.k, toggle); return; }
     const u = this.U[idx]; if (!u) return;
-    if (u.desa) { this.selectDesa(u.code); return; }
+    if (u.desa) { this.selectDesa(u.code, toggle); return; }
     if (u.frameOnly) { this.setPetak(); return; }
     if (this.state.scope.lvl === 'nas') { if (!u.nodata) this.goProv(u.code); return; }
     if (u.drill === 'kab') this.setScope({ lvl: 'kab', p: this.state.scope.p, kb: u.code, kc: null });
     else if (u.drill === 'kec') this.setScope({ lvl: 'kec', p: this.state.scope.p, kb: u.code.slice(0, 4), kc: u.code });
+  }
+  onClick = (e) => {
+    if (performance.now() - this.touchAt < GHOST_MS) return;
+    if (this.dragMoved > 4) { this.dragMoved = 0; return; }
+    const r = e.currentTarget.getBoundingClientRect();
+    this.pickAt(this.hitAt(e.clientX - r.left, e.clientY - r.top));
   };
-  onDbl = (e) => { e.preventDefault(); this.onClick(e); };
+  onDbl = (e) => {
+    if (performance.now() - this.touchAt < GHOST_MS) return;
+    e.preventDefault(); this.onClick(e);
+  };
+
+  // ── sentuh ──────────────────────────────────────────────────────────────
+  // Sengaja memakai TouchEvent, bukan PointerEvent: pinch cukup dibaca dari
+  // e.touches[0]/[1], dan target sebuah touch selalu elemen tempat jari mulai -
+  // jadi touchmove/touchend tetap sampai ke kanvas meski jari keluar darinya.
+  // Itu memberi 'capture' gratis, tanpa setPointerCapture dan tanpa listener
+  // window seperti yang dibutuhkan jalur mouse.
+  pinchOf(t, r) {
+    return {
+      d0: Math.max(1, Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY)),
+      px: (t[0].clientX + t[1].clientX) / 2 - r.left - r.width / 2,
+      py: (t[0].clientY + t[1].clientY) / 2 - r.top - r.height / 2
+    };
+  }
+  beginPinch(t) {
+    const p = this.pinchOf(t, this.canvas.getBoundingClientRect());
+    // moved:99 menandai gestur ini tidak akan pernah dihitung sebagai tap.
+    this.gesture = { n: 2, d0: p.d0, mx: p.px, my: p.py, k0: this.vt.k, moved: 99, t0: performance.now() };
+  }
+  onTouchStart = (e) => {
+    this.touchAt = performance.now();
+    this.stopZoom();
+    const t = e.touches;
+    if (t.length === 1) this.gesture = { n: 1, x: t[0].clientX, y: t[0].clientY,
+      ox: this.vt.ox, oy: this.vt.oy, moved: 0, t0: performance.now() };
+    else this.beginPinch(t);
+  };
+  onTouchMove = (e) => {
+    const g = this.gesture; if (!g) return;
+    this.touchAt = performance.now();
+    const t = e.touches;
+    if (t.length >= 2) {
+      if (g.n !== 2) return this.beginPinch(t);
+      if (this.state.view === 'petak') return;
+      const p = this.pinchOf(t, this.canvas.getBoundingClientRect());
+      // Titik tengah dua jari juga menggeser peta (pan sambil pinch).
+      this.vt.ox += p.px - g.mx; this.vt.oy += p.py - g.my;
+      g.mx = p.px; g.my = p.py;
+      // Skala absolut terhadap awal gestur supaya tidak ada drift akumulatif,
+      // sementara rk tetap inkremental agar rumus jangkar sama persis dengan roda.
+      const nk = Math.max(1, Math.min(60, g.k0 * (p.d0 / g.d0)));
+      const rk = nk / this.vt.k;
+      this.vt.ox = p.px - (p.px - this.vt.ox) * rk;
+      this.vt.oy = p.py - (p.py - this.vt.oy) * rk;
+      this.vt.k = nk;
+      this.scheduleDraw();
+    } else if (g.n === 1) {
+      const dx = t[0].clientX - g.x, dy = t[0].clientY - g.y;
+      g.moved = Math.max(g.moved, Math.abs(dx) + Math.abs(dy));
+      if (this.state.view === 'petak') return;
+      this.vt.ox = g.ox + dx; this.vt.oy = g.oy + dy;
+      // scheduleDraw, bukan draw: touchmove bisa 120Hz di layar ProMotion
+      // sedangkan draw() di provinsi 5.000 poligon makan 15-40ms.
+      this.scheduleDraw();
+    }
+  };
+  onTouchEnd = (e) => {
+    this.touchAt = performance.now();
+    const g = this.gesture;
+    if (e.touches.length >= 1) {
+      // Pinch turun jadi satu jari: mulai ulang sebagai pan dari posisi jari
+      // yang tersisa supaya peta tidak melompat.
+      const t = e.touches;
+      this.gesture = { n: 1, x: t[0].clientX, y: t[0].clientY,
+        ox: this.vt.ox, oy: this.vt.oy, moved: 99, t0: performance.now() };
+      return;
+    }
+    this.gesture = null;
+    if (g && g.n === 1 && g.moved <= TAP_SLOP && performance.now() - g.t0 < TAP_MS) this.handleTap(g.x, g.y);
+    this.draw();   // gambar penuh sekali: mengembalikan pick-canvas untuk hit-test
+  };
+  onTouchCancel = () => { this.touchAt = performance.now(); this.gesture = null; this.draw(); };
+  handleTap(cx, cy) {
+    const now = performance.now(), L = this.lastTap;
+    const dbl = L && now - L.t < DBL_MS && Math.abs(cx - L.x) + Math.abs(cy - L.y) < DBL_SLOP;
+    this.lastTap = dbl ? null : { t: now, x: cx, y: cy };
+    const r = this.canvas.getBoundingClientRect();
+    // Tap pertama tetap memilih (umpan balik instan, tanpa tunggu 300ms); tap
+    // kedua hanya memperbesar dan sengaja tidak masuk pickAt lagi.
+    if (dbl) return this.zoomAt(cx - r.left - r.width / 2, cy - r.top - r.height / 2, 1.8);
+    this.pickAt(this.hitAt(cx - r.left, cy - r.top));
+  }
+  onMQ = () => {
+    this.isMobile = this.mqM.matches;
+    this.noHover = this.mqH.matches;
+    this.fit = null;              // inset fit berubah -> hitung ulang
+    this.setState({ tick: this.state.tick + 1, tip: null }, () => { this.syncSheet(); this.draw(); });
+  };
+
+
+  // ── bottom sheet (HP) ───────────────────────────────────────────────────
+  // #rail dipakai ulang sebagai sheet, bukan elemen terpisah ber-sc-if: sc-if
+  // membuat/menghancurkan DOM sehingga melintasi 640px akan me-remount semua
+  // kartu dan kehilangan posisi scroll. Posisi sheet dikendalikan JS lewat
+  // custom property --sheet-y; CSS hanya mengurus transisinya.
+  sheetRef = (el) => { this.sheetEl = el; if (el) this.syncSheet(); };
+  grabRef = (el) => { this.grabEl = el; };
+  searchRef = (el) => { this.searchEl = el; };
+  peekPx() { return this.grabEl ? this.grabEl.offsetHeight : 112; }
+  sheetY(snap) {
+    const el = this.sheetEl; if (!el) return 0;
+    const H = el.offsetHeight;
+    if (snap === 'full') return 0;
+    if (snap === 'half') return Math.max(0, H - Math.round(window.innerHeight * 0.52));
+    return Math.max(0, H - this.peekPx());
+  }
+  syncSheet = () => {
+    const el = this.sheetEl; if (!el || this.sd) return;   // jangan ganggu drag berjalan
+    if (!this.isMobile) { el.style.removeProperty('--sheet-y'); return; }
+    el.style.setProperty('--sheet-y', this.sheetY(this.state.sheet) + 'px');
+    // dipublikasikan supaya chrome peta kiri-bawah bisa duduk di atas sheet
+    document.documentElement.style.setProperty('--sheet-peek', this.peekPx() + 'px');
+  };
+  setSheet = (snap) => {
+    if (this.state.sheet === snap) return this.syncSheet();   // animasikan balik setelah drag batal
+    this.setState({ sheet: snap }, this.syncSheet);
+  };
+  cycleSheet = () => this.setSheet(this.state.sheet === 'peek' ? 'half' : this.state.sheet === 'half' ? 'full' : 'peek');
+  setTab = (t) => this.setState({ sheetTab: t }, () => { if (this.sheetEl) this.sheetEl.scrollTop = 0; });
+  toggleSearch = () => this.setState({ searchOpen: !this.state.searchOpen, q: '' },
+    () => { if (this.state.searchOpen && this.searchEl) this.searchEl.focus(); });
+
+  startSheetDrag(e, fromGrab) {
+    if (!this.isMobile || !this.sheetEl || this.sd) return;
+    const t = e.touches[0];
+    this.sd = { y: t.clientY, y0: this.sheetY(this.state.sheet), mode: 0, fromGrab,
+      scroll: this.sheetEl.scrollTop, t0: performance.now(), last: null };
+    this.sheetEl.style.transition = 'none';
+  }
+  onSheetGrabDown = (e) => this.startSheetDrag(e, true);
+  onSheetBodyDown = (e) => this.startSheetDrag(e, false);
+  onSheetMove = (e) => {
+    const d = this.sd; if (!d) return;
+    const dy = e.touches[0].clientY - d.y;
+    if (!d.mode) {
+      if (Math.abs(dy) < 6) return;
+      // Handler sentuh lewat React bersifat passive, jadi scroll native tidak bisa
+      // dibatalkan. Tidak perlu: di 'peek' sheet tidak punya scroll (overflow
+      // hidden), dan di 'half'/'full' gerakan ke atas selalu scroll sementara
+      // gerakan ke bawah di scrollTop 0 tidak menggulung apa pun. Keduanya lepas.
+      if (d.fromGrab || this.state.sheet === 'peek') d.mode = 1;
+      else if (dy > 0 && d.scroll <= 0) d.mode = 1;
+      else { d.mode = 2; this.sheetEl.style.transition = ''; return; }
+    }
+    if (d.mode !== 1) return;
+    const y = Math.max(0, Math.min(this.sheetY('peek'), d.y0 + dy));
+    // Ditulis imperatif, BUKAN lewat setState: satu setState per frame akan
+    // menjalankan ulang renderVals() (sortir ribuan baris) 60x per detik.
+    this.sheetEl.style.setProperty('--sheet-y', y + 'px');
+    d.last = y;
+  };
+  onSheetEnd = () => {
+    const d = this.sd; this.sd = null; if (!d) return;
+    this.sheetEl.style.transition = '';
+    if (d.mode === 2) return;
+    if (d.mode === 0) {
+      if (d.fromGrab && performance.now() - d.t0 < 260) this.cycleSheet();
+      return;
+    }
+    const y = d.last == null ? d.y0 : d.last;
+    const v = (y - d.y0) / Math.max(1, performance.now() - d.t0);   // px/ms, positif = ke bawah
+    const order = ['full', 'half', 'peek'], i = order.indexOf(this.state.sheet);
+    let target;
+    if (v > 0.55) target = order[Math.min(2, i + 1)];
+    else if (v < -0.55) target = order[Math.max(0, i - 1)];
+    else target = order.reduce((a, b) => Math.abs(this.sheetY(b) - y) < Math.abs(this.sheetY(a) - y) ? b : a);
+    this.setSheet(target);
+  };
 
   // ── navigation ──────────────────────────────────────────────────────────
   setScope(scope, keepSel) {
     this.memo = {};
-    this.setState({ scope, sel: keepSel ? this.state.sel : null, rows: 60, tip: null, live: 'Menampilkan ' + this.scopeName(scope) },
-      () => this.rebuild(true));
+    this.setState({ scope, sel: keepSel ? this.state.sel : null, rows: 60, tip: null,
+      sheet: this.isMobile ? 'peek' : this.state.sheet,
+      live: 'Menampilkan ' + this.scopeName(scope) },
+      () => { this.syncSheet(); this.rebuild(true); });
   }
   scopeName(s) {
     const meta = this.state.meta; if (!meta) return '';
@@ -978,13 +1422,16 @@ class Component extends DCLogic {
     else if (s.lvl === 'kab') this.setScope({ lvl: 'prov', p: s.p, kb: null, kc: null });
     else this.setScope({ lvl: 'nas', p: null, kb: null, kc: null });
   };
-  selectDesa(k) {
-    const sel = this.state.sel === k ? null : k;
+  selectDesa(k, toggle) {
+    const sel = (toggle !== false && this.state.sel === k) ? null : k;
     // Desa yang belum punya poligon tetap dapat ditemukan di tabel/pencarian.
     // Arahkan ke Petak agar pemilihan tidak tampak gagal di peta geografis.
     const mapped = !sel || this.U.some(u => u.code === sel && u.desa);
     const view = sel && this.state.view === 'peta' && !mapped ? 'petak' : this.state.view;
-    this.setState({ sel, view }, () => this.draw());
+    // Di HP, memilih desa saat sheet masih 'peek' otomatis menaikkannya ke
+    // 'half' supaya kartu detail langsung terlihat tanpa aksi tambahan.
+    const sheet = (sel && this.isMobile && this.state.sheet === 'peek') ? 'half' : this.state.sheet;
+    this.setState({ sel, view, sheet }, () => { this.syncSheet(); this.draw(); });
   }
   clearSel = () => this.setState({ sel: null }, () => this.draw());
   setPeta = () => this.setState({ view: 'peta' }, () => { this.fit = null; this.draw(); });
@@ -1023,8 +1470,19 @@ class Component extends DCLogic {
       new Blob(['\ufeff' + head.join(';') + '\n' + body.join('\n')], { type: 'text/csv;charset=utf-8' }));
   };
   exportPng = () => {
-    if (!this.canvas) return;
-    this.canvas.toBlob(b => b && this.download('idm-2024-' + this.state.view + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.png', b), 'image/png');
+    const cv = this.canvas; if (!cv) return;
+    const name = 'idm-2024-' + this.state.view + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.png';
+    if (!this.isMobile) return cv.toBlob(b => b && this.download(name, b), 'image/png');
+    // Di HP kanvas membentang penuh di balik sheet, jadi ~20% bagian bawahnya
+    // tidak pernah terlihat. Potong supaya gambar yang tersimpan sama dengan
+    // yang dilihat pengguna.
+    const box = cv.parentElement.getBoundingClientRect();
+    const dpr = cv.width / Math.max(1, box.width);
+    const sh = Math.max(40, Math.round(cv.height - this.fitInset(box.width, box.height).b * dpr));
+    const o = document.createElement('canvas');
+    o.width = cv.width; o.height = sh;
+    o.getContext('2d').drawImage(cv, 0, 0, cv.width, sh, 0, 0, cv.width, sh);
+    o.toBlob(b => b && this.download(name, b), 'image/png');
   };
 
   // ── table + rank data ───────────────────────────────────────────────────
@@ -1070,11 +1528,20 @@ class Component extends DCLogic {
         crumbs: [], crumbLast: 'Memuat…', scopeKind: 'Memuat', scopeTitle: 'Memuat data IDM 2024…',
         scopeSub: '75.265 desa · 37 provinsi', kpis: [], dist: [], legend: [], rank: [], hist: [], cmp: [],
         cols: [], rows: [], statusChips: [], provOpts: [{ v: 'nas', t: 'Indonesia' }], provSel: 'nas',
+        mrows: [], msorts: [], tabs: [],
+        sheetState: 'peek', sheetTab: 'ringkas', sheetExpanded: 'false', sheetCount: '',
+        searchFlag: '0', searchExpanded: 'false', upLabel: '\u2191',
+        sheetRef: this.sheetRef, grabRef: this.grabRef, searchRef: this.searchRef,
+        onSheetGrabDown: this.onSheetGrabDown, onSheetBodyDown: this.onSheetBodyDown,
+        onSheetMove: this.onSheetMove, onSheetEnd: this.onSheetEnd,
+        cycleSheet: this.cycleSheet, toggleSearch: this.toggleSearch,
         q: '', tableOpen: false, tableTitle: 'Memuat', tableCount: '', tableCaret: '▸', tableBorder: '0',
         mapRef: this.mapRef, live: 'Memuat data', isPeta: true, isPetak: false,
         petaBg: 'var(--n-900)', petaFg: 'var(--n-0)', petakBg: 'transparent', petakFg: 'var(--text-body)',
         legendNote: '', distTotal: '', rankTitle: '', rankSub: '', rankDirLab: '', histSub: '', histMean: '',
         onMove: this.onMove, onLeave: this.onLeave, onDown: this.onDown, onWheel: this.onWheel,
+        onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove,
+        onTouchEnd: this.onTouchEnd, onTouchCancel: this.onTouchCancel,
         onClick: this.onClick, onDbl: this.onDbl, zoomIn: this.zoomIn, zoomOut: this.zoomOut,
         resetView: this.resetView, setPeta: this.setPeta, setPetak: this.setPetak, goUp: this.goUp,
         toggleTable: this.toggleTable, toggleRankDir: this.toggleRankDir, showMore: this.showMore,
@@ -1095,7 +1562,8 @@ class Component extends DCLogic {
     if (K) chain.push({ t: tc(K.nm), s: { lvl: 'kab', p: P.k, kb: K.k, kc: null } });
     if (C) chain.push({ t: 'Kec. ' + tc(C.nm), s: { lvl: 'kec', p: P.k, kb: K ? K.k : C.kb, kc: C.k } });
     const last = chain.pop();
-    chain.forEach((c, i) => crumbs.push({ t: c.t, title: 'Kembali ke ' + c.t, more: true, go: () => this.setScope(c.s) }));
+    // Di HP #crumbs disembunyikan; jangan bangun apa pun untuk node tersembunyi.
+    if (!this.isMobile) chain.forEach((c) => crumbs.push({ t: c.t, title: 'Kembali ke ' + c.t, more: true, go: () => this.setScope(c.s) }));
 
     // KPI
     const scored = A.d.reduce((sum, n) => sum + n, 0);
@@ -1135,12 +1603,12 @@ class Component extends DCLogic {
       op: hidden.has('join-missing') ? '0.34' : '1', go: () => this.toggleHide('join-missing') });
     const statusChips = A.d.map((n, i) => {
       const cls = i + 1, off = hidden.has(cls);
-      return { nm: SNAME[cls], color: off ? '#cfcbc2' : ramp[cls], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
+      return { nm: SNAME[cls], n: nf.format(n), color: off ? '#cfcbc2' : ramp[cls], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
         fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[cls], go: () => this.toggleHide(cls) };
     });
     if (withoutScore) {
       const off = hidden.has(0);
-      statusChips.push({ nm: SNAME[0], color: off ? '#cfcbc2' : ramp[0], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
+      statusChips.push({ nm: SNAME[0], n: nf.format(withoutScore), color: off ? '#cfcbc2' : ramp[0], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
         fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[0], go: () => this.toggleHide(0) });
     }
 
@@ -1208,11 +1676,31 @@ class Component extends DCLogic {
       lab, align, fg: st.sort.k === k ? 'var(--text-strong)' : 'var(--text-muted)',
       arrow: st.sort.k === k ? (st.sort.d > 0 ? ' ↑' : ' ↓') : '', go: () => this.setSort(k)
     }));
-    const rows = shown.map(r => ({
-      nm: r.nm, c2: r.c2, c3: r.c3, idm: isProvTable ? d4(r.idm) : d4(r.idm),
+    // Hanya salah satu yang diisi. Tabel desktop tersembunyi di HP tapi React
+    // tetap membangun ~480 sel per render kalau dibiarkan; begitu pula sebaliknya.
+    const rows = this.isMobile ? [] : shown.map(r => ({
+      nm: r.nm, c2: r.c2, c3: r.c3, idm: d4(r.idm),
       iks: d3(r.iks), ike: d3(r.ike), ikl: d3(r.ikl), st: SNAME[r.st], color: r.color,
       bg: r.key === st.sel ? 'var(--gold-50)' : 'transparent', go: r.go, hi: r.hi
     }));
+    const mrows = !this.isMobile ? [] : shown.map((r, i) => ({
+      nm: r.nm, sub: [r.c2, r.c3].filter(Boolean).join(' \u00b7 '), idm: d4(r.idm),
+      st: SNAME[r.st], color: r.color,
+      sep: i === 0 ? 'transparent' : 'var(--border-hairline)',
+      bg: r.key === st.sel ? 'var(--gold-50)' : 'var(--surface-card)', go: r.go
+    }));
+    const msorts = !this.isMobile ? [] : [['nm', 'Nama'], ['idm', 'Nilai IDM'], ['st', 'Status']].map(([k, lab]) => {
+      const on = st.sort.k === k;
+      return { lab: lab + (on ? (st.sort.d > 0 ? ' \u2191' : ' \u2193') : ''), on: on ? 'true' : 'false',
+        bd: on ? 'var(--n-900)' : 'var(--border-hairline)', bg: on ? 'var(--n-900)' : 'var(--surface-card)',
+        fg: on ? 'var(--n-0)' : 'var(--text-body)', go: () => this.setSort(k) };
+    });
+    const tabs = !this.isMobile ? [] : [['ringkas', 'Ringkasan'], ['desa', isProvTable ? 'Provinsi' : 'Desa'], ['analisis', 'Analisis']].map(([k, lab]) => {
+      const on = st.sheetTab === k;
+      return { lab, on: on ? 'true' : 'false', bg: on ? 'var(--surface-card)' : 'transparent',
+        sh: on ? 'var(--shadow-1)' : 'none', fg: on ? 'var(--text-strong)' : 'var(--text-muted)',
+        go: () => this.setTab(k) };
+    });
 
     // search results
     const needle = st.q.trim().toLowerCase();
@@ -1222,7 +1710,7 @@ class Component extends DCLogic {
       const hits = pool.filter(d => (d.nm || '').toLowerCase().includes(needle));
       results = hits.slice(0, 12).map(d => ({
         nm: tc(d.nm), sub: 'Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))), idm: d4(d.idm),
-        color: ramp[d.st], go: () => this.setState({ q: '' }, () => this.selectDesa(d.k))
+        color: ramp[d.st], go: () => this.setState({ q: '', searchOpen: false }, () => this.selectDesa(d.k, false))
       }));
       if (scope.lvl === 'nas') resultsMore = 'Pilih provinsi dulu untuk mencari desa.';
       else if (hits.length > 12) resultsMore = nf.format(hits.length - 12) + ' hasil lain — persempit kata kuncinya.';
@@ -1264,6 +1752,17 @@ class Component extends DCLogic {
       live: st.live,
       canUp: scope.lvl !== 'nas',
       kpis, dist, legend, statusChips, rank, hist, cmp, detail, cols, rows,
+      mrows, msorts, tabs,
+      sheetState: st.sheet, sheetTab: st.sheetTab,
+      sheetExpanded: st.sheet === 'peek' ? 'false' : 'true',
+      sheetCount: nf.format(A.n) + ' desa',
+      searchFlag: st.searchOpen ? '1' : '0',
+      searchExpanded: st.searchOpen ? 'true' : 'false',
+      upLabel: this.isMobile ? '\u2191' : '\u2191 Naik level',
+      sheetRef: this.sheetRef, grabRef: this.grabRef, searchRef: this.searchRef,
+      onSheetGrabDown: this.onSheetGrabDown, onSheetBodyDown: this.onSheetBodyDown,
+      onSheetMove: this.onSheetMove, onSheetEnd: this.onSheetEnd,
+      cycleSheet: this.cycleSheet, toggleSearch: this.toggleSearch,
       distTotal: nf.format(A.n) + ' desa' + (withoutScore ? ' · ' + nf.format(withoutScore) + ' tanpa nilai' : ''),
       legendNote: coverageNotes.length ? coverageNotes.join('. ') + '.'
         : 'Status ditulis sebagai teks di setiap tooltip, tabel, dan legenda — warna bukan satu-satunya penanda.',
@@ -1285,6 +1784,8 @@ class Component extends DCLogic {
       petakBg: st.view === 'petak' ? 'var(--n-900)' : 'transparent',
       petakFg: st.view === 'petak' ? 'var(--n-0)' : 'var(--text-body)',
       onMove: this.onMove, onLeave: this.onLeave, onDown: this.onDown, onWheel: this.onWheel,
+      onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove,
+      onTouchEnd: this.onTouchEnd, onTouchCancel: this.onTouchCancel,
       onClick: this.onClick, onDbl: this.onDbl, zoomIn: this.zoomIn, zoomOut: this.zoomOut,
       resetView: this.resetView, setPeta: this.setPeta, setPetak: this.setPetak, goUp: this.goUp,
       toggleTable: this.toggleTable, toggleRankDir: this.toggleRankDir, showMore: this.showMore,
