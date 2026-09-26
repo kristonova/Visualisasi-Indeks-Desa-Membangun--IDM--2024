@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-build_geo.py — Bangun geometri terkuantisasi untuk Dashboard IDM 2024.
+build_geo.py — Bangun geometri terkuantisasi untuk Dashboard IDM (2023 & 2024).
 
 Sumber: RBI10K_ADMINISTRASI_DESA_20230928.gdb (Esri File Geodatabase, BIG, Sep-2023).
 Dipilih karena kode desanya cocok 99,55% dengan IDM 2024 setelah remap Papua —
@@ -15,6 +15,16 @@ di-dissolve dari poligon desa. Dua alasan:
      dari IDM 2024 (di sana 96.04 = Tambrauw, di IDM 96.04 = Sorong Selatan).
      Join kode langsung akan menaruh poligon di kabupaten yang salah.
 
+Tambalan (--patch): desa IDM yang tidak punya poligon di RBI Sep-2023 diambil
+dari BATAS_DESAKEL_AR BIG edisi Juli 2026 (LapakGIS) bila kodenya cocok persis.
+Sumber itu memakai penomoran Kemendagri yang lebih baru sehingga tidak bisa
+menggantikan RBI seluruhnya (965 desa yang sudah join justru hilang), tetapi
+cocok untuk mengisi celah. Sebagian besar tambalan adalah desa pemekaran yang
+di RBI masih bagian dari desa induk, jadi poligonnya dipotong keluar dari
+poligon RBI yang tertimpa supaya tidak ada tumpang-tindih. Daftar kode yang
+dicari dibaca dari data\idm\<tahun>\prov\*.json (jalankan build_idm.py dulu).
+Hasilnya dicatat di data\geo\patch-report.json.
+
 Kebutuhan: pyogrio + shapely (lihat .venv di akar project).
 
 Cara pakai (Windows, dari akar project):
@@ -24,6 +34,7 @@ Cara pakai (Windows, dari akar project):
     .venv\Scripts\python tools\build_geo.py --tol 0.0005
     .venv\Scripts\python tools\build_geo.py --target-kb 1500
     .venv\Scripts\python tools\build_geo.py --out geo-out
+    .venv\Scripts\python tools\build_geo.py --no-patch
 
 Hasil default langsung ke data\geo\ (desa\, kec\, kab\ + manifest.json),
 jadi dashboard tinggal di-reload. Berkas data\geo\prov.json tidak disentuh.
@@ -35,6 +46,7 @@ try:
     import numpy as np
     import shapely
     from shapely.geometry.polygon import orient
+    from shapely.strtree import STRtree
     from pyogrio.raw import read as ogr_read
     from pyogrio import list_layers
 except ImportError as e:
@@ -46,10 +58,16 @@ except ImportError as e:
         "lalu pakai .venv\\Scripts\\python untuk menjalankan skrip ini." % e
     )
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from idm_sources import NAMA_PROV  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEFAULT_SRC = os.path.join(
     "SHP GIS", "RBI10K_ADMINISTRASI_DESA_20230928.gdb")
+PATCH_NAME = "[LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_"
+DEFAULT_PATCH = os.path.join("SHP GIS", PATCH_NAME, PATCH_NAME + ".shp")
+PATCH_LABEL = "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)"
 
 # ── Remap kode kab/kota Papua: kode di sumber (2023) -> kode di IDM 2024 ─────
 # Diturunkan dengan mencocokkan NAMA kab/kota antara sumber dan IDM 2024,
@@ -97,19 +115,6 @@ LEVELS = {
 ORDER = ["desa", "kec", "kab"]        # level yang dibangun per provinsi
 ALL_LEVELS = ORDER + ["prov"]
 
-NAMA_PROV = {
-    "11": "ACEH", "12": "SUMATERA UTARA", "13": "SUMATERA BARAT", "14": "RIAU",
-    "15": "JAMBI", "16": "SUMATERA SELATAN", "17": "BENGKULU", "18": "LAMPUNG",
-    "19": "KEPULAUAN BANGKA BELITUNG", "21": "KEPULAUAN RIAU", "31": "DKI JAKARTA",
-    "32": "JAWA BARAT", "33": "JAWA TENGAH", "34": "DI YOGYAKARTA", "35": "JAWA TIMUR",
-    "36": "BANTEN", "51": "BALI", "52": "NUSA TENGGARA BARAT", "53": "NUSA TENGGARA TIMUR",
-    "61": "KALIMANTAN BARAT", "62": "KALIMANTAN TENGAH", "63": "KALIMANTAN SELATAN",
-    "64": "KALIMANTAN TIMUR", "65": "KALIMANTAN UTARA", "71": "SULAWESI UTARA",
-    "72": "SULAWESI TENGAH", "73": "SULAWESI SELATAN", "74": "SULAWESI TENGGARA",
-    "75": "GORONTALO", "76": "SULAWESI BARAT", "81": "MALUKU", "82": "MALUKU UTARA",
-    "91": "PAPUA", "92": "PAPUA BARAT", "93": "PAPUA SELATAN", "94": "PAPUA TENGAH",
-    "95": "PAPUA PEGUNUNGAN", "96": "PAPUA BARAT DAYA",
-}
 
 
 def digits(s):
@@ -256,8 +261,11 @@ def dissolve(codes, geoms, width, names):
 
 
 # ═════════════════════════════════════════════════════════════ ENCODE ═══════
-def encode(level, codes, geoms, names, tol, minarea, quant=QUANT):
-    """Sederhanakan, kuantisasi, dan delta-encode — format yang dibaca decode()."""
+def encode(level, codes, geoms, names, tol, minarea, quant=QUANT, patched=None):
+    """Sederhanakan, kuantisasi, dan delta-encode — format yang dibaca decode().
+
+    Fitur yang kodenya ada di `patched` diberi "s":1 (poligon dari sumber tambalan).
+    """
     simplified = shapely.simplify(np.asarray(geoms, dtype=object), tol)
 
     prepared = []
@@ -301,19 +309,22 @@ def encode(level, codes, geoms, names, tol, minarea, quant=QUANT):
             if len(arr) >= 8:
                 g.append(arr)
         if g:
-            out.append({"k": code, "nm": name, "g": g})
+            feat = {"k": code, "nm": name, "g": g}
+            if patched and code in patched:
+                feat["s"] = 1
+            out.append(feat)
     if not out:
         return None
     return {"lvl": level, "bbox": [round(minx, 6), round(miny, 6)], "q": quant, "f": out}
 
 
-def write_level(outdir, level, prov, codes, geoms, names, args):
+def write_level(outdir, level, prov, codes, geoms, names, args, patched=None):
     cfg = LEVELS[level]
     target = (args.target_kb or cfg["target"]) * 1024
     tol = args.tol if args.tol is not None else cfg["tol"]
     blob = None
     for _ in range(7):
-        obj = encode(level, codes, geoms, names, tol, cfg["minarea"], cfg["quant"])
+        obj = encode(level, codes, geoms, names, tol, cfg["minarea"], cfg["quant"], patched)
         if obj is None:
             return False
         blob = json.dumps(obj, separators=(",", ":"), ensure_ascii=False)
@@ -328,6 +339,125 @@ def write_level(outdir, level, prov, codes, geoms, names, args):
     print("    %-4s %6s fitur  %6.0f KB  tol %.5f"
           % (level, fmt(len(codes)), len(blob.encode("utf-8")) / 1024, tol))
     return True
+
+
+# ═══════════════════════════════════════════════════════════ TAMBALAN ═══════
+def wanted_codes(idm_dir):
+    """Kode desa IDM semua tahun, per provinsi, dari data/idm/<tahun>/prov/*.json."""
+    out = {}
+    if not os.path.isdir(idm_dir):
+        return out
+    for year in sorted(os.listdir(idm_dir)):
+        pdir = os.path.join(idm_dir, year, "prov")
+        if not os.path.isdir(pdir):
+            continue
+        for fn in os.listdir(pdir):
+            if not fn.endswith(".json"):
+                continue
+            with open(os.path.join(pdir, fn), encoding="utf-8") as fh:
+                pf = json.load(fh)
+            for kec in pf.get("kec", []):
+                for d in kec.get("ds", []):
+                    code = str(kec["k"]) + str(d[0])
+                    out.setdefault(code[:2], set()).add(code)
+    return out
+
+
+def patch_index(src):
+    """Pindai atribut sumber tambalan: kode -> [(fid, desa, kec, kab)].
+
+    Kode dipakai apa adanya (sumber sudah berpenomoran Kemendagri terbaru),
+    jadi remap() Papua sengaja TIDAK diterapkan di sini.
+    """
+    layer = pick_layer(src, None)
+    code_f, name_f = pick_fields(src, layer)
+    cols = [code_f] + [f for f in dict.fromkeys(name_f.values()) if f]
+    meta, fids, _, fields = ogr_read(src, layer=layer, columns=cols,
+                                     read_geometry=False, return_fids=True)
+    order = {str(f): i for i, f in enumerate(meta["fields"])}
+    col = lambda f: fields[order[f]] if f and f in order else None
+    src_code = col(code_f)
+    nm = {lvl: col(name_f[lvl]) for lvl in ("desa", "kec", "kab")}
+    txt = lambda arr, i: str(arr[i] or "").strip() if arr is not None else ""
+    idx = {}
+    for i, raw in enumerate(src_code):
+        c = digits(raw)
+        if len(c) != 10:
+            continue  # "Area Tidak Terdefinisi" dan sejenisnya
+        idx.setdefault(c, []).append((int(fids[i]), txt(nm["desa"], i), txt(nm["kec"], i), txt(nm["kab"], i)))
+    return layer, code_f, idx
+
+
+# Tambalan dibatalkan bila memotong poligon desa IDM lain sampai tersisa kurang
+# dari porsi ini — lebih baik satu desa tanpa poligon daripada menghapus desa lain.
+MIN_PARENT_LEFT = 0.02
+
+
+def apply_patch(psrc, player, pcode_f, pidx, want, codes, geoms, nd, nc, nk, idm_codes):
+    """Tambahkan poligon tambalan untuk kode `want` dan potong dari poligon RBI.
+
+    Poligon kelurahan (di luar IDM) boleh habis tertimpa; poligon desa IDM tidak.
+    Mengembalikan (entri laporan, entri yang dibatalkan); list codes/geoms/nd/nc/nk
+    diubah di tempat.
+    """
+    rows = [(c, r) for c in want for r in pidx[c]]
+    _, _, wkb, fields = ogr_read(psrc, layer=player, columns=[pcode_f], read_geometry=True,
+                                 force_2d=True, fids=[r[0] for _, r in rows])
+    pgeoms = make_valid(shapely.from_wkb(wkb))
+    # Kelompokkan per kode dari kolomnya sendiri — jangan bergantung urutan fid.
+    parts = {}
+    for raw, g in zip(fields[0], pgeoms):
+        if g is not None and not g.is_empty:
+            parts.setdefault(digits(raw), []).append(g)
+
+    tree = STRtree(list(geoms))
+    report, skipped = [], []
+    for code in want:
+        if code not in parts:
+            continue
+        P = parts[code][0] if len(parts[code]) == 1 else shapely.union_all(parts[code], grid_size=GRID)
+        if P is None or P.is_empty or P.area <= 0:
+            continue
+        _, desa, kec, kab = pidx[code][0]
+        cut, changes, conflict = [], {}, None
+        for i in tree.query(P, predicate="intersects"):
+            g = geoms[i]
+            if g is None or g.is_empty:
+                continue
+            try:
+                new = shapely.difference(g, P, grid_size=GRID)
+            except Exception:
+                new = shapely.difference(g, P)
+            removed = g.area - new.area
+            if removed <= 1e-12:
+                continue
+            left = new.area / g.area if g.area else 0
+            if codes[i] in idm_codes and left < MIN_PARENT_LEFT:
+                conflict = {"code": codes[i], "name": nd[i], "parent_left": round(left, 4)}
+                break
+            changes[i] = new
+            cut.append({"code": codes[i], "name": nd[i], "share_of_patch": round(removed / P.area, 4),
+                        "parent_left": round(left, 4)})
+        if conflict:
+            skipped.append({"code": code, "name": desa, "source": PATCH_LABEL,
+                            "reason": "akan menghapus poligon desa IDM lain", "conflict": conflict})
+            continue
+        for i, new in changes.items():
+            geoms[i] = new
+        codes.append(code); geoms.append(P); nd.append(desa); nc.append(kec); nk.append(kab)
+        cut.sort(key=lambda c: -c["share_of_patch"])
+        report.append({"code": code, "name": desa, "source": PATCH_LABEL, "cut_from": cut,
+                       "outside_rbi": round(max(0.0, 1 - sum(c["share_of_patch"] for c in cut)), 4)})
+
+    # Poligon RBI yang habis tertimpa tambalan tidak bisa digambar lagi.
+    for i in range(len(codes) - 1, -1, -1):
+        if geoms[i] is None or geoms[i].is_empty:
+            for e in report:
+                for c in e["cut_from"]:
+                    if c["code"] == codes[i]:
+                        c["parent_emptied"] = True
+            del codes[i], geoms[i], nd[i], nc[i], nk[i]
+    return report, skipped
 
 
 # ═══════════════════════════════════════════════════════════ LEVEL PROV ═════
@@ -476,6 +606,12 @@ def main():
     ap.add_argument("--target-kb", type=int, default=None)
     ap.add_argument("--no-remap", action="store_true",
                     help="jangan remap kode Papua (untuk membandingkan saja)")
+    ap.add_argument("--patch", default=DEFAULT_PATCH,
+                    help="sumber tambalan untuk desa IDM yang tak ada di --src "
+                         "(default: BATAS_DESAKEL_AR Juli 2026 di SHP GIS)")
+    ap.add_argument("--no-patch", action="store_true", help="bangun dari --src saja")
+    ap.add_argument("--idm-dir", default=os.path.join("data", "idm"),
+                    help="folder data IDM per tahun, sumber daftar kode desa yang dicari")
     args = ap.parse_args()
 
     # progres harus terlihat saat keluaran dialihkan ke berkas/pipe
@@ -503,7 +639,16 @@ def main():
     layer = pick_layer(src, args.layer)
     code_f, name_f = pick_fields(src, layer)
 
+    psrc = None
+    if not args.no_patch:
+        psrc = resolve(args.patch)
+        if not psrc:
+            print("PERINGATAN: sumber tambalan tidak ditemukan (%s) — lanjut tanpa tambalan.\n"
+                  "           Salin foldernya ke SHP GIS\\ atau pakai --patch <path>.\n" % args.patch)
+
     print("Sumber : %s" % src)
+    if psrc:
+        print("Tambal : %s" % psrc)
     print("Layer  : %s" % layer)
     print("Kolom  : kode=%s  nama=%s" % (code_f, name_f["desa"]))
     print("Keluar : %s" % outdir)
@@ -541,7 +686,29 @@ def main():
         print("  %s baris tanpa kode desa 10 digit — dilewati" % fmt(skipped))
     if remapped:
         print("  %s baris kode Papua diremap ke penomoran IDM 2024" % fmt(remapped))
+
+    wanted, pidx = {}, {}
+    if psrc:
+        t0 = time.time()
+        idm_dir = args.idm_dir if os.path.isabs(args.idm_dir) else os.path.join(ROOT, args.idm_dir)
+        wanted = wanted_codes(idm_dir)
+        if not wanted:
+            print("  PERINGATAN: %s kosong — jalankan build_idm.py dulu; tambalan dilewati." % idm_dir)
+        else:
+            player, pcode_f, pidx = patch_index(psrc)
+            print("Pindai tambalan: %s kode desa/kel  (%s)" % (fmt(len(pidx)), hhmmss(time.time() - t0)))
     print()
+
+    # laporan tambalan: pertahankan entri provinsi yang tidak dibangun ulang
+    rpath = os.path.join(outdir, "patch-report.json")
+    report = {}
+    if os.path.exists(rpath):
+        try:
+            with open(rpath, encoding="utf-8") as fh:
+                prev = json.load(fh)
+                report = {e["code"]: e for e in prev.get("desa", []) + prev.get("skipped", [])}
+        except Exception:
+            report = {}
 
     # ── manifest ────────────────────────────────────────────────────────────
     os.makedirs(outdir, exist_ok=True)
@@ -573,7 +740,24 @@ def main():
         nc = [str(nm_kec[i] or "").strip() if nm_kec is not None else "" for i in idx]
         nk = [str(nm_kab[i] or "").strip() if nm_kab is not None else "" for i in idx]
 
-        if "desa" in levels and write_level(outdir, "desa", pv, codes, geoms, nd, args):
+        patched = set()
+        for code in [c for c in report if c[:2] == pv]:
+            del report[code]
+        if pidx and pv in wanted:
+            want = sorted(c for c in wanted[pv] - set(codes) if c in pidx)
+            if want:
+                geoms = list(geoms)
+                done_p, skipped_p = apply_patch(psrc, player, pcode_f, pidx, want,
+                                                codes, geoms, nd, nc, nk, wanted[pv])
+                for e in done_p:
+                    report[e["code"]] = e
+                    patched.add(e["code"])
+                for e in skipped_p:
+                    report[e["code"]] = dict(e, skipped=True)
+                print("    tambal %s desa dari %s%s" % (fmt(len(patched)), PATCH_LABEL,
+                      "; %s dibatalkan (bentrok)" % fmt(len(skipped_p)) if skipped_p else ""))
+
+        if "desa" in levels and write_level(outdir, "desa", pv, codes, geoms, nd, args, patched):
             done["desa"].add(pv)
 
         if "kec" in levels or "kab" in levels:
@@ -597,6 +781,27 @@ def main():
             manifest[L] = sorted(done[L])
         with open(mpath, "w", encoding="utf-8") as fh:
             json.dump(manifest, fh, indent=2)
+
+    if psrc:
+        entries = [report[c] for c in sorted(report) if not report[c].get("skipped")]
+        skipped_all = [report[c] for c in sorted(report) if report[c].get("skipped")]
+        with open(rpath, "w", encoding="utf-8") as fh:
+            json.dump({
+                "source": PATCH_LABEL,
+                "note": "Desa IDM tanpa poligon di RBI Sep-2023 yang diisi dari sumber tambalan "
+                        "(cocok kode persis). cut_from = poligon RBI yang dipotong; "
+                        "share_of_patch = porsi luas tambalan yang semula milik poligon itu.",
+                "summary": {
+                    "patched": len(entries),
+                    "inside_rbi_parent": sum(1 for e in entries if e["cut_from"]),
+                    "no_overlap": sum(1 for e in entries if not e["cut_from"]),
+                    "parents_emptied": sum(1 for e in entries for c in e["cut_from"] if c.get("parent_emptied")),
+                    "skipped_conflict": len(skipped_all),
+                },
+                "desa": entries,
+                "skipped": skipped_all,
+            }, fh, ensure_ascii=False, indent=1)
+        print("\npatch-report.json: %s desa ditambal" % fmt(len(entries)))
 
     print()
     if want_prov:

@@ -1,0 +1,6662 @@
+{
+ "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+ "note": "Desa IDM tanpa poligon di RBI Sep-2023 yang diisi dari sumber tambalan (cocok kode persis). cut_from = poligon RBI yang dipotong; share_of_patch = porsi luas tambalan yang semula milik poligon itu.",
+ "summary": {
+  "patched": 288,
+  "inside_rbi_parent": 280,
+  "no_overlap": 8,
+  "parents_emptied": 1,
+  "skipped_conflict": 1
+ },
+ "desa": [
+  {
+   "code": "1110092009",
+   "name": "Mukti Lincer",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1110092008",
+     "name": "Sumber Mukti",
+     "share_of_patch": 0.5367,
+     "parent_left": 0.6395
+    },
+    {
+     "code": "1110132001",
+     "name": "Singkohor",
+     "share_of_patch": 0.4633,
+     "parent_left": 0.865
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1116062021",
+   "name": "Alur Mentawak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1116112002",
+     "name": "Rimba Sawang",
+     "share_of_patch": 0.5049,
+     "parent_left": 0.8485
+    },
+    {
+     "code": "1116062016",
+     "name": "Seumadam",
+     "share_of_patch": 0.4951,
+     "parent_left": 0.7282
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1116082017",
+   "name": "Mekar Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1116082007",
+     "name": "Durian",
+     "share_of_patch": 0.4169,
+     "parent_left": 0.9148
+    },
+    {
+     "code": "1116082008",
+     "name": "Rantau Pauh",
+     "share_of_patch": 0.3804,
+     "parent_left": 0.7898
+    },
+    {
+     "code": "1116082009",
+     "name": "Alur Cucur",
+     "share_of_patch": 0.1438,
+     "parent_left": 0.8503
+    },
+    {
+     "code": "1116082011",
+     "name": "Kebun Rantau",
+     "share_of_patch": 0.0589,
+     "parent_left": 0.9847
+    },
+    {
+     "code": "1116082010",
+     "name": "Pertamina",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1116112006",
+   "name": "Sumber Makmur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1116112003",
+     "name": "Tenggulun",
+     "share_of_patch": 0.9907,
+     "parent_left": 0.8798
+    },
+    {
+     "code": "1116112004",
+     "name": "Selamat",
+     "share_of_patch": 0.0066,
+     "parent_left": 0.9991
+    },
+    {
+     "code": "1116112005",
+     "name": "Simpang Kiri",
+     "share_of_patch": 0.0028,
+     "parent_left": 0.9942
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1173032022",
+   "name": "Seuneubok",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1173032021",
+     "name": "Blang Weu Baroh",
+     "share_of_patch": 0.8966,
+     "parent_left": 0.5248
+    },
+    {
+     "code": "1173012026",
+     "name": "Paloh Batee",
+     "share_of_patch": 0.0716,
+     "parent_left": 0.7987
+    },
+    {
+     "code": "1173032019",
+     "name": "Blang Weu Panjoe",
+     "share_of_patch": 0.029,
+     "parent_left": 0.9499
+    },
+    {
+     "code": "1173012015",
+     "name": "Paya Punteuet",
+     "share_of_patch": 0.002,
+     "parent_left": 0.9976
+    },
+    {
+     "code": "1173012009",
+     "name": "Lhok Mon Puteh",
+     "share_of_patch": 0.0006,
+     "parent_left": 0.9992
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1306012004",
+   "name": "Durian Kapeh Darussalam",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306012002",
+     "name": "Tiku Utara",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4088
+    },
+    {
+     "code": "1306022005",
+     "name": "Manggopoh",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306032011",
+   "name": "Dalko",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306032001",
+     "name": "Tanjung Sani",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.8338
+    },
+    {
+     "code": "1305092002",
+     "name": "Iii Koto Aur Malintang Utara",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1306032009",
+     "name": "Koto Malintang",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1305092003",
+     "name": "Iii Koto Aur Malintang Timur",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306082008",
+   "name": "Sungai Cubadak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306082002",
+     "name": "Tabek Panjang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8213
+    },
+    {
+     "code": "1306082005",
+     "name": "Padang Tarok",
+     "share_of_patch": 0.0002,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1306082001",
+     "name": "Koto Tinggi",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306082009",
+   "name": "Koto Gadang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306082001",
+     "name": "Koto Tinggi",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3837
+    },
+    {
+     "code": "1306142001",
+     "name": "Canduang Koto Laweh",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306102005",
+   "name": "Nan Limo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306102004",
+     "name": "Nan Tujuah",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.7102
+    },
+    {
+     "code": "1306112003",
+     "name": "Sungai Puar",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1306112004",
+     "name": "Ampek Koto Palembayan",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1306112002",
+     "name": "Sipinang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1306102002",
+     "name": "Pasia Laweh",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306112007",
+   "name": "Salareh Aia Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306112006",
+     "name": "Salareh Aia",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8006
+    },
+    {
+     "code": "1306112005",
+     "name": "Tigo Koto Silungkang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306112008",
+   "name": "Salareh Aia Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306112006",
+     "name": "Salareh Aia",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6582
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306112009",
+   "name": "Salareh Aia Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306112006",
+     "name": "Salareh Aia",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4939
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1306152004",
+   "name": "Kamang Tangah Anam Suku",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306152003",
+     "name": "Kamang Mudiak",
+     "share_of_patch": 0.9992,
+     "parent_left": 0.9292
+    },
+    {
+     "code": "1306152001",
+     "name": "Magek",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "1306152002",
+     "name": "Kamang Hilia",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1306152005",
+   "name": "Pauh Kamang Mudiak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1306152003",
+     "name": "Kamang Mudiak",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.4115
+    },
+    {
+     "code": "1306102002",
+     "name": "Pasia Laweh",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1307012004",
+     "name": "Suliki",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1306102001",
+     "name": "Koto Rantang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1308042007",
+   "name": "Koto Kaciak Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308042002",
+     "name": "Koto Kaciak",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1986
+    },
+    {
+     "code": "1308162001",
+     "name": "Alahan Mati",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1306112004",
+     "name": "Ampek Koto Palembayan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308042001",
+     "name": "Limo Koto",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052007",
+   "name": "Tanjuang Baringin Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052001",
+     "name": "Tanjuang Baringin",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.8466
+    },
+    {
+     "code": "1308132001",
+     "name": "Malampah",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308052002",
+     "name": "Jambak",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052008",
+   "name": "Tanjuang Baringin Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052001",
+     "name": "Tanjuang Baringin",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5712
+    },
+    {
+     "code": "1308162002",
+     "name": "Simpang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308132001",
+     "name": "Malampah",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052009",
+   "name": "Aia Manggih Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052005",
+     "name": "Aia Manggih",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8283
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052010",
+   "name": "Aia Manggih Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052005",
+     "name": "Aia Manggih",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3356
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052011",
+   "name": "Aia Manggih Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052005",
+     "name": "Aia Manggih",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5092
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052012",
+   "name": "Sundata Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052006",
+     "name": "Sundata",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6893
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308052013",
+   "name": "Sundata Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308052006",
+     "name": "Sundata",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2539
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308072005",
+   "name": "Panti Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308072001",
+     "name": "Panti",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7307
+    },
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 0.0002,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308082006",
+   "name": "Muaro Tais Koto Gadang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308082001",
+     "name": "Muara Tais",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4796
+    },
+    {
+     "code": "1308182001",
+     "name": "Koto Nopan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308122003",
+   "name": "Simpang Tonang Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308122001",
+     "name": "Simpang Tonang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9099
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308122004",
+   "name": "Simpang Tonang Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308122001",
+     "name": "Simpang Tonang",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.1926
+    },
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1312062002",
+     "name": "Rabi Jonggor",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308122005",
+   "name": "Cubadak Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 0.5799,
+     "parent_left": 0.9568
+    },
+    {
+     "code": "1308072004",
+     "name": "Panti Selatan",
+     "share_of_patch": 0.42,
+     "parent_left": 0.9403
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1308122006",
+   "name": "Cubadak Tengah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8368
+    },
+    {
+     "code": "1308122001",
+     "name": "Simpang Tonang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308122007",
+   "name": "Cubadak Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 0.9592,
+     "parent_left": 0.2974
+    },
+    {
+     "code": "1308122001",
+     "name": "Simpang Tonang",
+     "share_of_patch": 0.0408,
+     "parent_left": 0.7578
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308132004",
+   "name": "Malampah Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308132001",
+     "name": "Malampah",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4725
+    },
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308132005",
+   "name": "Ladang Panjang Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308132002",
+     "name": "Ladang Panjang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6002
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308142008",
+   "name": "Taruang Taruang Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308142002",
+     "name": "Taruang Taruang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4368
+    },
+    {
+     "code": "1308192002",
+     "name": "Lubuak Layang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308142009",
+   "name": "Taruang Taruang Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308142002",
+     "name": "Taruang Taruang",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.9367
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1308142010",
+   "name": "Padang Mantinggi Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308142005",
+     "name": "Padang Mantinggi",
+     "share_of_patch": 1.0,
+     "parent_left": 0.449
+    },
+    {
+     "code": "1308182003",
+     "name": "Languang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308162003",
+   "name": "Alahan Mati Hilia",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308162001",
+     "name": "Alahan Mati",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4233
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308162004",
+   "name": "Simpang Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308162002",
+     "name": "Simpang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3643
+    },
+    {
+     "code": "1308132002",
+     "name": "Ladang Panjang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308192004",
+   "name": "Lansek Kadok Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308192001",
+     "name": "Lansek Kadok",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2217
+    },
+    {
+     "code": "1308122002",
+     "name": "Cubadak",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308122001",
+     "name": "Simpang Tonang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308192003",
+     "name": "Tanjung Betung",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1308192005",
+   "name": "Tanjung Betung Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308192003",
+     "name": "Tanjung Betung",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.9061
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1308192006",
+   "name": "Tanjung Betung Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1308192003",
+     "name": "Tanjung Betung",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3476
+    },
+    {
+     "code": "1308152001",
+     "name": "Silayang",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1308192001",
+     "name": "Lansek Kadok",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022002",
+   "name": "Brastagi Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 0.9992,
+     "parent_left": 0.9908
+    }
+   ],
+   "outside_rbi": 0.0008
+  },
+  {
+   "code": "1312022003",
+   "name": "Tampus Damai Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.9532
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0003,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022004",
+   "name": "Taluak Ambun Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 1.0002,
+     "parent_left": 0.9978
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022005",
+   "name": "Koto Gunung Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.9103
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022006",
+   "name": "Koto Sawah Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9002
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022007",
+   "name": "Salido Saroha Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 1.0,
+     "parent_left": 0.862
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312022008",
+   "name": "Kuamang Alai Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312022001",
+     "name": "Ujung Gading",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.9436
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312032007",
+   "name": "Lingkuang Aua Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.927
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032008",
+   "name": "Lingkuang Aua Baru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7638
+    },
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1312032006",
+     "name": "Aia Gadang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032009",
+   "name": "Lingkuang Aua Bandarajo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.9627
+    }
+   ],
+   "outside_rbi": 0.0003
+  },
+  {
+   "code": "1312032010",
+   "name": "Lingkuang Aua Jambak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0002,
+     "parent_left": 0.9364
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032011",
+   "name": "Lingkuang Aua Koto Dalam",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9532
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032012",
+   "name": "Lingkuang Aua Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7698
+    },
+    {
+     "code": "1312102002",
+     "name": "Kapa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1312032006",
+     "name": "Aia Gadang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032013",
+   "name": "Lingkuang Aua Hilia",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.099
+    },
+    {
+     "code": "1312102002",
+     "name": "Kapa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032014",
+   "name": "Sukomananti Aua Kuniang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8864
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032015",
+   "name": "Aia Gadang Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032006",
+     "name": "Aia Gadang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7979
+    },
+    {
+     "code": "1312032003",
+     "name": "Lingkuang Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032016",
+   "name": "Aia Gadang Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032006",
+     "name": "Aia Gadang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2223
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032017",
+   "name": "Pinaga Aua Kuniang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7051
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032018",
+   "name": "Lubuak Landua Aua Kuniang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.537
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312032019",
+   "name": "Lembah Binuang Aua Kuniang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312032004",
+     "name": "Aua Kuniang",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4986
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312042004",
+   "name": "Simpang Timbo Abu Kajai",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312042001",
+     "name": "Kajai",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.8596
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312042005",
+   "name": "Kajai Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312042001",
+     "name": "Kajai",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7461
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312042006",
+   "name": "Sungai Janiah Talu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312042002",
+     "name": "Talu",
+     "share_of_patch": 0.9995,
+     "parent_left": 0.9777
+    }
+   ],
+   "outside_rbi": 0.0005
+  },
+  {
+   "code": "1312042007",
+   "name": "Tabek Sirah Talu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312042002",
+     "name": "Talu",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9236
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052003",
+   "name": "Ampek Koto",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9563
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052004",
+   "name": "Ampek Koto Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9594
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052005",
+   "name": "Bancah Kariang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9672
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052006",
+   "name": "Mudiak Labuah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.9908
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312052007",
+   "name": "Tandikek",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9751
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052008",
+   "name": "Langgam Sepakat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9579
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052009",
+   "name": "Langgam Saiyo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9626
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052010",
+   "name": "Anam Koto Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.868
+    },
+    {
+     "code": "1306112006",
+     "name": "Salareh Aia",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052011",
+   "name": "Sigunanti",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8618
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052012",
+   "name": "Koto Gadang Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9499
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052013",
+   "name": "Anam Koto Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8481
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052014",
+   "name": "Bandua Balai",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.8002
+    },
+    {
+     "code": "1308132002",
+     "name": "Ladang Panjang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312052015",
+   "name": "Bunuik",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9233
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052016",
+   "name": "Padang Canduh",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9723
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312052017",
+   "name": "Limau Purut",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 1.0,
+     "parent_left": 0.9412
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312062003",
+   "name": "Seberang Kenaikan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312062002",
+     "name": "Rabi Jonggor",
+     "share_of_patch": 1.0,
+     "parent_left": 0.765
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312062004",
+   "name": "Bahoras",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312062002",
+     "name": "Rabi Jonggor",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1012
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312062005",
+   "name": "Ranah Sungai Magelang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312062002",
+     "name": "Rabi Jonggor",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1732
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312062006",
+   "name": "Muaro Kiawai Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312062001",
+     "name": "Muaro Kiawai",
+     "share_of_patch": 1.0,
+     "parent_left": 0.768
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312062007",
+   "name": "Muaro Kiawai Hilir",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312062001",
+     "name": "Muaro Kiawai",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4066
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312072003",
+   "name": "Batahan Utara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312072001",
+     "name": "Batahan",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6413
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312072004",
+   "name": "Batahan Tengah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312072001",
+     "name": "Batahan",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.6418
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312072005",
+   "name": "Batahan Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312072001",
+     "name": "Batahan",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4767
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312072006",
+   "name": "Batahan Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312072001",
+     "name": "Batahan",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.209
+    },
+    {
+     "code": "1312012001",
+     "name": "Aia Bangih",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312072007",
+   "name": "Desa Baru Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312072002",
+     "name": "Desa Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2714
+    },
+    {
+     "code": "1312012001",
+     "name": "Aia Bangih",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312082002",
+   "name": "Koto Tangah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312082001",
+     "name": "Parit",
+     "share_of_patch": 1.0,
+     "parent_left": 0.84
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312082003",
+   "name": "Koto Tuo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312082001",
+     "name": "Parit",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7988
+    },
+    {
+     "code": "1312012001",
+     "name": "Aia Bangih",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312082004",
+   "name": "Koto Nan Duo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312082001",
+     "name": "Parit",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7248
+    },
+    {
+     "code": "1312012001",
+     "name": "Aia Bangih",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1312072001",
+     "name": "Batahan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312082005",
+   "name": "Pematang Panjang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312082001",
+     "name": "Parit",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5179
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312082006",
+   "name": "Ranah Koto Tinggi",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312082001",
+     "name": "Parit",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.4624
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1312092002",
+   "name": "Salingka Muaro",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.894
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1312092003",
+   "name": "Ranah Malintang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6794
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312092004",
+   "name": "Ranah Air Haji",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7495
+    },
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312092005",
+   "name": "Kasikputih Sungaitanang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8675
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312092006",
+   "name": "Aua Serumpun",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8166
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312092007",
+   "name": "Sikilang Sungai Aur Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.9987,
+     "parent_left": 0.5108
+    },
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0013
+  },
+  {
+   "code": "1312102003",
+   "name": "Giri Maju",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6881
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312102004",
+   "name": "Ophir",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8408
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312102005",
+   "name": "Mahakarya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.7813
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312102006",
+   "name": "Sariak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7673
+    },
+    {
+     "code": "1312052001",
+     "name": "Kinali",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312102007",
+   "name": "Sungai Talang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 0.9992,
+     "parent_left": 0.638
+    },
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1312102002",
+     "name": "Kapa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0008
+  },
+  {
+   "code": "1312102008",
+   "name": "Jambak Selatan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.695
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312102009",
+   "name": "Pujorahayu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312102001",
+     "name": "Koto Baru",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5283
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312112002",
+   "name": "Padang Harapan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8666
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1312112003",
+   "name": "Ranah Pasisie",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 0.9875,
+     "parent_left": 0.9349
+    }
+   ],
+   "outside_rbi": 0.0125
+  },
+  {
+   "code": "1312112004",
+   "name": "Maligi",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1312112001",
+     "name": "Sasak",
+     "share_of_patch": 0.9994,
+     "parent_left": 0.3312
+    },
+    {
+     "code": "1312092001",
+     "name": "Sungai Aua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0006
+  },
+  {
+   "code": "1509022018",
+   "name": "Kemantan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509022002",
+     "name": "Sungai Aro",
+     "share_of_patch": 0.5235,
+     "parent_left": 0.7637
+    },
+    {
+     "code": "1509021001",
+     "name": "Sungai Bengkal",
+     "share_of_patch": 0.4447,
+     "parent_left": 0.8913
+    },
+    {
+     "code": "1509022014",
+     "name": "Kunangan",
+     "share_of_patch": 0.0313,
+     "parent_left": 0.9953
+    },
+    {
+     "code": "1509022017",
+     "name": "Sungai Bengkal Barat",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.9996
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509042011",
+   "name": "Mekar Kencana",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042006",
+     "name": "Tirta Kencana",
+     "share_of_patch": 0.9973,
+     "parent_left": 0.6271
+    },
+    {
+     "code": "1509042005",
+     "name": "Tegal Arum",
+     "share_of_patch": 0.001,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "1509042004",
+     "name": "Purwo Harjo",
+     "share_of_patch": 0.0009,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "1509082008",
+     "name": "Sepakat Bersatu",
+     "share_of_patch": 0.0007,
+     "parent_left": 0.9992
+    },
+    {
+     "code": "1509082004",
+     "name": "Karang Dadi",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1509042007",
+     "name": "Sapta Mulia",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509042012",
+   "name": "Purwo Dadi",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042004",
+     "name": "Purwo Harjo",
+     "share_of_patch": 0.9804,
+     "parent_left": 0.6677
+    },
+    {
+     "code": "1509042005",
+     "name": "Tegal Arum",
+     "share_of_patch": 0.0122,
+     "parent_left": 0.9961
+    },
+    {
+     "code": "1509042006",
+     "name": "Tirta Kencana",
+     "share_of_patch": 0.0075,
+     "parent_left": 0.9964
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1509042013",
+   "name": "Tegal Asri",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042005",
+     "name": "Tegal Arum",
+     "share_of_patch": 0.8801,
+     "parent_left": 0.6868
+    },
+    {
+     "code": "1509042004",
+     "name": "Purwo Harjo",
+     "share_of_patch": 0.0847,
+     "parent_left": 0.952
+    },
+    {
+     "code": "1509042006",
+     "name": "Tirta Kencana",
+     "share_of_patch": 0.0351,
+     "parent_left": 0.9812
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509042014",
+   "name": "Perintis Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042002",
+     "name": "Perintis",
+     "share_of_patch": 0.9766,
+     "parent_left": 0.7522
+    },
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.0142,
+     "parent_left": 0.9969
+    },
+    {
+     "code": "1509042004",
+     "name": "Purwo Harjo",
+     "share_of_patch": 0.0076,
+     "parent_left": 0.9966
+    },
+    {
+     "code": "1509041001",
+     "name": "Wirotho Agung",
+     "share_of_patch": 0.0016,
+     "parent_left": 0.9994
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1509042015",
+   "name": "Perintis Makmur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042002",
+     "name": "Perintis",
+     "share_of_patch": 0.955,
+     "parent_left": 0.6837
+    },
+    {
+     "code": "1509042004",
+     "name": "Purwo Harjo",
+     "share_of_patch": 0.0316,
+     "parent_left": 0.9862
+    },
+    {
+     "code": "1509072003",
+     "name": "Sumber Sari",
+     "share_of_patch": 0.0132,
+     "parent_left": 0.9974
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1509042016",
+   "name": "Jaya Mulya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509042003",
+     "name": "Rimbo Mulyo",
+     "share_of_patch": 0.924,
+     "parent_left": 0.5421
+    },
+    {
+     "code": "1509042006",
+     "name": "Tirta Kencana",
+     "share_of_patch": 0.0595,
+     "parent_left": 0.9668
+    },
+    {
+     "code": "1509072006",
+     "name": "Suka Maju",
+     "share_of_patch": 0.0159,
+     "parent_left": 0.9931
+    },
+    {
+     "code": "1509042007",
+     "name": "Sapta Mulia",
+     "share_of_patch": 0.0009,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "1509041001",
+     "name": "Wirotho Agung",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1509072007",
+   "name": "Mekar Sari",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072003",
+     "name": "Sumber Sari",
+     "share_of_patch": 0.9933,
+     "parent_left": 0.7305
+    },
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.0066,
+     "parent_left": 0.9981
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509072008",
+   "name": "Wana Arum",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.8731,
+     "parent_left": 0.6523
+    },
+    {
+     "code": "1509072001",
+     "name": "Suka Damai",
+     "share_of_patch": 0.1226,
+     "parent_left": 0.9415
+    },
+    {
+     "code": "1509072003",
+     "name": "Sumber Sari",
+     "share_of_patch": 0.0042,
+     "parent_left": 0.9978
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509072009",
+   "name": "Wana Mulya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.9354,
+     "parent_left": 0.6017
+    },
+    {
+     "code": "1509041001",
+     "name": "Wirotho Agung",
+     "share_of_patch": 0.0504,
+     "parent_left": 0.9772
+    },
+    {
+     "code": "1509072001",
+     "name": "Suka Damai",
+     "share_of_patch": 0.0077,
+     "parent_left": 0.9973
+    },
+    {
+     "code": "1509042002",
+     "name": "Perintis",
+     "share_of_patch": 0.0064,
+     "parent_left": 0.996
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509072010",
+   "name": "Damai Makmur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072001",
+     "name": "Suka Damai",
+     "share_of_patch": 0.963,
+     "parent_left": 0.4815
+    },
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.0145,
+     "parent_left": 0.9844
+    },
+    {
+     "code": "1509072005",
+     "name": "Sungai Pandan",
+     "share_of_patch": 0.0114,
+     "parent_left": 0.9903
+    },
+    {
+     "code": "1509072006",
+     "name": "Suka Maju",
+     "share_of_patch": 0.0097,
+     "parent_left": 0.994
+    },
+    {
+     "code": "1509072004",
+     "name": "Sido Rukun",
+     "share_of_patch": 0.0013,
+     "parent_left": 0.9994
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1509072011",
+   "name": "Suka Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072006",
+     "name": "Suka Maju",
+     "share_of_patch": 0.9407,
+     "parent_left": 0.5554
+    },
+    {
+     "code": "1509072005",
+     "name": "Sungai Pandan",
+     "share_of_patch": 0.043,
+     "parent_left": 0.9716
+    },
+    {
+     "code": "1509072001",
+     "name": "Suka Damai",
+     "share_of_patch": 0.0163,
+     "parent_left": 0.9861
+    },
+    {
+     "code": "1508172002",
+     "name": "Tanah Periuk",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1509072012",
+   "name": "Sido Mulyo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509072004",
+     "name": "Sido Rukun",
+     "share_of_patch": 0.8488,
+     "parent_left": 0.3665
+    },
+    {
+     "code": "1509072005",
+     "name": "Sungai Pandan",
+     "share_of_patch": 0.1135,
+     "parent_left": 0.8267
+    },
+    {
+     "code": "1509072002",
+     "name": "Wana Reja",
+     "share_of_patch": 0.0304,
+     "parent_left": 0.943
+    },
+    {
+     "code": "1509072001",
+     "name": "Suka Damai",
+     "share_of_patch": 0.0073,
+     "parent_left": 0.9857
+    },
+    {
+     "code": "1508172009",
+     "name": "Pematang Panjang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1508162003",
+     "name": "Pulau Batu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1509082010",
+   "name": "Giri Mulyo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509082001",
+     "name": "Giriwinangun",
+     "share_of_patch": 0.8407,
+     "parent_left": 0.7023
+    },
+    {
+     "code": "1509082009",
+     "name": "Rantau Kembang",
+     "share_of_patch": 0.1547,
+     "parent_left": 0.8062
+    },
+    {
+     "code": "1509032019",
+     "name": "Teluk Pandan Rambahan",
+     "share_of_patch": 0.0038,
+     "parent_left": 0.9923
+    },
+    {
+     "code": "1509082006",
+     "name": "Sumber Agung",
+     "share_of_patch": 0.0006,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1509092006",
+   "name": "Lubuk Mandarsah Ulu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1509092005",
+     "name": "Lubuk Mandarsah",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7524
+    },
+    {
+     "code": "1506082007",
+     "name": "Muara Danau",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1606022016",
+   "name": "Epil Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1606022007",
+     "name": "Epil",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4978
+    },
+    {
+     "code": "1606142013",
+     "name": "Supat Timur",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1606012004",
+     "name": "Muara Teladan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1606062043",
+   "name": "Toman Baru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1606042006",
+     "name": "Lubuk Buah",
+     "share_of_patch": 0.4845,
+     "parent_left": 0.7821
+    },
+    {
+     "code": "1606062007",
+     "name": "Bangun Sari",
+     "share_of_patch": 0.1634,
+     "parent_left": 0.7001
+    },
+    {
+     "code": "1606062008",
+     "name": "Toman",
+     "share_of_patch": 0.1563,
+     "parent_left": 0.7045
+    },
+    {
+     "code": "1606062009",
+     "name": "Kasmaran",
+     "share_of_patch": 0.1404,
+     "parent_left": 0.8592
+    },
+    {
+     "code": "1606042007",
+     "name": "Sungai Napal",
+     "share_of_patch": 0.0553,
+     "parent_left": 0.9684
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "1809022020",
+   "name": "Pujodadi",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1809022006",
+     "name": "Ponco Kresno",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4993
+    },
+    {
+     "code": "1810072005",
+     "name": "Sukoharum",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1809022021",
+   "name": "Grujugan Baru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1809022012",
+     "name": "Rowo Rejo",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.2884
+    },
+    {
+     "code": "1810082015",
+     "name": "Panggung Rejo Utara",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1810082006",
+     "name": "Panggungrejo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1809052032",
+   "name": "Dantar",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1809052011",
+     "name": "Padang Cermin",
+     "share_of_patch": 0.8771,
+     "parent_left": 0.5331
+    },
+    {
+     "code": "1809052012",
+     "name": "Sanggi",
+     "share_of_patch": 0.0982,
+     "parent_left": 0.6851
+    },
+    {
+     "code": "1809102002",
+     "name": "Cilimus",
+     "share_of_patch": 0.0142,
+     "parent_left": 0.9776
+    },
+    {
+     "code": "1809102001",
+     "name": "Batu Menyan",
+     "share_of_patch": 0.0105,
+     "parent_left": 0.9806
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1809112011",
+   "name": "Kalirejo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1809112003",
+     "name": "Wates Way Ratai",
+     "share_of_patch": 0.9466,
+     "parent_left": 0.5491
+    },
+    {
+     "code": "1809112002",
+     "name": "Bunut Seberang",
+     "share_of_patch": 0.0524,
+     "parent_left": 0.9882
+    },
+    {
+     "code": "1809112005",
+     "name": "Sumber Jaya",
+     "share_of_patch": 0.0008,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "1809112004",
+     "name": "Ceringin Asri",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1812012020",
+   "name": "Marga Asri",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812011001",
+     "name": "Mulyo Asri",
+     "share_of_patch": 0.8699,
+     "parent_left": 0.7062
+    },
+    {
+     "code": "1812022003",
+     "name": "Margo Mulyo",
+     "share_of_patch": 0.1229,
+     "parent_left": 0.951
+    },
+    {
+     "code": "1812012012",
+     "name": "Tunas Asri",
+     "share_of_patch": 0.0068,
+     "parent_left": 0.9963
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "1812012021",
+   "name": "Mekar Asri",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812011001",
+     "name": "Mulyo Asri",
+     "share_of_patch": 0.9909,
+     "parent_left": 0.5621
+    },
+    {
+     "code": "1812012012",
+     "name": "Tunas Asri",
+     "share_of_patch": 0.009,
+     "parent_left": 0.9955
+    },
+    {
+     "code": "1802132001",
+     "name": "Gunung Batin Udik",
+     "share_of_patch": 0.0008,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1812032010",
+   "name": "Kagungan Ratu Agung",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812032007",
+     "name": "Kagungan Ratu",
+     "share_of_patch": 0.9919,
+     "parent_left": 0.7864
+    },
+    {
+     "code": "1812012009",
+     "name": "Pulung Kencana",
+     "share_of_patch": 0.0079,
+     "parent_left": 0.9978
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "1812032011",
+   "name": "Gading Kencana",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812032008",
+     "name": "Marga Kencana",
+     "share_of_patch": 0.9961,
+     "parent_left": 0.4954
+    },
+    {
+     "code": "1812022006",
+     "name": "Daya Asri",
+     "share_of_patch": 0.0037,
+     "parent_left": 0.9958
+    },
+    {
+     "code": "1812032003",
+     "name": "Karta Raharja",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "1812032001",
+     "name": "Karta",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1812032002",
+     "name": "Karta Sari",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1812021001",
+     "name": "Daya Murni",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1812032012",
+   "name": "Karta Raya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812032009",
+     "name": "Way Sido",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.6127
+    },
+    {
+     "code": "1812032003",
+     "name": "Karta Raharja",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1812032013",
+   "name": "Karta Tanjung Selamat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812032001",
+     "name": "Karta",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7836
+    },
+    {
+     "code": "1803152001",
+     "name": "Negeri Ujung Karang",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "1812032009",
+     "name": "Way Sido",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "1812062010",
+   "name": "Sido Agung",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "1812062001",
+     "name": "Agung Jaya",
+     "share_of_patch": 0.7527,
+     "parent_left": 0.6794
+    },
+    {
+     "code": "1812042008",
+     "name": "Gunung Agung",
+     "share_of_patch": 0.2408,
+     "parent_left": 0.8973
+    },
+    {
+     "code": "1812072007",
+     "name": "Kibang Yekti Jaya",
+     "share_of_patch": 0.0054,
+     "parent_left": 0.9973
+    },
+    {
+     "code": "1812072008",
+     "name": "Kibang Tri Jaya",
+     "share_of_patch": 0.0011,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "1805082023",
+     "name": "Warga Indah Jaya",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "3305112001",
+   "name": "Bojongsari",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "3305102019",
+     "name": "Karangsari",
+     "share_of_patch": 0.8853,
+     "parent_left": 0.4624
+    },
+    {
+     "code": "3305112002",
+     "name": "Surotrunan",
+     "share_of_patch": 0.1042,
+     "parent_left": 0.8763
+    },
+    {
+     "code": "3305122019",
+     "name": "Bandung",
+     "share_of_patch": 0.0097,
+     "parent_left": 0.9766
+    },
+    {
+     "code": "3305122018",
+     "name": "Tanahsari",
+     "share_of_patch": 0.0009,
+     "parent_left": 0.9987
+    },
+    {
+     "code": "3305252001",
+     "name": "Jatipurus",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "3305252010",
+     "name": "Soka",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "3327032013",
+   "name": "Sodong Basari",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "3327032011",
+     "name": "Sikasur",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4769
+    },
+    {
+     "code": "3327032012",
+     "name": "Kalisaleh",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "3501102017",
+   "name": "Ketro Harjo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "3501102016",
+     "name": "Ketro",
+     "share_of_patch": 0.9801,
+     "parent_left": 0.5745
+    },
+    {
+     "code": "3501092005",
+     "name": "Pucangombo",
+     "share_of_patch": 0.0199,
+     "parent_left": 0.9904
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202032011",
+   "name": "Lendang Tampel",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202032008",
+     "name": "Beber",
+     "share_of_patch": 0.994,
+     "parent_left": 0.4041
+    },
+    {
+     "code": "5202032005",
+     "name": "Aik Darek",
+     "share_of_patch": 0.0024,
+     "parent_left": 0.9978
+    },
+    {
+     "code": "5202032010",
+     "name": "Mekar Bersatu",
+     "share_of_patch": 0.0023,
+     "parent_left": 0.9946
+    },
+    {
+     "code": "5202082002",
+     "name": "Sepakek",
+     "share_of_patch": 0.0012,
+     "parent_left": 0.9988
+    },
+    {
+     "code": "5202032007",
+     "name": "Barabali",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5202032004",
+     "name": "Mantang",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202042017",
+   "name": "Dadap",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202042003",
+     "name": "Sukadana",
+     "share_of_patch": 0.9697,
+     "parent_left": 0.4954
+    },
+    {
+     "code": "5202042004",
+     "name": "Teruwai",
+     "share_of_patch": 0.0266,
+     "parent_left": 0.9935
+    },
+    {
+     "code": "5202042007",
+     "name": "Gapura",
+     "share_of_patch": 0.0038,
+     "parent_left": 0.997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202042018",
+   "name": "Kerame Jati",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202042012",
+     "name": "Mertak",
+     "share_of_patch": 0.9756,
+     "parent_left": 0.5354
+    },
+    {
+     "code": "5202052004",
+     "name": "Kateng",
+     "share_of_patch": 0.0125,
+     "parent_left": 0.993
+    },
+    {
+     "code": "5202042011",
+     "name": "Tumpak",
+     "share_of_patch": 0.0058,
+     "parent_left": 0.9948
+    },
+    {
+     "code": "5202042005",
+     "name": "Pengengat",
+     "share_of_patch": 0.0053,
+     "parent_left": 0.9976
+    },
+    {
+     "code": "5202042008",
+     "name": "Rembitan",
+     "share_of_patch": 0.001,
+     "parent_left": 0.9994
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202062011",
+   "name": "Beleke Daye",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202062002",
+     "name": "Beleka",
+     "share_of_patch": 0.7606,
+     "parent_left": 0.6964
+    },
+    {
+     "code": "5202072004",
+     "name": "Loang Maka",
+     "share_of_patch": 0.2035,
+     "parent_left": 0.9331
+    },
+    {
+     "code": "5202072005",
+     "name": "Saba",
+     "share_of_patch": 0.0358,
+     "parent_left": 0.9871
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5202062012",
+   "name": "Beleke Lebe Sane",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202062002",
+     "name": "Beleka",
+     "share_of_patch": 0.67,
+     "parent_left": 0.5703
+    },
+    {
+     "code": "5202062008",
+     "name": "Ganti",
+     "share_of_patch": 0.3197,
+     "parent_left": 0.9243
+    },
+    {
+     "code": "5202072001",
+     "name": "Lekor",
+     "share_of_patch": 0.0101,
+     "parent_left": 0.9965
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5202062013",
+   "name": "Pegonak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202062008",
+     "name": "Ganti",
+     "share_of_patch": 0.8926,
+     "parent_left": 0.8054
+    },
+    {
+     "code": "5202062002",
+     "name": "Beleka",
+     "share_of_patch": 0.0779,
+     "parent_left": 0.9254
+    },
+    {
+     "code": "5202062006",
+     "name": "Sengkerang",
+     "share_of_patch": 0.0296,
+     "parent_left": 0.989
+    },
+    {
+     "code": "5202072004",
+     "name": "Loang Maka",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202062014",
+   "name": "Jero Puri",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202062008",
+     "name": "Ganti",
+     "share_of_patch": 0.9338,
+     "parent_left": 0.6294
+    },
+    {
+     "code": "5202062003",
+     "name": "Semoyang",
+     "share_of_patch": 0.0477,
+     "parent_left": 0.9798
+    },
+    {
+     "code": "5202062005",
+     "name": "Landah",
+     "share_of_patch": 0.0182,
+     "parent_left": 0.9841
+    },
+    {
+     "code": "5202062006",
+     "name": "Sengkerang",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5202072013",
+   "name": "Prako",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202072004",
+     "name": "Loang Maka",
+     "share_of_patch": 0.9587,
+     "parent_left": 0.7644
+    },
+    {
+     "code": "5202102009",
+     "name": "Kelebuh",
+     "share_of_patch": 0.0335,
+     "parent_left": 0.9933
+    },
+    {
+     "code": "5202062006",
+     "name": "Sengkerang",
+     "share_of_patch": 0.0076,
+     "parent_left": 0.9979
+    },
+    {
+     "code": "5202072002",
+     "name": "Langko",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5202062002",
+     "name": "Beleka",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202072014",
+   "name": "Tibu Sisok",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202072004",
+     "name": "Loang Maka",
+     "share_of_patch": 0.886,
+     "parent_left": 0.718
+    },
+    {
+     "code": "5202072012",
+     "name": "Setuta",
+     "share_of_patch": 0.114,
+     "parent_left": 0.9378
+    },
+    {
+     "code": "5202072002",
+     "name": "Langko",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202072015",
+   "name": "Janggawana",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202072005",
+     "name": "Saba",
+     "share_of_patch": 0.9432,
+     "parent_left": 0.6639
+    },
+    {
+     "code": "5202072011",
+     "name": "Jango",
+     "share_of_patch": 0.0558,
+     "parent_left": 0.949
+    },
+    {
+     "code": "5202072001",
+     "name": "Lekor",
+     "share_of_patch": 0.001,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202072016",
+   "name": "Lingkok Berenge",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202072005",
+     "name": "Saba",
+     "share_of_patch": 0.9743,
+     "parent_left": 0.5293
+    },
+    {
+     "code": "5202072001",
+     "name": "Lekor",
+     "share_of_patch": 0.0168,
+     "parent_left": 0.9955
+    },
+    {
+     "code": "5202062002",
+     "name": "Beleka",
+     "share_of_patch": 0.0088,
+     "parent_left": 0.9915
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5202092012",
+   "name": "Berinding",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202092005",
+     "name": "Kopang Rembiga",
+     "share_of_patch": 0.7991,
+     "parent_left": 0.6627
+    },
+    {
+     "code": "5202092007",
+     "name": "Montong Gamang",
+     "share_of_patch": 0.1018,
+     "parent_left": 0.9481
+    },
+    {
+     "code": "5202092006",
+     "name": "Dasan Baru",
+     "share_of_patch": 0.0992,
+     "parent_left": 0.952
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202092013",
+   "name": "Pajangan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202092006",
+     "name": "Dasan Baru",
+     "share_of_patch": 0.9812,
+     "parent_left": 0.6515
+    },
+    {
+     "code": "5202092007",
+     "name": "Montong Gamang",
+     "share_of_patch": 0.009,
+     "parent_left": 0.9966
+    },
+    {
+     "code": "5202092005",
+     "name": "Kopang Rembiga",
+     "share_of_patch": 0.0079,
+     "parent_left": 0.9965
+    },
+    {
+     "code": "5202072007",
+     "name": "Durian",
+     "share_of_patch": 0.0014,
+     "parent_left": 0.9988
+    },
+    {
+     "code": "5202092008",
+     "name": "Darmaji",
+     "share_of_patch": 0.0005,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202102013",
+   "name": "Lelong",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202102009",
+     "name": "Kelebuh",
+     "share_of_patch": 0.8949,
+     "parent_left": 0.6359
+    },
+    {
+     "code": "5202062004",
+     "name": "Mujur",
+     "share_of_patch": 0.0807,
+     "parent_left": 0.9561
+    },
+    {
+     "code": "5202062006",
+     "name": "Sengkerang",
+     "share_of_patch": 0.0206,
+     "parent_left": 0.9886
+    },
+    {
+     "code": "5202072004",
+     "name": "Loang Maka",
+     "share_of_patch": 0.0023,
+     "parent_left": 0.9979
+    },
+    {
+     "code": "5202072002",
+     "name": "Langko",
+     "share_of_patch": 0.0014,
+     "parent_left": 0.9983
+    },
+    {
+     "code": "5202062001",
+     "name": "Sukaraja",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5202112012",
+   "name": "Pandan Tinggang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5202112010",
+     "name": "Batu Jangkih",
+     "share_of_patch": 0.8177,
+     "parent_left": 0.7969
+    },
+    {
+     "code": "5202052003",
+     "name": "Mangkung",
+     "share_of_patch": 0.1823,
+     "parent_left": 0.977
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5207022021",
+   "name": "Lamunga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5207022015",
+     "name": "Batu Putih",
+     "share_of_patch": 0.9903,
+     "parent_left": 0.5956
+    },
+    {
+     "code": "5207032008",
+     "name": "Kelanir",
+     "share_of_patch": 0.0041,
+     "parent_left": 0.998
+    },
+    {
+     "code": "5207021008",
+     "name": "Sampir",
+     "share_of_patch": 0.0021,
+     "parent_left": 0.9989
+    },
+    {
+     "code": "5207032001",
+     "name": "Meraran",
+     "share_of_patch": 0.0013,
+     "parent_left": 0.9988
+    },
+    {
+     "code": "5207022014",
+     "name": "Banjar",
+     "share_of_patch": 0.0011,
+     "parent_left": 0.9989
+    },
+    {
+     "code": "5207021006",
+     "name": "Bugis",
+     "share_of_patch": 0.0008,
+     "parent_left": 0.9968
+    },
+    {
+     "code": "5207021007",
+     "name": "Dalam",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307012017",
+   "name": "Begu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012003",
+     "name": "Wolowiro",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.7572
+    },
+    {
+     "code": "5307012004",
+     "name": "Mbengu",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307012012",
+     "name": "Mauloo",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307012008",
+     "name": "Lenandareta",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307012018",
+   "name": "Kotandelu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012004",
+     "name": "Mbengu",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7279
+    },
+    {
+     "code": "5307012003",
+     "name": "Wolowiro",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307012019",
+   "name": "Lowolabo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012005",
+     "name": "Paga",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.461
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307012020",
+   "name": "Aebubu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012005",
+     "name": "Paga",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2256
+    },
+    {
+     "code": "5307012008",
+     "name": "Lenandareta",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307022001",
+     "name": "Bhera",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307012021",
+   "name": "Regapu’u",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012013",
+     "name": "Wolorega",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7685
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307012022",
+   "name": "Rejo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307012013",
+     "name": "Wolorega",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.435
+    },
+    {
+     "code": "5307022006",
+     "name": "Wolodhesa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307022011",
+   "name": "Ratekalo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307022001",
+     "name": "Bhera",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5605
+    },
+    {
+     "code": "5307022004",
+     "name": "Liakutu",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307012013",
+     "name": "Wolorega",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307022006",
+     "name": "Wolodhesa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307022012",
+   "name": "Ndaimbere",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307022003",
+     "name": "Gera",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.5313
+    },
+    {
+     "code": "5307022010",
+     "name": "Dobo Nuapuu",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307022004",
+     "name": "Liakutu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307042018",
+   "name": "Nangablo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307042011",
+     "name": "Nirangkliung",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.8553
+    },
+    {
+     "code": "5307042010",
+     "name": "Tilang",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307022010",
+     "name": "Dobo Nuapuu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307032003",
+     "name": "Korowuwu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307042019",
+   "name": "Kara Kabu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307042011",
+     "name": "Nirangkliung",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5603
+    },
+    {
+     "code": "5307122004",
+     "name": "Kolisia",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307042020",
+   "name": "Tada Lado",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307042011",
+     "name": "Nirangkliung",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4068
+    },
+    {
+     "code": "5307122001",
+     "name": "Magepanda",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307022004",
+     "name": "Liakutu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307082019",
+   "name": "Udek Du’en",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082003",
+     "name": "Hikong",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.546
+    },
+    {
+     "code": "5307082001",
+     "name": "Darat Gunung",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307132003",
+     "name": "Pruda",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307082014",
+     "name": "Kringa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307082020",
+   "name": "Watu Omok",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082006",
+     "name": "Nebe",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2741
+    },
+    {
+     "code": "5307082001",
+     "name": "Darat Gunung",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307082007",
+     "name": "Wailamung",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307082021",
+   "name": "Waipaar",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082007",
+     "name": "Wailamung",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5692
+    },
+    {
+     "code": "5307082014",
+     "name": "Kringa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307082022",
+   "name": "Baokremot",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082007",
+     "name": "Wailamung",
+     "share_of_patch": 0.9996,
+     "parent_left": 0.5169
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "5307082023",
+   "name": "Henga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082008",
+     "name": "Lewomada",
+     "share_of_patch": 0.9922,
+     "parent_left": 0.8403
+    },
+    {
+     "code": "5307082007",
+     "name": "Wailamung",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0078
+  },
+  {
+   "code": "5307082024",
+   "name": "Likonggete",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307092001",
+     "name": "Runut",
+     "share_of_patch": 0.9989,
+     "parent_left": 0.9464
+    },
+    {
+     "code": "5307132005",
+     "name": "Tua Bao",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307082010",
+     "name": "Nangahale",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0011
+  },
+  {
+   "code": "5307082025",
+   "name": "Watubaing",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082013",
+     "name": "Talibura",
+     "share_of_patch": 0.999,
+     "parent_left": 0.7148
+    },
+    {
+     "code": "5307132006",
+     "name": "Ilinmedo",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307082010",
+     "name": "Nangahale",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0008
+  },
+  {
+   "code": "5307082026",
+   "name": "Mamai",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307082015",
+     "name": "Bangkoor",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.659
+    },
+    {
+     "code": "5307082006",
+     "name": "Nebe",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0003
+  },
+  {
+   "code": "5307092010",
+   "name": "Mahe Kelan",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307092002",
+     "name": "Egon",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.48
+    },
+    {
+     "code": "5307092006",
+     "name": "Hoder",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307202002",
+     "name": "Nenbura",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307092011",
+   "name": "Egon Buluk",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307092002",
+     "name": "Egon",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1175
+    },
+    {
+     "code": "5307212004",
+     "name": "Egon Gahar",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307092008",
+     "name": "Nangatobong",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307102026",
+   "name": "Watukobu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307102007",
+     "name": "Kopong",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.6919
+    },
+    {
+     "code": "5307102009",
+     "name": "Iantena",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307102016",
+     "name": "Umagera",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5307112018",
+   "name": "Bura Bekor",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307112002",
+     "name": "Wolonwalu",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5392
+    },
+    {
+     "code": "5307112001",
+     "name": "Hokor",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307112003",
+     "name": "Wolokoli",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307112019",
+   "name": "Watukrus",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307112006",
+     "name": "Ipir",
+     "share_of_patch": 0.9982,
+     "parent_left": 0.5778
+    },
+    {
+     "code": "5307112005",
+     "name": "Umauta",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5307112004",
+     "name": "Bola",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0017
+  },
+  {
+   "code": "5307122006",
+   "name": "Woda Mude",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307122001",
+     "name": "Magepanda",
+     "share_of_patch": 0.996,
+     "parent_left": 0.8597
+    }
+   ],
+   "outside_rbi": 0.004
+  },
+  {
+   "code": "5307122007",
+   "name": "Legu Woda",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307122002",
+     "name": "Reroroja",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3024
+    },
+    {
+     "code": "5307122003",
+     "name": "Done",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307122001",
+     "name": "Magepanda",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5308132015",
+     "name": "Pise",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307122008",
+   "name": "Waturia",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307122004",
+     "name": "Kolisia",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.7181
+    },
+    {
+     "code": "5307141001",
+     "name": "Hewuli",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5307042009",
+     "name": "Riit",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0003
+  },
+  {
+   "code": "5307132007",
+   "name": "Watu Moning",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307132003",
+     "name": "Pruda",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.5041
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307152011",
+   "name": "Gong Bekor",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307152010",
+     "name": "Watugong",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2495
+    },
+    {
+     "code": "5307192001",
+     "name": "Teka Iku",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307162007",
+   "name": "Watu Repa",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307162004",
+     "name": "Koting D",
+     "share_of_patch": 1.0002,
+     "parent_left": 0.5428
+    },
+    {
+     "code": "5307162003",
+     "name": "Koting C",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307172009",
+   "name": "Bu Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307172001",
+     "name": "Bu Selatan",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.6552
+    },
+    {
+     "code": "5308122013",
+     "name": "Fatamari",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "5308122015",
+     "name": "Nua Lima",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5307172010",
+   "name": "Bu Nuapu’u",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307172002",
+     "name": "Bu Utara",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.628
+    },
+    {
+     "code": "5307172001",
+     "name": "Bu Selatan",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5308122018",
+     "name": "Mbewawora",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5308122013",
+     "name": "Fatamari",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307202008",
+   "name": "Mahe Tanah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307202002",
+     "name": "Nenbura",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7272
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5307202009",
+   "name": "Pelibaler",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5307202005",
+     "name": "Wolonterang",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7245
+    },
+    {
+     "code": "5307112006",
+     "name": "Ipir",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309012024",
+   "name": "Mawwo Kisa",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309012001",
+     "name": "Keligejo",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4142
+    },
+    {
+     "code": "5319061001",
+     "name": "Watu Nggene",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309012019",
+     "name": "Legelapu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309062003",
+     "name": "Wawowae",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309022039",
+   "name": "Dolupore",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309021017",
+     "name": "Mataloko",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1585
+    },
+    {
+     "code": "5309022020",
+     "name": "Malanuza",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309022009",
+     "name": "Sangadeto",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309021008",
+     "name": "Todabelu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309192004",
+     "name": "Sobo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309192005",
+     "name": "Sobo Satu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309022040",
+   "name": "Tiwo Toda",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309021008",
+     "name": "Todabelu",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2749
+    },
+    {
+     "code": "5309022020",
+     "name": "Malanuza",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309022041",
+   "name": "Kelimolo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309022009",
+     "name": "Sangadeto",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.882
+    },
+    {
+     "code": "5309022020",
+     "name": "Malanuza",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309192005",
+     "name": "Sobo Satu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5309022042",
+   "name": "Wogo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309022010",
+     "name": "Ratogesa",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.423
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309022043",
+   "name": "Radabata I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309022011",
+     "name": "Radabata",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.5333
+    },
+    {
+     "code": "5309122007",
+     "name": "Naruwolo I",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309122010",
+     "name": "Nio Lewa",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "5309022025",
+     "name": "Were",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "5309192010",
+     "name": "Bea Pawe",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309122004",
+     "name": "Naruwolo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309022044",
+   "name": "Bodosare",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309022019",
+     "name": "Sarasedu",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6408
+    },
+    {
+     "code": "5316032004",
+     "name": "Solo",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309022009",
+     "name": "Sangadeto",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309062029",
+   "name": "Ngadhamana",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309061013",
+     "name": "Bajawa",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4419
+    },
+    {
+     "code": "5309062023",
+     "name": "Langagedha",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309062022",
+     "name": "Borani",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309062004",
+     "name": "Ubedolumolo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309062030",
+   "name": "Bolonga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309062005",
+     "name": "Naru",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.8463
+    },
+    {
+     "code": "5309152002",
+     "name": "Inelika",
+     "share_of_patch": 0.0015,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309061019",
+     "name": "Lebijaga",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309061017",
+     "name": "Trikora",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309062026",
+     "name": "Ngoranale",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309062031",
+   "name": "Boradho",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309062002",
+     "name": "Bomari",
+     "share_of_patch": 0.9993,
+     "parent_left": 0.8559
+    },
+    {
+     "code": "5309062001",
+     "name": "Beja",
+     "share_of_patch": 0.0007,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309062032",
+   "name": "Mukuvoka",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309062003",
+     "name": "Wawowae",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.5962
+    },
+    {
+     "code": "5309062026",
+     "name": "Ngoranale",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309062033",
+   "name": "Ubedolumolo II",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309062004",
+     "name": "Ubedolumolo",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.4109
+    },
+    {
+     "code": "5309192002",
+     "name": "Turekisa",
+     "share_of_patch": 0.0003,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309062034",
+   "name": "Langagedha I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309062023",
+     "name": "Langagedha",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7825
+    },
+    {
+     "code": "5309012021",
+     "name": "Binawali",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309012020",
+     "name": "Lekogoko",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309072019",
+   "name": "Waepana I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309072001",
+     "name": "Waepana",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2453
+    },
+    {
+     "code": "5309162005",
+     "name": "Nginamanu Selatan",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309072008",
+     "name": "Seso",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309162001",
+     "name": "Nginamanu",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309072020",
+   "name": "Lokaweka",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309072007",
+     "name": "Tarawaja",
+     "share_of_patch": 1.0002,
+     "parent_left": 0.7402
+    },
+    {
+     "code": "5309072018",
+     "name": "Tarawali",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092023",
+   "name": "Kota Raja",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309091010",
+     "name": "Benteng Tengah",
+     "share_of_patch": 0.9926,
+     "parent_left": 0.6428
+    },
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.0013,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0061
+  },
+  {
+   "code": "5309092024",
+   "name": "Ite Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092013",
+     "name": "Latung",
+     "share_of_patch": 0.9704,
+     "parent_left": 0.7857
+    }
+   ],
+   "outside_rbi": 0.0296
+  },
+  {
+   "code": "5309092025",
+   "name": "Wangka Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092006",
+     "name": "Wangka",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.5706
+    },
+    {
+     "code": "5309092005",
+     "name": "Taenterong",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309092022",
+     "name": "Taen Terong Dua",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092026",
+   "name": "Lengkosambi Tengah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092008",
+     "name": "Lengkosambi",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.374
+    },
+    {
+     "code": "5309092017",
+     "name": "Lengkosambi Timur",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309092020",
+     "name": "Lengkosambi Utara",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092027",
+   "name": "Tadho Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.9983,
+     "parent_left": 0.735
+    },
+    {
+     "code": "5309092018",
+     "name": "Lengkosambi Barat",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0017
+  },
+  {
+   "code": "5309092028",
+   "name": "Tadho Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.9972,
+     "parent_left": 0.5003
+    },
+    {
+     "code": "5309091010",
+     "name": "Benteng Tengah",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0028
+  },
+  {
+   "code": "5309092029",
+   "name": "Tadho Tengah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.9994,
+     "parent_left": 0.7182
+    }
+   ],
+   "outside_rbi": 0.0006
+  },
+  {
+   "code": "5309092030",
+   "name": "Sambinasi Tengah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092012",
+     "name": "Sambinasi",
+     "share_of_patch": 0.9866,
+     "parent_left": 0.6519
+    },
+    {
+     "code": "5309092019",
+     "name": "Sambinasi Barat",
+     "share_of_patch": 0.0024,
+     "parent_left": 0.9991
+    }
+   ],
+   "outside_rbi": 0.011
+  },
+  {
+   "code": "5309092031",
+   "name": "Latung Barat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092013",
+     "name": "Latung",
+     "share_of_patch": 0.9987,
+     "parent_left": 0.5139
+    },
+    {
+     "code": "5309092012",
+     "name": "Sambinasi",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0013
+  },
+  {
+   "code": "5309092032",
+   "name": "Rawangkalo I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092014",
+     "name": "Rawangkalo",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4596
+    },
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309092005",
+     "name": "Taenterong",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092033",
+   "name": "Rawangkalo II",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092014",
+     "name": "Rawangkalo",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.4671
+    },
+    {
+     "code": "5309092005",
+     "name": "Taenterong",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092034",
+   "name": "Wakamanga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092016",
+     "name": "Wangka Selatan",
+     "share_of_patch": 1.0,
+     "parent_left": 0.7214
+    },
+    {
+     "code": "5309092006",
+     "name": "Wangka",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309092035",
+   "name": "Lengkosambi Barat Daya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092018",
+     "name": "Lengkosambi Barat",
+     "share_of_patch": 0.9996,
+     "parent_left": 0.7193
+    },
+    {
+     "code": "5309092009",
+     "name": "Tadho",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5309122016",
+   "name": "Wongawea",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309122005",
+     "name": "Nenowea",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6459
+    },
+    {
+     "code": "5309122009",
+     "name": "Dariwali I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309122017",
+   "name": "Bowaru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309122009",
+     "name": "Dariwali I",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.5185
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5309142011",
+   "name": "Benteng Tawa II",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142001",
+     "name": "Benteng Tawa",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.5652
+    },
+    {
+     "code": "5309152009",
+     "name": "Uluwae I",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5309142012",
+   "name": "Benteng Tawa III",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142001",
+     "name": "Benteng Tawa",
+     "share_of_patch": 1.0003,
+     "parent_left": 0.3113
+    },
+    {
+     "code": "5309142003",
+     "name": "Wolomeze",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142013",
+   "name": "Lanamai II",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142002",
+     "name": "Lanamai",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.7554
+    },
+    {
+     "code": "5309142007",
+     "name": "Wolomeze I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142014",
+   "name": "Kembang",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142006",
+     "name": "Ria I",
+     "share_of_patch": 1.0,
+     "parent_left": 0.8022
+    },
+    {
+     "code": "5309142007",
+     "name": "Wolomeze I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142015",
+   "name": "Wate",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142004",
+     "name": "Ria",
+     "share_of_patch": 1.0,
+     "parent_left": 0.2893
+    },
+    {
+     "code": "5309142006",
+     "name": "Ria I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142016",
+   "name": "Ngara I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142005",
+     "name": "Ngara",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5716
+    },
+    {
+     "code": "5309162007",
+     "name": "Wue",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309142003",
+     "name": "Wolomeze",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309092022",
+     "name": "Taen Terong Dua",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142017",
+   "name": "Benteng Tawa IV",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142008",
+     "name": "Benteng Tawa I",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6416
+    },
+    {
+     "code": "5309142007",
+     "name": "Wolomeze I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309142002",
+     "name": "Lanamai",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309142018",
+   "name": "Benteng Tawa V",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142008",
+     "name": "Benteng Tawa I",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.7916
+    },
+    {
+     "code": "5319092002",
+     "name": "Sangan Kalo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309142019",
+   "name": "Nili Waru Sae",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309142008",
+     "name": "Benteng Tawa I",
+     "share_of_patch": 0.638,
+     "parent_left": 0.7095
+    },
+    {
+     "code": "5309142002",
+     "name": "Lanamai",
+     "share_of_patch": 0.3621,
+     "parent_left": 0.8516
+    },
+    {
+     "code": "5309142007",
+     "name": "Wolomeze I",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309152012",
+   "name": "Bowado",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309152003",
+     "name": "Inegena",
+     "share_of_patch": 1.0,
+     "parent_left": 0.6409
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309162009",
+   "name": "Larilaki",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309162003",
+     "name": "Mainai",
+     "share_of_patch": 1.0,
+     "parent_left": 0.1613
+    },
+    {
+     "code": "5316032008",
+     "name": "Nagerawe",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "5309162008",
+     "name": "Denatana Timur",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309162010",
+   "name": "Mulumese",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309092016",
+     "name": "Wangka Selatan",
+     "share_of_patch": 1.0,
+     "parent_left": 0.4894
+    },
+    {
+     "code": "5309162003",
+     "name": "Mainai",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309162011",
+   "name": "Turaloa Timur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309162004",
+     "name": "Turaloa",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.7845
+    }
+   ],
+   "outside_rbi": 0.0002
+  },
+  {
+   "code": "5309182013",
+   "name": "Bobawa",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182004",
+     "name": "Boba",
+     "share_of_patch": 1.0,
+     "parent_left": 0.5312
+    },
+    {
+     "code": "5309022002",
+     "name": "Were I",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309182003",
+     "name": "Watu Sipi",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "5309182002",
+     "name": "Wogowela",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309182014",
+   "name": "Were V",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182006",
+     "name": "Were III",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.7677
+    },
+    {
+     "code": "5309182008",
+     "name": "Nirmala",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309182009",
+     "name": "Sadha",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309182015",
+   "name": "Were VI",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182006",
+     "name": "Were III",
+     "share_of_patch": 0.9994,
+     "parent_left": 0.8844
+    }
+   ],
+   "outside_rbi": 0.0006
+  },
+  {
+   "code": "5309182016",
+   "name": "Kezewea I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182007",
+     "name": "Kezewea",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3301
+    },
+    {
+     "code": "5316042006",
+     "name": "Aewoe",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309182017",
+   "name": "Sadha I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182009",
+     "name": "Sadha",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.4787
+    },
+    {
+     "code": "5309182008",
+     "name": "Nirmala",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309182018",
+   "name": "Takatunga I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309182010",
+     "name": "Takatunga",
+     "share_of_patch": 1.0005,
+     "parent_left": 0.9246
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309192011",
+   "name": "Bopoma",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309191001",
+     "name": "Mangulewa",
+     "share_of_patch": 0.9998,
+     "parent_left": 0.7469
+    },
+    {
+     "code": "5309192009",
+     "name": "Dizi Gedha",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309192003",
+     "name": "Rakalaba",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "5309192012",
+   "name": "Rakalaba I",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309192003",
+     "name": "Rakalaba",
+     "share_of_patch": 0.9996,
+     "parent_left": 0.6557
+    },
+    {
+     "code": "5309192004",
+     "name": "Sobo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "5309192013",
+   "name": "Sobo II",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309192004",
+     "name": "Sobo",
+     "share_of_patch": 1.0,
+     "parent_left": 0.3854
+    },
+    {
+     "code": "5309191001",
+     "name": "Mangulewa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "5309202011",
+   "name": "Ruto",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309202004",
+     "name": "Warupele Satu",
+     "share_of_patch": 0.9979,
+     "parent_left": 0.5198
+    },
+    {
+     "code": "5309122011",
+     "name": "Tiworiwu I",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "5309202006",
+     "name": "Kelitei",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "5309202001",
+     "name": "Paupaga",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0014
+  },
+  {
+   "code": "5309202012",
+   "name": "Enabhara",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309202007",
+     "name": "Waebela",
+     "share_of_patch": 0.9995,
+     "parent_left": 0.4616
+    },
+    {
+     "code": "5309202009",
+     "name": "Legeriwu",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "5309202013",
+   "name": "Nagebaru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "5309122005",
+     "name": "Nenowea",
+     "share_of_patch": 0.9999,
+     "parent_left": 0.4404
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "6101102012",
+   "name": "Arga Pura",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6101102007",
+     "name": "Bukit Mulya",
+     "share_of_patch": 0.9509,
+     "parent_left": 0.6507
+    },
+    {
+     "code": "6101102002",
+     "name": "Sungai Sapa'",
+     "share_of_patch": 0.0484,
+     "parent_left": 0.9921
+    },
+    {
+     "code": "6101102001",
+     "name": "Balai Gemuruh",
+     "share_of_patch": 0.0012,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6101102013",
+   "name": "Sapak Hulu Trans",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6101102002",
+     "name": "Sungai Sapa'",
+     "share_of_patch": 0.8406,
+     "parent_left": 0.851
+    },
+    {
+     "code": "6101102009",
+     "name": "Sempurna",
+     "share_of_patch": 0.1593,
+     "parent_left": 0.9309
+    },
+    {
+     "code": "6107062004",
+     "name": "Danti",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6109012018",
+   "name": "Sempulau Indah",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109012008",
+     "name": "Landau Kodah",
+     "share_of_patch": 0.9893,
+     "parent_left": 0.6887
+    },
+    {
+     "code": "6109012004",
+     "name": "Merapi",
+     "share_of_patch": 0.0083,
+     "parent_left": 0.9937
+    },
+    {
+     "code": "6109012005",
+     "name": "Seraras",
+     "share_of_patch": 0.0019,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "6109012003",
+     "name": "Tanjung",
+     "share_of_patch": 0.0005,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "6109012009",
+     "name": "Timpuk",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6109012019",
+   "name": "Tigur Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109012009",
+     "name": "Timpuk",
+     "share_of_patch": 0.9995,
+     "parent_left": 0.7767
+    },
+    {
+     "code": "6109012005",
+     "name": "Seraras",
+     "share_of_patch": 0.0005,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6109012020",
+   "name": "Beringkai Raya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109012009",
+     "name": "Timpuk",
+     "share_of_patch": 0.9462,
+     "parent_left": 0.434
+    },
+    {
+     "code": "6109052006",
+     "name": "Menawai Tekam",
+     "share_of_patch": 0.0536,
+     "parent_left": 0.98
+    },
+    {
+     "code": "6109052008",
+     "name": "Merbang",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "6109032014",
+   "name": "Semerawai",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109032003",
+     "name": "Senangak",
+     "share_of_patch": 0.9995,
+     "parent_left": 0.3873
+    },
+    {
+     "code": "6109032005",
+     "name": "Sungai Lawak",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "6109032006",
+     "name": "Tapang Tingang",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "6109032008",
+     "name": "Nanga Engkulun",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6109032015",
+   "name": "Engkulun Hulu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109032008",
+     "name": "Nanga Engkulun",
+     "share_of_patch": 0.9992,
+     "parent_left": 0.2557
+    },
+    {
+     "code": "6109032003",
+     "name": "Senangak",
+     "share_of_patch": 0.0007,
+     "parent_left": 0.9985
+    },
+    {
+     "code": "6104082009",
+     "name": "Kualan Tengah",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6109042007",
+     "name": "Cenayan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6109032007",
+     "name": "Nanga Mongko",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "6109052010",
+   "name": "Sepantak",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109052002",
+     "name": "Sungai Ayak Dua",
+     "share_of_patch": 1.0001,
+     "parent_left": 0.6878
+    },
+    {
+     "code": "6109012005",
+     "name": "Seraras",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6109052008",
+     "name": "Merbang",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6109052011",
+   "name": "Melanjan Raya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6109052004",
+     "name": "Tapang Pulau",
+     "share_of_patch": 0.9153,
+     "parent_left": 0.4912
+    },
+    {
+     "code": "6109052003",
+     "name": "Entabuk",
+     "share_of_patch": 0.0733,
+     "parent_left": 0.95
+    },
+    {
+     "code": "6109072007",
+     "name": "Maboh Permai",
+     "share_of_patch": 0.0104,
+     "parent_left": 0.9819
+    },
+    {
+     "code": "6109072002",
+     "name": "Padak",
+     "share_of_patch": 0.0007,
+     "parent_left": 0.998
+    },
+    {
+     "code": "6109072003",
+     "name": "Setuntung",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6112012021",
+   "name": "Sukulanting",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112012006",
+     "name": "Sungai Asam",
+     "share_of_patch": 0.9758,
+     "parent_left": 0.7768
+    },
+    {
+     "code": "6112042010",
+     "name": "Teluk Bayur",
+     "share_of_patch": 0.0201,
+     "parent_left": 0.9773
+    },
+    {
+     "code": "6112012010",
+     "name": "Sungai Bulan",
+     "share_of_patch": 0.0017,
+     "parent_left": 0.9985
+    },
+    {
+     "code": "6112042002",
+     "name": "Teluk Empening",
+     "share_of_patch": 0.0013,
+     "parent_left": 0.9973
+    },
+    {
+     "code": "6112062011",
+     "name": "Kampung Baru",
+     "share_of_patch": 0.0006,
+     "parent_left": 0.9994
+    },
+    {
+     "code": "6112012019",
+     "name": "Kalibandung",
+     "share_of_patch": 0.0005,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6112012022",
+   "name": "Permata Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112012006",
+     "name": "Sungai Asam",
+     "share_of_patch": 0.9971,
+     "parent_left": 0.3674
+    },
+    {
+     "code": "6112012005",
+     "name": "Tebang Kacang",
+     "share_of_patch": 0.0016,
+     "parent_left": 0.9951
+    },
+    {
+     "code": "6112012020",
+     "name": "Muara Baru",
+     "share_of_patch": 0.0007,
+     "parent_left": 0.9995
+    },
+    {
+     "code": "6112032012",
+     "name": "Pasak Piang",
+     "share_of_patch": 0.0004,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "6112032003",
+     "name": "Bengkarek",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9995
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6112022006",
+   "name": "Padi Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112022002",
+     "name": "Kubu Padi",
+     "share_of_patch": 0.9973,
+     "parent_left": 0.6656
+    },
+    {
+     "code": "6112022004",
+     "name": "Retok",
+     "share_of_patch": 0.0024,
+     "parent_left": 0.9992
+    },
+    {
+     "code": "6112022005",
+     "name": "Sungai Enau",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "6112032014",
+   "name": "Ampera Raya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112032005",
+     "name": "Sungai Ambawang Kuala",
+     "share_of_patch": 0.9993,
+     "parent_left": 0.8435
+    },
+    {
+     "code": "6112032007",
+     "name": "Durian",
+     "share_of_patch": 0.0005,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6171021003",
+     "name": "Saigon",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "6112032002",
+     "name": "Mega Timur",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6171021001",
+     "name": "Paritmayor",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6112092014",
+   "name": "Rengas Kapuas",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112092005",
+     "name": "Sungai Rengas",
+     "share_of_patch": 0.9854,
+     "parent_left": 0.8074
+    },
+    {
+     "code": "6112092006",
+     "name": "Pal Sembilan",
+     "share_of_patch": 0.0145,
+     "parent_left": 0.9972
+    },
+    {
+     "code": "6102082009",
+     "name": "Wajok Hulu",
+     "share_of_patch": 0.0003,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6171031001",
+     "name": "Pallima",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6112092015",
+   "name": "Parit Keladi",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6112092001",
+     "name": "Sungai Kakap",
+     "share_of_patch": 0.9918,
+     "parent_left": 0.6413
+    },
+    {
+     "code": "6112092006",
+     "name": "Pal Sembilan",
+     "share_of_patch": 0.0072,
+     "parent_left": 0.9985
+    },
+    {
+     "code": "6112092002",
+     "name": "Sungai Itik",
+     "share_of_patch": 0.0012,
+     "parent_left": 0.9995
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6310042027",
+   "name": "Sido Rejo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310042011",
+     "name": "Wonorejo",
+     "share_of_patch": 0.9993,
+     "parent_left": 0.5842
+    },
+    {
+     "code": "6310042009",
+     "name": "Sekapuk",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "6310042028",
+   "name": "Beruntung Raya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310042025",
+     "name": "Sinar Bulan",
+     "share_of_patch": 0.992,
+     "parent_left": 0.784
+    },
+    {
+     "code": "6310042004",
+     "name": "Satui Timur",
+     "share_of_patch": 0.0077,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "6310042010",
+     "name": "Sungaidanau",
+     "share_of_patch": 0.0014,
+     "parent_left": 0.9999
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6310042029",
+   "name": "Barakat Mufakat",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310042010",
+     "name": "Sungaidanau",
+     "share_of_patch": 0.9988,
+     "parent_left": 0.8674
+    },
+    {
+     "code": "6310042024",
+     "name": "Makmur Mulia",
+     "share_of_patch": 0.001,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "6310042025",
+     "name": "Sinar Bulan",
+     "share_of_patch": 0.0005,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "6310042004",
+     "name": "Satui Timur",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6310042030",
+   "name": "Makmur Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310042024",
+     "name": "Makmur Mulia",
+     "share_of_patch": 0.9939,
+     "parent_left": 0.8425
+    },
+    {
+     "code": "6310042010",
+     "name": "Sungaidanau",
+     "share_of_patch": 0.0048,
+     "parent_left": 0.9993
+    },
+    {
+     "code": "6310042005",
+     "name": "Sungaicuka",
+     "share_of_patch": 0.0006,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0007
+  },
+  {
+   "code": "6310062013",
+   "name": "Hidayah Makmur",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310062009",
+     "name": "Baroqah",
+     "share_of_patch": 0.9968,
+     "parent_left": 0.832
+    },
+    {
+     "code": "6310062003",
+     "name": "Sari Gadung",
+     "share_of_patch": 0.002,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6310062012",
+     "name": "Gunungantasari",
+     "share_of_patch": 0.0013,
+     "parent_left": 0.9997
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6310062014",
+   "name": "Plajau Mulia",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310062009",
+     "name": "Baroqah",
+     "share_of_patch": 0.9908,
+     "parent_left": 0.5177
+    },
+    {
+     "code": "6310061001",
+     "name": "Kampung Baru",
+     "share_of_patch": 0.0038,
+     "parent_left": 0.994
+    },
+    {
+     "code": "6310012031",
+     "name": "Sukamaju",
+     "share_of_patch": 0.0024,
+     "parent_left": 0.9984
+    },
+    {
+     "code": "6310011007",
+     "name": "Batulicin",
+     "share_of_patch": 0.0018,
+     "parent_left": 0.9998
+    },
+    {
+     "code": "6310012030",
+     "name": "Maju Bersama",
+     "share_of_patch": 0.0012,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "6310062010",
+     "name": "Bersujud",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9995
+    },
+    {
+     "code": "6310062012",
+     "name": "Gunungantasari",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "6310062015",
+   "name": "Kupang Berkah Jaya",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310062003",
+     "name": "Sari Gadung",
+     "share_of_patch": 0.9997,
+     "parent_left": 0.9051
+    },
+    {
+     "code": "6310012031",
+     "name": "Sukamaju",
+     "share_of_patch": 0.0002,
+     "parent_left": 0.9997
+    },
+    {
+     "code": "6310062009",
+     "name": "Baroqah",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "6310072013",
+   "name": "Karang Nunggal",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "6310072007",
+     "name": "Manunggal",
+     "share_of_patch": 0.9989,
+     "parent_left": 0.6847
+    },
+    {
+     "code": "6310062004",
+     "name": "Mekar Sari",
+     "share_of_patch": 0.0008,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "6310072006",
+     "name": "Batu Licin Irigasi",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "6310072001",
+     "name": "Karang Bintang",
+     "share_of_patch": 0.0002,
+     "parent_left": 1.0
+    },
+    {
+     "code": "6310062003",
+     "name": "Sari Gadung",
+     "share_of_patch": 0.0002,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "7322112002",
+   "name": "Salulemo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "7322111005",
+     "name": "Salassa",
+     "share_of_patch": 1.0,
+     "parent_left": 0.0,
+     "parent_emptied": true
+    },
+    {
+     "code": "7322142002",
+     "name": "Marannu",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "7322112015",
+     "name": "Bumi Harapan",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "7322032010",
+     "name": "Lapapa",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "7322032007",
+     "name": "Pombakka",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "7324062017",
+   "name": "Arolipu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "7324062005",
+     "name": "Bawalipu",
+     "share_of_patch": 0.9824,
+     "parent_left": 0.7493
+    },
+    {
+     "code": "7324062007",
+     "name": "Lera",
+     "share_of_patch": 0.0144,
+     "parent_left": 0.9963
+    },
+    {
+     "code": "7324062001",
+     "name": "Lampenai",
+     "share_of_patch": 0.0037,
+     "parent_left": 0.9995
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "8201052029",
+   "name": "Bobaneigo Madihutu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "8201052011",
+     "name": "Dodinga",
+     "share_of_patch": 0.9931,
+     "parent_left": 0.4397
+    },
+    {
+     "code": "8201052023",
+     "name": "Braha",
+     "share_of_patch": 0.0065,
+     "parent_left": 0.9943
+    },
+    {
+     "code": "8206042002",
+     "name": "Nusa Ambo",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9996
+    },
+    {
+     "code": "8203222007",
+     "name": "Bobaneigo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0004
+  },
+  {
+   "code": "8201052030",
+   "name": "Tetewang Joronga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "8201052024",
+     "name": "Bangkit Rahmat",
+     "share_of_patch": 0.3239,
+     "parent_left": 0.4215
+    },
+    {
+     "code": "8201052009",
+     "name": "Akeara",
+     "share_of_patch": 0.3016,
+     "parent_left": 0.535
+    },
+    {
+     "code": "8201052026",
+     "name": "Suka Damai",
+     "share_of_patch": 0.2177,
+     "parent_left": 0.5793
+    },
+    {
+     "code": "8201052027",
+     "name": "Hijrah",
+     "share_of_patch": 0.0815,
+     "parent_left": 0.9158
+    },
+    {
+     "code": "8201052028",
+     "name": "Ratem",
+     "share_of_patch": 0.0612,
+     "parent_left": 0.9413
+    },
+    {
+     "code": "8201052003",
+     "name": "Domato",
+     "share_of_patch": 0.0141,
+     "parent_left": 0.9863
+    },
+    {
+     "code": "8203222007",
+     "name": "Bobaneigo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "8201052031",
+   "name": "Akelamo Cinga-Cinga",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "8201012035",
+     "name": "Guaria",
+     "share_of_patch": 0.4992,
+     "parent_left": 0.6898
+    },
+    {
+     "code": "8201012027",
+     "name": "Tauro",
+     "share_of_patch": 0.2218,
+     "parent_left": 0.7098
+    },
+    {
+     "code": "8201012038",
+     "name": "Ulo",
+     "share_of_patch": 0.1409,
+     "parent_left": 0.8449
+    },
+    {
+     "code": "8201012025",
+     "name": "Matui",
+     "share_of_patch": 0.0635,
+     "parent_left": 0.945
+    },
+    {
+     "code": "8201052004",
+     "name": "Tataleka",
+     "share_of_patch": 0.056,
+     "parent_left": 0.9037
+    },
+    {
+     "code": "8201052028",
+     "name": "Ratem",
+     "share_of_patch": 0.0186,
+     "parent_left": 0.9719
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "8201052032",
+   "name": "Akesahu Madutu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "8201012025",
+     "name": "Matui",
+     "share_of_patch": 0.855,
+     "parent_left": 0.6426
+    },
+    {
+     "code": "8201012035",
+     "name": "Guaria",
+     "share_of_patch": 0.1449,
+     "parent_left": 0.9405
+    }
+   ],
+   "outside_rbi": 0.0001
+  },
+  {
+   "code": "9402142005",
+   "name": "Ginigom",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "9402012007",
+     "name": "Towogi",
+     "share_of_patch": 0.0001,
+     "parent_left": 1.0
+    },
+    {
+     "code": "9402142002",
+     "name": "Yambi",
+     "share_of_patch": 0.0001,
+     "parent_left": 0.9998
+    }
+   ],
+   "outside_rbi": 0.9998
+  },
+  {
+   "code": "9402192013",
+   "name": "Anggalo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "9402192012",
+     "name": "Anggagalo",
+     "share_of_patch": 1.001,
+     "parent_left": 0.5708
+    },
+    {
+     "code": "9402192015",
+     "name": "Piyabigimbut",
+     "share_of_patch": 0.0011,
+     "parent_left": 0.9989
+    },
+    {
+     "code": "9402192011",
+     "name": "Yunggwi",
+     "share_of_patch": 0.0003,
+     "parent_left": 0.9996
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "9403042005",
+   "name": "Yumauwo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "9403192002",
+     "name": "Pikokebo",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "9403072005",
+     "name": "Wageme",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 1.0
+  },
+  {
+   "code": "9504072005",
+   "name": "Wariru",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "9504352007",
+     "name": "Linggira",
+     "share_of_patch": 1.0,
+     "parent_left": 0.0582
+    },
+    {
+     "code": "9504352008",
+     "name": "Wekaru",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "9504352010",
+     "name": "Kagi",
+     "share_of_patch": 0.0,
+     "parent_left": 0.9999
+    },
+    {
+     "code": "9504202001",
+     "name": "Wamolo",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "9504202010",
+     "name": "Gumbini",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    },
+    {
+     "code": "9504202009",
+     "name": "Kurik",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 0.0
+  },
+  {
+   "code": "9504292004",
+   "name": "Dotori",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504292006",
+   "name": "Kowari",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [
+    {
+     "code": "9504292016",
+     "name": "Timoga/Kabupaga",
+     "share_of_patch": 0.0,
+     "parent_left": 1.0
+    }
+   ],
+   "outside_rbi": 1.0
+  },
+  {
+   "code": "9504302003",
+   "name": "Prawa",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302004",
+   "name": "Sigou",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302006",
+   "name": "Warka",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302007",
+   "name": "Pakare",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302008",
+   "name": "Tigu",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302009",
+   "name": "Bire",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  },
+  {
+   "code": "9504302011",
+   "name": "Vokuyo",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "cut_from": [],
+   "outside_rbi": 1
+  }
+ ],
+ "skipped": [
+  {
+   "code": "1312022009",
+   "name": "Situak Ujung Gading",
+   "source": "BIG BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)",
+   "reason": "akan menghapus poligon desa IDM lain",
+   "conflict": {
+    "code": "1312022001",
+    "name": "Ujung Gading",
+    "parent_left": 0.0046
+   },
+   "skipped": true
+  }
+ ]
+}

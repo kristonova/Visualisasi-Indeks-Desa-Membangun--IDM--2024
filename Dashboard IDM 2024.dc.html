@@ -111,6 +111,10 @@ input,select{font-family:inherit}
   #scopeHead{display:none!important}   /* judul lingkup pindah ke kepala sheet */
   #mapCtl{top:10px!important;right:calc(10px + env(safe-area-inset-right))!important;gap:8px!important}
   #viewToggle button{height:44px!important;min-width:64px!important;font-size:12px!important}
+  /* Pilih tahun duduk sebaris di kiri Peta/Petak supaya tumpukan kontrol
+     kanan tidak bertambah tinggi (penting di landscape pendek). */
+  #yearToggle{position:absolute!important;top:0!important;right:calc(100% + 8px)!important}
+  #yearToggle button{height:44px!important;min-width:56px!important;font-size:12px!important}
   #zoomStack button{width:44px!important;height:44px!important;font-size:18px!important}
   #btnUp{width:44px!important;height:44px!important;padding:0!important;font-size:17px!important}
   #noticeCard{display:none!important}
@@ -173,7 +177,7 @@ input,select{font-family:inherit}
       <img src="assets/sadasa-mark-red.png" alt="Sadasa Academy" style="height:24px;width:auto;display:block">
       <div id="brandText" style="display:flex;flex-direction:column;gap:3px;border-left:1px solid var(--border-hairline);padding-left:10px">
         <span style="font:700 13px/1 var(--font-sans);letter-spacing:-0.012em;color:var(--text-strong)">Peta Desa Nusantara</span>
-        <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Indeks Desa Membangun 2024</span>
+        <span style="font:500 9px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">{{ brandSub }}</span>
       </div>
     </div>
 
@@ -233,6 +237,11 @@ input,select{font-family:inherit}
       </div>
 
       <div id="mapCtl" style="position:absolute;top:14px;right:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div id="yearToggle" role="group" aria-label="Tahun IDM" style="display:flex;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
+          <sc-for list="{{ yearOpts }}" as="y" hint-placeholder-count="2">
+            <button type="button" onClick="{{ y.go }}" aria-pressed="{{ y.on }}" title="{{ y.title }}" style="border:0;border-left:{{ y.bl }};padding:0 11px;height:30px;font:600 11px/1 var(--font-mono);letter-spacing:0.02em;cursor:pointer;background:{{ y.bg }};color:{{ y.fg }}">{{ y.y }}</button>
+          </sc-for>
+        </div>
         <div id="viewToggle" style="display:flex;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
           <button type="button" onClick="{{ setPeta }}" aria-pressed="{{ isPeta }}" style="border:0;padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petaBg }};color:{{ petaFg }}">Peta</button>
           <button type="button" onClick="{{ setPetak }}" aria-pressed="{{ isPetak }}" style="border:0;border-left:1px solid var(--border-hairline);padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petakBg }};color:{{ petakFg }}">Petak</button>
@@ -403,6 +412,26 @@ input,select{font-family:inherit}
                 </div>
               </sc-for>
             </div>
+            <sc-if value="{{ detail.yoy }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:8px;padding-top:11px;border-top:1px solid var(--border-hairline)">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+                  <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">IDM 2023 → 2024</span>
+                  <span style="font:600 10.5px/1.2 var(--font-sans);color:{{ detail.yoy.tone }};text-align:right">{{ detail.yoy.lab }}</span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px">
+                  <div style="min-width:0;display:flex;flex-direction:column;gap:5px;opacity:{{ detail.yoy.aOp }}">
+                    <span style="font:600 16px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ detail.yoy.aV }}</span>
+                    <span style="display:flex;align-items:center;gap:5px;min-width:0"><span style="width:8px;height:8px;border-radius:2px;flex-shrink:0;background:{{ detail.yoy.aColor }}"></span><span style="font:600 10px/1.2 var(--font-sans);color:var(--text-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ detail.yoy.aSt }}</span></span>
+                  </div>
+                  <span aria-hidden="true" style="font:500 12px/1 var(--font-mono);color:var(--text-subtle)">→</span>
+                  <div style="min-width:0;display:flex;flex-direction:column;gap:5px;opacity:{{ detail.yoy.bOp }}">
+                    <span style="font:600 16px/1 var(--font-mono);color:var(--text-strong);font-variant-numeric:tabular-nums">{{ detail.yoy.bV }}</span>
+                    <span style="display:flex;align-items:center;gap:5px;min-width:0"><span style="width:8px;height:8px;border-radius:2px;flex-shrink:0;background:{{ detail.yoy.bColor }}"></span><span style="font:600 10px/1.2 var(--font-sans);color:var(--text-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ detail.yoy.bSt }}</span></span>
+                  </div>
+                </div>
+                <span style="font:500 10px/1.3 var(--font-mono);color:{{ detail.yoy.dTone }};font-variant-numeric:tabular-nums">{{ detail.yoy.delta }}</span>
+              </div>
+            </sc-if>
           </div>
         </section>
       </sc-if>
@@ -466,7 +495,7 @@ input,select{font-family:inherit}
             </div>
           </sc-for>
         </div>
-        <p style="margin:11px 0 0;padding-top:9px;border-top:1px solid var(--border-hairline);font:400 9.5px/1.45 var(--font-sans);color:var(--text-subtle)">Garis emas menandai rerata nasional. Sumber: Kemendes PDTT, IDM 2024 hasil pemutakhiran — 75.265 desa.</p>
+        <p style="margin:11px 0 0;padding-top:9px;border-top:1px solid var(--border-hairline);font:400 9.5px/1.45 var(--font-sans);color:var(--text-subtle)">Garis emas menandai rerata nasional. Sumber: {{ srcNote }}.</p>
       </section>
 
       <p id="legendNote" data-tabgroup="ringkas" style="display:none;margin:0;padding:11px 13px;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;font:400 10px/1.5 var(--font-sans);color:var(--text-subtle)">{{ legendNote }}</p>
@@ -571,7 +600,14 @@ const INKS = {
   'Aman buta warna': ['#4b4741', '#ffffff', '#0b1b2e', '#1a1a17', '#2b1004', '#ffffff']
 };
 const SNAME = ['Tanpa data', 'Mandiri', 'Maju', 'Berkembang', 'Tertinggal', 'Sangat Tertinggal'];
-const SOURCE_NAME = ['Reguler', 'Update 2023', 'Server PDN'];
+// Kode "pv" per desa; indeks 3 berasal dari kolom UPDATE=2022 di IDM 2023.
+const SOURCE_NAME = ['Reguler', 'Update 2023', 'Server PDN', 'Data 2022'];
+// Kedua tahun memakai kode wilayah IDM 2024 (tools/idm_sources.py), jadi satu
+// set geometri berlaku untuk keduanya.
+const YEARS = ['2023', '2024'];
+const DEFAULT_YEAR = '2024';
+const YEAR_SOURCE = { '2023': 'IDM 2023', '2024': 'IDM 2024 hasil pemutakhiran' };
+const PATCH_SOURCE = 'BIG edisi Juli 2026 (tambalan)';
 const OUTSIDE_IDM_COLOR = '#e7e4de';
 const JOIN_MISSING_COLOR = '#765b8f';
 const THR = [0.8155, 0.7073, 0.5990, 0.4908];
@@ -605,7 +641,7 @@ const my = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-85, Math.min(85, l
 
 class Component extends DCLogic {
   state = {
-    ready: false, meta: null, manifest: null,
+    ready: false, meta: null, manifest: null, year: DEFAULT_YEAR,
     scope: { lvl: 'nas', p: null, kb: null, kc: null },
     sel: null, view: 'peta', tip: null, live: '',
     hidden: [], q: '', rows: 60, tableOpen: false,
@@ -615,6 +651,9 @@ class Component extends DCLogic {
 
   geo = {}; prov = {}; U = []; layout = null; ovl = null;
   audit = null; noScoreNotes = {}; geoNameWarnings = {}; geoNames = {}; coverage = null;
+  // Cache per tahun. prov/audit/noScoreNotes/geoNameWarnings di atas selalu
+  // menunjuk ke milik tahun aktif (lihat useYear), jadi kode lama tidak berubah.
+  years = {}; yearBusy = false; otherLoading = {};
   vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
   anim = null; raf = 0; drawRaf = 0; box = null;
   gesture = null; lastTap = null; touchAt = 0;
@@ -654,22 +693,79 @@ class Component extends DCLogic {
   }
   async boot() {
     try {
-      const [meta, manifest, gprov, audit] = await Promise.all([
-        fetch('data/idm/meta.json').then(r => r.json()),
+      const year = this.state.year;
+      const [Y, manifest, gprov] = await Promise.all([
+        this.ensureYear(year),
         fetch('data/geo/manifest.json').then(r => r.json()).catch(() => ({ prov: true, kab: [], kec: [], desa: [] })),
-        fetch('data/geo/prov.json').then(r => r.json()),
-        fetch('data/geo/join-audit.json').then(r => r.json()).catch(() => null)
+        fetch('data/geo/prov.json').then(r => r.json())
       ]);
       this.geo.prov = this.decode(gprov);
-      this.audit = audit;
-      for (const d of (audit && audit.idm_without_score) || []) this.noScoreNotes[d.code] = d;
-      for (const d of (audit && audit.joined_name_mismatches) || []) this.geoNameWarnings[d.code] = d;
+      this.useYear(year);
       const start = this.props.startScope || 'Nasional';
       const sp = start === 'Jawa Tengah' ? '33' : start === 'D.I. Yogyakarta' ? '34' : null;
       if (sp) await this.ensureProv(sp);
-      this.setState({ ready: true, meta, manifest, scope: { lvl: sp ? 'prov' : 'nas', p: sp, kb: null, kc: null } },
+      this.setState({ ready: true, meta: Y.meta, manifest, scope: { lvl: sp ? 'prov' : 'nas', p: sp, kb: null, kc: null } },
         () => this.rebuild(true));
     } catch (e) { this.setState({ live: 'Gagal memuat data: ' + e.message }); }
+  }
+
+  // ── tahun ───────────────────────────────────────────────────────────────
+  async ensureYear(y) {
+    if (this.years[y]) return this.years[y];
+    const [meta, audit] = await Promise.all([
+      fetch('data/idm/' + y + '/meta.json').then(r => { if (!r.ok) throw new Error('IDM ' + y + ' tidak ditemukan'); return r.json(); }),
+      fetch('data/idm/' + y + '/join-audit.json').then(r => r.json()).catch(() => null)
+    ]);
+    if (this.years[y]) return this.years[y];   // dua pemanggil bersamaan
+    const Y = { meta, audit, prov: {}, idx: {}, noScoreNotes: {}, geoNameWarnings: {}, otherOnly: new Set() };
+    for (const d of (audit && audit.idm_without_score) || []) Y.noScoreNotes[d.code] = d;
+    for (const d of (audit && audit.joined_name_mismatches) || []) Y.geoNameWarnings[d.code] = d;
+    // Poligon desa yang hanya punya data di tahun lain (desa baru 2024).
+    for (const d of (audit && audit.geo_desa_other_year_only) || []) Y.otherOnly.add(d.code);
+    this.years[y] = Y;
+    return Y;
+  }
+  useYear(y) {
+    const Y = this.years[y];
+    this.prov = Y.prov; this.audit = Y.audit;
+    this.noScoreNotes = Y.noScoreNotes; this.geoNameWarnings = Y.geoNameWarnings;
+    this.memo = {};
+  }
+  // Ganti tahun tanpa me-reset zoom: unit yang sama cukup diwarnai ulang.
+  setYear(y) {
+    if (y === this.state.year || this.yearBusy || !this.state.ready) return;
+    this.yearBusy = true;
+    const p = this.state.scope.p;
+    this.ensureYear(y)
+      .then(Y => (p ? this.ensureProv(p, y) : Promise.resolve()).then(() => Y))
+      .then(Y => {
+        this.useYear(y);
+        this.setState({ year: y, meta: Y.meta, tip: null, live: 'Menampilkan IDM ' + y }, () => this.rebuild(false));
+      })
+      .catch(e => this.setState({ live: 'Gagal memuat IDM ' + y + ': ' + e.message }))
+      .finally(() => { this.yearBusy = false; });
+  }
+  otherYear() { return this.state.year === '2024' ? '2023' : '2024'; }
+  // kode desa 10 digit -> baris ds, per tahun per provinsi (untuk perbandingan).
+  desaIndex(y, p) {
+    const Y = this.years[y], pf = Y && Y.prov[p];
+    if (!pf) return null;
+    if (!Y.idx[p]) {
+      const idx = {};
+      for (const C of pf.kec) for (const d of C.ds) idx[C.k + d[0]] = d;
+      Y.idx[p] = idx;
+    }
+    return Y.idx[p];
+  }
+  // Muat file provinsi tahun pembanding di belakang layar, lalu render ulang.
+  loadOther(p) {
+    const y = this.otherYear(), key = y + ':' + p;
+    if (!p || this.otherLoading[key] || (this.years[y] && this.years[y].prov[p])) return;
+    this.otherLoading[key] = true;
+    this.ensureProv(p, y)
+      .then(() => this.setState({ tick: this.state.tick + 1 }))
+      .catch(() => {})
+      .finally(() => { delete this.otherLoading[key]; });
   }
 
   // ── data ────────────────────────────────────────────────────────────────
@@ -685,13 +781,17 @@ class Component extends DCLogic {
         }
         return out;
       }).filter(r => r.length >= 8);
-      return { k: String(f.k), nm: f.nm, rings };
+      // s=1: poligon dari sumber tambalan (lihat tools/build_geo.py --patch)
+      return { k: String(f.k), nm: f.nm, rings, src: f.s ? 1 : 0 };
     });
   }
-  async ensureProv(k) {
-    if (this.prov[k]) return this.prov[k];
-    const j = await fetch('data/idm/prov/' + k + '.json').then(r => r.json());
-    this.prov[k] = j; this.memo = {};   // scopeDesa membaca this.prov
+  async ensureProv(k, y) {
+    const Y = await this.ensureYear(y || this.state.year);
+    if (Y.prov[k]) return Y.prov[k];
+    const j = await fetch('data/idm/' + (y || this.state.year) + '/prov/' + k + '.json').then(r => {
+      if (!r.ok) throw new Error('data provinsi ' + k + ' tidak ditemukan'); return r.json(); });
+    Y.prov[k] = j;
+    if (Y.prov === this.prov) this.memo = {};   // scopeDesa membaca this.prov
     return j;
   }
   async ensureGeo(level, p) {
@@ -766,6 +866,8 @@ class Component extends DCLogic {
       kind = 'prov';
     } else {
       const p = scope.p;
+      // Tahun bisa berganti saat provinsi masih dimuat; pastikan data tahun aktif ada.
+      await this.ensureProv(p).catch(() => null);
       let g = await this.ensureGeo('desa', p); kind = 'desa';
       if (!g) { g = await this.ensureGeo('kec', p); kind = 'kec'; }
       if (!g) { g = await this.ensureGeo('kab', p); kind = 'kab'; }
@@ -784,20 +886,25 @@ class Component extends DCLogic {
         if (kind === 'desa') {
           const desaData = this.scopeDesa() || [], byK = {};
           desaData.forEach(d => byK[d.k] = d);
+          const otherOnly = this.years[this.state.year].otherOnly;
           units = feats.map(f => {
             const d = byK[f.k];
             if (d) return { ...f, nm: d.nm, cls: d.st, m: d.idm, n: 1, desa: d, code: f.k };
             const adminKind = adminKindOf(f.k), kelurahan = adminKind === 'kelurahan';
+            // Desa yang baru tercatat di tahun lain bukan kegagalan join.
+            const kindNd = kelurahan ? 'kelurahan' : otherOnly.has(f.k) ? 'not-in-year' : 'join-missing';
             return { ...f, nm: (kelurahan ? 'Kel. ' : '') + tc(f.nm), cls: 0, m: null, n: 0,
-              code: f.k, nodata: true, nodataKind: kelurahan ? 'kelurahan' : 'join-missing', adminKind,
-              fill: kelurahan ? OUTSIDE_IDM_COLOR : JOIN_MISSING_COLOR };
+              code: f.k, nodata: true, nodataKind: kindNd, adminKind,
+              fill: kindNd === 'join-missing' ? JOIN_MISSING_COLOR : OUTSIDE_IDM_COLOR };
           });
           const mapped = units.reduce((n, u) => n + (u.desa ? 1 : 0), 0);
+          const countKind = (k) => units.reduce((n, u) => n + (u.nodataKind === k ? 1 : 0), 0);
           this.coverage = {
             mapped,
             missing: Math.max(0, desaData.length - mapped),
-            kelurahan: units.reduce((n, u) => n + (u.nodataKind === 'kelurahan' ? 1 : 0), 0),
-            joinMissing: units.reduce((n, u) => n + (u.nodataKind === 'join-missing' ? 1 : 0), 0)
+            kelurahan: countKind('kelurahan'),
+            notInYear: countKind('not-in-year'),
+            joinMissing: countKind('join-missing')
           };
         } else {
           const agg = {}; (this.scopeDesa() || []).forEach(d => {
@@ -1140,13 +1247,15 @@ class Component extends DCLogic {
       const u = this.U[idx]; if (!u) return;
       t = u.nm; cls = u.cls;
       if (u.desa && u.desa.idm == null) {
-        lines = ['Desa · nilai IDM 2024 tidak tersedia',
+        lines = ['Desa · nilai IDM ' + this.state.year + ' tidak tersedia',
                  (u.desa.note && u.desa.note.reason) || 'Sumber resmi tidak memuat skor untuk desa ini.',
                  'Kode ' + u.code + ' · ' + (SOURCE_NAME[u.desa.pv] || 'Sumber IDM')];
       } else if (u.desa) lines = ['Kec. ' + tc(u.desa.kec) + ' · ' + kabLab(tc(this.kabName(u.desa.kab))),
                                   SNAME[u.cls] + ' · IDM ' + d4(u.desa.idm),
                                   'IKS ' + d3(u.desa.iks) + '  IKE ' + d3(u.desa.ike) + '  IKL ' + d3(u.desa.ikl)];
-      else if (u.nodataKind === 'kelurahan') lines = ['Kelurahan · di luar cakupan IDM 2024', 'Kode wilayah ' + u.code];
+      else if (u.nodataKind === 'kelurahan') lines = ['Kelurahan · di luar cakupan IDM', 'Kode wilayah ' + u.code];
+      else if (u.nodataKind === 'not-in-year') lines = ['Desa · belum tercatat di IDM ' + this.state.year,
+                                                        'Nilainya ada di IDM ' + this.otherYear(), 'Kode wilayah ' + u.code];
       else if (u.nodataKind === 'province-outside') lines = ['Provinsi di luar cakupan IDM desa', 'DKI Jakarta seluruhnya berstatus kelurahan.'];
       else if (u.nodata) lines = ['Desa · data IDM tidak terhubung', 'Kode wilayah ' + u.code, 'Jalankan tools/audit_join.py untuk memeriksa join.'];
       else lines = [nf.format(u.n) + ' desa · rerata IDM ' + d4(u.m), 'Kelas rerata: ' + SNAME[u.cls],
@@ -1154,6 +1263,7 @@ class Component extends DCLogic {
       if (u.desa && u.desa.nameWarning) lines.push(u.desa.nameWarning.kind === 'missing_idm_name'
         ? 'Nama Excel kosong · memakai nama RBI ' + tc(u.desa.nameWarning.geo_name)
         : 'Nama pada batas RBI: ' + tc(u.desa.nameWarning.geo_name));
+      if (u.src) lines.push('Batas desa: ' + PATCH_SOURCE);
       if (u.frameOnly) lines.push('Klik untuk melihat petak desa');
     }
     const flipX = px > r.width - 270, flipY = py > r.height - 130;
@@ -1431,6 +1541,7 @@ class Component extends DCLogic {
     // Di HP, memilih desa saat sheet masih 'peek' otomatis menaikkannya ke
     // 'half' supaya kartu detail langsung terlihat tanpa aksi tambahan.
     const sheet = (sel && this.isMobile && this.state.sheet === 'peek') ? 'half' : this.state.sheet;
+    if (sel) this.loadOther(this.state.scope.p);   // untuk baris perbandingan tahun di kartu detail
     this.setState({ sel, view, sheet }, () => { this.syncSheet(); this.draw(); });
   }
   clearSel = () => this.setState({ sel: null }, () => this.draw());
@@ -1466,12 +1577,12 @@ class Component extends DCLogic {
       const s = v == null ? '' : String(v);
       return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
     }).join(';'));
-    this.download('idm-2024-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.csv',
+    this.download('idm-' + this.state.year + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.csv',
       new Blob(['\ufeff' + head.join(';') + '\n' + body.join('\n')], { type: 'text/csv;charset=utf-8' }));
   };
   exportPng = () => {
     const cv = this.canvas; if (!cv) return;
-    const name = 'idm-2024-' + this.state.view + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.png';
+    const name = 'idm-' + this.state.year + '-' + this.state.view + '-' + this.scopeName(this.state.scope).replace(/[^\w]+/g, '-').toLowerCase() + '.png';
     if (!this.isMobile) return cv.toBlob(b => b && this.download(name, b), 'image/png');
     // Di HP kanvas membentang penuh di balik sheet, jadi ~20% bagian bawahnya
     // tidak pernah terlihat. Potong supaya gambar yang tersimpan sama dengan
@@ -1521,12 +1632,49 @@ class Component extends DCLogic {
   }
 
   // ── render values ───────────────────────────────────────────────────────
+  // Perbandingan 2023 -> 2024 untuk satu desa. Selalu urut kronologis; tahun
+  // yang sedang tampil diberi opasitas penuh.
+  yoy(k, p) {
+    const ramp = this.ramp(), cur = this.state.year, oy = this.otherYear();
+    const muted = 'var(--text-muted)';
+    const cIdx = this.desaIndex(cur, p), oIdx = this.desaIndex(oy, p);
+    const out = { lab: '', tone: muted, delta: '', dTone: muted,
+      aOp: cur === '2023' ? '1' : '0.6', bOp: cur === '2024' ? '1' : '0.6' };
+    if (!cIdx || !oIdx) return Object.assign(out, { lab: 'Memuat IDM ' + oy + '…',
+      aV: '—', aSt: '', aColor: ramp[0], bV: '—', bSt: '', bColor: ramp[0] });
+    const rows = { [cur]: cIdx[k], [oy]: oIdx[k] }, a = rows['2023'], b = rows['2024'];
+    const side = (r) => r ? { v: d4(r[2]), st: SNAME[r[6]], color: ramp[r[6]] } : { v: '—', st: 'Tidak tercatat', color: ramp[0] };
+    const A = side(a), B = side(b);
+    Object.assign(out, { aV: A.v, aSt: A.st, aColor: A.color, bV: B.v, bSt: B.st, bColor: B.color });
+    if (!a || !b) out.lab = 'Tidak ada di IDM ' + (a ? '2024' : '2023');
+    else if (a[2] == null || b[2] == null || !a[6] || !b[6]) out.lab = 'Tidak dapat dibandingkan';
+    else {
+      const dv = b[2] - a[2];
+      out.delta = (dv >= 0 ? '+' : '−') + d4(Math.abs(dv)) + ' poin IDM';
+      out.dTone = dv >= 0 ? 'var(--status-success)' : 'var(--text-brand)';
+      // Kode status kecil = lebih baik (1 Mandiri … 5 Sangat Tertinggal).
+      if (b[6] < a[6]) { out.lab = 'Naik ke ' + SNAME[b[6]]; out.tone = 'var(--status-success)'; }
+      else if (b[6] > a[6]) { out.lab = 'Turun ke ' + SNAME[b[6]]; out.tone = 'var(--text-brand)'; }
+      else out.lab = 'Status tetap';
+    }
+    return out;
+  }
+  yearOptions() {
+    return YEARS.map((y, i) => {
+      const on = y === this.state.year;
+      return { y, on: on ? 'true' : 'false', title: 'Tampilkan IDM ' + y,
+        bl: i ? '1px solid var(--border-hairline)' : '0',
+        bg: on ? 'var(--n-900)' : 'transparent', fg: on ? 'var(--n-0)' : 'var(--text-body)',
+        go: () => this.setYear(y) };
+    });
+  }
   renderVals() {
     const st = this.state, meta = st.meta, ramp = this.ramp(), inks = this.inks();
     if (!st.ready || !meta) {
       return {
-        crumbs: [], crumbLast: 'Memuat…', scopeKind: 'Memuat', scopeTitle: 'Memuat data IDM 2024…',
-        scopeSub: '75.265 desa · 37 provinsi', kpis: [], dist: [], legend: [], rank: [], hist: [], cmp: [],
+        crumbs: [], crumbLast: 'Memuat…', scopeKind: 'Memuat', scopeTitle: 'Memuat data IDM ' + st.year + '…',
+        brandSub: 'Indeks Desa Membangun ' + st.year, yearOpts: this.yearOptions(), srcNote: '',
+        scopeSub: 'Memuat data desa dan batas wilayah', kpis: [], dist: [], legend: [], rank: [], hist: [], cmp: [],
         cols: [], rows: [], statusChips: [], provOpts: [{ v: 'nas', t: 'Indonesia' }], provSel: 'nas',
         mrows: [], msorts: [], tabs: [],
         sheetState: 'peek', sheetTab: 'ringkas', sheetExpanded: 'false', sheetCount: '',
@@ -1598,6 +1746,9 @@ class Component extends DCLogic {
     if (st.view === 'peta' && this.coverage && this.coverage.kelurahan) legend.push({ nm: 'Kelurahan (di luar IDM)',
       n: nf.format(this.coverage.kelurahan), pct: '—', color: OUTSIDE_IDM_COLOR,
       op: hidden.has('kelurahan') ? '0.34' : '1', go: () => this.toggleHide('kelurahan') });
+    if (st.view === 'peta' && this.coverage && this.coverage.notInYear) legend.push({ nm: 'Belum ada di IDM ' + st.year,
+      n: nf.format(this.coverage.notInYear), pct: '—', color: OUTSIDE_IDM_COLOR,
+      op: hidden.has('not-in-year') ? '0.34' : '1', go: () => this.toggleHide('not-in-year') });
     if (st.view === 'peta' && this.coverage && this.coverage.joinMissing) legend.push({ nm: 'Desa gagal join',
       n: nf.format(this.coverage.joinMissing), pct: '!', color: JOIN_MISSING_COLOR,
       op: hidden.has('join-missing') ? '0.34' : '1', go: () => this.toggleHide('join-missing') });
@@ -1656,9 +1807,10 @@ class Component extends DCLogic {
       if (d) detail = {
         nm: tc(d.nm), kode: d.k, where: 'Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))) + ' · Prov. ' + tc(P ? P.nm : ''),
         st: SNAME[d.st], color: ramp[d.st], ink: inks[d.st], idm: d4(d.idm),
-        dNas: d.idm == null ? ((d.note && d.note.reason) || 'Nilai IDM 2024 tidak tersedia') : ((d.idm - nas.m >= 0 ? '+' : '−') + d4(Math.abs(d.idm - nas.m)) + ' vs rerata nasional ' + d4(nas.m)),
+        dNas: d.idm == null ? ((d.note && d.note.reason) || 'Nilai IDM ' + st.year + ' tidak tersedia') : ((d.idm - nas.m >= 0 ? '+' : '−') + d4(Math.abs(d.idm - nas.m)) + ' vs rerata nasional ' + d4(nas.m)),
         dTone: (d.idm || 0) - nas.m >= 0 ? 'var(--status-success)' : 'var(--text-brand)',
-        prov: d.pv === 1 ? 'Update 2023' : d.pv === 2 ? 'Server PDN' : null,
+        prov: d.pv > 0 ? SOURCE_NAME[d.pv] || null : null,
+        yoy: this.yoy(d.k, scope.p),
         sub: [['IKS — Ketahanan Sosial', d.iks, nas.s], ['IKE — Ketahanan Ekonomi', d.ike, nas.e], ['IKL — Ketahanan Lingkungan', d.ikl, nas.l]]
           .map(([lab, v, n]) => ({ lab, v: d3(v), w: Math.max(1, (v || 0) * 100) + '%', nasw: (n * 100) + '%',
             note: v == null ? 'tidak tersedia' : ((v - n >= 0 ? 'di atas' : 'di bawah') + ' rerata nasional ' + d3(n)) }))
@@ -1724,8 +1876,8 @@ class Component extends DCLogic {
       n: nf.format(A.n)
     } : null;
     if (!notice && st.view === 'peta' && this.coverage && this.coverage.missing) notice = {
-      t: nf.format(this.coverage.missing) + ' desa IDM belum memiliki poligon RBI 2023',
-      b: 'Nilai desanya tetap tersedia. Gunakan mode Petak atau tabel; batas geografisnya memerlukan sumber resmi yang lebih mutakhir.',
+      t: nf.format(this.coverage.missing) + ' desa IDM belum memiliki poligon batas desa',
+      b: 'Nilai desanya tetap tersedia. Gunakan mode Petak atau tabel; batasnya belum ada di RBI 2023 maupun sumber tambalan BIG Juli 2026.',
       n: nf.format(A.n)
     };
 
@@ -1739,23 +1891,29 @@ class Component extends DCLogic {
     if (scope.lvl === 'nas' && st.view === 'peta') coverageNotes.push('DKI Jakarta abu-abu karena seluruh wilayahnya berstatus kelurahan, di luar cakupan IDM');
     if (st.view === 'peta' && this.coverage) {
       if (this.coverage.kelurahan) coverageNotes.push(nf.format(this.coverage.kelurahan) + ' poligon abu-abu adalah kelurahan di luar cakupan IDM');
-      if (this.coverage.missing) coverageNotes.push(nf.format(this.coverage.missing) + ' desa IDM belum punya poligon RBI 2023 dan tetap ada di Petak/tabel');
+      if (this.coverage.missing) coverageNotes.push(nf.format(this.coverage.missing) + ' desa IDM belum punya poligon batas desa dan tetap ada di Petak/tabel');
+      if (this.coverage.notInYear) coverageNotes.push(nf.format(this.coverage.notInYear) + ' poligon abu-abu adalah desa yang baru tercatat di IDM ' + this.otherYear());
       if (this.coverage.joinMissing) coverageNotes.push('PERINGATAN: ' + nf.format(this.coverage.joinMissing) + ' poligon desa gagal join');
     }
     if (withoutScore) coverageNotes.push(nf.format(withoutScore) + ' desa memang tidak memiliki skor pada sumber IDM');
+    // IDM 2023 masih mencatat Papua Barat Daya di bawah Papua Barat (kode 92).
+    if (st.year === '2023' && (scope.lvl === 'nas' || scope.p === '92' || scope.p === '96'))
+      coverageNotes.push('IDM 2023 mencatat 939 desa Papua Barat Daya di bawah Papua Barat (kode 92); di sini dipetakan ke kode 2024 agar bisa dibandingkan');
 
     return {
       mapRef: this.mapRef,
+      brandSub: 'Indeks Desa Membangun ' + st.year, yearOpts: this.yearOptions(),
+      srcNote: 'Kemendes PDTT, ' + YEAR_SOURCE[st.year] + ' — ' + nf.format(nas.n) + ' desa',
       crumbs, crumbLast: last ? last.t : 'Indonesia',
       scopeKind, scopeTitle: this.scopeName(scope),
-      scopeSub: nf.format(A.n) + ' desa · rerata IDM ' + d4(A.m) + ' · ' + unitLabel + ovlLabel,
+      scopeSub: 'IDM ' + st.year + ' · ' + nf.format(A.n) + ' desa · rerata ' + d4(A.m) + ' · ' + unitLabel + ovlLabel,
       live: st.live,
       canUp: scope.lvl !== 'nas',
       kpis, dist, legend, statusChips, rank, hist, cmp, detail, cols, rows,
       mrows, msorts, tabs,
       sheetState: st.sheet, sheetTab: st.sheetTab,
       sheetExpanded: st.sheet === 'peek' ? 'false' : 'true',
-      sheetCount: nf.format(A.n) + ' desa',
+      sheetCount: 'IDM ' + st.year + ' · ' + nf.format(A.n) + ' desa',
       searchFlag: st.searchOpen ? '1' : '0',
       searchExpanded: st.searchOpen ? 'true' : 'false',
       upLabel: this.isMobile ? '\u2191' : '\u2191 Naik level',

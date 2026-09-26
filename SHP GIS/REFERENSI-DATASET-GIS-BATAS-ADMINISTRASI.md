@@ -15,6 +15,7 @@
 5. [Dataset 3 — Kemendagri seamless_bad123_rev130723_1](#5-dataset-3--kemendagri-seamless_bad123_rev130723_1)
 6. [Dataset 4 — RBI10K_ADMINISTRASI_DESA_20230928.gdb](#6-dataset-4--rbi10k_administrasi_desa_20230928gdb)
 7. [Dataset 5 — RBI50K_ADMINISTRASI_KABKOTA_20230907.gdb](#7-dataset-5--rbi50k_administrasi_kabkota_20230907gdb)
+7a. [Dataset 6 — BATAS_DESAKEL_AR edisi Juli 2026 (LapakGIS)](#7a-dataset-6--batas_desakel_ar-edisi-juli-2026-lapakgis) *(tambahan 26 September 2026)*
 8. [Matriks perbandingan detail](#8-matriks-perbandingan-detail)
 9. [Pemekaran wilayah dan kode Papua](#9-pemekaran-wilayah-dan-kode-papua)
 10. [Kamus kode domain (KUGI/BIG)](#10-kamus-kode-domain-kugibig)
@@ -35,6 +36,7 @@
 | 3 | `Peta Batas Administrasi Provinsi dan Kabupaten Kota from Kemendagri` | Shapefile | **Garis** batas Provinsi & Kab/Kota | **PolyLine** | 1.298 | **31-05-2021** (skala 1:50.000) | ✅ `admin1`/`admin2` (xx.xx) | ❌ tidak ada |
 | 4 | `RBI10K_ADMINISTRASI_DESA_20230928.gdb` | Esri File GDB | Desa/Kelurahan | MultiPolygon ZM | 83.486 | **28-09-2023** (skala 1:10.000) | ✅ lengkap | ❌ **field ada tapi 100% kosong** |
 | 5 | `RBI50K_ADMINISTRASI_KABKOTA_20230907.gdb` | Esri File GDB | Kab/Kota (area **dan** garis) | MultiPolygon Z + MultiLineString | 548 + 1.297 | **07-09-2023** (skala 1:50.000) | ✅ lengkap, **kode Papua terbaru 91–96** | ❌ 100% kosong |
+| 6 | `[LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_` *(ditambahkan kemudian, lihat §7a)* | Shapefile | Desa/Kelurahan | PolygonZ (sebagian MultiPolygon ZM) | 84.503 | **12-06-2026** (126 fitur 31-12-2025) | ✅ lengkap, **penomoran Kemendagri 2025** | ⚠️ 1.899 terisi (2%) |
 
 **Tiga kalimat yang paling sering menyelamatkan waktu:**
 
@@ -522,6 +524,51 @@ Artinya `KLBADM` bisa dipercaya sepenuhnya untuk memisahkan garis batas provinsi
 | **96** | **Papua Barat Daya** | 6 |
 
 Kode kab/kota-nya pun sudah dinomori ulang: `93.01 Merauke`, `94.01 Nabire`, `95.01 Jayawijaya`, `96.71 Kota Sorong`, dst.
+
+---
+
+## 7a. Dataset 6 — `[LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_`
+
+> Ditambahkan 26 September 2026. Asal folder: `Visualisasi Pemilu Indonesia 2024\SHP GIS`, disalin ke folder ini tanpa berkas `.zip`-nya (1,0 GB).
+
+### 7a.1 Identitas
+
+| Hal | Nilai |
+|---|---|
+| Berkas | `[LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_.shp` (2,16 GB) + `.dbf` (138 MB) + `.shx`, `.prj`, `.cpg`, `.qmd` |
+| Asal data | Unduhan layanan BIG `geoservices.big.go.id/rbi/rest/services/BATASWILAYAH/BATAS_DESAKEL_AR/MapServer/0` (tercantum di `.qmd`), dikemas LapakGIS.com |
+| Vintage | `METADATA` = `TASWIL1000020260612DESAKEL_AR` (84.377 fitur, 12-06-2026) dan `…20251231…` (126 fitur); tanggal DBF 21-07-2026 |
+| CRS | EPSG:4326 (WGS 84), geometri PolygonZ; beberapa fitur Measured 3D MultiPolygon (pyogrio memberi peringatan dan menurunkannya ke Z) |
+| Jumlah fitur | **84.503** = 75.041 desa (`TIPADM` 1) + 8.495 kelurahan (`TIPADM` 2) + **967 "Area Tidak Terdefinisi"** (`TIPADM` 999, tanpa kode) |
+| Skema | Sama dengan Dataset 1/4 (`KDEPUM`, `WADMKD`, `WADMKC`, `WADMKK`, `WADMPR`, `TIPADM`, `REMARK`, `UUPP`, …) ditambah `Status` (Batas Indikatif 58.312 / Hasil Kesepakatan 19.842 / Batas Definitif 6.349) dan `LastSync` |
+| Kode | 83.536 fitur berkode 10 digit, 83.529 kode unik (**7 kode ganda**, semuanya di Sulawesi Tenggara). 514 kab/kota, 7.282 kecamatan. Kode provinsi Papua sudah 91–96 |
+
+### 7a.2 Temuan penting: penomoran lebih baru daripada IDM 2023/2024
+
+Dataset ini mengikuti Kepmendagri 2025, sedangkan IDM 2023 dan 2024 masih memakai penomoran sebelum itu. Hasil join kode persis terhadap IDM 2024 (75.265 desa):
+
+| Dasar geometri | Desa IDM 2024 yang ter-join |
+|---|---:|
+| Dataset 4 (RBI 10K Sep-2023, setelah remap Papua §9.3) | **74.930** (99,55%) |
+| Dataset 6 (sendirian) | 74.254 (98,66%) |
+
+Ada **965 desa yang ter-join di Dataset 4 tetapi tidak di Dataset 6**, karena kodenya berubah. Sebanyak 702 di antaranya di Papua Barat Daya; sisanya di Papua Pegunungan (146), Papua Barat (53), Sulawesi Tengah (23), Papua Selatan (12), Maluku (10), dan lain-lain. Karena itu **Dataset 6 tidak dipakai sebagai pengganti Dataset 4**.
+
+### 7a.3 Dipakai sebagai tambalan
+
+Dari 335 desa IDM 2024 yang tidak punya poligon di Dataset 4, **289 ada di Dataset 6 dengan kode yang persis sama**. Sisanya 46 desa, mayoritas di Papua Tengah dan Papua Pegunungan, tidak ada di sumber mana pun berdasarkan kode. 36 di antaranya bisa dicocokkan lewat nama dengan Kel_Desa 2022 (Dataset 1/2), tetapi cara itu sengaja **tidak** dipakai.
+
+278 dari 289 tambalan itu adalah **desa pemekaran** yang di Dataset 4 masih menjadi bagian dari poligon desa induk. Contohnya Ketro Harjo (35.01.10.2017) yang berada di dalam Ketro, dan Arolipu (73.24.06.2017) di dalam Bawalipu. Karena itu `tools/build_geo.py --patch` melakukan tiga hal:
+
+1. Memotong poligon tambalan keluar dari setiap poligon Dataset 4 yang tertimpa, dengan `shapely.difference` pada grid 1e-5°. Dengan begitu tidak ada tumpang-tindih, dan dissolve kecamatan/kabupaten tetap rapi.
+2. Membatalkan tambalan yang akan menghapus poligon **desa IDM lain** (sisa kurang dari 2%). Poligon kelurahan boleh habis. Contohnya poligon "Salassa" (73.22.11.1005, kelurahan) di Dataset 4 yang seluruhnya tertutup Salulemo (73.22.11.2002).
+3. Mencatat setiap tambalan, poligon induk yang dipotong, dan tambalan yang dibatalkan di `data/geo/patch-report.json`. Fitur tambalan diberi `"s":1` di `data/geo/desa/*.json`, dan dashboard menampilkan sumbernya di tooltip.
+
+### 7a.4 Jebakan
+
+- Jangan menerapkan remap Papua (§9.3) ke dataset ini, karena kodenya sudah berpenomoran baru.
+- 967 poligon tanpa kode perlu dibuang sebelum join.
+- Kode ganda di Sulawesi Tenggara harus di-*union* per kode.
 
 ---
 

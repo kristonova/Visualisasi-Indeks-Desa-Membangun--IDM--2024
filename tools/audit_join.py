@@ -1,67 +1,38 @@
 #!/usr/bin/env python3
-r"""Audit the IDM 2024 Excel -> compact JSON -> GeoJSON-code join.
+r"""Audit the IDM Excel -> compact JSON -> GeoJSON-code join, per year.
 
 The dashboard joins records only by the 10-digit Ministry of Home Affairs code.
 This command reproduces that exact join, distinguishes villages from urban wards,
 and writes a deterministic report that can be reviewed or checked in CI.
+Excel codes are translated to IDM 2024 numbering first (see idm_sources.py),
+exactly as build_idm.py does, so every year shares the same geometry.
 
 Run from the repository root:
 
     .venv\Scripts\python tools\audit_join.py
-    .venv\Scripts\python tools\audit_join.py --strict
+    .venv\Scripts\python tools\audit_join.py --year 2023 --strict
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import re
 import sys
 import unicodedata
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Set, Tuple
 
-try:
-    import openpyxl
-except ImportError as exc:  # pragma: no cover - exercised only on a broken setup
-    raise SystemExit(
-        "openpyxl belum terpasang. Jalankan audit dengan .venv\\Scripts\\python "
-        "atau pasang openpyxl terlebih dahulu."
-    ) from exc
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from idm_sources import ROOT, YEARS, load_rows, numeric  # noqa: E402
 
-
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_EXCEL = ROOT / "data" / "indeks-desa-membangun-tahun-2024-hasil-pemutakhiran.xlsx"
-DEFAULT_IDM_DIR = ROOT / "data" / "idm" / "prov"
 DEFAULT_GEO_DIR = ROOT / "data" / "geo" / "desa"
-DEFAULT_REPORT = ROOT / "data" / "geo" / "join-audit.json"
-
-STATUS_TO_CODE = {
-    None: 0,
-    "": 0,
-    "MANDIRI": 1,
-    "MAJU": 2,
-    "BERKEMBANG": 3,
-    "TERTINGGAL": 4,
-    "SANGAT TERTINGGAL": 5,
-}
-SOURCE_TO_CODE = {None: 0, "": 0, "Update 2023": 1, "Server PDN": 2}
 UNIT_KIND = {"1": "kelurahan", "2": "desa", "3": "desa_adat"}
-
-
-def digits(value: Any) -> str:
-    """Return only decimal digits without converting large codes through float."""
-    if value is None:
-        return ""
-    if isinstance(value, bool):
-        return ""
-    if isinstance(value, int):
-        return str(value)
-    if isinstance(value, float) and value.is_integer():
-        return str(int(value))
-    return re.sub(r"\D", "", str(value))
+# Batas --strict per tahun: desa IDM tanpa poligon setelah tambalan build_geo.py,
+# dan beda nama pada kode yang sama.
+MAX_IDM_WITHOUT_GEOMETRY = {"2023": 47, "2024": 47}
+MAX_JOINED_NAME_MISMATCHES = {"2023": 4, "2024": 4}
 
 
 def unit_kind(code: str) -> str:
@@ -74,13 +45,6 @@ def normalize_name(value: Any) -> str:
     return re.sub(r"[^A-Z0-9]", "", text)
 
 
-def numeric(value: Any) -> Optional[float]:
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        return None
-    value = float(value)
-    return value if math.isfinite(value) else None
-
-
 def same_number(left: Any, right: Any, tolerance: float = 0.00005) -> bool:
     left_num, right_num = numeric(left), numeric(right)
     if left_num is None or right_num is None:
@@ -91,71 +55,6 @@ def same_number(left: Any, right: Any, tolerance: float = 0.00005) -> bool:
 def duplicate_codes(records: List[Dict[str, Any]]) -> List[str]:
     counts = Counter(record["code"] for record in records if record["code"])
     return sorted(code for code, count in counts.items() if count > 1)
-
-
-def load_excel(path: Path) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-    workbook = openpyxl.load_workbook(path, read_only=True, data_only=True)
-    if "IDM 2024" not in workbook.sheetnames:
-        raise SystemExit(f"Sheet 'IDM 2024' tidak ditemukan di {path}")
-    sheet = workbook["IDM 2024"]
-    rows = sheet.iter_rows(values_only=True)
-    header = next(rows)
-    columns = {str(name).strip(): index for index, name in enumerate(header) if name is not None}
-    required = [
-        "KODE_PROV",
-        "NAMA_PROVINSI",
-        "KODE_KAB",
-        "NAMA_KABUPATEN",
-        "KODE_KEC",
-        "NAMA_KECAMATAN",
-        "KODE_DESA",
-        "NAMA_DESA",
-        "IKS_2024",
-        "IKE_2024",
-        "IKL_2024",
-        "NILAI_IDM_2024",
-        "STATUS_IDM_2024",
-        "Keterangan",
-    ]
-    missing_columns = [name for name in required if name not in columns]
-    if missing_columns:
-        raise SystemExit("Kolom Excel tidak lengkap: " + ", ".join(missing_columns))
-
-    records: List[Dict[str, Any]] = []
-    invalid: List[Dict[str, Any]] = []
-    for row_number, row in enumerate(rows, start=2):
-        get = lambda name: row[columns[name]] if columns[name] < len(row) else None
-        code = digits(get("KODE_DESA"))
-        source_text = get("Keterangan")
-        status_text = get("STATUS_IDM_2024")
-        record = {
-            "code": code,
-            "province_code": digits(get("KODE_PROV")).zfill(2),
-            "province": str(get("NAMA_PROVINSI") or "").strip(),
-            "regency_code": digits(get("KODE_KAB")).zfill(4),
-            "regency": str(get("NAMA_KABUPATEN") or "").strip(),
-            "district_code": digits(get("KODE_KEC")).zfill(6),
-            "district": str(get("NAMA_KECAMATAN") or "").strip(),
-            "name": str(get("NAMA_DESA") or "").strip(),
-            "iks": numeric(get("IKS_2024")),
-            "ike": numeric(get("IKE_2024")),
-            "ikl": numeric(get("IKL_2024")),
-            "idm": numeric(get("NILAI_IDM_2024")),
-            "status": STATUS_TO_CODE.get(status_text, -1),
-            "source": SOURCE_TO_CODE.get(source_text, -1),
-            "source_label": str(source_text or "Reguler"),
-            "source_note": (
-                str(get("IKS_2024")).strip()
-                if get("IKS_2024") not in (None, "") and numeric(get("IKS_2024")) is None
-                else None
-            ),
-            "row": row_number,
-        }
-        if len(code) != 10 or not code.isdigit():
-            invalid.append({"row": row_number, "code": code, "name": record["name"]})
-        records.append(record)
-    workbook.close()
-    return records, invalid
 
 
 def load_idm_json(directory: Path) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
@@ -188,6 +87,17 @@ def load_idm_json(directory: Path) -> Tuple[List[Dict[str, Any]], List[Dict[str,
     return records, invalid
 
 
+def load_json_codes(directory: Path) -> Set[str]:
+    """Kode desa saja dari data/idm/<tahun>/prov — dipakai untuk tahun pembanding."""
+    codes: Set[str] = set()
+    for path in sorted(directory.glob("*.json")):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        for district in payload.get("kec", []):
+            for village in district.get("ds", []):
+                codes.add(str(district.get("k", "")) + str(village[0]))
+    return codes
+
+
 def load_geo_json(directory: Path) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     records: List[Dict[str, Any]] = []
     invalid: List[Dict[str, Any]] = []
@@ -200,6 +110,7 @@ def load_geo_json(directory: Path) -> Tuple[List[Dict[str, Any]], List[Dict[str,
                 "province_code": code[:2],
                 "name": str(feature.get("nm", "")),
                 "kind": unit_kind(code),
+                "patched": bool(feature.get("s")),
                 "file": path.name,
             }
             if len(code) != 10 or not code.isdigit():
@@ -216,6 +127,8 @@ def compact_record(record: Dict[str, Any], include_note: bool = False) -> Dict[s
         "regency_code": record["code"][:4],
         "district_code": record["code"][:6],
     }
+    if record.get("code_source") and record["code_source"] != record["code"]:
+        output["code_source"] = record["code_source"]
     if record.get("district"):
         output["district"] = record["district"]
     if record.get("regency"):
@@ -280,9 +193,14 @@ def display_path(path: Path) -> str:
 
 
 def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
-    excel_records, excel_invalid = load_excel(args.excel)
+    excel_records, excel_invalid = load_rows(args.year, args.excel)
     idm_records, idm_invalid = load_idm_json(args.idm_dir)
     geo_records, geo_invalid = load_geo_json(args.geo_dir)
+    other_codes: Set[str] = set()
+    for year in sorted(YEARS):
+        other_dir = ROOT / "data" / "idm" / year / "prov"
+        if year != args.year and other_dir.is_dir():
+            other_codes |= load_json_codes(other_dir)
 
     excel_duplicates = duplicate_codes(excel_records)
     idm_duplicates = duplicate_codes(idm_records)
@@ -296,7 +214,10 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
     idm_without_geo = idm_codes - geo_codes
     geo_without_idm = geo_codes - idm_codes
     geo_kelurahan = {code for code in geo_without_idm if unit_kind(code) == "kelurahan"}
-    unexpected_geo = geo_without_idm - geo_kelurahan
+    # Desa yang memang hanya ada di IDM tahun lain (mis. desa baru 2024 saat
+    # mengaudit 2023) bukan kegagalan join.
+    geo_other_year = {code for code in geo_without_idm - geo_kelurahan if code in other_codes}
+    unexpected_geo = geo_without_idm - geo_kelurahan - geo_other_year
     no_score = {
         code
         for code, record in excel_by_code.items()
@@ -305,7 +226,7 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
     metric_mismatches = compare_excel_and_json(excel_by_code, idm_by_code)
     joined_name_mismatches = []
     for code in sorted(joined):
-        idm_name = excel_by_code[code].get("name", "")
+        idm_name = excel_by_code[code].get("name", "") if code in excel_by_code else ""
         geo_name = geo_by_code[code].get("name", "")
         if normalize_name(idm_name) != normalize_name(geo_name):
             joined_name_mismatches.append(
@@ -316,9 +237,11 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
                     "kind": "missing_idm_name" if not idm_name else "name_difference",
                 }
             )
+    translated = [r for r in excel_records if r["code"] != r["code_source"]]
 
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
+        "year": args.year,
         "sources": {
             "excel": display_path(args.excel),
             "idm_json": display_path(args.idm_dir),
@@ -327,10 +250,13 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
         "summary": {
             "excel_rows": len(excel_records),
             "idm_json_rows": len(idm_records),
+            "codes_translated_to_2024": len(translated),
             "geo_features": len(geo_records),
+            "geo_patched_features": sum(1 for r in geo_records if r["patched"]),
             "joined_idm_to_geometry": len(joined),
             "idm_without_geometry": len(idm_without_geo),
             "geo_kelurahan_outside_idm": len(geo_kelurahan),
+            "geo_desa_other_year_only": len(geo_other_year),
             "unexpected_geo_village_without_idm": len(unexpected_geo),
             "idm_without_score": len(no_score),
             "joined_name_mismatches": len(joined_name_mismatches),
@@ -353,7 +279,10 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
         ],
         "joined_name_mismatches": joined_name_mismatches,
         "idm_without_geometry": [
-            compact_record(excel_by_code[code]) for code in sorted(idm_without_geo)
+            compact_record(excel_by_code.get(code) or idm_by_code[code]) for code in sorted(idm_without_geo)
+        ],
+        "geo_desa_other_year_only": [
+            dict(compact_record(geo_by_code[code]), kind=unit_kind(code)) for code in sorted(geo_other_year)
         ],
         "unexpected_geo_village_without_idm": [
             dict(compact_record(geo_by_code[code]), kind=unit_kind(code))
@@ -389,25 +318,37 @@ def audit(args: argparse.Namespace) -> Tuple[Dict[str, Any], List[str]]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--excel", type=Path, default=DEFAULT_EXCEL)
-    parser.add_argument("--idm-dir", type=Path, default=DEFAULT_IDM_DIR)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--year", default="2024", choices=sorted(YEARS))
+    parser.add_argument("--excel", type=Path, default=None, help="default: berkas Excel tahun itu")
+    parser.add_argument("--idm-dir", type=Path, default=None, help="default: data/idm/<tahun>/prov")
     parser.add_argument("--geo-dir", type=Path, default=DEFAULT_GEO_DIR)
-    parser.add_argument("--out", type=Path, default=DEFAULT_REPORT)
+    parser.add_argument("--out", type=Path, default=None, help="default: data/idm/<tahun>/join-audit.json")
     parser.add_argument(
         "--max-idm-without-geometry",
         type=int,
-        default=335,
-        help="fail in --strict mode if the known geometry gap grows (default: 335)",
+        default=None,
+        help="fail in --strict mode if the known geometry gap grows (default per year: %s)"
+        % MAX_IDM_WITHOUT_GEOMETRY,
     )
     parser.add_argument(
         "--max-joined-name-mismatches",
         type=int,
-        default=3,
-        help="fail in --strict mode if exact-code name mismatches grow (default: 3)",
+        default=None,
+        help="fail in --strict mode if exact-code name mismatches grow (default per year: %s)"
+        % MAX_JOINED_NAME_MISMATCHES,
     )
     parser.add_argument("--strict", action="store_true", help="return a non-zero exit code on integrity failures")
-    return parser.parse_args()
+    args = parser.parse_args()
+    year_dir = ROOT / "data" / "idm" / args.year
+    args.excel = args.excel or YEARS[args.year]["excel"]
+    args.idm_dir = args.idm_dir or year_dir / "prov"
+    args.out = args.out or year_dir / "join-audit.json"
+    if args.max_idm_without_geometry is None:
+        args.max_idm_without_geometry = MAX_IDM_WITHOUT_GEOMETRY[args.year]
+    if args.max_joined_name_mismatches is None:
+        args.max_joined_name_mismatches = MAX_JOINED_NAME_MISMATCHES[args.year]
+    return args
 
 
 def main() -> int:
@@ -422,11 +363,15 @@ def main() -> int:
     args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     summary = report["summary"]
-    print(f"Excel / JSON IDM : {summary['excel_rows']:,} / {summary['idm_json_rows']:,}")
-    print(f"Fitur geometri   : {summary['geo_features']:,}")
+    print(f"Tahun            : {args.year}")
+    print(f"Excel / JSON IDM : {summary['excel_rows']:,} / {summary['idm_json_rows']:,}"
+          + (f"  ({summary['codes_translated_to_2024']:,} kode diterjemahkan ke penomoran 2024)"
+             if summary["codes_translated_to_2024"] else ""))
+    print(f"Fitur geometri   : {summary['geo_features']:,} ({summary['geo_patched_features']:,} tambalan)")
     print(f"Join tepat       : {summary['joined_idm_to_geometry']:,} ({summary['join_rate_percent']:.4f}%)")
     print(f"IDM tanpa geometri: {summary['idm_without_geometry']:,}")
     print(f"Kelurahan di luar IDM: {summary['geo_kelurahan_outside_idm']:,}")
+    print(f"Desa hanya di tahun lain: {summary['geo_desa_other_year_only']:,}")
     print(f"Desa geo gagal join: {summary['unexpected_geo_village_without_idm']:,}")
     print(f"Desa tanpa skor : {summary['idm_without_score']:,}")
     print(f"Nama beda pada kode sama: {summary['joined_name_mismatches']:,}")

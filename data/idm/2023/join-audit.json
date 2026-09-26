@@ -1,0 +1,1097 @@
+{
+  "schema_version": 2,
+  "year": "2023",
+  "sources": {
+    "excel": "data\\indeks-desa-membangun-idm-tahun-2023.xlsx",
+    "idm_json": "data\\idm\\2023\\prov",
+    "geo_json": "data\\geo\\desa"
+  },
+  "summary": {
+    "excel_rows": 75261,
+    "idm_json_rows": 75261,
+    "codes_translated_to_2024": 939,
+    "geo_features": 83685,
+    "geo_patched_features": 288,
+    "joined_idm_to_geometry": 75214,
+    "idm_without_geometry": 47,
+    "geo_kelurahan_outside_idm": 8467,
+    "geo_desa_other_year_only": 4,
+    "unexpected_geo_village_without_idm": 0,
+    "idm_without_score": 0,
+    "joined_name_mismatches": 4,
+    "join_rate_percent": 99.9376
+  },
+  "integrity": {
+    "excel_duplicate_codes": [],
+    "idm_json_duplicate_codes": [],
+    "geo_duplicate_codes": [],
+    "excel_invalid_codes": [],
+    "idm_json_invalid_codes": [],
+    "geo_invalid_codes": [],
+    "excel_missing_from_idm_json": [],
+    "idm_json_missing_from_excel": [],
+    "excel_json_field_mismatches": []
+  },
+  "by_province": [
+    {
+      "province_code": "11",
+      "idm_rows": 6497,
+      "geo_features": 6500,
+      "joined": 6497,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 0,
+      "unexpected_geo_village_without_idm": 3,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "12",
+      "idm_rows": 5417,
+      "geo_features": 6110,
+      "joined": 5417,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 693,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "13",
+      "idm_rows": 1035,
+      "geo_features": 1264,
+      "joined": 1034,
+      "idm_without_geometry": 1,
+      "geo_kelurahan_outside_idm": 230,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "14",
+      "idm_rows": 1591,
+      "geo_features": 1859,
+      "joined": 1591,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 268,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "15",
+      "idm_rows": 1414,
+      "geo_features": 1583,
+      "joined": 1414,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 169,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "16",
+      "idm_rows": 2855,
+      "geo_features": 3241,
+      "joined": 2854,
+      "idm_without_geometry": 1,
+      "geo_kelurahan_outside_idm": 387,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "17",
+      "idm_rows": 1341,
+      "geo_features": 1513,
+      "joined": 1341,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 172,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "18",
+      "idm_rows": 2446,
+      "geo_features": 2651,
+      "joined": 2446,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 205,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "19",
+      "idm_rows": 309,
+      "geo_features": 391,
+      "joined": 309,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 82,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "21",
+      "idm_rows": 275,
+      "geo_features": 417,
+      "joined": 275,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 142,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "31",
+      "idm_rows": 0,
+      "geo_features": 267,
+      "joined": 0,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 267,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "32",
+      "idm_rows": 5311,
+      "geo_features": 5957,
+      "joined": 5311,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 646,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "33",
+      "idm_rows": 7810,
+      "geo_features": 8563,
+      "joined": 7810,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 753,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "34",
+      "idm_rows": 392,
+      "geo_features": 438,
+      "joined": 392,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 46,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "35",
+      "idm_rows": 7721,
+      "geo_features": 8495,
+      "joined": 7721,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 774,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "36",
+      "idm_rows": 1238,
+      "geo_features": 1552,
+      "joined": 1238,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 314,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "51",
+      "idm_rows": 636,
+      "geo_features": 716,
+      "joined": 636,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 80,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "52",
+      "idm_rows": 1021,
+      "geo_features": 1166,
+      "joined": 1021,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 145,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "53",
+      "idm_rows": 3137,
+      "geo_features": 3441,
+      "joined": 3137,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 304,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "61",
+      "idm_rows": 2046,
+      "geo_features": 2145,
+      "joined": 2046,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 99,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "62",
+      "idm_rows": 1432,
+      "geo_features": 1571,
+      "joined": 1432,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 139,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "63",
+      "idm_rows": 1871,
+      "geo_features": 2016,
+      "joined": 1871,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 144,
+      "unexpected_geo_village_without_idm": 1,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "64",
+      "idm_rows": 841,
+      "geo_features": 1038,
+      "joined": 841,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 197,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "65",
+      "idm_rows": 447,
+      "geo_features": 482,
+      "joined": 447,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 35,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "71",
+      "idm_rows": 1507,
+      "geo_features": 1839,
+      "joined": 1507,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 332,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "72",
+      "idm_rows": 1842,
+      "geo_features": 2017,
+      "joined": 1842,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 175,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "73",
+      "idm_rows": 2266,
+      "geo_features": 3057,
+      "joined": 2266,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 791,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "74",
+      "idm_rows": 1908,
+      "geo_features": 2284,
+      "joined": 1908,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 376,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "75",
+      "idm_rows": 657,
+      "geo_features": 729,
+      "joined": 657,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 72,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "76",
+      "idm_rows": 575,
+      "geo_features": 648,
+      "joined": 575,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 73,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "81",
+      "idm_rows": 1200,
+      "geo_features": 1233,
+      "joined": 1198,
+      "idm_without_geometry": 2,
+      "geo_kelurahan_outside_idm": 35,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "82",
+      "idm_rows": 1067,
+      "geo_features": 1184,
+      "joined": 1067,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 117,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "91",
+      "idm_rows": 948,
+      "geo_features": 998,
+      "joined": 947,
+      "idm_without_geometry": 1,
+      "geo_kelurahan_outside_idm": 51,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "92",
+      "idm_rows": 803,
+      "geo_features": 865,
+      "joined": 803,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 62,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "93",
+      "idm_rows": 677,
+      "geo_features": 687,
+      "joined": 674,
+      "idm_without_geometry": 3,
+      "geo_kelurahan_outside_idm": 13,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "94",
+      "idm_rows": 1172,
+      "geo_features": 1193,
+      "joined": 1157,
+      "idm_without_geometry": 15,
+      "geo_kelurahan_outside_idm": 36,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "95",
+      "idm_rows": 2617,
+      "geo_features": 2603,
+      "joined": 2593,
+      "idm_without_geometry": 24,
+      "geo_kelurahan_outside_idm": 10,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    },
+    {
+      "province_code": "96",
+      "idm_rows": 939,
+      "geo_features": 972,
+      "joined": 939,
+      "idm_without_geometry": 0,
+      "geo_kelurahan_outside_idm": 33,
+      "unexpected_geo_village_without_idm": 0,
+      "idm_without_score": 0
+    }
+  ],
+  "idm_without_score": [],
+  "joined_name_mismatches": [
+    {
+      "code": "1203052075",
+      "idm_name": "PARAU SORAT SIABO-TABO",
+      "geo_name": "Parau Sorat Sitabo-Tabo",
+      "kind": "name_difference"
+    },
+    {
+      "code": "1509092006",
+      "idm_name": "LUBUK MANDRASAH ULU",
+      "geo_name": "Lubuk Mandarsah Ulu",
+      "kind": "name_difference"
+    },
+    {
+      "code": "6310042029",
+      "idm_name": "BERAKAT MUFAKAT",
+      "geo_name": "Barakat Mufakat",
+      "kind": "name_difference"
+    },
+    {
+      "code": "9402212016",
+      "idm_name": "TENOMANGGEN",
+      "geo_name": "Tenombanak",
+      "kind": "name_difference"
+    }
+  ],
+  "idm_without_geometry": [
+    {
+      "code": "1312022009",
+      "name": "SITUAK UJUNG GADING",
+      "province_code": "13",
+      "regency_code": "1312",
+      "district_code": "131202",
+      "district": "LEMBAH MELINTANG",
+      "regency": "PASAMAN BARAT",
+      "province": "SUMATERA BARAT"
+    },
+    {
+      "code": "1603222002",
+      "name": "ARISAN MUSI",
+      "province_code": "16",
+      "regency_code": "1603",
+      "district_code": "160322",
+      "district": "MUARA BELIDA",
+      "regency": "MUARA ENIM",
+      "province": "SUMATERA SELATAN"
+    },
+    {
+      "code": "8109042016",
+      "name": "WAEHOTONG",
+      "province_code": "81",
+      "regency_code": "8109",
+      "district_code": "810904",
+      "district": "KEPALA MADAN",
+      "regency": "BURU SELATAN",
+      "province": "MALUKU"
+    },
+    {
+      "code": "8109062011",
+      "name": "BATU KARANG",
+      "province_code": "81",
+      "regency_code": "8109",
+      "district_code": "810906",
+      "district": "FENA FAFAN",
+      "regency": "BURU SELATAN",
+      "province": "MALUKU"
+    },
+    {
+      "code": "9110132003",
+      "name": "WASKEY/ TANJUNG\nBATU",
+      "province_code": "91",
+      "regency_code": "9110",
+      "district_code": "911013",
+      "district": "SARMI TIMUR",
+      "regency": "SARMI",
+      "province": "PAPUA"
+    },
+    {
+      "code": "9304182004",
+      "name": "SATO YOD",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9304182005",
+      "name": "TAMOR",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9304182006",
+      "name": "ERO AIRO",
+      "province_code": "93",
+      "regency_code": "9304",
+      "district_code": "930418",
+      "district": "AYIP",
+      "regency": "ASMAT",
+      "province": "PAPUA SELATAN"
+    },
+    {
+      "code": "9403012010",
+      "name": "OYAIGO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012013",
+      "name": "GEKO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012014",
+      "name": "MUGIMEKETAGO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012015",
+      "name": "TUAMAKIDA",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012016",
+      "name": "GEIBU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012018",
+      "name": "KOGEKOTU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403012026",
+      "name": "YAGIYO BUTU",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940301",
+      "district": "PANIAI TIMUR",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403032002",
+      "name": "AGAPO",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940303",
+      "district": "ARADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403032006",
+      "name": "MAKIDINI",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940303",
+      "district": "ARADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9403102008",
+      "name": "DABAMOMAIDA",
+      "province_code": "94",
+      "regency_code": "9403",
+      "district_code": "940310",
+      "district": "EKADIDE",
+      "regency": "PANIAI",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132001",
+      "name": "AGUIT",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132003",
+      "name": "MOLU",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405132004",
+      "name": "BELABA",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940513",
+      "district": "KEMBRU",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405142002",
+      "name": "BINA",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940514",
+      "district": "BINA",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9405162003",
+      "name": "AMULEME",
+      "province_code": "94",
+      "regency_code": "9405",
+      "district_code": "940516",
+      "district": "MAGE'ABUME",
+      "regency": "PUNCAK",
+      "province": "PAPUA TENGAH"
+    },
+    {
+      "code": "9504072003",
+      "name": "BIMBOGUL",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072004",
+      "name": "YUGUMENGGA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072006",
+      "name": "YUGUBUK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072007",
+      "name": "AKIMA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072008",
+      "name": "MALELA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072009",
+      "name": "NAKWIL",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072011",
+      "name": "HOLANDIA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504072012",
+      "name": "TAWI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950407",
+      "district": "WINA",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192002",
+      "name": "KOKONDAO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192010",
+      "name": "GILO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192014",
+      "name": "KANGGINERI",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192015",
+      "name": "WONOLUK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192020",
+      "name": "TINOWENO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192021",
+      "name": "MOLOLOWA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192022",
+      "name": "KUNIPAGA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192023",
+      "name": "KABUMANGGEN",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504192026",
+      "name": "TOMOBUR",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950419",
+      "district": "NUNGGAWI",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504292002",
+      "name": "WARI/TAIYEVE",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950429",
+      "district": "WARI/TAIYEVE II",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504352005",
+      "name": "KIMUGU",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950435",
+      "district": "TELENGGEME",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504352006",
+      "name": "YAGAGOBAK",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950435",
+      "district": "TELENGGEME",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432003",
+      "name": "PABA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432004",
+      "name": "EWAN",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432006",
+      "name": "WALELO",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    },
+    {
+      "code": "9504432009",
+      "name": "ALIDUDA",
+      "province_code": "95",
+      "regency_code": "9504",
+      "district_code": "950443",
+      "district": "BOGONUK",
+      "regency": "TOLIKARA",
+      "province": "PAPUA PEGUNUNGAN"
+    }
+  ],
+  "geo_desa_other_year_only": [
+    {
+      "code": "1105022062",
+      "name": "Batu Jaya",
+      "province_code": "11",
+      "regency_code": "1105",
+      "district_code": "110502",
+      "kind": "desa"
+    },
+    {
+      "code": "1106082013",
+      "name": "Pulo Bunta",
+      "province_code": "11",
+      "regency_code": "1106",
+      "district_code": "110608",
+      "kind": "desa"
+    },
+    {
+      "code": "1116102005",
+      "name": "Perkebunan Alur Jambu",
+      "province_code": "11",
+      "regency_code": "1116",
+      "district_code": "111610",
+      "kind": "desa"
+    },
+    {
+      "code": "6311012020",
+      "name": "Wonorejo",
+      "province_code": "63",
+      "regency_code": "6311",
+      "district_code": "631101",
+      "kind": "desa"
+    }
+  ],
+  "unexpected_geo_village_without_idm": [],
+  "geo_kelurahan_outside_idm": {
+    "count": 8467,
+    "explanation": "Kode unit 1xxx adalah kelurahan dan berada di luar cakupan IDM desa.",
+    "sample": [
+      {
+        "code": "1201011001",
+        "name": "Pasar Batu Gerigis",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120101"
+      },
+      {
+        "code": "1201011002",
+        "name": "Padang Masiang",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120101"
+      },
+      {
+        "code": "1201021001",
+        "name": "Sorkam",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021002",
+        "name": "Pargarutan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021004",
+        "name": "Tarutung Bolak",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201021009",
+        "name": "Naipospos Barat",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120102"
+      },
+      {
+        "code": "1201031001",
+        "name": "Pandan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031002",
+        "name": "Hajoran",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031003",
+        "name": "Aek Tolang",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031004",
+        "name": "Lubuk Tukko",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031005",
+        "name": "Sibuluan Indah",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031006",
+        "name": "Sibuluan Nauli",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031011",
+        "name": "Aek Sitio-tio",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031012",
+        "name": "Sibuluan Raya",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031013",
+        "name": "Kalangan",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031016",
+        "name": "Pandan Wangi",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031017",
+        "name": "Lubuk Tukko Baru",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031018",
+        "name": "Sibuluan Baru",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031019",
+        "name": "Sibuluan Terpadu",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      },
+      {
+        "code": "1201031020",
+        "name": "Sihaporas Nauli",
+        "province_code": "12",
+        "regency_code": "1201",
+        "district_code": "120103"
+      }
+    ]
+  }
+}

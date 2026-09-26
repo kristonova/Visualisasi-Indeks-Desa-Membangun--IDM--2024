@@ -1,17 +1,18 @@
-# 🇮🇩 Peta Desa Nusantara — Visualisasi & Dashboard GIS IDM 2024
+# 🇮🇩 Peta Desa Nusantara — Visualisasi & Dashboard GIS IDM 2023–2024
 
 <div align="center">
 
-**Platform Analisis dan Visualisasi Spasial-Statistik Indeks Desa Membangun (IDM) 2024 Seluruh Indonesia**
+**Platform Analisis dan Visualisasi Spasial-Statistik Indeks Desa Membangun (IDM) 2023 & 2024 Seluruh Indonesia**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Cakupan: 37 Provinsi](https://img.shields.io/badge/Cakupan-37%20Provinsi-2ea44f.svg)](#-cakupan-dan-statistik-utama)
 [![Total Desa: 75.265](https://img.shields.io/badge/Total%20Desa-75.265%20Desa-0e6d80.svg)](#-profil-dan-klasifikasi-idm-2024)
+[![Tahun: 2023 & 2024](https://img.shields.io/badge/Tahun-2023%20%26%202024-8a5cf6.svg)](#%EF%B8%8F-pilihan-tahun-idm-2023--2024)
 [![Pipeline: Pure Python 3.8+](https://img.shields.io/badge/Pipeline-Pure%20Python%203.8+-yellow.svg)](#-arsitektur--pipeline-data)
 [![Arsitektur: Static Client-Side](https://img.shields.io/badge/Arsitektur-Static%20Client--Side-orange.svg)](#-arsitektur--pipeline-data)
 [![Status: Production Ready](https://img.shields.io/badge/Status-Siap%20Pakai%20%26%20Aktif-success.svg)](#)
 
-[Fitur Utama](#-fitur-utama) • [Statistik IDM 2024](#-profil-dan-klasifikasi-idm-2024) • [Arsitektur & Pipeline](#-arsitektur--pipeline-data) • [Struktur Direktori](#-struktur-direktori) • [Panduan Menjalankan](#-panduan-instalasi--menjalankan-proyek) • [Spesifikasi Geometri](#-spesifikasi-teknis-geometri)
+[Fitur Utama](#-fitur-utama) • [Statistik IDM 2024](#-profil-dan-klasifikasi-idm-2024) • [Pilihan Tahun](#%EF%B8%8F-pilihan-tahun-idm-2023--2024) • [Arsitektur & Pipeline](#-arsitektur--pipeline-data) • [Struktur Direktori](#-struktur-direktori) • [Panduan Menjalankan](#-panduan-instalasi--menjalankan-proyek) • [Spesifikasi Geometri](#-spesifikasi-teknis-geometri)
 
 </div>
 
@@ -19,7 +20,7 @@
 
 ## 📌 Ringkasan Proyek
 
-**Peta Desa Nusantara** adalah dashboard analitik GIS (*Geographic Information System*) interaktif yang memetakan status perkembangan dan kemandirian **75.265 desa** di **434 kabupaten/kota**, **6.554 kecamatan**, dan **37 provinsi** di Indonesia. Data yang ditampilkan bersumber dari data resmi **Indeks Desa Membangun (IDM) 2024** terbitan Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi (Kemendes PDTT) yang diperoleh melalui [Portal Satu Data Indonesia (data.go.id)](https://data.go.id/dataset/dataset/data-indeks-desa-membangun-tahun-2024), serta diintegrasikan secara presisi dengan batas wilayah Rupa Bumi Indonesia (RBI) dari Badan Informasi Geospasial (BIG).
+**Peta Desa Nusantara** adalah dashboard analitik GIS (*Geographic Information System*) interaktif yang memetakan status perkembangan dan kemandirian **75.265 desa** di **434 kabupaten/kota**, **6.554 kecamatan**, dan **37 provinsi** di Indonesia. Data yang ditampilkan bersumber dari data resmi **Indeks Desa Membangun (IDM) 2024** terbitan Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi (Kemendes PDTT) yang diperoleh melalui [Portal Satu Data Indonesia (data.go.id)](https://data.go.id/dataset/dataset/data-indeks-desa-membangun-tahun-2024), ditambah **IDM 2023** sebagai pembanding. Keduanya diintegrasikan dengan batas wilayah Rupa Bumi Indonesia (RBI) dari Badan Informasi Geospasial (BIG); desa yang belum punya poligon di RBI 2023 diisi dari BATAS_DESAKEL_AR BIG edisi Juli 2026.
 
 ### Latar Belakang & Masalah
 * **Data Spasial dan Statistik Masih Terpisah:** Data nilai IDM awalnya tersimpan dalam lembar kerja spreadsheet berukuran besar (*Excel 7,7 MB*), sedangkan poligon batas wilayah desa berada di berkas *Esri File Geodatabase / Shapefile (339 MB – 1+ GB)*. Untuk menggabungkan dan menganalisis keduanya, pengguna umumnya membutuhkan keahlian teknis khusus dan aplikasi GIS berat seperti ArcGIS atau QGIS.
@@ -64,6 +65,28 @@ Indeks Desa Membangun (IDM) membagi status perkembangan desa ke dalam **5 tingka
 | **BERKEMBANG** | $0.5990 \le \text{IDM} \le 0.7072$ | `#e0bd3d` (Kuning Emas) | **24.532** | **32,6%** | Memiliki potensi sumber daya yang belum optimal dikelola, akses layanan menengah |
 | **TERTINGGAL** | $0.4908 \le \text{IDM} \le 0.5989$ | `#d4602b` (Oranye) | **6.100** | **8,1%** | Keterbatasan infrastruktur dasar, aksesibilitas, pelayanan publik, dan ekonomi |
 | **SANGAT TERTINGGAL** | $\text{IDM} \le 0.4907$ | `#a51f2d` (Merah Tua) | **4.363** | **5,8%** | Mengalami kerentanan multidimensi, risiko bencana tinggi, isolasi geografis, dan kemiskinan |
+
+---
+
+## 🗓️ Pilihan Tahun IDM 2023 & 2024
+
+Tombol **2023 | 2024** di pojok kanan atas peta mengganti seluruh tampilan tanpa me-reset zoom: warna peta, petak, KPI, peringkat, histogram, tabel, dan ekspor CSV/PNG (nama berkas `idm-<tahun>-…`). Kartu detail desa juga menampilkan perubahan **2023 → 2024**: nilai, status, selisih poin, dan label *Naik ke…/Turun ke…/Status tetap*.
+
+| Status | IDM 2023 | % | IDM 2024 | % |
+| :--- | ---: | ---: | ---: | ---: |
+| Mandiri | 11.456 | 15,2% | 17.203 | 22,9% |
+| Maju | 23.035 | 30,6% | 23.063 | 30,6% |
+| Berkembang | 28.766 | 38,2% | 24.532 | 32,6% |
+| Tertinggal | 7.154 | 9,5% | 6.100 | 8,1% |
+| Sangat Tertinggal | 4.850 | 6,4% | 4.363 | 5,8% |
+| **Jumlah desa** | **75.261** | | **75.265** | |
+| Rerata IDM nasional | 0,6935 | | 0,7120 | |
+
+**Satu geometri untuk dua tahun.** Kode desa IDM 2023 dan 2024 identik untuk 74.322 desa. Ada dua perbedaan:
+- **Papua Barat Daya.** IDM 2023 masih mencatat 939 desanya di bawah Papua Barat (kab 92.01/92.04/92.05/92.09/92.10). `tools/idm_sources.py` menerjemahkan kode itu ke 96.01/96.04/96.05/96.09/96.10 (939 dari 939 cocok), sehingga di dashboard Papua Barat Daya tampil sebagai provinsi tersendiri pada kedua tahun.
+- **4 desa baru di IDM 2024** (3 di Aceh, 1 di Kalimantan Selatan). Di tampilan 2023, poligonnya berwarna abu-abu dengan label *Belum ada di IDM 2023*, bukan dihitung sebagai gagal join.
+
+Kolom `UPDATE` di IDM 2023 bernilai 2022 untuk 1.165 desa. Desa-desa ini diberi lencana **Data 2022** di kartu detail.
 
 ---
 
@@ -125,20 +148,20 @@ Proyek ini dibangun dengan prinsip **"Heavy build-time, ultra-light runtime"**. 
 ```mermaid
 flowchart TD
     subgraph DataSources["📁 SUMBER DATA MENTAH"]
-        A1["📊 Data Tabular IDM 2024<br/>(Excel .xlsx / 75.265 baris)"]
-        A2["🗺️ Data Spasial Batas Desa<br/>(Shapefile / FileGDB 339MB - 1GB+)"]
+        A1["📊 Data Tabular IDM 2023 & 2024<br/>(Excel .xlsx / 75.261 + 75.265 baris)"]
+        A2["🗺️ Batas Desa RBI 10K Sep-2023 (FileGDB)<br/>+ tambalan BIG Juli 2026 (Shapefile)"]
     end
 
-    subgraph Pipeline["⚙️ PIPELINE DATA OFFLINE (tools/build_geo.py)"]
-        B1["Ekstraksi & Penyelarasan Kunci Join<br/>(KODE_DESA 10-digit BPS / Kemendagri)"]
+    subgraph Pipeline["⚙️ PIPELINE DATA OFFLINE (build_idm.py → build_geo.py → audit_join.py)"]
+        B1["Ekstraksi & Penyelarasan Kunci Join<br/>(KODE_DESA 10 digit Kemendagri, kode 2023 → 2024)"]
         B2["Penyederhanaan Geometri & Topologi<br/>(Ramer-Douglas-Peucker & Min-Area Ring)"]
         B3["Kuantisasi Koordinat & Delta Encoding<br/>(Presisi 10⁻⁵ Derajat ~ 1,1 meter)"]
         B4["Praperhitungan Agregasi Statistik & Histogram"]
     end
 
     subgraph StaticAssets["📦 KELUARAN ASET STATIS (Tanpa Database)"]
-        C1["data/idm/meta.json<br/>(Agregat Nasional & 37 Provinsi)"]
-        C2["data/idm/prov/*.json<br/>(37 Berkas Statistik Desa per Provinsi)"]
+        C1["data/idm/TAHUN/meta.json<br/>(Agregat Nasional & 37 Provinsi)"]
+        C2["data/idm/TAHUN/prov/*.json<br/>(37 Berkas Statistik Desa per Provinsi)"]
         C3["data/geo/prov.json & geo-out/<br/>(Vektor Terkuantisasi Kompresi Tinggi)"]
     end
 
@@ -196,24 +219,30 @@ Visualisasi Indeks Desa Membangun 2024/
 ├── support.js                            # Runtime pendukung & pengurai komponen reaktif
 │
 ├── data/                                 # Sumber data dan hasil komputasi terstruktur
-│   ├── indeks-desa-membangun-2024.xlsx   # Berkas data mentah resmi IDM 2024 Kemendes PDTT
-│   ├── rekap-indeks-desa-membangun.xlsx  # Berkas rekapitulasi data tingkat provinsi
-│   ├── geo/
+│   ├── indeks-desa-membangun-tahun-2024-hasil-pemutakhiran.xlsx  # IDM 2024 Kemendes PDTT
+│   ├── indeks-desa-membangun-idm-tahun-2023.xlsx                 # IDM 2023 Kemendes PDTT
+│   ├── rekap-indeks-desa-membangun-tahun-2024.xlsx               # Rekap tingkat provinsi
+│   ├── geo/                              # Geometri bersama untuk semua tahun
 │   │   ├── manifest.json                 # Manifest ketersediaan layer data spasial
-│   │   ├── prov.json                     # Geometri poligon 37 provinsi terkuantisasi
-│   │   └── join-audit.json               # Laporan audit integritas data Excel-GeoJSON
+│   │   ├── prov.json                     # Geometri poligon 38 provinsi terkuantisasi
+│   │   ├── desa/ kec/ kab/               # Geometri per provinsi (fitur tambalan bertanda "s":1)
+│   │   └── patch-report.json             # Desa yang poligonnya ditambal dari BIG Juli 2026
 │   └── idm/
-│       ├── meta.json                     # Metadata agregat nasional, statistik provinsi, & histogram
-│       └── prov/                         # 37 berkas JSON berisi data desa per provinsi
-│           ├── 11.json (Aceh)
-│           ├── 12.json (Sumatera Utara)
-│           ├── ...
-│           └── 96.json (Papua Barat Daya)
+│       ├── 2023/                         # Struktur sama dengan 2024; kode sudah diterjemahkan
+│       └── 2024/
+│           ├── meta.json                 # Agregat nasional, provinsi, kab/kota & histogram
+│           ├── join-audit.json           # Audit Excel → JSON → geometri untuk tahun ini
+│           └── prov/                     # 37 berkas JSON data desa per provinsi
+│               ├── 11.json (Aceh)
+│               ├── ...
+│               └── 96.json (Papua Barat Daya)
 │
 ├── tools/                                # Utilitas pengolahan data & konversi geometri
-│   ├── build_geo.py                      # Skrip konversi Shapefile ke vektor web (murni Python)
-│   ├── audit_join.py                     # Skrip validasi integritas relasi Excel & GeoJSON
-│   └── build_geo.bat                     # Skrip otomasi batch untuk Windows
+│   ├── idm_sources.py                    # Kolom Excel per tahun + terjemahan kode 2023 → 2024
+│   ├── build_idm.py                      # Excel IDM → data/idm/TAHUN/ (meta + prov)
+│   ├── build_geo.py                      # FileGDB/SHP → vektor web, + tambalan poligon
+│   ├── audit_join.py                     # Validasi Excel ↔ JSON ↔ geometri per tahun
+│   └── build_geo.bat                     # Jalankan seluruh pipeline di Windows
 │
 ├── _ds/                                  # Sistem Desain Sadasa Academy
 │   └── sadasa-academy-design-system-.../ # Token CSS (Warna, Tipografi, Spasi, Animasi)
@@ -225,7 +254,8 @@ Visualisasi Indeks Desa Membangun 2024/
 │   ├── REFERENSI-DATASET-GIS-...md       # Laporan analisis komparasi 5 dataset batas Indonesia
 │   ├── batas-administrasi-indonesia/     # Layer Shapefile batas administrasi
 │   ├── RBI10K_ADMINISTRASI_DESA_...gdb   # Geodatabase batas desa skala 1:10.000 BIG
-│   └── RBI50K_ADMINISTRASI_KABKOTA_..gdb # Geodatabase batas kab/kota skala 1:50.000 BIG
+│   ├── RBI50K_ADMINISTRASI_KABKOTA_..gdb # Geodatabase batas kab/kota skala 1:50.000 BIG
+│   └── [LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_/  # BIG Juli 2026, sumber tambalan
 │
 └── work/                                 # Area kerja data perantara (scratchpad TSV/JSON)
 ```
@@ -259,21 +289,30 @@ Aplikasi ini dirancang sebagai **Aplikasi Web Statis Tanpa Server (*Zero-Server 
 
 ---
 
-### Opsi B: Membangun Ulang Data Geometri Spasial (Opsional)
-Jika Anda ingin memperbarui berkas Shapefile atau mengubah tingkat penyederhanaan poligon batas wilayah:
-1. Pastikan Anda telah memasang Python 3.8 atau versi yang lebih baru (tidak memerlukan instalasi paket tambahan).
-2. Jalankan perintah:
+### Opsi B: Membangun Ulang Data IDM & Geometri (Opsional)
+Jalankan ini jika berkas Excel IDM atau data spasial berubah, atau jika Anda ingin mengubah tingkat penyederhanaan poligon:
+1. Siapkan `.venv` dengan `pyogrio`, `shapely`, dan `openpyxl`. Cara paling cepat adalah klik dua kali `tools\build_geo.bat`: skrip ini membuat `.venv` bila belum ada, lalu menjalankan seluruh pipeline.
+2. Salin sumber geometri ke `SHP GIS\`. Yang dibutuhkan adalah `RBI10K_ADMINISTRASI_DESA_20230928.gdb` (basis) dan folder `[LapakGIS.com]_BATAS_DESAKEL_AR_EDISI_JULI_2026_` (sumber tambalan).
+3. Jalankan secara berurutan, karena `build_geo.py` membaca daftar kode desa dari `data/idm/`:
    ```bash
-   python tools/build_geo.py
+   .venv\Scripts\python tools\build_idm.py                  # Excel 2023 & 2024 -> data/idm/<tahun>/
+   .venv\Scripts\python tools\build_geo.py                  # geometri + tambalan -> data/geo/
+   .venv\Scripts\python tools\audit_join.py --year 2023 --strict
+   .venv\Scripts\python tools\audit_join.py --year 2024 --strict
    ```
-3. Opsi parameter yang tersedia:
+4. Opsi parameter yang tersedia:
    ```bash
    # Hanya memproses provinsi tertentu (misalnya: DIY & Jawa Tengah)
-   python tools/build_geo.py --prov 34 33
+   .venv\Scripts\python tools\build_geo.py --prov 34 33
 
    # Menyesuaikan toleransi penyederhanaan (default: 0.00035)
-   python tools/build_geo.py --tol 0.0005 --target-kb 1500
+   .venv\Scripts\python tools\build_geo.py --tol 0.0005 --target-kb 1500
+
+   # Tanpa tambalan poligon (RBI Sep-2023 saja)
+   .venv\Scripts\python tools\build_geo.py --no-patch
    ```
+
+`build_idm.py` direproduksi byte-per-byte terhadap JSON IDM 2024 lama. Nilai desa dibulatkan 4 desimal, lalu rerata dihitung berurutan menurut kecamatan dan nama desa, dan dibulatkan setengah-ke-atas.
 
 ---
 
@@ -281,20 +320,27 @@ Jika Anda ingin memperbarui berkas Shapefile atau mengubah tingkat penyederhanaa
 Jalankan audit ini setelah memperbarui berkas Excel IDM atau membangun ulang geometri untuk memastikan konsistensi dan integritas data:
 
 ```bash
-.venv\Scripts\python tools\audit_join.py --strict
+.venv\Scripts\python tools\audit_join.py --year 2024 --strict
+.venv\Scripts\python tools\audit_join.py --year 2023 --strict
 ```
 
-Skrip audit akan mencocokkan kode wilayah 10 digit yang digunakan pada dashboard, memeriksa potensi duplikasi, serta memastikan keselarasan antara data Excel dan JSON. Hasil rincian per provinsi dan daftar desa tanpa poligon akan disimpan ke `data/geo/join-audit.json`. Wilayah berkode `1xxx` otomatis diklasifikasikan sebagai kelurahan (yang berada di luar cakupan evaluasi IDM).
+Skrip audit mencocokkan kode wilayah 10 digit yang dipakai dashboard (untuk 2023, sesudah diterjemahkan ke penomoran 2024), memeriksa duplikasi, dan memastikan data Excel dan JSON selaras. Rincian per provinsi dan daftar desa tanpa poligon disimpan ke `data/idm/<tahun>/join-audit.json`. Dashboard membaca berkas ini untuk catatan desa tanpa skor, beda nama, dan desa yang hanya ada di tahun lain. Wilayah berkode `1xxx` otomatis diklasifikasikan sebagai kelurahan, yang berada di luar cakupan IDM.
 
 **Catatan status data saat ini:**
-* Total data IDM: **75.265 baris desa**
-* Total fitur geometri: **83.398 poligon wilayah**
-* Berhasil terhubung presisi (*exact match*): **74.930 desa**
-* Desa tanpa poligon pada peta dasar RBI September 2023: **335 desa**
-* Kelurahan di luar cakupan IDM: **8.468 wilayah**
-* Desa tanpa catatan skor: **4 desa**
-* Perbedaan penulisan nama pada kode yang sama: **3 desa**
-* Poligon desa valid yang gagal terhubung: **0 (sempurna)**
+
+| | IDM 2024 | IDM 2023 |
+| :--- | ---: | ---: |
+| Baris desa (Excel = JSON) | **75.265** | **75.261** (939 kode Papua Barat Daya diterjemahkan) |
+| Fitur geometri | 83.685 (288 tambalan BIG Juli 2026) | sama |
+| Terhubung presisi (*exact match*) | **75.218** (99,94%) | **75.214** (99,94%) |
+| Desa tanpa poligon | **47** | **47** |
+| Kelurahan di luar cakupan IDM | 8.467 | 8.467 |
+| Poligon desa yang hanya ada di tahun lain | 0 | 4 (desa baru 2024) |
+| Desa tanpa catatan skor | 4 | 0 |
+| Beda penulisan nama pada kode yang sama | 4 | 4 |
+| Poligon desa valid yang gagal terhubung | **0** | **0** |
+
+Sebelum tambalan, RBI September 2023 saja menyisakan 335 desa tanpa poligon. Tambalan mengisi 288 desa dan tercatat di `data/geo/patch-report.json`. Satu tambalan (Situak Ujung Gading, Kab. Pasaman Barat) sengaja dibatalkan karena akan menghapus poligon desa induknya, Ujung Gading. Sisa 46 desa lainnya tidak ada di sumber mana pun, sebagian besar di Papua Tengah dan Papua Pegunungan.
 
 ---
 
@@ -311,7 +357,8 @@ Dashboard ini mengimplementasikan prinsip desain editorial modern berbasis **Sad
 ## 📚 Sumber Data & Atribusi
 
 * **Data Statistik IDM 2024:** Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi Republik Indonesia ([Kemendes PDTT](https://kemendesa.go.id)) melalui [Portal Satu Data Indonesia: Data Indeks Desa Membangun Tahun 2024](https://data.go.id/dataset/dataset/data-indeks-desa-membangun-tahun-2024).
-* **Data Spasial Batas Administrasi:** Badan Informasi Geospasial ([BIG - Geoportal RBI](https://tanahair.indonesia.go.id)) & Direktorat Jenderal Bina Administrasi Kewilayahan Kementerian Dalam Negeri ([Kemendagri](https://kemendagri.go.id)).
+* **Data Statistik IDM 2023:** Kemendes PDTT, berkas `indeks-desa-membangun-idm-tahun-2023.xlsx` (75.261 desa).
+* **Data Spasial Batas Administrasi:** Badan Informasi Geospasial ([BIG - Geoportal RBI](https://tanahair.indonesia.go.id)) & Direktorat Jenderal Bina Administrasi Kewilayahan Kementerian Dalam Negeri ([Kemendagri](https://kemendagri.go.id)). Basis: RBI 10K Administrasi Desa (28-09-2023). Tambalan: layanan BIG `BATASWILAYAH/BATAS_DESAKEL_AR` edisi Juli 2026 (unduhan LapakGIS.com); lihat `SHP GIS/REFERENSI-DATASET-GIS-BATAS-ADMINISTRASI.md` §7a.
 * **Sistem Desain & Aset Visual:** [Sadasa Academy](https://sadasa.id).
 
 ---

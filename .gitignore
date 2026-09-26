@@ -1,11 +1,24 @@
-# ==========================================
-# Raw Master GIS & Large Datasets (>100MB)
-# (Excluded from git due to GitHub file size limits)
-# ==========================================
-SHP GIS/*.gdb/
-SHP GIS/batas-administrasi-indonesia/
-SHP GIS/BATAS WILAYAH KELURAHAN-DESA 10K from www.indonesia-geospasial.com/
-SHP GIS/Peta Batas Administrasi Provinsi dan Kabupaten Kota from Kemendagri/
+# =====================================================================
+# Peta Desa Nusantara — IDM 2023–2024
+#
+# .github/workflows/deploy.yml meng-upload SELURUH repo (path: '.') ke
+# GitHub Pages. Artinya:
+#   - berkas yang di-ignore TIDAK ikut live -> fetch() di index.html 404
+#   - berkas > 100 MB menggagalkan push; situs Pages maksimal 1 GB
+# Folder root ditulis berawalan "/" agar tidak ikut menangkap folder
+# bernama sama di dalam data/, _ds/, atau assets/.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# Dataset GIS master (±8 GB) — tidak dipakai situs.
+# Seluruh isi SHP GIS/ di-ignore, termasuk dataset baru yang ditaruh
+# nanti; hanya dokumen referensinya yang ikut di-commit.
+# ---------------------------------------------------------------------
+/SHP GIS/*
+!/SHP GIS/REFERENSI-DATASET-GIS-BATAS-ADMINISTRASI.md
+
+# Berkas GIS mentah di lokasi lain (jaring pengaman)
+*.gdb/
 *.shp
 *.shx
 *.dbf
@@ -14,37 +27,45 @@ SHP GIS/Peta Batas Administrasi Provinsi dan Kabupaten Kota from Kemendagri/
 *.sbn
 *.sbx
 *.qix
+*.qmd
 
-# Keep the GIS technical reference document
-!SHP GIS/REFERENSI-DATASET-GIS-BATAS-ADMINISTRASI.md
-
-# ==========================================
-# Build Outputs, Intermediate & Scratch Files
-# ==========================================
-geo-out/
-work/
-uploads/
-*.bak*
-data/geo/*.bak*
+# ---------------------------------------------------------------------
+# Output build, berkas perantara & scratch
+# ---------------------------------------------------------------------
+/geo-out/
+/work/
+/uploads/
 .thumbnail/
+*.bak*
+*.tmp
+*.log
+~$*
 
-# ==========================================
-# Python Virtual Environments & Caches
-# ==========================================
+# ---------------------------------------------------------------------
+# Lingkungan pengembangan (Python / Node)
+# ---------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-.venv/
-venv/
-ENV/
-env/
+/.venv/
+/venv/
+/env/
+/ENV/
 .ipynb_checkpoints/
+node_modules/
 
-# ==========================================
-# Operating System & Editor Artifacts
-# ==========================================
+# ---------------------------------------------------------------------
+# Rahasia & pengaturan lokal — repo ini publik dan terbit utuh
+# ---------------------------------------------------------------------
+.env
+.env.*
+.claude/settings.local.json
+
+# ---------------------------------------------------------------------
+# OS & editor
+# ---------------------------------------------------------------------
 .DS_Store
 .DS_Store?
 ._*
@@ -53,9 +74,29 @@ env/
 ehthumbs.db
 Thumbs.db
 [Dd]esktop.ini
-
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
+
+# =====================================================================
+# RUNTIME GITHUB PAGES — JANGAN DI-IGNORE
+# Dimuat situs saat live. Sengaja paling bawah supaya menang atas pola
+# di atasnya (mis. kelak ada "*.png" atau "*.json"). Negasi TIDAK bisa
+# menyelamatkan berkas bila folder induknya di-ignore — jangan pernah
+# menambah pola "data/", "_ds/", atau "assets/".
+# =====================================================================
+!/*.html
+!/support.js
+!/.nojekyll
+!/assets/*.png
+!/assets/*.svg
+!/_ds/**/*.css
+!/_ds/**/*.js
+!/_ds/**/*.woff2
+!/_ds/**/*.otf
+!/data/geo/*.json
+!/data/geo/*/*.json
+!/data/idm/*/*.json
+!/data/idm/*/prov/*.json
