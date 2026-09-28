@@ -100,3 +100,4 @@ Thumbs.db
 !/data/geo/*/*.json
 !/data/idm/*/*.json
 !/data/idm/*/prov/*.json
+!/data/idm/*/indikator/*.json

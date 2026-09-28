@@ -90,6 +90,44 @@ Kolom `UPDATE` di IDM 2023 bernilai 2022 untuk 1.165 desa. Desa-desa ini diberi 
 
 ---
 
+## 🧩 Indikator Turunan IDM 2024 (50 Indikator)
+
+IDM disusun dari 50 indikator bernilai 0–5: 35 indikator IKS, 12 indikator IKE, dan 3 indikator IKL. Skornya diambil dari API rumusan IDM Kemendesa (`/open/api/desa/rumusan/{kode}/2024`) oleh repo terpisah `scrapping-indeks-desa-membangun`, lalu diolah `tools/build_indikator.py` menjadi `data/idm/2024/indikator/`.
+
+**Cakupan: 74.743 dari 75.265 desa (99,3%).** 522 desa belum punya data indikator karena API menjawab "belum diverifikasi" (444 belum masuk tahap verifikasi, 74 belum diverifikasi, 4 ID tidak ditemukan). 451 di antaranya berada di Papua Pegunungan dan Papua Tengah. Kartu detail desa-desa ini menyebutkan alasannya.
+
+**Yang ditambahkan ke dashboard:**
+* **Profil indikator di kartu detail desa**, dengan dua bentuk grafik yang bisa dipilih (pilihannya diingat browser):
+  * **Radar 12 sub-dimensi.** Radar tidak memakai 50 sumbu karena 35 di antaranya IKS, sehingga bentuknya akan didominasi dimensi sosial dan tidak terbaca.
+  * **Dot plot 12 sub-dimensi**, untuk membaca angka secara presisi.
+  * Kedua grafik membandingkan desa dengan **rerata kab/kota** (garis emas).
+* **Rapor 50 indikator** per dimensi, berupa pip skor 0–5 dengan penanda merah untuk skor ≤2. Klik satu indikator untuk melihat **arti skor**, **kegiatan acuan**, dan **pelaksana**. Tautan "Warnai peta dengan indikator ini" langsung mengganti lapisan peta.
+* **Lapisan peta "Warnai menurut"** di kartu legenda (di HP: tombol ikon lapisan). Pilihannya: Status IDM, IKS/IKE/IKL, 12 sub-dimensi, atau salah satu dari 50 indikator.
+  * Palet biru sekuensial 6 langkah, sengaja berbeda dari hijau–merah status dan aman buta warna.
+  * Legenda berubah menjadi kelas skor dan tetap bisa diklik untuk menyaring peta, petak, dan tabel.
+  * Di tingkat nasional, provinsi diwarnai menurut rerata skor desanya.
+  * Indikator dan sub-dimensi hanya tersedia untuk 2024. IKS/IKE/IKL berlaku untuk kedua tahun.
+
+**Pengelompokan 12 sub-dimensi.** API tidak menyertakan pengelompokan ini. Pengelompokan disusun dari struktur dimensi IDM dan urutan nomor indikator:
+
+| Dimensi | Sub-dimensi (nomor indikator) |
+| :--- | :--- |
+| IKS | Kesehatan (01–07), Pendidikan (08–14), Modal sosial (15–27), Permukiman (28–35) |
+| IKE | Keragaman produksi (01), Perdagangan & jasa (02–05), Distribusi & logistik (06), Keuangan & kredit (07–08), Lembaga ekonomi (09), Keterbukaan wilayah (10–12) |
+| IKL | Kualitas lingkungan (01), Kebencanaan (02–03) |
+
+**Catatan kualitas data sumber** (lihat `data/idm/2024/indikator/audit.json`):
+* **IKS31 (internet warga) dipulihkan.** Nilai dari API ternyata salinan IKS30 (internet kantor desa) untuk semua desa. Nilai aslinya dihitung ulang dengan `IKS31 = API_IKS × 175 − jumlah 34 skor IKS lainnya`.
+  * Seluruh 74.738 hasil pemulihan berupa bilangan bulat tepat dan termasuk skor sah (5: 53.872 desa, 1: 20.866 desa).
+  * Setelah pemulihan, jumlah skor dibagi pembagi dimensi (175/60/15) cocok 100% dengan IKS/IKE/IKL dari API.
+  * Di rapor, indikator ini ditandai †.
+* **3.355 desa (4,5%)** punya IDM rumusan API yang berbeda dari IDM resmi di berkas Excel. Selisih median 0,011; 574 desa berselisih lebih dari 0,05. Kartu detail menampilkan selisihnya secara terbuka.
+* **5 desa** punya satu sel skor kosong di sumber. Sel itu ditampilkan "—" dan IKS31-nya tidak dapat dipulihkan.
+* **Referensi skor 0 IKL02** di sumber tertulis "jumlah bencana = 0", sama dengan skor 5. Dari kegiatan acuannya ("identifikasi 3 jenis bencana"), yang dimaksud adalah 3, jadi teksnya dikoreksi.
+* **IKS27 (SLB)** bernilai 3 di 96% desa. Ini sesuai sumber dan ditampilkan apa adanya.
+
+---
+
 ## ✨ Fitur Utama
 
 ```
@@ -232,14 +270,19 @@ Visualisasi Indeks Desa Membangun 2024/
 │       └── 2024/
 │           ├── meta.json                 # Agregat nasional, provinsi, kab/kota & histogram
 │           ├── join-audit.json           # Audit Excel → JSON → geometri untuk tahun ini
-│           └── prov/                     # 37 berkas JSON data desa per provinsi
-│               ├── 11.json (Aceh)
-│               ├── ...
-│               └── 96.json (Papua Barat Daya)
+│           ├── prov/                     # 37 berkas JSON data desa per provinsi
+│           │   ├── 11.json (Aceh)
+│           │   ├── ...
+│           │   └── 96.json (Papua Barat Daya)
+│           └── indikator/                # 50 indikator turunan (khusus 2024, tools/build_indikator.py)
+│               ├── meta.json             # Kamus, 12 sub-dimensi, arti skor, rerata prov & kab/kota
+│               ├── audit.json            # Cakupan scraping & hasil pemeriksaan konsistensi
+│               └── 11.json … 96.json     # Skor 50 indikator per desa, dimuat saat dibutuhkan
 │
 ├── tools/                                # Utilitas pengolahan data & konversi geometri
 │   ├── idm_sources.py                    # Kolom Excel per tahun + terjemahan kode 2023 → 2024
 │   ├── build_idm.py                      # Excel IDM → data/idm/TAHUN/ (meta + prov)
+│   ├── build_indikator.py                # CSV scraping indikator 2024 → data/idm/2024/indikator/
 │   ├── build_geo.py                      # FileGDB/SHP → vektor web, + tambalan poligon
 │   ├── audit_join.py                     # Validasi Excel ↔ JSON ↔ geometri per tahun
 │   └── build_geo.bat                     # Jalankan seluruh pipeline di Windows
@@ -296,6 +339,7 @@ Jalankan ini jika berkas Excel IDM atau data spasial berubah, atau jika Anda ing
 3. Jalankan secara berurutan, karena `build_geo.py` membaca daftar kode desa dari `data/idm/`:
    ```bash
    .venv\Scripts\python tools\build_idm.py                  # Excel 2023 & 2024 -> data/idm/<tahun>/
+   .venv\Scripts\python tools\build_indikator.py            # 50 indikator 2024 -> data/idm/2024/indikator/
    .venv\Scripts\python tools\build_geo.py                  # geometri + tambalan -> data/geo/
    .venv\Scripts\python tools\audit_join.py --year 2023 --strict
    .venv\Scripts\python tools\audit_join.py --year 2024 --strict
@@ -311,6 +355,8 @@ Jalankan ini jika berkas Excel IDM atau data spasial berubah, atau jika Anda ing
    # Tanpa tambalan poligon (RBI Sep-2023 saja)
    .venv\Scripts\python tools\build_geo.py --no-patch
    ```
+
+`build_indikator.py` membaca `idm2024_detail_wide.csv`, `idm2024_referensi_skor.csv`, `idm2024_kamus_indikator.csv`, dan `idm2024_validasi.csv` dari `..\scrapping-indeks-desa-membangun\hasil_2024\` (ubah dengan `--src`). CSV sumber sekitar 24 MB tidak ikut di-commit. Skrip ini gagal bila ada kode desa yang tidak ada di `data/idm/2024/prov/`, atau bila ada skor di luar tabel referensi.
 
 `build_idm.py` direproduksi byte-per-byte terhadap JSON IDM 2024 lama. Nilai desa dibulatkan 4 desimal, lalu rerata dihitung berurutan menurut kecamatan dan nama desa, dan dibulatkan setengah-ke-atas.
 

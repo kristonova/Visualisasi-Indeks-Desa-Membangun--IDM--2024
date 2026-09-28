@@ -116,6 +116,10 @@ input,select{font-family:inherit}
   #yearToggle{position:absolute!important;top:0!important;right:calc(100% + 8px)!important}
   #yearToggle button{height:44px!important;min-width:56px!important;font-size:12px!important}
   #zoomStack button{width:44px!important;height:44px!important;font-size:18px!important}
+  #layerBtn{display:flex!important}
+  /* target sentuh profil indikator: baris rapor & toggle Radar/Dot plot */
+  #indProfile button[aria-expanded]{min-height:40px!important}
+  #indProfile [role="group"] button{height:36px!important;padding:0 14px!important;font-size:11.5px!important}
   #btnUp{width:44px!important;height:44px!important;padding:0!important;font-size:17px!important}
   #noticeCard{display:none!important}
   #noticePill{display:flex!important}
@@ -246,6 +250,20 @@ input,select{font-family:inherit}
           <button type="button" onClick="{{ setPeta }}" aria-pressed="{{ isPeta }}" style="border:0;padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petaBg }};color:{{ petaFg }}">Peta</button>
           <button type="button" onClick="{{ setPetak }}" aria-pressed="{{ isPetak }}" style="border:0;border-left:1px solid var(--border-hairline);padding:0 12px;height:30px;font:600 11px/1 var(--font-sans);cursor:pointer;background:{{ petakBg }};color:{{ petakFg }}">Petak</button>
         </div>
+        <!-- Khusus HP (legenda desktop tersembunyi di sana): ikon lapisan dengan
+             <select> native transparan di atasnya, jadi tap membuka picker native. -->
+        <label id="layerBtn" title="Warnai peta menurut" style="display:none;position:relative;width:44px;height:44px;align-items:center;justify-content:center;background:{{ layerBtnBg }};color:{{ layerBtnFg }};border:1px solid var(--border-hairline);border-radius:5px;box-shadow:var(--shadow-1);cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 8 12 13l9.5-5z"></path><path d="m2.5 12.5 9.5 5 9.5-5"></path><path d="m2.5 16.5 9.5 5 9.5-5"></path></svg>
+          <select value="{{ layerSel }}" onChange="{{ onLayer }}" aria-label="Warnai peta menurut" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer;-webkit-appearance:none;appearance:none">
+            <sc-for list="{{ layerGroups }}" as="g" hint-placeholder-count="2">
+              <optgroup label="{{ g.lab }}">
+                <sc-for list="{{ g.opts }}" as="o" hint-placeholder-count="1">
+                  <option value="{{ o.v }}" disabled="{{ o.dis }}">{{ o.t }}</option>
+                </sc-for>
+              </optgroup>
+            </sc-for>
+          </select>
+        </label>
         <div id="zoomStack" style="display:flex;flex-direction:column;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;box-shadow:var(--shadow-1)">
           <button type="button" onClick="{{ zoomIn }}" aria-label="Perbesar" style="border:0;width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">+</button>
           <button type="button" onClick="{{ zoomOut }}" aria-label="Perkecil" style="border:0;border-top:1px solid var(--border-hairline);width:30px;height:30px;font:400 16px/1 var(--font-sans);color:var(--text-body);background:transparent;cursor:pointer" style-hover="background:var(--n-100)">−</button>
@@ -274,11 +292,20 @@ input,select{font-family:inherit}
             <span style="flex-shrink:0;font:700 11px/1 var(--font-sans);color:var(--text-brand)">Petak &rsaquo;</span>
           </button>
         </sc-if>
-        <div id="legendCard" style="position:relative;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:11px 12px 10px;box-shadow:var(--shadow-1);min-width:236px;max-width:100%">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px">
-            <span style="font:700 9px/1 var(--font-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">Status IDM</span>
+        <div id="legendCard" style="position:relative;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:8px;padding:11px 12px 10px;box-shadow:var(--shadow-1);min-width:236px;max-width:min(340px,100%)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:7px">
+            <span style="font:700 9px/1 var(--font-mono);letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted)">Warnai menurut</span>
             <span style="font:400 9px/1 var(--font-sans);color:var(--text-subtle)">klik untuk saring</span>
           </div>
+          <select id="layerPick" value="{{ layerSel }}" onChange="{{ onLayer }}" aria-label="Warnai peta menurut" style="display:block;width:100%;height:30px;margin:0 0 8px;padding:0 6px;border:1px solid var(--border-hairline);border-radius:4px;background:var(--surface-card);font:700 11.5px/1 var(--font-sans);color:var(--text-strong);cursor:pointer;outline:none" style-focus="border-color:var(--n-500);box-shadow:0 0 0 3px var(--focus-ring)">
+            <sc-for list="{{ layerGroups }}" as="g" hint-placeholder-count="2">
+              <optgroup label="{{ g.lab }}">
+                <sc-for list="{{ g.opts }}" as="o" hint-placeholder-count="1">
+                  <option value="{{ o.v }}" disabled="{{ o.dis }}">{{ o.t }}</option>
+                </sc-for>
+              </optgroup>
+            </sc-for>
+          </select>
           <div style="display:flex;flex-direction:column;gap:1px">
             <sc-for list="{{ legend }}" as="l" hint-placeholder-count="5">
               <button type="button" onClick="{{ l.go }}" style="display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:4px 5px;border-radius:4px;cursor:pointer;text-align:left;opacity:{{ l.op }}" style-hover="background:var(--n-100)">
@@ -320,6 +347,9 @@ input,select{font-family:inherit}
           <span style="flex-shrink:0;font:500 10px/1 var(--font-mono);color:var(--text-muted)">{{ sheetCount }}</span>
         </button>
         <div id="sheetChips" style="display:flex;gap:6px;overflow-x:auto;touch-action:pan-x;scrollbar-width:none;margin:0 -12px;padding:0 12px 2px">
+          <sc-if value="{{ layerChip }}" hint-placeholder-val="{{ false }}">
+            <span style="display:flex;align-items:center;flex-shrink:0;min-height:34px;padding:0 4px 0 2px;font:700 11px/1.1 var(--font-sans);color:var(--text-strong);white-space:nowrap">{{ layerChip }}</span>
+          </sc-if>
           <sc-for list="{{ statusChips }}" as="s" hint-placeholder-count="5">
             <button type="button" onClick="{{ s.go }}" title="{{ s.title }}" style="display:flex;align-items:center;gap:6px;flex-shrink:0;min-height:34px;padding:0 11px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);background:{{ s.bg }};cursor:pointer">
               <span style="width:8px;height:8px;border-radius:2px;flex-shrink:0;background:{{ s.color }}"></span>
@@ -412,6 +442,137 @@ input,select{font-family:inherit}
                 </div>
               </sc-for>
             </div>
+
+            <!-- Profil indikator 2024: 12 sub-dimensi (radar / dot plot) + rapor 50 indikator.
+                 Teks tidak ditaruh di dalam <svg>: interpolasi {{ }} dirender sebagai <span>,
+                 yang tidak tampil di SVG. Label radar berupa HTML yang diposisikan absolut. -->
+            <sc-if value="{{ detail.ind }}" hint-placeholder-val="{{ false }}">
+              <div id="indProfile" style="display:flex;flex-direction:column;gap:11px;padding-top:11px;border-top:1px solid var(--border-hairline)">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:24px">
+                  <span style="font:700 8.5px/1 var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)">Profil indikator 2024</span>
+                  <sc-if value="{{ detail.ind.ok }}" hint-placeholder-val="{{ false }}">
+                    <div role="group" aria-label="Bentuk grafik profil" style="display:flex;border:1px solid var(--border-hairline);border-radius:5px;overflow:hidden;flex-shrink:0">
+                      <sc-for list="{{ detail.ind.views }}" as="v" hint-placeholder-count="2">
+                        <button type="button" onClick="{{ v.go }}" aria-pressed="{{ v.on }}" style="border:0;border-left:{{ v.bl }};padding:0 10px;height:24px;font:600 10px/1 var(--font-sans);cursor:pointer;background:{{ v.bg }};color:{{ v.fg }}">{{ v.lab }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ detail.ind.msg }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin:0;font:400 10.5px/1.5 var(--font-sans);color:var(--text-muted)">{{ detail.ind.msg }}</p>
+                </sc-if>
+                <sc-if value="{{ detail.ind.ok }}" hint-placeholder-val="{{ false }}">
+                  <sc-if value="{{ detail.ind.isRadar }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:340/262">
+                      <svg viewBox="0 0 340 262" width="100%" height="100%" aria-hidden="true" style="position:absolute;inset:0;display:block;overflow:visible">
+                        <path d="{{ detail.ind.radar.grid }}" style="fill:none;stroke:var(--n-200);stroke-width:1"></path>
+                        <path d="{{ detail.ind.radar.outer }}" style="fill:none;stroke:var(--n-300);stroke-width:1"></path>
+                        <polygon points="{{ detail.ind.radar.bench }}" style="fill:none;stroke:var(--gold-600);stroke-width:1.6;stroke-dasharray:4 3;stroke-linejoin:round"></polygon>
+                        <polygon points="{{ detail.ind.radar.desa }}" style="fill:var(--n-800);fill-opacity:0.1;stroke:var(--n-800);stroke-width:2;stroke-linejoin:round"></polygon>
+                        <path d="{{ detail.ind.radar.dots }}" style="fill:var(--n-800);stroke:var(--surface-card);stroke-width:1.5"></path>
+                      </svg>
+                      <sc-for list="{{ detail.ind.radar.labels }}" as="a" hint-placeholder-count="12">
+                        <span title="{{ a.title }}" style="position:absolute;left:{{ a.x }};top:{{ a.y }};transform:{{ a.tf }};display:flex;flex-direction:column;gap:2px;text-align:{{ a.al }};white-space:nowrap;cursor:default">
+                          <span style="font:600 9.5px/1.1 var(--font-sans);color:var(--text-body)">{{ a.lab }}</span>
+                          <span style="font:600 9.5px/1 var(--font-mono);color:{{ a.vfg }};font-variant-numeric:tabular-nums">{{ a.v }}</span>
+                        </span>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ detail.ind.isDot }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:11px">
+                      <sc-for list="{{ detail.ind.dots }}" as="g" hint-placeholder-count="3">
+                        <div style="display:flex;flex-direction:column;gap:5px">
+                          <span style="font:700 8px/1 var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--text-subtle)">{{ g.lab }}</span>
+                          <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="4">
+                            <div title="{{ r.title }}" style="display:grid;grid-template-columns:78px minmax(0,1fr) 26px;align-items:center;gap:9px">
+                              <span style="font:600 10.5px/1.2 var(--font-sans);color:var(--text-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.lab }}</span>
+                              <span style="position:relative;display:block;height:14px;background:linear-gradient(90deg,var(--n-200) 1px,transparent 1px) 0 0/20% 100% repeat-x;border-right:1px solid var(--n-200)">
+                                <span style="position:absolute;left:0;right:0;top:7px;height:1px;background:var(--n-300)"></span>
+                                <span style="position:absolute;top:1px;bottom:1px;width:2px;left:calc({{ r.bx }} - 1px);background:var(--gold-600);opacity:{{ r.bop }}"></span>
+                                <span style="position:absolute;top:2.5px;width:9px;height:9px;border-radius:50%;left:calc({{ r.x }} - 4.5px);background:var(--n-800);box-shadow:0 0 0 2px var(--surface-card);opacity:{{ r.dop }}"></span>
+                              </span>
+                              <span style="text-align:right;font:600 11px/1 var(--font-mono);color:{{ r.vfg }};font-variant-numeric:tabular-nums">{{ r.v }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-for>
+                      <div style="display:grid;grid-template-columns:78px minmax(0,1fr) 26px;gap:9px">
+                        <span></span>
+                        <span style="display:flex;justify-content:space-between;font:500 8.5px/1 var(--font-mono);color:var(--text-subtle)"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;font:500 9.5px/1.3 var(--font-sans);color:var(--text-muted)">
+                    <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:2px;background:var(--n-800);border-radius:1px"></span>Desa ini</span>
+                    <sc-if value="{{ detail.ind.benchLab }}" hint-placeholder-val="{{ false }}">
+                      <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed var(--gold-600)"></span>{{ detail.ind.benchLab }}</span>
+                    </sc-if>
+                    <span style="color:var(--text-subtle)">rerata skor 0–5</span>
+                  </div>
+                  <sc-if value="{{ detail.ind.apiNote }}" hint-placeholder-val="{{ false }}">
+                    <p style="margin:0;padding:8px 10px;background:var(--gold-50);border:1px solid var(--gold-200);border-radius:4px;font:400 10px/1.45 var(--font-sans);color:var(--gold-800)">{{ detail.ind.apiNote }}</p>
+                  </sc-if>
+
+                  <div style="display:flex;flex-direction:column;border:1px solid var(--border-hairline);border-radius:6px;overflow:hidden">
+                    <sc-for list="{{ detail.ind.rapor }}" as="g" hint-placeholder-count="3">
+                      <button type="button" onClick="{{ g.go }}" aria-expanded="{{ g.exp }}" style="display:flex;align-items:center;gap:9px;width:100%;min-height:36px;padding:8px 10px;border:0;border-top:{{ g.bt }};background:var(--surface-sunken);cursor:pointer;text-align:left" style-hover="background:var(--n-100)">
+                        <span style="font:700 10px/1 var(--font-mono);letter-spacing:0.06em;color:var(--text-strong)">{{ g.k }}</span>
+                        <span style="flex:1;min-width:0;font:500 10px/1.3 var(--font-sans);color:var(--text-muted)">{{ g.sum }}</span>
+                        <span aria-hidden="true" style="font:500 13px/1 var(--font-mono);color:var(--text-muted)">{{ g.caret }}</span>
+                      </button>
+                      <sc-if value="{{ g.open }}" hint-placeholder-val="{{ false }}">
+                        <div style="display:flex;flex-direction:column;padding:2px 0 6px;border-top:1px solid var(--border-hairline)">
+                          <sc-for list="{{ g.subs }}" as="s" hint-placeholder-count="2">
+                            <span style="padding:9px 10px 4px;font:700 8px/1 var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:var(--text-subtle)">{{ s.lab }}</span>
+                            <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="4">
+                              <button type="button" onClick="{{ r.go }}" aria-expanded="{{ r.exp }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto 14px;align-items:center;gap:9px;width:100%;min-height:28px;padding:4px 10px;border:0;background:{{ r.bg }};cursor:pointer;text-align:left" style-hover="background:var(--n-50)">
+                                <span style="display:flex;align-items:center;gap:6px;min-width:0">
+                                  <span style="width:5px;height:5px;border-radius:50%;flex-shrink:0;background:{{ r.dot }}"></span>
+                                  <span style="font:500 11px/1.25 var(--font-sans);color:var(--text-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.lab }}</span>
+                                </span>
+                                <span aria-hidden="true" style="display:flex;gap:2px">
+                                  <sc-for list="{{ r.pips }}" as="p" hint-placeholder-count="5">
+                                    <span style="width:7px;height:7px;border-radius:2px;background:{{ p.c }}"></span>
+                                  </sc-for>
+                                </span>
+                                <span style="text-align:right;font:600 11px/1 var(--font-mono);color:{{ r.vfg }};font-variant-numeric:tabular-nums">{{ r.v }}</span>
+                              </button>
+                              <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                                <div style="display:flex;flex-direction:column;gap:7px;padding:6px 10px 11px 21px;background:var(--n-50)">
+                                  <div style="display:flex;flex-direction:column;gap:2px">
+                                    <span style="font:700 8px/1.2 var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-subtle)">Arti skor</span>
+                                    <span style="font:400 10.5px/1.45 var(--font-sans);color:var(--text-body)">{{ r.ket }}</span>
+                                  </div>
+                                  <sc-if value="{{ r.keg }}" hint-placeholder-val="{{ false }}">
+                                    <div style="display:flex;flex-direction:column;gap:2px">
+                                      <span style="font:700 8px/1.2 var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-subtle)">Kegiatan acuan</span>
+                                      <span style="font:400 10.5px/1.45 var(--font-sans);color:var(--text-body)">{{ r.keg }}</span>
+                                    </div>
+                                  </sc-if>
+                                  <sc-if value="{{ r.pel }}" hint-placeholder-val="{{ false }}">
+                                    <div style="display:flex;flex-direction:column;gap:2px">
+                                      <span style="font:700 8px/1.2 var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-subtle)">Pelaksana</span>
+                                      <span style="font:400 10.5px/1.45 var(--font-sans);color:var(--text-body)">{{ r.pel }}</span>
+                                    </div>
+                                  </sc-if>
+                                  <sc-if value="{{ r.fix }}" hint-placeholder-val="{{ false }}">
+                                    <span style="font:400 9.5px/1.45 var(--font-sans);color:var(--text-subtle)">{{ r.fix }}</span>
+                                  </sc-if>
+                                  <button type="button" onClick="{{ r.map }}" style="align-self:flex-start;min-height:28px;padding:0;border:0;background:transparent;font:600 10.5px/1.2 var(--font-sans);color:{{ r.mapFg }};cursor:pointer;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px" style-hover="color:var(--text-brand)">{{ r.mapLab }}</button>
+                                </div>
+                              </sc-if>
+                            </sc-for>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+
             <sc-if value="{{ detail.yoy }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;flex-direction:column;gap:8px;padding-top:11px;border-top:1px solid var(--border-hairline)">
                 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
@@ -612,6 +773,31 @@ const OUTSIDE_IDM_COLOR = '#e7e4de';
 const JOIN_MISSING_COLOR = '#765b8f';
 const THR = [0.8155, 0.7073, 0.5990, 0.4908];
 
+// ── indikator turunan (hanya IDM 2024, dibangun tools/build_indikator.py) ──
+const IND_YEAR = '2024';
+// Skor 0-5, terang -> gelap, satu hue biru. Sengaja bukan hijau-merah supaya
+// lapisan indikator tidak tertukar dengan status. Divalidasi sebagai ramp
+// ordinal (monoton, beda ΔL >= 0,06, ujung terang >= 2:1 terhadap #e9eeec).
+const IND_RAMP = ['#6da9e7', '#528fcc', '#3776b2', '#1a5d98', '#00447f', '#002d66'];
+const IND_RGB = IND_RAMP.map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
+// Kelas IKS/IKE/IKL (0-1) untuk lapisan dimensi: <0,5 | 0,5 | 0,6 | 0,7 | 0,8 | >=0,9
+const DIM_BREAKS = [0.5, 0.6, 0.7, 0.8, 0.9];
+const DIM_LAYERS = [['s', 'iks', 'IKS', 'Ketahanan sosial'], ['e', 'ike', 'IKE', 'Ketahanan ekonomi'], ['l', 'ikl', 'IKL', 'Ketahanan lingkungan']];
+const dimCls = (v) => { let c = 0; while (c < 5 && v >= DIM_BREAKS[c]) c++; return c; };
+// Warna kontinu untuk rerata (sub-dimensi, agregat wilayah): interpolasi antar-stop.
+const indColor = (v) => {
+  const x = Math.max(0, Math.min(5, v)), i = Math.min(4, Math.floor(x)), t = x - i;
+  const a = IND_RGB[i], b = IND_RGB[i + 1];
+  return 'rgb(' + a.map((c, j) => Math.round(c + (b[j] - c) * t)).join(',') + ')';
+};
+const d1 = (v) => v == null ? '—' : v.toFixed(1).replace('.', ',');
+// Pilihan Radar / Dot plot disimpan per pengunjung; gagal baca = default.
+const PREF_KEY = 'idm-profil-grafik';
+const readPref = () => { try { return localStorage.getItem(PREF_KEY) === 'dot' ? 'dot' : 'radar'; } catch (e) { return 'radar'; } };
+const writePref = (v) => { try { localStorage.setItem(PREF_KEY, v); } catch (e) {} };
+// Geometri radar dalam satuan viewBox 340 x 262.
+const RADAR = { w: 340, h: 262, cx: 170, cy: 128, r: 84 };
+
 // Ambang gestur sentuh. TAP_SLOP adalah jumlah Manhattan (|dx|+|dy|), mengikuti
 // konvensi yang sudah dipakai jalur mouse; 14 kira-kira 10px diagonal, sepadan
 // dengan slop 8dp Android / 10pt iOS. Jalur mouse tetap memakai 4px.
@@ -646,7 +832,9 @@ class Component extends DCLogic {
     sel: null, view: 'peta', tip: null, live: '',
     hidden: [], q: '', rows: 60, tableOpen: false,
     sheet: 'peek', sheetTab: 'ringkas', searchOpen: false,
-    sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0
+    sort: { k: 'idm', d: -1 }, rankDir: -1, loading: false, tick: 0,
+    // layer: 'status' | 'dim:<s|e|l>' | 'sub:<0-11>' | 'ind:<0-49>'
+    layer: 'status', indView: readPref(), indDims: [], indRow: null
   };
 
   geo = {}; prov = {}; U = []; layout = null; ovl = null;
@@ -654,6 +842,13 @@ class Component extends DCLogic {
   // Cache per tahun. prov/audit/noScoreNotes/geoNameWarnings di atas selalu
   // menunjuk ke milik tahun aktif (lihat useYear), jadi kode lama tidak berubah.
   years = {}; yearBusy = false; otherLoading = {};
+  // Indikator 2024: meta (kamus + rerata wilayah), file per provinsi, dan
+  // vektor skor per desa (Int8Array, -1 = kosong) yang di-cache saat dibaca.
+  // meta/prov bernilai false bila fetch gagal, supaya tidak diulang terus.
+  ind = { meta: null, prov: {}, busy: {}, vec: new Map() };
+  // Warna + kunci filter per desa untuk lapisan selain status; dikosongkan
+  // setiap lapisan, tahun, atau data indikator berubah.
+  paintMemo = new Map();
   vt = { k: 1, ox: 0, oy: 0 }; fit = null; drag = null; hoverIdx = -1; memo = {};
   anim = null; raf = 0; drawRaf = 0; box = null;
   gesture = null; lastTap = null; touchAt = 0;
@@ -705,7 +900,7 @@ class Component extends DCLogic {
       const sp = start === 'Jawa Tengah' ? '33' : start === 'D.I. Yogyakarta' ? '34' : null;
       if (sp) await this.ensureProv(sp);
       this.setState({ ready: true, meta: Y.meta, manifest, scope: { lvl: sp ? 'prov' : 'nas', p: sp, kb: null, kc: null } },
-        () => this.rebuild(true));
+        () => { this.rebuild(true); this.ensureIndMeta(); });   // meta indikator mengisi pemilih lapisan
     } catch (e) { this.setState({ live: 'Gagal memuat data: ' + e.message }); }
   }
 
@@ -729,7 +924,7 @@ class Component extends DCLogic {
     const Y = this.years[y];
     this.prov = Y.prov; this.audit = Y.audit;
     this.noScoreNotes = Y.noScoreNotes; this.geoNameWarnings = Y.geoNameWarnings;
-    this.memo = {};
+    this.memo = {}; this.paintMemo = new Map();
   }
   // Ganti tahun tanpa me-reset zoom: unit yang sama cukup diwarnai ulang.
   setYear(y) {
@@ -740,7 +935,10 @@ class Component extends DCLogic {
       .then(Y => (p ? this.ensureProv(p, y) : Promise.resolve()).then(() => Y))
       .then(Y => {
         this.useYear(y);
-        this.setState({ year: y, meta: Y.meta, tip: null, live: 'Menampilkan IDM ' + y }, () => this.rebuild(false));
+        // Indikator & sub-dimensi hanya ada di 2024; IKS/IKE/IKL tetap berlaku.
+        const drop = y !== IND_YEAR && /^(ind|sub):/.test(this.state.layer);
+        this.setState(Object.assign({ year: y, meta: Y.meta, tip: null, live: 'Menampilkan IDM ' + y },
+          drop ? { layer: 'status', hidden: [] } : null), () => this.rebuild(false));
       })
       .catch(e => this.setState({ live: 'Gagal memuat IDM ' + y + ': ' + e.message }))
       .finally(() => { this.yearBusy = false; });
@@ -812,6 +1010,150 @@ class Component extends DCLogic {
   provFrame(p) {
     return (this.geo.prov || []).find(x => x.k === p) || null;
   }
+
+  // ── indikator 2024 ──────────────────────────────────────────────────────
+  indFetch(key, url) {
+    if (this.ind.busy[key]) return this.ind.busy[key];
+    return (this.ind.busy[key] = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(() => false)
+      .then(j => { delete this.ind.busy[key]; return j; }));
+  }
+  async ensureIndMeta() {
+    if (this.ind.meta !== null) return this.ind.meta;
+    const j = await this.indFetch('meta', 'data/idm/' + IND_YEAR + '/indikator/meta.json');
+    if (this.ind.meta === null) { this.ind.meta = j; this.indLoaded(); }
+    return this.ind.meta;
+  }
+  async ensureInd(p) {
+    if (this.ind.prov[p] !== undefined) return this.ind.prov[p];
+    const j = await this.indFetch('p' + p, 'data/idm/' + IND_YEAR + '/indikator/' + p + '.json');
+    if (this.ind.prov[p] === undefined) { this.ind.prov[p] = j; this.indLoaded(); }
+    return this.ind.prov[p];
+  }
+  indLoaded() {
+    this.paintMemo = new Map();
+    this.paintUnits(); this.draw();
+    this.setState({ tick: this.state.tick + 1 });
+  }
+  // Muat hanya yang dibutuhkan: meta untuk lapisan indikator/sub-dimensi atau
+  // desa terpilih, file provinsi bila lingkupnya provinsi ke bawah.
+  syncInd() {
+    const { year, sel, scope } = this.state;
+    if (year !== IND_YEAR) return;
+    const L = this.layerOf(), needL = L && L.kind !== 'dim';
+    if (!needL && !sel) return;
+    this.ensureIndMeta();
+    const p = scope.p || (sel ? sel.slice(0, 2) : null);
+    if (p) this.ensureInd(p);
+  }
+  // Vektor 50 skor satu desa: Int8Array (-1 = kosong), null bila desa tidak
+  // punya data indikator, undefined bila file provinsinya belum dimuat.
+  indVec(k) {
+    const pf = this.ind.prov[k.slice(0, 2)];
+    if (!pf) return pf === false ? null : undefined;
+    let v = this.ind.vec.get(k);
+    if (v !== undefined) return v;
+    const s = pf.ds[k];
+    v = s ? Int8Array.from(s, ch => ch === '-' ? -1 : ch.charCodeAt(0) - 48) : null;
+    this.ind.vec.set(k, v);
+    return v;
+  }
+  // 12 rerata sub-dimensi dari 50 nilai (skor desa atau rerata wilayah).
+  subMeans(arr) {
+    const M = this.ind.meta;
+    if (!M || !arr) return null;
+    return M.sub.map(S => {
+      let t = 0, n = 0;
+      for (const i of S.ind) { const v = arr[i]; if (v != null && v >= 0) { t += v; n++; } }
+      return n ? t / n : null;
+    });
+  }
+  layerOf(layer) {
+    const s = layer || this.state.layer;
+    if (!s || s === 'status') return null;
+    const [kind, id] = s.split(':'), M = this.ind.meta;
+    if (kind === 'dim') {
+      const D = DIM_LAYERS.find(x => x[0] === id) || DIM_LAYERS[0];
+      return { kind, key: s, f: D[1], agg: D[0], nm: D[2] + ' — ' + D[3], short: D[2], cls: [5, 4, 3, 2, 1, 0] };
+    }
+    const i = +id;
+    if (kind === 'sub') {
+      const S = M && M.sub[i];
+      return { kind, key: s, i, nm: S ? S.nm : 'Sub-dimensi', short: S ? S.nm : 'Sub-dimensi', S, cls: [5, 4, 3, 2, 1, 0] };
+    }
+    const I = M && M.ind[i];
+    return { kind: 'ind', key: s, i, nm: I ? I.nm : 'Indikator', short: I ? I.nm : 'Indikator', I,
+      cls: I ? Object.keys(I.ref).map(Number).sort((a, b) => b - a) : [5, 4, 3, 2, 1, 0] };
+  }
+  // Warna + kunci filter untuk satu nilai lapisan. agg=true untuk rerata
+  // wilayah: indikator & sub-dimensi diwarnai kontinu, kuncinya dibulatkan
+  // ke kelas terdekat di legenda.
+  paintVal(v, L, agg) {
+    if (v == null) return { c: this.ramp()[0], key: 'na', v: null };
+    if (L.kind === 'dim') { const c = dimCls(v); return { c: IND_RAMP[c], key: 's' + c, v }; }
+    if (L.kind === 'ind' && !agg) return { c: IND_RAMP[v], key: 's' + v, v };
+    const near = L.cls.reduce((a, b) => Math.abs(b - v) < Math.abs(a - v) ? b : a);
+    return { c: indColor(v), key: 's' + near, v };
+  }
+  desaVal(d, L) {
+    if (L.kind === 'dim') return d[L.f];
+    const vec = this.indVec(d.k);
+    if (!vec) return null;
+    if (L.kind === 'ind') return vec[L.i] >= 0 ? vec[L.i] : null;
+    const m = this.subMeans(vec);
+    return m ? m[L.i] : null;
+  }
+  desaPaint(d) {
+    let p = this.paintMemo.get(d.k);
+    if (!p) { const L = this.layerOf(); p = this.paintVal(this.desaVal(d, L), L, false); this.paintMemo.set(d.k, p); }
+    return p;
+  }
+  // Kunci filter & warna desa sesuai lapisan aktif (status = perilaku lama).
+  keyOf(d) { return this.state.layer === 'status' ? d.st : this.desaPaint(d).key; }
+  colorOf(d, ramp) { return this.state.layer === 'status' ? (ramp[d.st] || ramp[0]) : this.desaPaint(d).c; }
+  // Rerata lapisan untuk unit agregat (provinsi di nasional, kab/kec saat
+  // batas desa belum ada). Unit desa & nodata tidak lewat sini.
+  paintUnits() {
+    const L = this.layerOf();
+    let acc = null;
+    for (const u of this.U) {
+      u.lc = null; u.lk = null; u.lv = null;
+      if (!L || u.nodata) continue;
+      if (u.desa) { const p = this.desaPaint(u.desa); u.lc = p.c; u.lk = p.key; u.lv = p.v; continue; }
+      let v = null;
+      if (u.code.length === 2) {
+        const P = this.state.meta && this.state.meta.prov.find(x => x.k === u.code), M = this.ind.meta;
+        if (L.kind === 'dim') v = P ? P[L.agg] : null;
+        else if (M && M.prov[u.code]) v = L.kind === 'ind' ? M.prov[u.code].m[L.i] : (this.subMeans(M.prov[u.code].m) || [])[L.i];
+      } else {
+        if (!acc) {
+          acc = {};
+          for (const d of this.scopeDesa() || []) {
+            const x = this.desaPaint(d).v; if (x == null) continue;
+            for (const k of [d.kecK, d.kab]) { const a = acc[k] || (acc[k] = [0, 0]); a[0] += x; a[1]++; }
+          }
+        }
+        const a = acc[u.code]; v = a ? a[0] / a[1] : null;
+      }
+      const p = this.paintVal(v == null ? null : v, L, true);
+      u.lc = p.c; u.lk = p.key; u.lv = p.v;
+    }
+  }
+  setLayer(v) {
+    if (v === this.state.layer) return;
+    if (v !== 'status' && !v.startsWith('dim:') && this.state.year !== IND_YEAR) return;
+    this.paintMemo = new Map();
+    const L = this.layerOf(v);
+    this.setState({ layer: v, hidden: [], tip: null, live: 'Peta diwarnai menurut ' + (L ? L.nm : 'status IDM') },
+      () => { this.paintUnits(); this.syncInd(); this.draw(); });
+  }
+  onLayer = (e) => this.setLayer(e.target.value);
+  setIndView(v) { writePref(v); this.setState({ indView: v }); }
+  toggleIndDim(k) {
+    const s = new Set(this.state.indDims);
+    s.has(k) ? s.delete(k) : s.add(k);
+    this.setState({ indDims: [...s] });
+  }
   // Dipanggil enam kali per render (agregat, petak, tabel, kartu detail,
    // pencarian) dan membangun ulang sampai ~9.000 objek tiap kali. Di HP itu
    // 20-40ms yang terpicu setiap snap sheet, ganti tab, dan toggle chip.
@@ -875,6 +1217,7 @@ class Component extends DCLogic {
         const fr = this.provFrame(p), P2 = meta.prov.find(x => x.k === p);
         this.U = fr && P2 ? [{ k: p, nm: tc(P2.nm), rings: fr.rings, cls: clsOf(P2.m), m: P2.m, n: P2.n, d: P2.d, code: p, frameOnly: true }] : [];
         this.unitKind = 'frame'; this.ovl = null;
+        this.paintUnits(); this.syncInd();
         if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
         this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
         return;
@@ -919,6 +1262,7 @@ class Component extends DCLogic {
       }
     }
     this.U = units; this.unitKind = kind;
+    this.paintUnits(); this.syncInd();
     this.ovl = await this.kabOutline(kind);
     if (resetView) { this.vt = { k: 1, ox: 0, oy: 0 }; this.fit = null; }
     this.setState({ tick: this.state.tick + 1 }, () => this.startZoom(fromTf));
@@ -951,7 +1295,7 @@ class Component extends DCLogic {
   petakCells(w, h, ins) {
     const desa = this.scopeDesa() || [];
     const hidden = new Set(this.state.hidden);
-    const list = desa.filter(d => !hidden.has(d.st));
+    const list = desa.filter(d => !hidden.has(this.keyOf(d)));
     const { scope } = this.state;
     const groupBy = scope.lvl === 'nas' ? null : scope.kc ? null : scope.kb ? 'kecK' : 'kab';
     const groups = [];
@@ -1108,7 +1452,7 @@ class Component extends DCLogic {
       ctx.fillStyle = '#58595B'; ctx.textBaseline = 'alphabetic';
       for (const hd of L.heads) ctx.fillText(hd.t.toUpperCase(), hd.x, hd.y);
       for (const c of L.cells) {
-        ctx.fillStyle = hidden.has(c.d.st) ? '#dedbd4' : (ramp[c.d.st] || ramp[0]);
+        ctx.fillStyle = this.colorOf(c.d, ramp);
         ctx.fillRect(c.x, c.y, c.w, c.h);
       }
       const selK = this.state.sel;
@@ -1156,11 +1500,12 @@ class Component extends DCLogic {
       }
     };
     const many = this.U.length > 1400;
+    const layered = this.state.layer !== 'status';
     for (let i = 0; i < this.U.length; i++) {
       const u = this.U[i];
-      const dim = hidden.has(u.nodataKind || u.cls);
+      const dim = hidden.has(u.nodataKind || (layered ? u.lk : u.cls));
       path(u.rings, ctx);
-      ctx.fillStyle = dim ? '#dedbd4' : (u.fill || ramp[u.cls] || ramp[0]);
+      ctx.fillStyle = dim ? '#dedbd4' : (u.fill || (layered ? u.lc : ramp[u.cls]) || ramp[0]);
       ctx.fill();
       if (!many) { ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 0.7; ctx.stroke(); }
       // pick-canvas hanya untuk hit-test; percuma digambar tiap frame animasi
@@ -1236,13 +1581,14 @@ class Component extends DCLogic {
     const idx = this.hitAt(px, py);
     if (idx !== this.hoverIdx) { this.hoverIdx = idx; this.draw(); }
     if (idx < 0) { if (this.state.tip) this.setState({ tip: null }); return; }
-    const ramp = this.ramp();
-    let t, lines, cls;
+    const ramp = this.ramp(), L = this.layerOf();
+    let t, lines, cls, lc = null;
     if (this.hitMode === 'petak') {
       const d = this.layout.cells[idx].d;
       t = d.nm; cls = d.st;
       lines = ['Kec. ' + tc(d.kec) + ' · ' + kabLab(tc(this.kabName(d.kab))), SNAME[d.st] + ' · IDM ' + d4(d.idm),
                'IKS ' + d3(d.iks) + '  IKE ' + d3(d.ike) + '  IKL ' + d3(d.ikl)];
+      if (L) { const p = this.desaPaint(d); lc = p.c; lines.unshift(this.layerText(p.v, L, false)); }
     } else {
       const u = this.U[idx]; if (!u) return;
       t = u.nm; cls = u.cls;
@@ -1265,12 +1611,23 @@ class Component extends DCLogic {
         : 'Nama pada batas RBI: ' + tc(u.desa.nameWarning.geo_name));
       if (u.src) lines.push('Batas desa: ' + PATCH_SOURCE);
       if (u.frameOnly) lines.push('Klik untuk melihat petak desa');
+      if (L && !u.nodata) { lc = u.lc; lines.unshift(this.layerText(u.lv, L, !u.desa)); }
     }
     const flipX = px > r.width - 270, flipY = py > r.height - 130;
     const tipUnit = this.hitMode === 'map' ? this.U[idx] : null;
     this.setState({ tip: { x: (flipX ? px - 260 : px + 16) + 'px', y: (flipY ? py - 108 : py + 16) + 'px', t, lines,
-      color: (tipUnit && tipUnit.fill) || ramp[cls] || ramp[0] } });
+      color: (tipUnit && tipUnit.fill) || lc || ramp[cls] || ramp[0] } });
   };
+  // Baris pertama tooltip saat peta diwarnai lapisan selain status.
+  layerText(v, L, agg) {
+    if (v == null) return L.short + ': ' + (L.kind === 'dim' ? 'tidak ada nilai' : 'tidak ada data indikator');
+    if (L.kind === 'dim') return L.short + (agg ? ' rerata ' : ' ') + d3(v);
+    if (L.kind === 'ind' && !agg) {
+      const ref = L.I && L.I.ref[String(v)];
+      return L.nm + ': skor ' + v + (ref ? ' — ' + ref[0] : '');
+    }
+    return L.nm + ': ' + (agg ? 'rerata skor ' : 'rerata ') + d1(v) + ' dari 5';
+  }
   onLeave = () => { if (this.noHover) return; this.hoverIdx = -1; this.setState({ tip: null }); this.draw(); };
   onDown = (e) => {
     if (performance.now() - this.touchAt < GHOST_MS) return;
@@ -1542,7 +1899,7 @@ class Component extends DCLogic {
     // 'half' supaya kartu detail langsung terlihat tanpa aksi tambahan.
     const sheet = (sel && this.isMobile && this.state.sheet === 'peek') ? 'half' : this.state.sheet;
     if (sel) this.loadOther(this.state.scope.p);   // untuk baris perbandingan tahun di kartu detail
-    this.setState({ sel, view, sheet }, () => { this.syncSheet(); this.draw(); });
+    this.setState({ sel, view, sheet, indRow: null }, () => { this.syncSheet(); this.draw(); this.syncInd(); });
   }
   clearSel = () => this.setState({ sel: null }, () => this.draw());
   setPeta = () => this.setState({ view: 'peta' }, () => { this.fit = null; this.draw(); });
@@ -1616,7 +1973,7 @@ class Component extends DCLogic {
       return { all, kind: 'prov' };
     }
     const hidden = new Set(this.state.hidden);
-    let all = (this.scopeDesa() || []).filter(d => !hidden.has(d.st)).map(d => ({
+    let all = (this.scopeDesa() || []).filter(d => !hidden.has(this.keyOf(d))).map(d => ({
       key: d.k, nm: tc(d.nm), c2: tc(d.kec), c3: tc(this.kabName(d.kab)),
       idm: d.idm, iks: d.iks, ike: d.ike, ikl: d.ikl, st: d.st, color: ramp[d.st],
       go: () => this.selectDesa(d.k), hi: () => {},
@@ -1668,6 +2025,163 @@ class Component extends DCLogic {
         go: () => this.setYear(y) };
     });
   }
+  // Opsi pemilih lapisan: status, 3 dimensi, 12 sub-dimensi, 50 indikator
+  // dikelompokkan per sub-dimensi. Indikator hanya aktif di IDM 2024.
+  layerOptions() {
+    const M = this.ind.meta, off = this.state.year !== IND_YEAR;
+    const groups = [
+      { lab: 'Umum', opts: [{ v: 'status', t: 'Status IDM', dis: false }] },
+      { lab: 'Dimensi IDM · nilai 0–1', opts: DIM_LAYERS.map(D => ({ v: 'dim:' + D[0], t: D[2] + ' — ' + D[3], dis: false })) }
+    ];
+    const tag = off ? ' · khusus 2024' : '';
+    if (M) {
+      groups.push({ lab: 'Sub-dimensi · rerata skor 0–5' + tag, opts: M.sub.map((S, j) => ({ v: 'sub:' + j, t: S.nm, dis: off })) });
+      for (const S of M.sub) groups.push({ lab: S.dim + ' · ' + S.nm + tag, opts: S.ind.map(i => ({ v: 'ind:' + i, t: M.ind[i].nm, dis: off })) });
+    } else if (M === null) groups.push({ lab: 'Indikator 2024', opts: [{ v: 'load', t: 'Memuat daftar indikator…', dis: true }] });
+    return groups;
+  }
+  // Legenda lapisan: satu baris per kelas skor, jumlah desa di lingkup aktif.
+  // Di tingkat nasional jumlah per kelas hanya diketahui untuk indikator
+  // tunggal (sebaran nasional ada di meta.json).
+  layerLegend(L, A, scope, hidden) {
+    const counts = {}, M = this.ind.meta;
+    let known = true;
+    if (scope.lvl !== 'nas') {
+      for (const d of this.scopeDesa() || []) { const k = this.desaPaint(d).key; counts[k] = (counts[k] || 0) + 1; }
+    } else if (L.kind === 'ind' && M) {
+      let s = 0;
+      M.nas.d[L.i].forEach((n, sc) => { counts['s' + sc] = n; s += n; });
+      counts.na = Math.max(0, A.n - s);
+    } else known = false;
+    const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1;
+    const lab = (c) => L.kind === 'ind' ? 'Skor ' + c
+      : L.kind === 'sub' ? ['0 – 0,5', '0,5 – 1,5', '1,5 – 2,5', '2,5 – 3,5', '3,5 – 4,5', '4,5 – 5'][c]
+      : ['< 0,50', '0,50 – 0,59', '0,60 – 0,69', '0,70 – 0,79', '0,80 – 0,89', '≥ 0,90'][c];
+    const keys = L.cls.map(c => ({ key: 's' + c, nm: lab(c), color: IND_RAMP[c] }));
+    if (known && counts.na) keys.push({ key: 'na', nm: L.kind === 'dim' ? 'Tanpa nilai' : 'Tanpa data indikator', color: this.ramp()[0] });
+    const items = keys.map(it => Object.assign(it, {
+      n: known ? nf.format(counts[it.key] || 0) : '—', pct: known ? pc((counts[it.key] || 0) / total) : '',
+      op: hidden.has(it.key) ? '0.34' : '1', go: () => this.toggleHide(it.key)
+    }));
+    let note;
+    if (L.kind === 'ind' && L.I) {
+      const hi = L.cls[0], lo = L.cls[L.cls.length - 1];
+      note = 'Skor ' + hi + ': ' + L.I.ref[hi][0] + '. Skor ' + lo + ': ' + L.I.ref[lo][0] + '.' + (L.I.fix ? ' † ' + L.I.fix : '');
+    } else if (L.kind === 'sub' && L.S) {
+      // Huruf pertama saja yang dikecilkan, supaya singkatan (BPJS, SD/MI) utuh.
+      const lc = (s) => /^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s;
+      note = 'Rerata skor ' + L.S.ind.length + ' indikator ' + L.S.dim + ': ' + L.S.ind.map(i => lc(M.ind[i].nm)).join(', ') + '.';
+    } else note = L.nm + ', skala 0–1, dikelompokkan per 0,1.';
+    if (scope.lvl === 'nas') note += ' Warna provinsi = rerata ' + (L.kind === 'dim' ? 'nilai' : 'skor') + ' desanya' + (known ? '' : '; jumlah per kelas tampil setelah memilih provinsi') + '.';
+    else if (L.kind !== 'dim') note += ' Sumber: rumusan IDM 2024 per indikator.';
+    return { items, note };
+  }
+  showIndOnMap(i) {
+    this.setLayer('ind:' + i);
+    if (this.isMobile) this.setSheet('peek');
+  }
+  // Profil indikator untuk kartu detail desa: radar & dot plot 12 sub-dimensi
+  // (dibanding rerata kab/kota) dan rapor 50 indikator.
+  indProfile(d) {
+    const st = this.state;
+    if (st.year !== IND_YEAR) return { msg: 'Indikator rinci hanya tersedia untuk IDM 2024.' };
+    const M = this.ind.meta, pf = this.ind.prov[d.k.slice(0, 2)];
+    if (M === false || pf === false) return { msg: 'Data indikator gagal dimuat.' };
+    if (!M || !pf) return { msg: 'Memuat data indikator…' };
+    const vec = this.indVec(d.k);
+    if (!vec) {
+      const code = pf.nv[d.k], why = M.nv[code != null ? code : M.nv.length - 1];
+      return { msg: 'Data indikator belum tersedia: ' + why.charAt(0).toLowerCase() + why.slice(1) + '.' };
+    }
+    const sv = this.subMeans(vec), K = M.kab[d.kab], bench = K ? this.subMeans(K.m) : null;
+    const benchLab = 'Rerata ' + kabLab(tc(this.kabName(d.kab)));
+    const weakTone = (v, b) => v != null && b != null && v < b - 0.25 ? 'var(--text-brand)' : 'var(--text-muted)';
+    const tip = (S, v, b) => S.nm + ' (' + S.dim + ', ' + S.ind.length + ' indikator) · desa ' + d1(v)
+      + (b != null ? ' · ' + benchLab.toLowerCase() + ' ' + d1(b) : '');
+
+    // radar: sumbu searah jarum jam dari atas, IKS -> IKE -> IKL
+    const n = M.sub.length, R = RADAR, f = (x) => x.toFixed(1);
+    const ang = (j) => -Math.PI / 2 + j * 2 * Math.PI / n;
+    const pt = (j, v) => [R.cx + R.r * v / 5 * Math.cos(ang(j)), R.cy + R.r * v / 5 * Math.sin(ang(j))].map(f).join(',');
+    const ring = (lv) => 'M' + M.sub.map((_, j) => pt(j, lv)).join('L') + 'Z';
+    let grid = ring(1) + ring(2) + ring(3) + ring(4);
+    M.sub.forEach((_, j) => { grid += 'M' + R.cx + ',' + R.cy + 'L' + pt(j, 5); });
+    let dots = '';
+    sv.forEach((v, j) => {
+      if (v == null) return;
+      const [x, y] = pt(j, v).split(',').map(Number);
+      dots += 'M' + f(x - 2.8) + ',' + f(y) + 'a2.8,2.8 0 1,0 5.6,0a2.8,2.8 0 1,0 -5.6,0';
+    });
+    const radar = {
+      grid, outer: ring(5), dots,
+      desa: sv.map((v, j) => pt(j, v || 0)).join(' '),
+      bench: bench ? bench.map((v, j) => pt(j, v || 0)).join(' ') : '',
+      labels: M.sub.map((S, j) => {
+        const c = Math.cos(ang(j)), s = Math.sin(ang(j));
+        const x = R.cx + (R.r + 9) * c, y = R.cy + (R.r + 9) * s;
+        const v = sv[j], b = bench ? bench[j] : null;
+        return { lab: S.short, v: d1(v), vfg: weakTone(v, b), title: tip(S, v, b),
+          x: (x / R.w * 100).toFixed(2) + '%', y: (y / R.h * 100).toFixed(2) + '%',
+          tf: 'translate(' + (c > 0.3 ? '0' : c < -0.3 ? '-100%' : '-50%') + ',' + (s < -0.55 ? '-100%' : s > 0.55 ? '0' : '-50%') + ')',
+          al: c > 0.3 ? 'left' : c < -0.3 ? 'right' : 'center' };
+      })
+    };
+    const dotGroups = M.dim.map(D => ({
+      lab: D.k + ' · ' + D.nm,
+      rows: M.sub.map((S, j) => [S, j]).filter(([S]) => S.dim === D.k).map(([S, j]) => {
+        const v = sv[j], b = bench ? bench[j] : null;
+        return { lab: S.short, v: d1(v), vfg: weakTone(v, b) === 'var(--text-brand)' ? 'var(--text-brand)' : 'var(--text-strong)',
+          x: ((v || 0) / 5 * 100).toFixed(2) + '%', dop: v == null ? '0' : '1',
+          bx: ((b || 0) / 5 * 100).toFixed(2) + '%', bop: b == null ? '0' : '1', title: tip(S, v, b) };
+      })
+    }));
+
+    // rapor 50 indikator per dimensi
+    const open = new Set(st.indDims);
+    const rapor = M.dim.map((D, gi) => {
+      const idx = M.ind.map((_, i) => i).filter(i => M.ind[i].dim === D.k);
+      let full = 0, weak = 0, miss = 0;
+      for (const i of idx) { const v = vec[i]; if (v < 0) miss++; else if (v === 5) full++; else if (v <= 2) weak++; }
+      const on = open.has(D.k);
+      return {
+        k: D.k, nm: D.nm, open: on, exp: on ? 'true' : 'false', caret: on ? '−' : '+',
+        bt: gi ? '1px solid var(--border-hairline)' : '0',
+        sum: idx.length + ' indikator · ' + full + ' skor penuh · ' + weak + ' lemah' + (miss ? ' · ' + miss + ' kosong' : ''),
+        go: () => this.toggleIndDim(D.k),
+        subs: !on ? [] : M.sub.filter(S => S.dim === D.k).map(S => ({ lab: S.nm, rows: S.ind.map(i => this.indRowVals(i, vec[i], M)) }))
+      };
+    });
+
+    const api = pf.api[d.k];
+    return {
+      ok: true, isRadar: st.indView === 'radar', isDot: st.indView === 'dot',
+      views: [['radar', 'Radar'], ['dot', 'Dot plot']].map(([k, lab], i) => {
+        const on = st.indView === k;
+        return { lab, on: on ? 'true' : 'false', bl: i ? '1px solid var(--border-hairline)' : '0',
+          bg: on ? 'var(--n-900)' : 'transparent', fg: on ? 'var(--n-0)' : 'var(--text-body)', go: () => this.setIndView(k) };
+      }),
+      radar, dots: dotGroups, rapor,
+      benchLab: bench ? benchLab : null,
+      apiNote: api != null && d.idm != null ? 'Rumusan indikator menghasilkan IDM ' + d4(api) + ', selisih ' + (api - d.idm >= 0 ? '+' : '−')
+        + d4(Math.abs(api - d.idm)) + ' terhadap nilai resmi di atas. Skor indikator di bawah mengikuti rumusan tersebut.' : null
+    };
+  }
+  indRowVals(i, v, M) {
+    const I = M.ind[i], ref = v >= 0 ? I.ref[String(v)] : null, on = this.state.indRow === i;
+    const weak = v >= 0 && v <= 2, shown = this.state.layer === 'ind:' + i;
+    return {
+      lab: I.nm + (I.fix ? ' †' : ''), v: v >= 0 ? String(v) : '—',
+      pips: [1, 2, 3, 4, 5].map(p => ({ c: v >= p ? 'var(--n-800)' : 'var(--n-200)' })),
+      dot: weak ? 'var(--text-brand)' : 'transparent', vfg: weak ? 'var(--text-brand)' : 'var(--text-strong)',
+      bg: on ? 'var(--n-50)' : 'transparent', open: on, exp: on ? 'true' : 'false',
+      go: () => this.setState({ indRow: on ? null : i }),
+      ket: ref ? ref[0] : 'Skor tidak tercatat pada sumber.', keg: ref && ref[1] ? ref[1] : null,
+      pel: I.pel.length ? I.pel.map(p => p[0] + ': ' + p[1]).join(' · ') : null,
+      fix: I.fix ? '† ' + I.fix : null,
+      map: () => this.showIndOnMap(i), mapLab: shown ? 'Sedang diwarnai di peta' : 'Warnai peta dengan indikator ini →',
+      mapFg: shown ? 'var(--text-muted)' : 'var(--text-strong)'
+    };
+  }
   renderVals() {
     const st = this.state, meta = st.meta, ramp = this.ramp(), inks = this.inks();
     if (!st.ready || !meta) {
@@ -1693,7 +2207,9 @@ class Component extends DCLogic {
         onClick: this.onClick, onDbl: this.onDbl, zoomIn: this.zoomIn, zoomOut: this.zoomOut,
         resetView: this.resetView, setPeta: this.setPeta, setPetak: this.setPetak, goUp: this.goUp,
         toggleTable: this.toggleTable, toggleRankDir: this.toggleRankDir, showMore: this.showMore,
-        onQ: this.onQ, onProv: this.onProv, clearSel: this.clearSel, exportCsv: this.exportCsv, exportPng: this.exportPng
+        onQ: this.onQ, onProv: this.onProv, clearSel: this.clearSel, exportCsv: this.exportCsv, exportPng: this.exportPng,
+        layerGroups: [], layerSel: 'status', onLayer: this.onLayer, layerChip: null,
+        layerBtnBg: 'var(--surface-card)', layerBtnFg: 'var(--text-body)'
       };
     }
     const scope = st.scope, A = this.scopeAgg(), nas = meta.nas;
@@ -1736,23 +2252,25 @@ class Component extends DCLogic {
     if (withoutScore) dist.push({ cls: 0, nm: SNAME[0], n: nf.format(withoutScore), pct: pc(withoutScore / (A.n || 1)),
       w: Math.max(0.6, withoutScore / (A.n || 1) * 100) + '%', color: ramp[0], ink: inks[0], labOp: '0',
       title: SNAME[0] + ': ' + nf.format(withoutScore) + ' desa (sumber resmi tidak memuat skor)' });
-    const legend = A.d.map((n, i) => {
+    let legend = A.d.map((n, i) => {
       const cls = i + 1;
       return { nm: SNAME[cls], n: nf.format(n), pct: pc(n / (A.n || 1)), color: ramp[cls],
         op: hidden.has(cls) ? '0.34' : '1', go: () => this.toggleHide(cls) };
     });
     if (withoutScore) legend.push({ nm: 'Desa tanpa skor', n: nf.format(withoutScore), pct: pc(withoutScore / (A.n || 1)), color: ramp[0],
       op: hidden.has(0) ? '0.34' : '1', go: () => this.toggleHide(0) });
-    if (st.view === 'peta' && this.coverage && this.coverage.kelurahan) legend.push({ nm: 'Kelurahan (di luar IDM)',
+    const covLegend = [];
+    if (st.view === 'peta' && this.coverage && this.coverage.kelurahan) covLegend.push({ nm: 'Kelurahan (di luar IDM)',
       n: nf.format(this.coverage.kelurahan), pct: '—', color: OUTSIDE_IDM_COLOR,
       op: hidden.has('kelurahan') ? '0.34' : '1', go: () => this.toggleHide('kelurahan') });
-    if (st.view === 'peta' && this.coverage && this.coverage.notInYear) legend.push({ nm: 'Belum ada di IDM ' + st.year,
+    if (st.view === 'peta' && this.coverage && this.coverage.notInYear) covLegend.push({ nm: 'Belum ada di IDM ' + st.year,
       n: nf.format(this.coverage.notInYear), pct: '—', color: OUTSIDE_IDM_COLOR,
       op: hidden.has('not-in-year') ? '0.34' : '1', go: () => this.toggleHide('not-in-year') });
-    if (st.view === 'peta' && this.coverage && this.coverage.joinMissing) legend.push({ nm: 'Desa gagal join',
+    if (st.view === 'peta' && this.coverage && this.coverage.joinMissing) covLegend.push({ nm: 'Desa gagal join',
       n: nf.format(this.coverage.joinMissing), pct: '!', color: JOIN_MISSING_COLOR,
       op: hidden.has('join-missing') ? '0.34' : '1', go: () => this.toggleHide('join-missing') });
-    const statusChips = A.d.map((n, i) => {
+    legend.push(...covLegend);
+    let statusChips = A.d.map((n, i) => {
       const cls = i + 1, off = hidden.has(cls);
       return { nm: SNAME[cls], n: nf.format(n), color: off ? '#cfcbc2' : ramp[cls], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
         fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[cls], go: () => this.toggleHide(cls) };
@@ -1761,6 +2279,20 @@ class Component extends DCLogic {
       const off = hidden.has(0);
       statusChips.push({ nm: SNAME[0], n: nf.format(withoutScore), color: off ? '#cfcbc2' : ramp[0], bg: off ? 'var(--n-50)' : 'var(--surface-card)',
         fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + SNAME[0], go: () => this.toggleHide(0) });
+    }
+
+    // Lapisan selain status: legenda & chip berganti menjadi kelas skor lapisan.
+    const Lyr = this.layerOf();
+    let layerNote = null;
+    if (Lyr) {
+      const LL = this.layerLegend(Lyr, A, scope, hidden);
+      layerNote = LL.note;
+      legend = LL.items.concat(covLegend);
+      statusChips = LL.items.map(it => {
+        const off = hidden.has(it.key);
+        return { nm: it.nm, n: it.n, color: off ? '#cfcbc2' : it.color, bg: off ? 'var(--n-50)' : 'var(--surface-card)',
+          fg: off ? 'var(--text-subtle)' : 'var(--text-body)', title: (off ? 'Tampilkan ' : 'Sembunyikan ') + it.nm, go: it.go };
+      });
     }
 
     // rank
@@ -1811,6 +2343,7 @@ class Component extends DCLogic {
         dTone: (d.idm || 0) - nas.m >= 0 ? 'var(--status-success)' : 'var(--text-brand)',
         prov: d.pv > 0 ? SOURCE_NAME[d.pv] || null : null,
         yoy: this.yoy(d.k, scope.p),
+        ind: this.indProfile(d),
         sub: [['IKS — Ketahanan Sosial', d.iks, nas.s], ['IKE — Ketahanan Ekonomi', d.ike, nas.e], ['IKL — Ketahanan Lingkungan', d.ikl, nas.l]]
           .map(([lab, v, n]) => ({ lab, v: d3(v), w: Math.max(1, (v || 0) * 100) + '%', nasw: (n * 100) + '%',
             note: v == null ? 'tidak tersedia' : ((v - n >= 0 ? 'di atas' : 'di bawah') + ' rerata nasional ' + d3(n)) }))
@@ -1882,7 +2415,8 @@ class Component extends DCLogic {
     };
 
     const scopeKind = scope.lvl === 'nas' ? 'Nasional' : scope.lvl === 'prov' ? 'Provinsi' : scope.lvl === 'kab' ? 'Kabupaten / Kota' : 'Kecamatan';
-    const unitLabel = st.view === 'petak' ? 'satu kotak = satu desa'
+    const unitLabel = Lyr ? (st.view === 'petak' || this.unitKind === 'desa' ? 'warna dari ' : 'warna dari rerata ') + Lyr.nm
+      : st.view === 'petak' ? 'satu kotak = satu desa'
       : scope.lvl === 'nas' ? 'warna dari rerata IDM provinsi'
       : this.unitKind === 'frame' ? 'warna dari rerata IDM provinsi · batas desa belum dibangun'
       : this.unitKind === 'desa' ? 'warna dari status IDM desa' : 'warna dari rerata IDM ' + (this.unitKind === 'kec' ? 'kecamatan' : 'kabupaten');
@@ -1922,8 +2456,12 @@ class Component extends DCLogic {
       onSheetMove: this.onSheetMove, onSheetEnd: this.onSheetEnd,
       cycleSheet: this.cycleSheet, toggleSearch: this.toggleSearch,
       distTotal: nf.format(A.n) + ' desa' + (withoutScore ? ' · ' + nf.format(withoutScore) + ' tanpa nilai' : ''),
-      legendNote: coverageNotes.length ? coverageNotes.join('. ') + '.'
+      legendNote: layerNote ? [layerNote].concat(coverageNotes.map(s => s + '.')).join(' ')
+        : coverageNotes.length ? coverageNotes.join('. ') + '.'
         : 'Status ditulis sebagai teks di setiap tooltip, tabel, dan legenda — warna bukan satu-satunya penanda.',
+      layerGroups: this.layerOptions(), layerSel: st.layer, onLayer: this.onLayer,
+      layerChip: Lyr ? Lyr.short : null,
+      layerBtnBg: Lyr ? 'var(--n-900)' : 'var(--surface-card)', layerBtnFg: Lyr ? 'var(--n-0)' : 'var(--text-body)',
       rankTitle, rankSub, rankDirLab: st.rankDir > 0 ? 'Terendah dulu' : 'Tertinggi dulu',
       histSub: nf.format(scored) + ' desa bernilai dalam 24 selang · rerata ' + d4(A.m),
       histMean: 'rerata ' + d4(A.m),

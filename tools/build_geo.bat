@@ -13,6 +13,8 @@ if not exist ".venv\Scripts\python.exe" (
 REM build_geo.py membaca daftar kode desa dari data\idm\TAHUN\ untuk tambalan poligon,
 REM jadi data IDM dibangun lebih dulu, lalu hasilnya diaudit per tahun.
 ".venv\Scripts\python.exe" tools\build_idm.py || (echo Gagal membangun data IDM. & pause & exit /b)
+REM Indikator turunan 2024 dibaca dari repo scraper (lihat tools\build_indikator.py --src).
+".venv\Scripts\python.exe" tools\build_indikator.py || (echo Gagal membangun data indikator 2024. & pause & exit /b)
 ".venv\Scripts\python.exe" tools\build_geo.py %*
 ".venv\Scripts\python.exe" tools\audit_join.py --year 2023
 ".venv\Scripts\python.exe" tools\audit_join.py --year 2024

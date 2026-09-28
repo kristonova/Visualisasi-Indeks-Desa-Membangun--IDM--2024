@@ -1,0 +1,72 @@
+{
+ "ok": 74743,
+ "kosong": 522,
+ "tidak_terjoin": [],
+ "sel_kosong": {
+  "1114092005": [
+   "IKS28_AKSES_LISTRIK",
+   "IKS31_INTERNET_WARGA (tak bisa dipulihkan)"
+  ],
+  "1509022012": [
+   "IKS28_AKSES_LISTRIK",
+   "IKS31_INTERNET_WARGA (tak bisa dipulihkan)"
+  ],
+  "3524052010": [
+   "IKS28_AKSES_LISTRIK",
+   "IKS31_INTERNET_WARGA (tak bisa dipulihkan)"
+  ],
+  "3604172003": [
+   "IKS07_AKTIVITAS_POSYANDU",
+   "IKS28_AKSES_LISTRIK",
+   "IKS31_INTERNET_WARGA (tak bisa dipulihkan)"
+  ],
+  "7104072007": [
+   "IKS05_KEPESERTAAN_BPJS",
+   "IKS31_INTERNET_WARGA (tak bisa dipulihkan)"
+  ]
+ },
+ "iks31": {
+  "pulih": {
+   "1": 20866,
+   "5": 53872
+  },
+  "api": {
+   "1": 14025,
+   "5": 60718
+  },
+  "tidak_sah": []
+ },
+ "selisih_idm_api": {
+  "n": 3355,
+  "gt_0_01": 1795,
+  "gt_0_05": 574,
+  "maks": 0.3762
+ },
+ "cek_dimensi": {
+  "IKS": 74738,
+  "IKE": 74738,
+  "IKL": 74738,
+  "diuji": 74738
+ },
+ "kosong_per_prov": {
+  "11": 11,
+  "32": 5,
+  "33": 1,
+  "35": 4,
+  "36": 1,
+  "52": 1,
+  "63": 2,
+  "72": 1,
+  "73": 8,
+  "92": 36,
+  "94": 180,
+  "95": 271,
+  "96": 1
+ },
+ "alasan_kosong": {
+  "Desa belum masuk tahap verifikasi IDM 2024": 444,
+  "Data desa belum diverifikasi Kemendesa": 74,
+  "ID desa tidak ditemukan di sistem IDM 2024": 4
+ },
+ "iks27_slb_skor3": 72031
+}
